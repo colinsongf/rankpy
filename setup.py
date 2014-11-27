@@ -1,0 +1,45 @@
+# This file is part of RankPy.
+# 
+# RankPy is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# RankPy is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+
+import os
+
+from setuptools import setup, find_packages, Extension
+from setuptools.command.build_ext import build_ext
+
+rankpy_dir = os.path.join(os.path.dirname(__file__), 'rankpy')
+
+setup(
+    name = "RankPy",
+    version = '0.0.1-alpha',
+    author = "Tomas Tunys",
+    author_email = "tunystom@gmail.com",
+    description = ("This project is designed to make freely available fast implementations of the current state-of-the-art methods for learning to rank in Python."),
+    long_description=open('README.rst', 'r').read(),
+    keywords = "machine learning, learning to rank, information retrieval",
+    url = "https://bitbucket.org/tunystom/rankpy",
+    download_url = "https://bitbucket.org/tunystom/rankpy/downloads",
+    ext_modules=[Extension('rankpy.metrics_inner', sources=['./rankpy/metrics_inner.c'], include_dirs=[rankpy_dir]),
+                 Extension('rankpy.utils_inner', sources=['./rankpy/utils_inner.c'], include_dirs=[rankpy_dir])],
+    cmdclass={'build_ext': build_ext},
+    packages=find_packages(),
+    license = "GNU General Public License v3 or later (GPLv3+)",
+    classifiers=['Development Status :: 3 - Alpha',
+                 'Environment :: Console',
+                 'Intended Audience :: Science/Research',
+                 'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
+                 'Operating System :: OS Independent',
+                 'Programming Language :: Python :: 2.7',
+                 'Topic :: Scientific/Engineering :: Artificial Intelligence']
+)
