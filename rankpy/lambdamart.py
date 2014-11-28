@@ -319,7 +319,7 @@ class LambdaMART(object):
         # Iteratively build a sequence of regression trees.
         for k in range(self.n_estimators):
             # Computes the pseudo-responses (lambdas) and gradient step sizes (weights) for the current regression tree.
-            self.__compute_lambdas_and_weights(queries, metric, self.training_scores, self.training_lambdas,
+            self.__compute_lambdas_and_weights(queries, self.training_scores, metric, self.training_lambdas,
                                                self.training_weights, training_parallel_attributes, training_metric_scale)
 
             # Build the predictor for the gradients of the loss.
@@ -335,7 +335,7 @@ class LambdaMART(object):
                 np.copyto(self.stage_training_lambdas_predicted[k], estimator.predict(queries.feature_vectors))
 
                 if validation is not None:
-                    self.__compute_lambdas_and_weights(validation, metric, self.validation_scores,
+                    self.__compute_lambdas_and_weights(validation, self.validation_scores, metric,
                                                        self.validation_lambdas, self.validation_weights,
                                                        validation_parallel_attributes, validation_metric_scale)
                     np.copyto(self.stage_validation_lambdas_truth[k], self.validation_lambdas)
