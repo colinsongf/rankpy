@@ -17,9 +17,9 @@ Installation
 ------------
 Install the prerequisites and RankPY as follows::
 
-    $ pip install -r requirements.txt
     $ git clone https://bitbucket.org/tunystom/rankpy.git
     $ cd rankpy
+    $ pip install -r requirements.txt
     $ python setup.py install
 
 
