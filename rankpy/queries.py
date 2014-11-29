@@ -518,7 +518,8 @@ def shuffle_split_queries(queries, n_folds=5):
         raise ValueError('queries contain a document with less documents'\
                          ' than the wanted number of folds')
 
-    fold_document_indices = []
+    # Magic that makes the whole thing work (hopefully in every case!).
+    fold_document_indices = [[np.array([], dtype=np.intp)] * n_folds]
     fold_document_counts = []
 
     for qid, n_documents in enumerate(query_document_count):
