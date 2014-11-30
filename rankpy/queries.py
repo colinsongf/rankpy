@@ -579,9 +579,6 @@ def concatenate(queries):
     Concatenates the given list of queries (rankpy.queries.Queries) into a single
     queries Queries object.
     '''
-    for q in queries:
-        print q.feature_vectors.shape
-
     feature_vectors = np.concatenate([q.feature_vectors for q in queries])
     relevance_scores = np.concatenate([q.relevance_scores for q in queries])
     query_indptr = np.concatenate([np.diff(q.query_indptr) for q in queries]).cumsum()
