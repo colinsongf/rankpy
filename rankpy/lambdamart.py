@@ -36,7 +36,7 @@ from scipy.special import expit
 from tempfile import mkdtemp
 
 from utils import pickle, unpickle
-from .utils_inner import argranksort
+from .utils_inner import argranksort, ranksort
 
 
 logger = logging.getLogger(__name__)
@@ -466,6 +466,27 @@ class LambdaMART(object):
             pool.join()
 
         return predictions
+
+
+    def predict_ranking(self, query):
+        '''
+        Predict the document ranking of the documents for the given query.
+
+        query: rankpy.queries.Query object
+            The query whose documents should be ranked.
+        '''
+        if self.trained is False:
+            raise ValueError('the model has not been trained yet')
+
+        predictions = np.zeros(query.document_count(), dtype=np.float64)
+        ranking = np.zeros(query.document_count(), dtype=np.intc)
+
+        # Predict the ranking scores for the documents.
+        LambdaMART.__predict(self.estimators, self.shrinkage, query.feature_vectors, predictions)
+
+        ranksort(predictions, ranking)
+
+        return ranking
 
 
     def __estimate_newton_gradient_steps(self, estimator, queries, lambdas, weights):
