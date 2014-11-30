@@ -163,9 +163,9 @@ class Queries(object):
 
 
     @staticmethod
-    def load_from_text(filepath, dtype=np.float32, max_score=None, has_sorted_relevances=False):
+    def load_from_text(filepaths, dtype=np.float32, max_score=None, has_sorted_relevances=False):
         '''
-        Load queries in the svmlight format from the specified file.
+        Load queries in the svmlight format from the specified file(s).
 
         SVMlight format example (one line):
 
@@ -173,8 +173,8 @@ class Queries(object):
 
         Parameters:
         -----------
-        filepath: string
-            The location of the dataset file.
+        filepath: string or list of strings
+            The location of the dataset file(s).
 
         dtype: data-type, optional (default is np.float32)
             The desired data-type for the document feature vectors. Here,
@@ -189,8 +189,6 @@ class Queries(object):
             If True, it indicates that the relevance scores of the queries in the file
             are sorted in decreasing order.
         '''
-        lineno = 0 # Used just to report invalid lines (if any).
-
         # Arrays used to build CSR matrix of query-document vectors.
         data, indices, indptr = [], [], [0]
 
@@ -201,83 +199,90 @@ class Queries(object):
         query_indptr = [0]
         prev_qid = None
 
+        # If only single filepath is given, not a list.
+        if isinstance(filepaths, basestring):
+            filepaths = [filepaths]
+
         n_feature_vectors = 0
+        
+        for filepath in filepaths:
+            lineno = 0 # Used just to report invalid lines (if any).
+    
+            logger.info('Reading queries from %s.' % filepath)
 
-        logger.info('Reading queries from %s.' % filepath)
+            with open(filepath, 'rb') as ifile:
+                # Loop through every line containing query-document pair.
+                for pair in ifile:
+                    lineno += 1
+                    try:
+                        comment_start = pair.find('#')
 
-        with open(filepath, 'rb') as ifile:
-            # Loop through every line containing query-document pair.
-            for pair in ifile:
-                lineno += 1
-                try:
-                    comment_start = pair.find('#')
+                        # Remove the line comment first.
+                        if comment_start >= 0:
+                            pair = pair[:comment_start]
 
-                    # Remove the line comment first.
-                    if comment_start >= 0:
-                        pair = pair[:comment_start]
+                        pair = pair.strip()
 
-                    pair = pair.strip()
+                        # Skip comments and empty lines.
+                        if not pair:
+                            continue
 
-                    # Skip comments and empty lines.
-                    if not pair:
-                        continue
+                        # Sadly, the distinct items on the line are not properly separated
+                        # by a single delimiter. We split using all whitespaces here.
+                        items = pair.split()
 
-                    # Sadly, the distinct items on the line are not properly separated
-                    # by a single delimiter. We split using all whitespaces here.
-                    items = pair.split()
+                        # Relevance is the first number on the line.
+                        relevances.append(int(items[0]))
 
-                    # Relevance is the first number on the line.
-                    relevances.append(int(items[0]))
+                        # Query ID follows the second item on the line, which is 'qid:'.
+                        qid = int(items[1].split(':')[1])
 
-                    # Query ID follows the second item on the line, which is 'qid:'.
-                    qid = int(items[1].split(':')[1])
+                        if qid != prev_qid:
+                            query_ids.append(qid)
+                            query_indptr.append(query_indptr[-1] + 1)
+                            prev_qid = qid
+                        else:
+                            query_indptr[-1] += 1
 
-                    if qid != prev_qid:
-                        query_ids.append(qid)
-                        query_indptr.append(query_indptr[-1] + 1)
-                        prev_qid = qid
-                    else:
-                        query_indptr[-1] += 1
+                        # Load the feature vector into CSR arrays.
+                        for fidx, fval in map(lambda s: s.split(':'), items[2:]):
+                            data.append(dtype(fval))
+                            indices.append(int(fidx))
+                        indptr.append(len(indices))
 
-                    # Load the feature vector into CSR arrays.
-                    for fidx, fval in map(lambda s: s.split(':'), items[2:]):
-                        data.append(dtype(fval))
-                        indices.append(int(fidx))
-                    indptr.append(len(indices))
+                        n_feature_vectors += 1
 
-                    n_feature_vectors += 1
+                        if n_feature_vectors % 10000 == 0:
+                            logger.info('Read %d queries and %d documents so far.' \
+                                        % (len(query_indptr) - 1, n_feature_vectors))
+                    except:
+                        # Ill-formated line (it should not happen). Print line number
+                        print 'Ill-formated line: %d' % lineno
+                        raise
 
-                    if n_feature_vectors % 10000 == 0:
-                        logger.info('Read %d queries and %d documents so far.' \
-                                    % (len(query_indptr) - 1, n_feature_vectors))
-                except:
-                    # Ill-formated line (it should not happen). Print line number
-                    print 'Ill-formated line: %d' % lineno
-                    raise
+                logger.info('Read %d queries and %d documents in total.' \
+                            % (len(query_indptr) - 1, n_feature_vectors))
 
-            logger.info('Read %d queries and %d documents in total.' \
-                        % (len(query_indptr) - 1, n_feature_vectors))
+        # Remap the features into 0:(# unique feature indices) range.
+        feature_indices = np.unique(indices)
+        indices = np.searchsorted(feature_indices, indices)
 
-            # Remap the features into 0:(# unique feature indices) range.
-            feature_indices = np.unique(indices)
-            indices = np.searchsorted(feature_indices, indices)
+        feature_vectors = sp.csr_matrix((data, indices, indptr), dtype=dtype,
+                                        shape=(n_feature_vectors, len(feature_indices)))
 
-            feature_vectors = sp.csr_matrix((data, indices, indptr), dtype=dtype,
-                                            shape=(lineno, len(feature_indices)))
+        # Free the copies of the feature_vectors in non-Numpy arrays (if any), this
+        # is important in order not to waste memory for the transfer of the
+        # feature vectors to dense format (default option).
+        if feature_vectors.data is not data: del data
+        if feature_vectors.indices is not indices: del indices
+        if feature_vectors.indptr is not indptr: del indptr
 
-            # Free the copies of the feature_vectors in non-Numpy arrays (if any), this
-            # is important in order not to waste memory for the transfer of the
-            # feature vectors to dense format (default option).
-            if feature_vectors.data is not data: del data
-            if feature_vectors.indices is not indices: del indices
-            if feature_vectors.indptr is not indptr: del indptr
+        feature_vectors = feature_vectors.toarray()
 
-            feature_vectors = feature_vectors.toarray()
-
-            # Create and return a Queries object.
-            return Queries(feature_vectors, relevances, query_indptr, max_score=max_score,
-                           has_sorted_relevances=has_sorted_relevances, query_ids=query_ids,
-                           feature_indices=feature_indices)
+        # Create and return a Queries object.
+        return Queries(feature_vectors, relevances, query_indptr, max_score=max_score,
+                       has_sorted_relevances=has_sorted_relevances, query_ids=query_ids,
+                       feature_indices=feature_indices)
 
 
     def save_as_text(self, filepath, shuffle=False):
@@ -567,3 +572,32 @@ def shuffle_split_queries(queries, n_folds=5):
         cross_validation_queries.append((train_queries, valid_queries))
 
     return cross_validation_queries
+
+
+def concatenate(queries):
+    '''
+    Concatenates the given list of queries (rankpy.queries.Queries) into a single
+    queries Queries object.
+    '''
+    for q in queries:
+        print q.feature_vectors.shape
+
+    feature_vectors = np.concatenate([q.feature_vectors for q in queries])
+    relevance_scores = np.concatenate([q.relevance_scores for q in queries])
+    query_indptr = np.concatenate([np.diff(q.query_indptr) for q in queries]).cumsum()
+    query_indptr = np.r_[0, query_indptr]
+    max_score = max([q.max_score for q in queries])
+    query_ids = np.concatenate([q.query_ids for q in queries])
+
+    assert len(query_ids) == len(np.unique(query_ids)), 'some of the queries is in more than one collection'
+
+    try:
+        feature_indices = np.concatenate([q.feature_indices.reshape(1, -1) for q in queries]) - queries[0].feature_indices
+    except:
+        raise ValueError('feature indices of some queries does not correspond')
+
+    assert not np.any(feature_indices), 'feature indices of some queries does not correspond'
+
+    feature_indices = queries[0].feature_indices
+    
+    return Queries(feature_vectors, relevance_scores, query_indptr, max_score, False, query_ids, feature_indices)
