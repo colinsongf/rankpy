@@ -117,6 +117,19 @@ cpdef argranksort_ext(DOUBLE_t[:] scores, INT_t[:] ranks, INT_t[:] queries_offse
     free(documents)
 
 
+cpdef ranksort(DOUBLE_t[:] scores, INT_t[:] ranking):
+    cdef:
+        INT_t i, n_documents = scores.shape[0]
+        DOCUMENT_t *documents = <DOCUMENT_t *>malloc(n_documents * sizeof(DOCUMENT_t))
+
+    __argranksort(scores, documents)
+
+    for i in range(n_documents):
+        ranking[i] = documents[i].position
+
+    free(documents)
+
+
 cpdef ranksort_relevance_labels(DOUBLE_t[:] scores, INT_t[:] labels, INT_t[:] out):
     cdef:
         INT_t i, n_documents = scores.shape[0]
