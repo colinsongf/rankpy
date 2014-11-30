@@ -64,9 +64,33 @@ class Query(object):
     '''
     def __init__(self, qid, relevance_scores, feature_vectors, base=None):
         self.qid = qid
+        self.max_score = relevance_scores.max()
         self.relevance_scores = relevance_scores
         self.feature_vectors = feature_vectors
         self.base = base
+
+
+    def document_count(self):
+        '''
+        Return the number of documents for the query.
+        '''
+        return self.feature_vectors.shape[0]
+
+
+    def get_feature_vectors(self):
+        '''
+        Return the feature vectors of the documents for the query.
+        '''
+        return self.feature_vectors
+
+
+    def highest_relevance(self):
+        '''
+        Return the maximum relevance score of a document
+        associated with the query.
+        '''
+        return self.max_score
+
 
     def __str__(self):
         return 'Query (qid: %d, documents: %d)' % (self.qid, self.relevance_scores.shape[0])
@@ -368,7 +392,15 @@ class Queries(object):
             setattr(self, attribute, value)
 
 
-    def __getitem__(self, qid):
+    def __getitem__(self, i):
+        if i < 0 or i > self.query_count():
+            raise IndexError()
+        s = self.query_indptr[i]
+        e = self.query_indptr[i + 1]
+        return Query(qid, self.relevance_scores[s:e], self.feature_vectors[s:e,:], base=self)
+
+
+    def get_query(self, qid):
         '''
         Return the query with the given id.
         '''
