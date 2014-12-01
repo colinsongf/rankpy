@@ -133,6 +133,11 @@ class Queries(object):
         self.relevance_scores = np.asanyarray(relevance_scores, dtype=np.intc).ravel()
         self.query_indptr = np.asanyarray(query_indptr, dtype=np.intc).ravel()
 
+        min_relevance = self.relevance_scores.min()
+
+        if min_relevance > 0:
+            self.relevance_scores -= min_relevance
+
         self.n_queries = self.query_indptr.shape[0] - 1
         self.n_feature_vectors = self.feature_vectors.shape[0]
 
