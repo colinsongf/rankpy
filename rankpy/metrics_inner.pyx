@@ -30,6 +30,10 @@ from utils_inner cimport ranksort_relevance_labels_ext
 from numpy import float64 as DOUBLE
 
 
+cdef inline int int_min(INT_t a, INT_t b):
+    return b if b < a else a
+
+
 def compute_delta_dcg(DOUBLE_t[:] gain, DOUBLE_t[:] discount, INT_t cutoff, INT_t i, INT_t offset, INT_t[:] document_ranks, INT_t[:] relevance_scores, DOUBLE_t scale, DOUBLE_t[:] out):
     cdef:
         INT_t    j
@@ -71,7 +75,7 @@ def compute_dcg_metric(DOUBLE_t[:] scores, INT_t[:] labels, INT_t[:] queries_off
     ranksort_relevance_labels_ext(scores, labels, queries_offsets, ranked_labels)
 
     for i in range(n_queries):
-        for j in range(queries_offsets[i], queries_offsets[i + 1] if cutoff < 0 else queries_offsets[i] + cutoff):
+        for j in range(queries_offsets[i], queries_offsets[i + 1] if cutoff < 0 else int_min(queries_offsets[i] + cutoff, queries_offsets[i + 1])):
             performance += gains[ranked_labels[j]] / discounts[j - queries_offsets[i]]
 
     return performance / n_queries
@@ -83,7 +87,7 @@ cpdef compute_ideal_dcg_metric_per_query(INT_t[:] sorted_labels, INT_t[:] querie
         np.ndarray[DOUBLE_t, ndim=1] ideal_dcg = np.zeros((n_queries,), dtype=DOUBLE)
 
     for i in range(n_queries):
-        for j in range(queries_offsets[i], queries_offsets[i + 1] if cutoff < 0 else queries_offsets[i] + cutoff):
+        for j in range(queries_offsets[i], queries_offsets[i + 1] if cutoff < 0 else int_min(queries_offsets[i] + cutoff, queries_offsets[i + 1])):
             ideal_dcg[i] += gains[sorted_labels[j]] / discounts[j - queries_offsets[i]]
 
     return ideal_dcg
@@ -102,7 +106,7 @@ def compute_ndcg_metric(DOUBLE_t[:] scores, INT_t[:] labels, INT_t[:] queries_of
 
     for i in range(n_queries):
         query_ndcg = 0.0
-        for j in range(queries_offsets[i], queries_offsets[i + 1] if cutoff < 0 else queries_offsets[i] + cutoff):
+        for j in range(queries_offsets[i], queries_offsets[i + 1] if cutoff < 0 else int_min(queries_offsets[i] + cutoff, queries_offsets[i + 1])):
             query_ndcg += gains[ranked_labels[j]] / discounts[j - queries_offsets[i]]
         if scale[i] > 0:
             query_ndcg /= scale[i]
