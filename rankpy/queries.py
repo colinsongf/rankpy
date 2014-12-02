@@ -177,9 +177,9 @@ class Queries(object):
         for i in range(self.n_queries):
             query_relevance_scores = self.relevance_scores[self.query_indptr[i]:self.query_indptr[i + 1]]
             query_relevance_starts = np.where(np.diff(query_relevance_scores))[0]
-            # Special case: all documents have the same relevance.
-            if query_relevance_starts.size == 0:
-                query_relevance_starts = self.query_indptr[i + 1] - self.query_indptr[i] - 1
+            # Special cases: all documents have the same relevance or there is no irrelevant document.
+            if query_relevance_starts.size == 0 or query_relevance_scores[-1] > 0:
+                query_relevance_starts = np.append(query_relevance_starts, query_relevance_scores.size - 1)
             query_relevance_starts += self.query_indptr[i]
             self.query_relevance_strides[i, self.relevance_scores[query_relevance_starts]] = query_relevance_starts + 1
 
