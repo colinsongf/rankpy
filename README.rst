@@ -11,7 +11,7 @@ Prerequisities
 - Cython (0.21.1)
 - NumPy  (1.8.1)
 - SciPy  (0.14.0)
-
+- Scikit-learn (0.14.1)
 
 Installation
 ------------
@@ -173,4 +173,3 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
-    
