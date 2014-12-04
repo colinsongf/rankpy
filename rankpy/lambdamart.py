@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+3#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # This file is part of RankPy.
@@ -18,6 +18,7 @@
 
 import os
 import logging
+import sklearn
 
 import numpy as np
 
@@ -29,6 +30,7 @@ from functools import partial
 from .metrics import DiscountedCumulativeGain
 
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.tree._tree import TREE_UNDEFINED, TREE_LEAF
 
 from scipy.special import expit
@@ -40,6 +42,60 @@ from .utils_inner import argranksort, ranksort
 
 
 logger = logging.getLogger(__name__)
+
+
+def _prepare_parallel_attributes(queries, scores, metric, n_jobs, metric_scale=None):
+    '''
+    Prepare arguments for calling of the method `_parallel_compute_lambda_and_weight`. These
+    arguments are just views into the queries data, which will be processed by independent
+    workers.
+
+    The method returns two lists. The first contains query index list, which marks the chunk
+    of queries that will be processed by a single call to `_parallel_compute_lambda_and_weight`
+    with attributes in the second list.
+
+    Parameters:
+    -----------
+    queries: rankpy.queries.Queries
+        The queries from which this LambdaMART model is being trained.
+
+    scores: array, shape = (n_documents,)
+        The ranking score for each document in the queries set.
+
+    metric: object implementing metrics.AbstractMetric
+        The evaluation metric which will be used as a utility
+        function optimized by this model.
+
+    n_jobs: int
+        The number of workers.
+
+    metric_scale: float, optional (default is None)
+        The precomputed ideal metric value for the specified queries.
+    '''
+    # Prepared parameters for the workers
+    attributes = []
+
+    # Each process is working on an independent continuous chunk of queries.
+    if queries.query_count() >= n_jobs:
+        training_query_sequence = np.linspace(0, queries.query_count(), n_jobs + 1).astype(np.intc)
+    else:
+        training_query_sequence = np.arange(queries.query_count() + 1, dtype=np.intc)
+
+    # Prepare the appropriate views into the queries data. Every parameter is
+    # just a view into needed portion of the query arrays memory.
+    for i in range(len(training_query_sequence) - 1):
+        qstart = training_query_sequence[i]
+        qend = training_query_sequence[i + 1]
+        dstart = queries.query_indptr[qstart]
+        dend = queries.query_indptr[qend]
+        query_indptr = queries.query_indptr[qstart:qend + 1]
+        q_scores = scores[dstart:dend]
+        relevance_scores = queries.relevance_scores[dstart:dend]
+        relevance_strides = queries.query_relevance_strides[qstart:qend, :]
+        q_metric_scale = None if metric_scale is None else metric_scale[qstart:qend]
+        attributes.append((query_indptr, q_scores, relevance_scores, relevance_strides, metric, q_metric_scale))
+
+    return training_query_sequence, attributes
 
 
 def _paralell_compute_lambda_and_weight((query_indptr, scores, relevance_scores, relevance_strides, metric, metric_scale)):
@@ -138,6 +194,133 @@ def _paralell_compute_lambda_and_weight((query_indptr, scores, relevance_scores,
     return output_lambdas, output_weights
 
 
+def _compute_lambda_and_weight(qid, queries, scores, metric, out_lambdas, out_weights, metric_scale=None):
+    '''
+    Compute the pseudo-responses (`lambdas`) and gradient steps sizes (`weights`) for each
+    document associated with the specified query (`qid`). The pseudo-responses are
+    calculated using the given evaluation metric.
+
+    Parameters:
+    -----------
+    queries: rankpy.queries.Queries
+        The queries from which this LambdaMART model is being trained.
+
+    scores: array, shape = (n_documents,)
+        The ranking score for each document in the queries set.
+
+    metric: object implementing metrics.AbstractMetric
+        The evaluation metric which will be used as a utility
+        function optimized by this model.
+
+    metric_scale: float, optional (default is None)
+        The precomputed ideal metric value for the specified query.
+    '''
+    start = queries.query_indptr[qid]
+    end   = queries.query_indptr[qid + 1]
+
+    # The rank of each document for the query `qid`.
+    document_ranks = np.empty(end - start, dtype=np.intc)
+    argranksort(scores[start:end], document_ranks)
+
+    # The relevance scores of the documents associated with the query `qid`.
+    relevance_scores = queries.relevance_scores[start:end]
+
+    # Prepare the output values for accumulation.
+    out_lambdas[start:end].fill(0)
+    out_weights[start:end].fill(0)
+
+    for i in range(start, end):
+        # rstart: the lowest index of a document with lower relevance score than document `i`.
+        rstart = queries.query_relevance_strides[qid, relevance_scores[i - start]]
+
+        if rstart >= end:
+            break
+
+        # Compute the (absolute) changes in the metric caused by swapping document `i` with all
+        # documents `j` (`j` >= rstart) that have lower relevance to the query.
+        deltas = metric.compute_delta(i - start, rstart - start, document_ranks, relevance_scores, metric_scale)
+
+        scores[rstart:end] -= scores[i]
+
+        # rho_i_j = 1.0 / (1.0 + exp(score[i] - score[j]))
+        # Note: using name overloading to spare memory.
+        weights = expit(scores[rstart:end])
+
+        # Restore the scores after computing rho_i_j's.
+        scores[rstart:end] += scores[i]
+
+        # lambda_i_j for all less relevant (than `i`) documents `j`
+        lambdas = weights * deltas 
+        weights *= (1.0 - weights)
+        weights *= deltas
+
+        # lambda_i += sum_{j:relevance[i]>relevance[j]} lambda_i_j 
+        out_lambdas[i] += lambdas.sum()
+        # lambda_j -= lambda_i_j
+        out_lambdas[rstart:end] -= lambdas
+
+        # Weights are invariant in respect to swapping i and j.
+        out_weights[i] += weights.sum()
+        out_weights[rstart:end] += weights
+
+
+def _compute_lambdas_and_weights(queries, scores, metric, out_lambdas, out_weights,
+                                 pool=None, parallel_attributes=None, metric_scale=None):
+    '''
+    Compute the pseudo-responses (`lambdas`) and gradient steps sizes (`weights`)
+    for each document in the specified set of queries. The pseudo-responses are calculated
+    using the given evaluation metric.
+
+    Note that this method decides to run either paralellized computation of the values
+    using `_paralell_compute_lambda_and_weight` or single-threaded version `_compute_lambda_and_weight`
+    based on value of parameter `pool` (and `parallel_attributes`).
+
+    Parameters:
+    -----------
+    queries: rankpy.queries.Queries
+        The queries from which this LambdaMART model is being trained.
+
+    scores: array, shape = (n_documents,)
+        The ranking score for each document in the queries set.
+
+    metric: object implementing metrics.AbstractMetric
+        The evaluation metric which will be used as a utility
+        function optimized by this model.
+
+    out_lambdas: array, shape=(n_documents,)
+        Computed lambdas.
+
+    out_weights: array, shape=(n_documents,)
+        Computed weights.
+
+    parallel_attributes: list of tuples, optional (default is None)
+        2-item list constaining a list of 2-tuples marking
+        the chunk of queries processed by a single worker
+        with associated arguments for the method
+        `_parallel_compute_lambdas_and_weights`.
+
+    pool: Pool of workers, optional (default is None)
+        The pool with workers processing given parallel_attributes.
+
+    metric_scale: array, shape=(n_queries,), optional (default is None)
+        The precomputed ideal metric value for each of the specified
+        queries.
+    '''
+    # Decide wheter to use paralellized code or not.
+    if pool is None:
+        for qid in range(queries.query_count()):
+            _compute_lambda_and_weight(qid, queries, scores, metric, out_lambdas, out_weights,
+                                       None if metric_scale is None else metric_scale[qid])
+    else:
+        # Execute the computation of lambdas and weights in paralell. This ruins the whole thing (parameters
+        # will be copied into child processes) but its just a couple of MBs anyway...
+        for pid, (lambdas, weights) in enumerate(pool.imap(_paralell_compute_lambda_and_weight, parallel_attributes[1], chunksize=1)):
+            start = queries.query_indptr[parallel_attributes[0][pid]]
+            end   = queries.query_indptr[parallel_attributes[0][pid + 1]]
+            np.copyto(out_lambdas[start:end], lambdas)
+            np.copyto(out_weights[start:end], weights)
+
+
 class LambdaMART(object):
     '''
     LambdaMART learning to rank model.
@@ -183,22 +366,30 @@ class LambdaMART(object):
         The seed for random number generator that internally is used. This
         value should not be None only for debugging.
     '''
-    def __init__(self, n_estimators=100, shrinkage=0.1, use_newton_method=True, max_depth=5,
-                 max_leaf_nodes=None, estopping=32, max_features=None, n_jobs=1, seed=None):
+    def __init__(self, n_estimators=1000, shrinkage=0.1, use_newton_method=True, use_random_forest=-1,
+                 max_depth=5, max_leaf_nodes=None, min_samples_split=2, min_samples_leaf=1, estopping=100,
+                 max_features=None, n_jobs=1, seed=None):
         self.estimators = []
         self.n_estimators = n_estimators
         self.shrinkage = shrinkage
         self.max_depth = max_depth
         self.max_leaf_nodes = max_leaf_nodes
         self.max_features = max_features
+        self.min_samples_leaf = min_samples_leaf
+        self.min_samples_split = min_samples_split
         self.estopping = estopping
         self.use_newton_method=use_newton_method
+        self.use_random_forest=use_random_forest
         self.n_jobs = None if n_jobs <= 0 else n_jobs
         self.training_performance  = None
         self.validation_performance = None
         self.best_performance = None
         self.trained = False
         self.seed = seed
+
+        # `max_leaf_nodes` were introduced in version 15 of scikit-learn.
+        if self.max_leaf_nodes is not None and int(sklearn.__version__.split('.')[1]) < 15:
+            raise ValueError('cannot use parameter `max_leaf_nodes` with scikit-learn of version smaller than 15')
 
 
     def fit(self, metric, queries, validation=None, trace=None):
@@ -305,11 +496,11 @@ class LambdaMART(object):
 
         if self.training_pool is not None:
             # Prepare parameters for background workers
-            training_parallel_attributes = self.__prepare_parallel_attributes(queries, self.training_scores, metric,
-                                                                              self.training_pool._processes, training_metric_scale)
+            training_parallel_attributes = _prepare_parallel_attributes(queries, self.training_scores, metric,
+                                                                        self.training_pool._processes, training_metric_scale)
             if validation is not None:
-                validation_parallel_attributes = self.__prepare_parallel_attributes(validation, self.validation_scores, metric,
-                                                                                    self.training_pool._processes, validation_metric_scale)
+                validation_parallel_attributes = _prepare_parallel_attributes(validation, self.validation_scores, metric,
+                                                                              self.training_pool._processes, validation_metric_scale)
         else:
             training_parallel_attributes = None
             validation_parallel_attributes = None
@@ -319,12 +510,19 @@ class LambdaMART(object):
         # Iteratively build a sequence of regression trees.
         for k in range(self.n_estimators):
             # Computes the pseudo-responses (lambdas) and gradient step sizes (weights) for the current regression tree.
-            self.__compute_lambdas_and_weights(queries, self.training_scores, metric, self.training_lambdas,
-                                               self.training_weights, training_parallel_attributes, training_metric_scale)
+            _compute_lambdas_and_weights(queries, self.training_scores, metric, self.training_lambdas,
+                                         self.training_weights, self.training_pool, training_parallel_attributes,
+                                         training_metric_scale)
 
             # Build the predictor for the gradients of the loss.
-            estimator = DecisionTreeRegressor(max_depth=self.max_depth, max_leaf_nodes=self.max_leaf_nodes,
-                                              max_features=self.max_features)
+            if self.use_random_forest > 0:
+                estimator = RandomForestRegressor(max_depth=self.max_depth, max_leaf_nodes=self.max_leaf_nodes,
+                                                  max_features=self.max_features, min_samples_split=self.min_samples_split,
+                                                  min_samples_leaf=self.min_samples_leaf, n_jobs=self.n_jobs or -1 )
+            else:
+                estimator = DecisionTreeRegressor(max_depth=self.max_depth, max_leaf_nodes=self.max_leaf_nodes,
+                                                  min_samples_split=self.min_samples_split, min_samples_leaf=self.min_samples_leaf,
+                                                  max_features=self.max_features)
 
             # Train the regression tree.
             estimator.fit(queries.feature_vectors, self.training_lambdas)
@@ -335,9 +533,9 @@ class LambdaMART(object):
                 np.copyto(self.stage_training_lambdas_predicted[k], estimator.predict(queries.feature_vectors))
 
                 if validation is not None:
-                    self.__compute_lambdas_and_weights(validation, self.validation_scores, metric,
-                                                       self.validation_lambdas, self.validation_weights,
-                                                       validation_parallel_attributes, validation_metric_scale)
+                    _compute_lambdas_and_weights(validation, self.validation_scores, metric, self.validation_lambdas,
+                                                 self.validation_weights, self.training_pool, validation_parallel_attributes,
+                                                 validation_metric_scale)
                     np.copyto(self.stage_validation_lambdas_truth[k], self.validation_lambdas)
                     np.copyto(self.stage_validation_lambdas_predicted[k], estimator.predict(validation.feature_vectors))
 
@@ -509,202 +707,18 @@ class LambdaMART(object):
         weights:
             The current 2nd order derivatives of the loss function.
         '''
-        # Get the number of nodes (internal + terminal) in the current regression tree.
-        node_count = estimator.tree_.node_count
-        indices = estimator.tree_.apply(queries.feature_vectors)
+        for estimator in estimator.estimators_ if self.use_random_forest > 0 else [estimator]:
+            # Get the number of nodes (internal + terminal) in the current regression tree.
+            node_count = estimator.tree_.node_count
+            indices = estimator.tree_.apply(queries.feature_vectors)
 
-        np.copyto(estimator.tree_.value, np.bincount(indices, lambdas, node_count).reshape(-1, 1, 1))
+            np.copyto(estimator.tree_.value, np.bincount(indices, lambdas, node_count).reshape(-1, 1, 1))
 
-        with np.errstate(divide='ignore', invalid='ignore'):
-            np.divide(estimator.tree_.value, np.bincount(indices, weights, node_count).reshape(-1, 1, 1), out=estimator.tree_.value)
+            with np.errstate(divide='ignore', invalid='ignore'):
+                np.divide(estimator.tree_.value, np.bincount(indices, weights, node_count).reshape(-1, 1, 1), out=estimator.tree_.value)
 
-        # Remove inf's and nas's from the tree.
-        estimator.tree_.value[~np.isfinite(estimator.tree_.value)] = 0.0
-
-
-    def __prepare_parallel_attributes(self, queries, scores, metric, n_jobs, metric_scale=None):
-        '''
-        Prepare arguments for calling of the method `_parallel_compute_lambda_and_weight`. These
-        arguments are just views into the queries data, which will be processed by independent
-        workers.
-
-        The method returns two lists. The first contains query index list, which marks the chunk
-        of queries that will be processed by a single call to `_parallel_compute_lambda_and_weight`
-        with attributes in the second list.
-
-        Parameters:
-        -----------
-        queries: rankpy.queries.Queries
-            The queries from which this LambdaMART model is being trained.
-
-        scores: array, shape = (n_documents,)
-            The ranking score for each document in the queries set.
-
-        metric: object implementing metrics.AbstractMetric
-            The evaluation metric which will be used as a utility
-            function optimized by this model.
-
-        n_jobs: int
-            The number of workers.
-
-        metric_scale: float, optional (default is None)
-            The precomputed ideal metric value for the specified query.
-        '''
-        # Prepare parameters for the workers
-        attributes = []
-
-        # Each process is working on a independent continuous chunk of queries.
-        if queries.query_count() >= n_jobs:
-            training_query_sequence = np.linspace(0, queries.query_count(), n_jobs + 1).astype(np.intc)
-        else:
-            training_query_sequence = np.arange(queries.query_count() + 1, dtype=np.intc)
-
-        # Prepare the appropriate views into the queries data. Every parameter is
-        # just a view into needed portion of the query arrays memory.
-        for i in range(len(training_query_sequence) - 1):
-            qstart = training_query_sequence[i]
-            qend = training_query_sequence[i + 1]
-            dstart = queries.query_indptr[qstart]
-            dend = queries.query_indptr[qend]
-            query_indptr = queries.query_indptr[qstart:qend + 1]
-            q_scores = scores[dstart:dend]
-            relevance_scores = queries.relevance_scores[dstart:dend]
-            relevance_strides = queries.query_relevance_strides[qstart:qend, :]
-            q_metric_scale = None if metric_scale is None else metric_scale[qstart:qend]
-            attributes.append((query_indptr, q_scores, relevance_scores, relevance_strides, metric, q_metric_scale))
-
-        return training_query_sequence, attributes
-
-
-    def __compute_lambda_and_weight(self, qid, queries, scores, metric, out_lambdas, out_weights, metric_scale=None):
-        '''
-        Compute the pseudo-responses (`lambdas`) and gradient steps sizes (`weights`)
-        for each document associated with the specified query (`qid`). The pseudo-responses are 
-        calculated using the given evaluation metric.
-
-        Note that this method is used only if n_jobs was 1 in initialization, i.e. no paralellized
-        method for computation of lambdas and weights is used.
-
-        Parameters:
-        -----------
-        queries: rankpy.queries.Queries
-            The queries from which this LambdaMART model is being trained.
-
-        scores: array, shape = (n_documents,)
-            The ranking score for each document in the queries set.
-
-        metric: object implementing metrics.AbstractMetric
-            The evaluation metric which will be used as a utility
-            function optimized by this model.
-
-        metric_scale: float, optional (default is None)
-            The precomputed ideal metric value for the specified query.
-        '''
-        start = queries.query_indptr[qid]
-        end   = queries.query_indptr[qid + 1]
-
-        # The rank of each document for the query `qid`.
-        document_ranks = np.empty(end - start, dtype=np.intc)
-        argranksort(scores[start:end], document_ranks)
-
-        # The relevance scores of the documents associated with the query `qid`.
-        relevance_scores = queries.relevance_scores[start:end]
-
-        # Prepare the output values for accumulation.
-        out_lambdas[start:end].fill(0)
-        out_weights[start:end].fill(0)
-
-        for i in range(start, end):
-            # rstart: the lowest index of a document with lower relevance score than document `i`.
-            rstart = queries.query_relevance_strides[qid, relevance_scores[i - start]]
-
-            if rstart >= end:
-                break
-
-            # Compute the (absolute) changes in the metric caused by swapping document `i` with all
-            # documents `j` (`j` >= rstart) that have lower relevance to the query.
-            deltas = metric.compute_delta(i - start, rstart - start, document_ranks, relevance_scores, metric_scale)
-
-            scores[rstart:end] -= scores[i]
-
-            # rho_i_j = 1.0 / (1.0 + exp(score[i] - score[j]))
-            # Note: using name overloading to spare memory.
-            weights = expit(scores[rstart:end])
-
-            # Restore the scores after computing rho_i_j's.
-            scores[rstart:end] += scores[i]
-
-            # lambda_i_j for all less relevant (than `i`) documents `j`
-            lambdas = weights * deltas 
-            weights *= (1.0 - weights)
-            weights *= deltas
-
-            # lambda_i += sum_{j:relevance[i]>relevance[j]} lambda_i_j 
-            out_lambdas[i] += lambdas.sum()
-            # lambda_j -= lambda_i_j
-            out_lambdas[rstart:end] -= lambdas
-
-            # Weights are invariant in respect to swapping i and j.
-            out_weights[i] += weights.sum()
-            out_weights[rstart:end] += weights
-
-
-    def __compute_lambdas_and_weights(self, queries, scores, metric, out_lambdas, out_weights, parallel_attributes, metric_scale=None):
-        '''
-        Compute the pseudo-responses (`lambdas`) and gradient steps sizes (`weights`)
-        for each document in the specified set of queries. The pseudo-responses are calculated
-        using the given evaluation metric.
-
-        Note that this method decides to run either paralellized computation of the values
-        described above (`_paralell_compute_lambda_and_weight`) or single-threaded version
-        (`self.__compute_lambda_and_weight`) based on value of parameter `n_jobs` given
-        in initialization.
-
-        Parameters:
-        -----------
-        queries: rankpy.queries.Queries
-            The queries from which this LambdaMART model is being trained.
-
-        scores: array, shape = (n_documents,)
-            The ranking score for each document in the queries set.
-
-        metric: object implementing metrics.AbstractMetric
-            The evaluation metric which will be used as a utility
-            function optimized by this model.
-
-        out_lambdas: array, shape=(n_documents,)
-            Computed lambdas.
-
-        out_weights: array, shape=(n_documents,)
-            Computed weights.
-
-        parallel_attributes: list of tuples
-            2-item list constaining a list of 2-tuples marking
-            the chunk of queries processed by a single worker
-            with associated arguments for the method
-            `_parallel_compute_lambdas_and_weights`.
-
-        metric_scale: array, shape=(n_queries,), optional (default is None)
-            The precomputed ideal metric value for each of the specified
-            queries.
-        '''
-        # Decide wheter to use paralellized code or not.
-        if self.training_pool is None:
-            for qid in range(queries.query_count()):
-                self.__compute_lambda_and_weight(qid, queries, scores, metric, out_lambdas, out_weights,
-                                                 None if metric_scale is None else metric_scale[qid])
-        else:
-            # TODO: Would be much nicer to use multithreaded backend
-            #       instead of child processes here.
-            pool = self.training_pool
-
-            # Execute the computation of lambdas and weights in paralell. This ruins the whole thing (parameters
-            # will be copied into child processes) but its just a couple of MBs anyway...
-            for pid, (lambdas, weights) in enumerate(pool.imap(_paralell_compute_lambda_and_weight, parallel_attributes[1], chunksize=1)):
-                start = queries.query_indptr[parallel_attributes[0][pid]]
-                end   = queries.query_indptr[parallel_attributes[0][pid + 1]]
-                np.copyto(out_lambdas[start:end], lambdas)
-                np.copyto(out_weights[start:end], weights)
+            # Remove inf's and nas's from the tree.
+            estimator.tree_.value[~np.isfinite(estimator.tree_.value)] = 0.0
 
 
     @classmethod
