@@ -275,6 +275,9 @@ class DiscountedCumulativeGain(AbstractMetric):
         scale: array, shape=(n_queries,), or None
             Ignored.
         '''
+        if queries.document_count() != len(scores):
+            raise ValueError('number of documents != number of scores')
+
         return compute_dcg_metric(scores, queries.relevance_scores, queries.query_indptr,
                                   self.gain_cache, self.discount_cache, self.cutoff)
 
@@ -452,6 +455,9 @@ class NormalizedDiscountedCumulativeGain(DiscountedCumulativeGain):
             The ideal DCG values for each query. If None is given it will be
             computed from the document relevance scores.
         '''
+        if queries.document_count() != len(scores):
+            raise ValueError('number of documents != number of scores')
+
         return compute_ndcg_metric(scores, queries.relevance_scores, queries.query_indptr, self.gain_cache, self.discount_cache, self.cutoff, scale)
 
 
