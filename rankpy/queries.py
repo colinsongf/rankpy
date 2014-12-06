@@ -347,7 +347,7 @@ class Queries(object):
 
 
     @classmethod
-    def load(cls, filepath):
+    def load(cls, filepath, mmap=None):
         '''
         Load the previously saved Queries object from the specified file.
 
@@ -355,10 +355,14 @@ class Queries(object):
         -----------
         filepath: string
             The filepath, from which a Queries object will be loaded.
+
+        mmap: {None, ‘r+’, ‘r’, ‘w+’, ‘c’}, optional (default is None)
+            If not None, then memory-map the feature vectors, using
+            the given mode (see `numpy.memmap` for a details).
         '''
         logger.info('Loading queries from %s.' % filepath)
         queries = unpickle(filepath)
-        queries.feature_vectors = np.load(filepath + '.feature_vectors.npy')
+        queries.feature_vectors = np.load(filepath + '.feature_vectors.npy', mmap_mode=mmap)
         # Recover the query indices pointer array from the relevance strides array.
         setattr(queries, 'query_indptr', np.empty(queries.query_relevance_strides.shape[0] + 1, dtype=np.intc))
         queries.query_indptr[0]  = 0
