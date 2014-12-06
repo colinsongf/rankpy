@@ -1,4 +1,4 @@
-3#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # This file is part of RankPy.
@@ -23,7 +23,6 @@ import sklearn
 import numpy as np
 
 from multiprocessing import Pool
-from multiprocessing.pool import ThreadPool 
 
 from functools import partial
 
@@ -37,6 +36,8 @@ from scipy.special import expit
 
 from tempfile import mkdtemp
 
+from .externals.joblib import Parallel, delayed, cpu_count
+
 from utils import pickle, unpickle
 from .utils_inner import argranksort, ranksort
 
@@ -45,7 +46,7 @@ logger = logging.getLogger(__name__)
 
 
 def _prepare_parallel_attributes(queries, scores, metric, n_jobs, metric_scale=None):
-    '''
+    ''' 
     Prepare arguments for calling of the method `_parallel_compute_lambda_and_weight`. These
     arguments are just views into the queries data, which will be processed by independent
     workers.
@@ -99,7 +100,7 @@ def _prepare_parallel_attributes(queries, scores, metric, n_jobs, metric_scale=N
 
 
 def _paralell_compute_lambda_and_weight((query_indptr, scores, relevance_scores, relevance_strides, metric, metric_scale)):
-    '''
+    ''' 
     Compute the pseudo-responses (`lambdas`) and gradient descent steps (`weights`)
     for each document associated with the queries indexed via `query_indptr`.
     The pseudo-responses are calculated using the specified evaluation metric.
@@ -195,7 +196,7 @@ def _paralell_compute_lambda_and_weight((query_indptr, scores, relevance_scores,
 
 
 def _compute_lambda_and_weight(qid, queries, scores, metric, out_lambdas, out_weights, metric_scale=None):
-    '''
+    ''' 
     Compute the pseudo-responses (`lambdas`) and gradient steps sizes (`weights`) for each
     document associated with the specified query (`qid`). The pseudo-responses are
     calculated using the given evaluation metric.
@@ -266,7 +267,7 @@ def _compute_lambda_and_weight(qid, queries, scores, metric, out_lambdas, out_we
 
 def _compute_lambdas_and_weights(queries, scores, metric, out_lambdas, out_weights,
                                  pool=None, parallel_attributes=None, metric_scale=None):
-    '''
+    ''' 
     Compute the pseudo-responses (`lambdas`) and gradient steps sizes (`weights`)
     for each document in the specified set of queries. The pseudo-responses are calculated
     using the given evaluation metric.
@@ -321,8 +322,107 @@ def _compute_lambdas_and_weights(queries, scores, metric, out_lambdas, out_weigh
             np.copyto(out_weights[start:end], weights)
 
 
-class LambdaMART(object):
+def _estimate_newton_gradient_steps(estimator, queries, lambdas, weights):
+    ''' 
+    Compute one iteration of Newton-Raphson method to estimate (optimal) gradient
+    steps for each terminal node of the given estimator (regression tree).
+
+    Parameters:
+    -----------
+    estimator: DecisionTreeRegressor or RandomForestRegressor
+        The regression tree for which the gradient steps are computed.
+
+    queries:
+        The queries determine which terminal nodes of the tree the associated
+        pseudo-responces (lambdas) and weights fall down to.
+
+    lambdas:
+        The current 1st order derivatives of the loss function.
+
+    weights:
+        The current 2nd order derivatives of the loss function.
     '''
+    is_random_forest = isinstance(estimator, RandomForestRegressor)
+    for estimator in estimator.estimators_ if is_random_forest else [estimator]:
+        # Get the number of nodes (internal + terminal) in the current regression tree.
+        node_count = estimator.tree_.node_count
+        indices = estimator.tree_.apply(queries.feature_vectors)
+
+        np.copyto(estimator.tree_.value, np.bincount(indices, lambdas, node_count).reshape(-1, 1, 1))
+
+        with np.errstate(divide='ignore', invalid='ignore'):
+            np.divide(estimator.tree_.value, np.bincount(indices, weights, node_count).reshape(-1, 1, 1), out=estimator.tree_.value)
+
+        # Remove inf's and nas's from the tree.
+        estimator.tree_.value[~np.isfinite(estimator.tree_.value)] = 0.0
+
+
+def _parallel_build_trees(tree_offset, trees, queries, metric, use_newton_method, metric_scale):
+    ''' 
+    Train the trees on the specified queries using the LambdaMART's lambdas computed
+    using the specified metric.
+
+    Parameters:
+    -----------
+    tree_offset: int
+        The index offset from which the indexing of the specified
+        trees begins. Used only for logging progress.
+
+    trees: list of DecisionTreeRegressors
+        The list of regresion tree to train.
+
+    queries: Queries object
+        The set of queries from which the tree models will be trained.
+
+    metric: metrics.AbstractMetric object
+        Specify evaluation metric which will be used as a utility
+        function (i.e. metric of `goodness`) optimized by the trees.
+
+    use_newton_method: bool
+        Estimate the gradient step in each terminal node of regression
+        trees using Newton-Raphson method.
+
+    metric_scale: array of floats, shape = (n_queries, )
+        The precomputed ideal metric value for the specified queries.
+    '''
+    for tree_index, tree in enumerate(trees):
+        logger.info('Started fitting LambdaDecisionTree no. %d.' % (tree_offset + tree_index))
+
+        # Start with random ranking scores.
+        training_scores = 0.0001 * np.random.rand(queries.document_count()).astype(np.float64)
+
+        # The pseudo-responses (lambdas) for each document.
+        training_lambdas = np.empty(queries.document_count(), dtype=np.float64)
+
+        # The optimal gradient descent step sizes for each document.
+        training_weights = np.empty(queries.document_count(), dtype=np.float64)
+
+        # Compute the pseudo-responses (lambdas) and gradient step sizes (weights).
+        _compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas, training_weights,
+                                     metric_scale=metric_scale)
+
+        # Train the regression tree.
+        tree.fit(queries.feature_vectors, training_lambdas)
+
+        # Estimate the ('optimal') gradient step sizes using one iteration
+        # of Newton-Raphson method.
+        if use_newton_method:
+           _estimate_newton_gradient_steps(tree, queries, training_lambdas, training_weights)
+
+        logger.info('Finished fitting LambdaDecisionTree no. %d.' % (tree_offset + tree_index))
+
+    return trees
+
+
+def _parallel_helper(obj, methodname, *args, **kwargs):
+    ''' 
+    Helper function to avoid pickling problems when using multiprocessing.
+    '''
+    return getattr(obj, methodname)(*args, **kwargs)
+
+
+class LambdaMART(object):
+    ''' 
     LambdaMART learning to rank model.
 
     Arguments:
@@ -358,6 +458,9 @@ class LambdaMART(object):
         The maximum number of features that is considered for splitting when
         regression trees are built. If None, all feature will be used.
 
+    base_model: Base learning to rank model, optional (default is None)
+        The base model, which is used to get initial ranking scores.
+
     n_jobs: int, optional (default is 1)
         The number of working sub-processes that will be spawned to compute
         the desired values faster. If -1, the number of CPUs will be used.
@@ -368,7 +471,7 @@ class LambdaMART(object):
     '''
     def __init__(self, n_estimators=1000, shrinkage=0.1, use_newton_method=True, use_random_forest=-1,
                  max_depth=5, max_leaf_nodes=None, min_samples_split=2, min_samples_leaf=1, estopping=100,
-                 max_features=None, n_jobs=1, seed=None):
+                 max_features=None, base_model=None, n_jobs=1, seed=None):
         self.estimators = []
         self.n_estimators = n_estimators
         self.shrinkage = shrinkage
@@ -378,9 +481,10 @@ class LambdaMART(object):
         self.min_samples_leaf = min_samples_leaf
         self.min_samples_split = min_samples_split
         self.estopping = estopping
+        self.base_model = base_model
         self.use_newton_method=use_newton_method
         self.use_random_forest=use_random_forest
-        self.n_jobs = None if n_jobs <= 0 else n_jobs
+        self.n_jobs = max(1, n_jobs if n_jobs >= 0 else n_jobs + cpu_count() + 1)
         self.training_performance  = None
         self.validation_performance = None
         self.best_performance = None
@@ -393,7 +497,7 @@ class LambdaMART(object):
 
 
     def fit(self, metric, queries, validation=None, trace=None):
-        '''
+        ''' 
         Train the LambdaMART model on the specified queries. Optinally, use the
         specified queries for finding an optimal number of trees using validation.
 
@@ -426,7 +530,10 @@ class LambdaMART(object):
         # `utils_inner.argranksort` uses its own randomization (documents with the equal
         # scores are shuffled randomly) this purpose lost its meaning. Now it only serves
         # as a random initialization point as in any other gradient-based type of methdods. 
-        self.training_scores = 0.0001 * np.random.rand(queries.document_count()).astype(np.float64)
+        if self.base_model is None:
+            training_scores = 0.0001 * np.random.rand(queries.document_count()).astype(np.float64)
+        else:
+            training_scores = np.asanyarray(base_model.predict(queries, n_jobs=self.n_jobs), dtype=np.float64)
 
         # If the metric used for training is normalized, it is obviously advantageous
         # to precompute the scaling factor for each query in advance.
@@ -434,10 +541,10 @@ class LambdaMART(object):
         self.training_performance = np.zeros(self.n_estimators, dtype=np.float64)
 
         # The pseudo-responses (lambdas) for each document.
-        self.training_lambdas = np.empty(queries.document_count(), dtype=np.float64)
+        training_lambdas = np.empty(queries.document_count(), dtype=np.float64)
 
         # The optimal gradient descent step sizes for each document.
-        self.training_weights = np.empty(queries.document_count(), dtype=np.float64)
+        training_weights = np.empty(queries.document_count(), dtype=np.float64)
 
         # The lambdas and predictions may be kept for late analysis.
         if trace is not None:
@@ -474,7 +581,11 @@ class LambdaMART(object):
 
         # Initialize same the components for validation queries as for training.
         if validation is not None:
-            self.validation_scores = np.zeros(validation.document_count(), dtype=np.float64)
+            if self.base_model is None:
+                self.validation_scores = np.zeros(validation.document_count(), dtype=np.float64)
+            else:
+                self.validation_scores = np.asanyarray(self.base_model.predict(validation, n_jobs=self.n_jobs), dtype=np.float64)
+
             validation_metric_scale = metric.compute_scale(validation)
             self.validation_performance = np.zeros(self.n_estimators, dtype=np.float64)
 
@@ -492,15 +603,15 @@ class LambdaMART(object):
         performance_not_improved = 0
 
         # Prepare training pool (if wanted).
-        self.training_pool = None if self.n_jobs == 1 else Pool(processes=self.n_jobs)
+        training_pool = None if self.n_jobs == 1 else Pool(processes=self.n_jobs)
 
-        if self.training_pool is not None:
+        if training_pool is not None:
             # Prepare parameters for background workers
-            training_parallel_attributes = _prepare_parallel_attributes(queries, self.training_scores, metric,
-                                                                        self.training_pool._processes, training_metric_scale)
+            training_parallel_attributes = _prepare_parallel_attributes(queries, training_scores, metric,
+                                                                        training_pool._processes, training_metric_scale)
             if validation is not None:
                 validation_parallel_attributes = _prepare_parallel_attributes(validation, self.validation_scores, metric,
-                                                                              self.training_pool._processes, validation_metric_scale)
+                                                                              training_pool._processes, validation_metric_scale)
         else:
             training_parallel_attributes = None
             validation_parallel_attributes = None
@@ -510,31 +621,36 @@ class LambdaMART(object):
         # Iteratively build a sequence of regression trees.
         for k in range(self.n_estimators):
             # Computes the pseudo-responses (lambdas) and gradient step sizes (weights) for the current regression tree.
-            _compute_lambdas_and_weights(queries, self.training_scores, metric, self.training_lambdas,
-                                         self.training_weights, self.training_pool, training_parallel_attributes,
+            _compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas,
+                                         training_weights, training_pool, training_parallel_attributes,
                                          training_metric_scale)
 
-            # Build the predictor for the gradients of the loss.
+            # Build the predictor for the gradients of the loss using either decision tree or random forest.
             if self.use_random_forest > 0:
-                estimator = RandomForestRegressor(max_depth=self.max_depth, max_leaf_nodes=self.max_leaf_nodes,
-                                                  max_features=self.max_features, min_samples_split=self.min_samples_split,
-                                                  min_samples_leaf=self.min_samples_leaf, n_jobs=self.n_jobs or -1 )
+                estimator = RandomForestRegressor(n_estimators=self.use_random_forest,
+                                                  max_depth=self.max_depth,
+                                                  max_leaf_nodes=self.max_leaf_nodes,
+                                                  max_features=self.max_features,
+                                                  min_samples_split=self.min_samples_split,
+                                                  min_samples_leaf=self.min_samples_leaf,
+                                                  n_jobs=self.n_jobs)
             else:
-                estimator = DecisionTreeRegressor(max_depth=self.max_depth, max_leaf_nodes=self.max_leaf_nodes,
-                                                  min_samples_split=self.min_samples_split, min_samples_leaf=self.min_samples_leaf,
-                                                  max_features=self.max_features)
-
+                estimator = DecisionTreeRegressor(max_depth=self.max_depth,
+                                                  max_leaf_nodes=self.max_leaf_nodes,
+                                                  max_features=self.max_features,
+                                                  min_samples_split=self.min_samples_split,
+                                                  min_samples_leaf=self.min_samples_leaf)
             # Train the regression tree.
-            estimator.fit(queries.feature_vectors, self.training_lambdas)
+            estimator.fit(queries.feature_vectors, training_lambdas)
 
             # Store the estimated lambdas for later analysis (if wanted).
             if self.trace_lambdas:
-                np.copyto(self.stage_training_lambdas_truth[k], self.training_lambdas)
+                np.copyto(self.stage_training_lambdas_truth[k], training_lambdas)
                 np.copyto(self.stage_training_lambdas_predicted[k], estimator.predict(queries.feature_vectors))
 
                 if validation is not None:
                     _compute_lambdas_and_weights(validation, self.validation_scores, metric, self.validation_lambdas,
-                                                 self.validation_weights, self.training_pool, validation_parallel_attributes,
+                                                 self.validation_weights, training_pool, validation_parallel_attributes,
                                                  validation_metric_scale)
                     np.copyto(self.stage_validation_lambdas_truth[k], self.validation_lambdas)
                     np.copyto(self.stage_validation_lambdas_predicted[k], estimator.predict(validation.feature_vectors))
@@ -542,13 +658,13 @@ class LambdaMART(object):
             # Estimate the ('optimal') gradient step sizes using one iteration
             # of Newton-Raphson method.
             if self.use_newton_method:
-                self.__estimate_newton_gradient_steps(estimator, queries, self.training_lambdas, self.training_weights)
+                _estimate_newton_gradient_steps(estimator, queries, training_lambdas, training_weights)
 
             # Store the true and estimated gradients for later analysis.
             if self.trace_gradients:
                 with np.errstate(divide='ignore', invalid='ignore'):
-                    np.copyto(self.stage_training_gradients_truth[k], self.training_lambdas)
-                    np.divide(self.stage_training_gradients_truth[k], self.training_weights, out=self.stage_training_gradients_truth[k])
+                    np.copyto(self.stage_training_gradients_truth[k], training_lambdas)
+                    np.divide(self.stage_training_gradients_truth[k], training_weights, out=self.stage_training_gradients_truth[k])
                     self.stage_training_gradients_truth[k, ~np.isfinite(self.stage_training_gradients_truth[k])] = 0.0
                 np.copyto(self.stage_training_gradients_predicted[k], estimator.predict(queries.feature_vectors))
                 # Do the same thing as above for validation queries.
@@ -561,14 +677,14 @@ class LambdaMART(object):
 
             # Update the document scores using the new gradient predictor.
             if self.trace_gradients:
-                self.training_scores += self.shrinkage * self.stage_training_gradients_predicted[k, :]
+                training_scores += self.shrinkage * self.stage_training_gradients_predicted[k, :]
             else:
-                self.training_scores += self.shrinkage * estimator.predict(queries.feature_vectors)
+                training_scores += self.shrinkage * estimator.predict(queries.feature_vectors)
 
             # Add the new tree to the company.
             self.estimators.append(estimator)
 
-            self.training_performance[k] = metric.evaluate_queries(queries, self.training_scores, scale=training_metric_scale)
+            self.training_performance[k] = metric.evaluate_queries(queries, training_scores, scale=training_metric_scale)
 
             if validation is None:
                 logger.info('#%08d: %s (training): %11.8f' % (k + 1, metric, self.training_performance[k]))
@@ -608,10 +724,6 @@ class LambdaMART(object):
         # Correct the number of trees.
         self.n_estimators = len(self.estimators)
 
-        # Get rid of training parameters (for parallelized version, i.e. n_jobs > 1).
-        if self.training_pool is not None:
-            del self.training_pool
-
         # Set these for further inspection.
         self.training_performance = np.resize(self.training_performance, k + 1)
         self.best_performance = best_performance
@@ -633,7 +745,7 @@ class LambdaMART(object):
 
 
     def predict(self, queries, n_jobs=1):
-        '''
+        ''' 
         Predict the ranking score for each individual document of the given queries.
 
         n_jobs: int, optional (default is 1)
@@ -645,29 +757,20 @@ class LambdaMART(object):
 
         predictions = np.zeros(queries.document_count(), dtype=np.float64)
 
-        if n_jobs == 1:
-            for tree in self.estimators:
-                predictions += tree.predict(queries.feature_vectors)
-            predictions *= self.shrinkage
-        else:
-            pool = ThreadPool(processes=None if n_jobs <= 0 else n_jobs)
+        n_jobs = max(1, min(n_jobs if n_jobs >= 0 else n_jobs + cpu_count() + 1, queries.document_count()))
 
-            predictions = np.zeros(queries.document_count(), dtype=np.float64)
+        indices = np.linspace(0, queries.document_count(), n_jobs + 1).astype(np.intc)
 
-            indices = np.linspace(0, queries.document_count(), pool._processes + 1).astype(np.intc)
-
-            for i in range(indices.size - 1):
-                pool.apply_async(LambdaMART.__predict, (self.estimators, self.shrinkage,
-                                                        queries.feature_vectors[indices[i]:indices[i + 1]],
-                                                        predictions[indices[i]:indices[i + 1]]))
-            pool.close()
-            pool.join()
+        Parallel(n_jobs=n_jobs, backend="threading")(delayed(_parallel_helper)
+                (LambdaMART, '_LambdaMART__predict', self.estimators, self.shrinkage,
+                 queries.feature_vectors[indices[i]:indices[i + 1]],
+                 predictions[indices[i]:indices[i + 1]]) for i in range(indices.size - 1))
 
         return predictions
 
 
     def predict_ranking(self, query):
-        '''
+        ''' 
         Predict the document ranking of the documents for the given query.
 
         query: rankpy.queries.Query object
@@ -687,43 +790,22 @@ class LambdaMART(object):
         return ranking
 
 
-    def __estimate_newton_gradient_steps(self, estimator, queries, lambdas, weights):
+    def feature_importances(self):
+        ''' 
+        Return the feature importances.
         '''
-        Compute one iteration of Newton-Raphson method to estimate (optimal) gradient
-        steps for each terminal node of the given estimator (regression tree).
+        if self.trained is False:   
+            raise ValueError('the model has not been trained yet')
 
-        Parameters:
-        -----------
-        estimator: DecisionTreeRegressor
-            The regression tree for which the gradient steps are computed.
+        importances = Parallel(n_jobs=self.n_jobs, backend="threading")(delayed(getattr)
+                              (tree, 'feature_importances_') for tree in self.estimators)
 
-        queries:
-            The queries determine which terminal nodes of the tree the associated
-            pseudo-responces (lambdas) and weights fall down to.
-
-        lambdas:
-            The current 1st order derivatives of the loss function.
-
-        weights:
-            The current 2nd order derivatives of the loss function.
-        '''
-        for estimator in estimator.estimators_ if self.use_random_forest > 0 else [estimator]:
-            # Get the number of nodes (internal + terminal) in the current regression tree.
-            node_count = estimator.tree_.node_count
-            indices = estimator.tree_.apply(queries.feature_vectors)
-
-            np.copyto(estimator.tree_.value, np.bincount(indices, lambdas, node_count).reshape(-1, 1, 1))
-
-            with np.errstate(divide='ignore', invalid='ignore'):
-                np.divide(estimator.tree_.value, np.bincount(indices, weights, node_count).reshape(-1, 1, 1), out=estimator.tree_.value)
-
-            # Remove inf's and nas's from the tree.
-            estimator.tree_.value[~np.isfinite(estimator.tree_.value)] = 0.0
+        return sum(importances) / self.n_estimators
 
 
     @classmethod
     def load(cls, filepath, mmap='r'):
-        '''
+        ''' 
         Load the previously saved LambdaMART model from the specified file.
 
         Parameters:
@@ -771,7 +853,7 @@ class LambdaMART(object):
 
 
     def save(self, filepath):
-        '''
+        ''' 
         Save te LambdaMART model into the specified file.
 
         Parameters:
@@ -822,9 +904,12 @@ class LambdaMART(object):
 
 
     def save_as_text(self, filepath):
-        '''
+        ''' 
         Save the model into the file in an XML format.
-        '''        
+        '''
+        if self.use_random_forest > 0:
+            raise ValueError('cannot save model to text when using it uses random forest')
+
         with open(filepath, 'w') as ofile:
             padding = '\t\t'
 
@@ -890,9 +975,271 @@ class LambdaMART(object):
             ofile.write('</LambdaMART>\n')
 
     def __str__(self):
+        ''' 
+        Return textual representation of the LambdaMART model.
+        '''
         return 'LambdaMART(trees=%d, max_depth=%s, max_leaf_nodes=%s, shrinkage=%.2f, max_features=%s, use_newton_method=%s, trained=%s)' % \
-               (self.n_estimators, str(self.max_depth) if self.max_leaf_nodes is None else '?', '?' if self.max_leaf_nodes is None else str(self.max_leaf_nodes),
-                self.shrinkage, 'all' if self.max_features is None else str(self.max_features), self.use_newton_method, self.trained)
+               (self.n_estimators, self.max_depth if self.max_leaf_nodes is None else '?', '?' if self.max_leaf_nodes is None else self.max_leaf_nodes,
+                self.shrinkage, 'all' if self.max_features is None else self.max_features, self.use_newton_method, self.trained)
+
+
+class LambdaRandomForest(object):
+    ''' 
+    LambdaRandomForest learning to rank model.
+
+    Arguments:
+    -----------
+    n_estimators: int, optional (default is 100)
+        The number of regression ranomized tree estimators that will
+        compose this ensemble model.
+
+    use_newton_method: bool, optional (default is True)
+        Estimate the gradient step in each terminal node of regression
+        trees using Newton-Raphson method.
+
+    max_depth: int, optional (default is 5)
+        The maximum depth of the regression trees. This parameter is ignored
+        if `max_leaf_nodes` is specified (see description of `max_leaf_nodes`).
+
+    max_leaf_nodes: int, optional (default is None)
+        The maximum number of leaf nodes. If not None, the `max_depth` parameter
+        will be ignored. The tree building strategy also changes from depth
+        search first to best search first, which can lead to substantial decrease
+        of training time.
+
+    max_features: int or None, optional (default is None)
+        The maximum number of features that is considered for splitting when
+        regression trees are built. If None, all feature will be used.
+
+    n_jobs: int, optional (default is 1)
+        The number of working sub-processes that will be spawned to compute
+        the desired values faster. If -1, the number of CPUs will be used.
+
+    seed: int, optional (default is None)
+        The seed for random number generator that internally is used. This
+        value should not be None only for debugging.
+    '''
+    def __init__(self, n_estimators=1000, use_newton_method=True, max_depth=None, max_leaf_nodes=None,
+                 min_samples_split=2, min_samples_leaf=1, max_features=None, n_jobs=1, shuffle=True,
+                 seed=None):
+        self.estimators = []
+        self.n_estimators = n_estimators
+        self.max_depth = max_depth
+        self.max_leaf_nodes = max_leaf_nodes
+        self.max_features = max_features
+        self.min_samples_leaf = min_samples_leaf
+        self.min_samples_split = min_samples_split
+        self.use_newton_method=use_newton_method
+        self.shuffle=shuffle
+        self.n_jobs = max(1, n_jobs if n_jobs >= 0 else n_jobs + cpu_count() + 1)
+        self.trained = False
+        self.seed = seed
+
+        # `max_leaf_nodes` were introduced in version 15 of scikit-learn.
+        if self.max_leaf_nodes is not None and int(sklearn.__version__.split('.')[1]) < 15:
+            raise ValueError('cannot use parameter `max_leaf_nodes` with scikit-learn of version smaller than 15')
+
+
+    def fit(self, metric, queries):
+        ''' 
+        Train the LambdaMART model on the specified queries. Optinally, use the
+        specified queries for finding an optimal number of trees using validation.
+
+        Parameters:
+        -----------
+        metric: metrics.AbstractMetric object
+            Specify evaluation metric which will be used as a utility
+            function (i.e. metric of `goodness`) optimized by this model.
+
+        queries: Queries object
+            The set of queries from which this LambdaMART model will be trained.
+        '''
+        # Initialize the random number generator.
+        np.random.seed(self.seed)
+
+        # If the metric used for training is normalized, it is obviously advantageous
+        # to precompute the scaling factor for each query in advance.
+        training_metric_scale = metric.compute_scale(queries)
+
+        logger.info('Training of LambdaRandomForest model has started.')
+
+        if self.shuffle:
+            estimators = []
+
+            for k in range(self.n_estimators):
+                estimators.append(DecisionTreeRegressor(max_depth=self.max_depth,
+                                                        max_leaf_nodes=self.max_leaf_nodes,
+                                                        min_samples_split=self.min_samples_split,
+                                                        min_samples_leaf=self.min_samples_leaf,
+                                                        max_features=self.max_features))
+
+            n_jobs = max(1, min(self.n_jobs if self.n_jobs >= 0 else self.n_jobs + cpu_count() + 1, self.n_estimators))
+
+            indptr = np.linspace(0, self.n_estimators, n_jobs + 1).astype(np.intc)
+
+            # Note: Using multithreading would be nice, but since lambdas and weights are not
+            #       yet computed in Cython (without GIL) the multprocessing here is much more
+            #       efficient.
+            #
+            # Warning: The queries need to be memory-mapped...
+            estimators = Parallel(n_jobs=n_jobs, max_nbytes=None)(delayed(_parallel_build_trees)
+                                 (indptr[i], estimators[indptr[i]:indptr[i + 1]], queries, metric,
+                                  self.use_newton_method, training_metric_scale) for i in range(indptr.size - 1))
+
+            # Collect the trained estimators.
+            self.estimators = sum(estimators, [])
+        else:
+            # Start with random ranking scores.
+            # training_scores = np.zeros(queries.document_count(), dtype=np.float64)
+            training_scores = 0.0001 * np.random.rand(queries.document_count()).astype(np.float64)
+
+            # The pseudo-responses (lambdas) for each document.
+            training_lambdas = np.empty(queries.document_count(), dtype=np.float64)
+
+            # The optimal gradient descent step sizes for each document.
+            training_weights = np.empty(queries.document_count(), dtype=np.float64)
+
+    	    # Prepare training pool (if wanted).
+            training_pool = None if self.n_jobs == 1 else Pool(processes=self.n_jobs)
+
+            if training_pool is not None:
+                # Prepare parameters for background workers
+                training_parallel_attributes = _prepare_parallel_attributes(queries, training_scores, metric,
+                                                                            training_pool._processes, training_metric_scale)
+            else:
+                training_parallel_attributes = None
+
+            # Compute the pseudo-responses (lambdas) and gradient step sizes (weights) just once.
+            _compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas, training_weights,
+                                         training_pool, training_parallel_attributes, training_metric_scale)
+
+            # Build the predictor for the gradients of the loss.
+            estimator = RandomForestRegressor(n_estimators=self.n_estimators,
+                                              max_depth=self.max_depth,
+                                              max_leaf_nodes=self.max_leaf_nodes,
+                                              max_features=self.max_features,
+                                              min_samples_split=self.min_samples_split,
+                                              min_samples_leaf=self.min_samples_leaf,
+                                              n_jobs=self.n_jobs)
+
+            # Train the regression tree.
+            estimator.fit(queries.feature_vectors, training_lambdas)
+
+            # Estimate the ('optimal') gradient step sizes using one iteration
+            # of Newton-Raphson method.
+            if self.use_newton_method:
+                _estimate_newton_gradient_steps(estimator, queries, training_lambdas, training_weights)
+
+            # Add the trees from the random forest into our own list of estimators.
+            self.estimators.extend(estimator.estimators_)
+        
+        # Mark the model as trained.
+        self.trained = True
+
+        logger.info('Training of LambdaRandomForest model has finished.')
+
+
+    @staticmethod
+    def __predict(estimators, feature_vectors, output):
+        for estimator in estimators:
+            output += estimator.predict(feature_vectors)
+
+
+    def predict(self, queries, n_jobs=1):
+        ''' 
+        Predict the ranking score for each individual document of the given queries.
+
+        n_jobs: int, optional (default is 1)
+            The number of working threads that will be spawned to compute
+            the ranking scores. If -1, the current number of CPUs will be used.
+        '''
+        if self.trained is False:
+            raise ValueError('the model has not been trained yet')
+
+        predictions = np.zeros(queries.document_count(), dtype=np.float64)
+
+        n_jobs = max(1, min(n_jobs if n_jobs >= 0 else n_jobs + cpu_count() + 1, queries.document_count()))
+
+        indices = np.linspace(0, queries.document_count(), n_jobs + 1).astype(np.intc)
+
+        Parallel(n_jobs=n_jobs, backend="threading")(delayed(_parallel_helper)
+                (LambdaRandomForest, '_LambdaRandomForest__predict', self.estimators,
+                 queries.feature_vectors[indices[i]:indices[i + 1]],
+                 predictions[indices[i]:indices[i + 1]]) for i in range(indices.size - 1))
+
+        predictions /= len(self.estimators)
+
+        return predictions
+
+
+    def predict_ranking(self, query):
+        ''' 
+        Predict the document ranking of the documents for the given query.
+
+        query: rankpy.queries.Query object
+            The query whose documents should be ranked.
+        '''
+        if self.trained is False:
+            raise ValueError('the model has not been trained yet')
+
+        predictions = np.zeros(query.document_count(), dtype=np.float64)
+        ranking = np.zeros(query.document_count(), dtype=np.intc)
+
+        # Predict the ranking scores for the documents.
+        self.__predict(self.estimators, self.shrinkage, query.feature_vectors, predictions)
+
+        ranksort(predictions, ranking)
+
+        return ranking
+
+
+    def feature_importances(self):
+        ''' 
+        Return the feature importances.
+        '''
+        if self.trained is False:   
+            raise ValueError('the model has not been trained yet')
+
+        importances = Parallel(n_jobs=self.n_jobs, backend="threading")(delayed(getattr)
+                              (tree, 'feature_importances_') for tree in self.estimators)
+
+        return sum(importances) / self.n_estimators
+
+
+    @classmethod
+    def load(cls, filepath):
+        ''' 
+        Load the previously saved LambdaRandomForest model from the specified file.
+
+        Parameters:
+        -----------
+        filepath: string
+            The filepath, from which a LambdaRandomForest object will be loaded.
+        '''
+        logger.info("Loading %s object from %s" % (cls.__name__, filepath))
+        return unpickle(filepath)
+
+
+    def save(self, filepath):
+        ''' 
+        Save te LambdaRandomForest model into the specified file.
+
+        Parameters:
+        -----------
+        filepath: string
+            The filepath where this object will be saved.
+        '''
+        logger.info("Saving %s object into %s" % (self.__class__.__name__, filepath))
+        pickle(self, filepath)
+
+
+    def __str__(self):
+        ''' 
+        Return textual representation of the LambdaRandomForest model.
+        '''
+        return 'LambdaRandomForest(trees=%d, max_depth=%s, max_leaf_nodes=%s, max_features=%s, use_newton_method=%s, trained=%s)' % \
+               (self.n_estimators, self.max_depth if self.max_leaf_nodes is None else '?', '?' if self.max_leaf_nodes is None else self.max_leaf_nodes,
+                'all' if self.max_features is None else self.max_features, self.use_newton_method, self.trained)
 
 
 if __name__ == '__main__':
