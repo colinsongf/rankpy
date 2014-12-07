@@ -34,6 +34,7 @@ from sklearn.tree._tree import TREE_UNDEFINED, TREE_LEAF
 
 from scipy.special import expit
 
+from shutil import rmtree
 from tempfile import mkdtemp
 
 from .externals.joblib import Parallel, delayed, cpu_count
@@ -493,7 +494,8 @@ class LambdaMART(object):
 
         # `max_leaf_nodes` were introduced in version 15 of scikit-learn.
         if self.max_leaf_nodes is not None and int(sklearn.__version__.split('.')[1]) < 15:
-            raise ValueError('cannot use parameter `max_leaf_nodes` with scikit-learn of version smaller than 15')
+            raise ValueError('cannot use parameter `max_leaf_nodes` with scikit-learn of '
+                             'version smaller than 15, use max_depth instead.' )
 
 
     def fit(self, metric, queries, validation=None, trace=None):
@@ -575,6 +577,9 @@ class LambdaMART(object):
 
                 self.stage_validation_gradients_truth = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.gradients.truth.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
                 self.stage_validation_gradients_predicted = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.gradients.predicted.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
+
+            # Used when the model is saved to get rid of it.
+            self.tmp_directory = TEMP_DIRECTORY_NAME
         else:
             self.trace_lambdas = False
             self.trace_gradients = False
@@ -863,44 +868,68 @@ class LambdaMART(object):
         '''
         logger.info("Saving %s object into %s" % (self.__class__.__name__, filepath))
 
-        # Deal with saving the memory-mapped arrays.
+        # Deal with saving the memory-mapped arrays: only the used part of the arrays are saved
+        # with the model, separately, i.e., the arrays are standalone *.npy files. The temporary
+        # directory is removed after this.
         if self.trace_lambdas:
             logger.info('Saving traced (true) lambda values into %s.training.lambdas.truth.npy' % filepath)
             np.save(filepath + '.training.lambdas.truth.npy', self.stage_training_lambdas_truth[:self.training_performance.shape[0]])
-            self.stage_training_lambdas_truth = np.load(filepath + '.training.lambdas.truth.npy', mmap_mode='r')
+            del self.stage_training_lambdas_truth
 
             logger.info('Saving traced (predicted) lambda values into %s.training.lambdas.predicted.npy' % filepath)
             np.save(filepath + '.training.lambdas.predicted.npy', self.stage_training_lambdas_predicted[:self.training_performance.shape[0]])
-            self.stage_training_lambdas_predicted = np.load(filepath + '.training.lambdas.predicted.npy', mmap_mode='r')
+            del self.stage_training_lambdas_predicted
 
             if hasattr(self, 'validation_performance'):
                 logger.info('Saving traced (true) lambda values into %s.validation.lambdas.truth.npy' % filepath)
                 np.save(filepath + '.validation.lambdas.truth.npy', self.stage_validation_lambdas_truth[:self.validation_performance.shape[0]])
-                self.stage_validation_lambdas_truth = np.load(filepath + '.validation.lambdas.truth.npy', mmap_mode='r')
+                del self.stage_validation_lambdas_truth
 
                 logger.info('Saving traced (predicted) lambda values into %s.validation.lambdas.predicted.npy' % filepath)
                 np.save(filepath + '.validation.lambdas.predicted.npy', self.stage_validation_lambdas_predicted[:self.validation_performance.shape[0]])
-                self.stage_validation_lambdas_predicted = np.load(filepath + '.validation.lambdas.predicted.npy', mmap_mode='r')
+                del self.stage_validation_lambdas_predicted
 
         if self.trace_gradients:
             logger.info('Saving traced (true) gradient values into %s.training.gradients.truth.npy' % filepath)
             np.save(filepath + '.training.gradients.truth.npy', self.stage_training_gradients_truth[:self.training_performance.shape[0]])
-            self.stage_training_gradients_truth = np.load(filepath + '.training.gradients.truth.npy', mmap_mode='r')
+            del self.stage_training_gradients_truth
 
             logger.info('Saving traced (predicted) gradient values into %s.training.gradients.predicted.npy' % filepath)
             np.save(filepath + '.training.gradients.predicted.npy', self.stage_training_gradients_predicted[:self.training_performance.shape[0]])
-            self.stage_training_gradients_predicted = np.load(filepath + '.training.gradients.predicted.npy', mmap_mode='r')
+            del self.stage_training_gradients_predicted
 
             if hasattr(self, 'validation_performance'):
                 logger.info('Saving traced (true) gradient values into %s.validation.gradients.truth.npy' % filepath)
                 np.save(filepath + '.validation.gradients.truth.npy', self.stage_validation_gradients_truth[:self.validation_performance.shape[0]])
-                self.stage_validation_gradients_truth = np.load(filepath + '.validation.gradients.truth.npy', mmap_mode='r')
+                del self.stage_validation_gradients_truth
 
                 logger.info('Saving traced (predicted) gradient values into %s.validation.gradients.predicted.npy' % filepath)
                 np.save(filepath + '.validation.gradients.predicted.npy', self.stage_validation_gradients_predicted[:self.validation_performance.shape[0]])
-                self.stage_validation_gradients_predicted = np.load(filepath + '.validation.gradients.predicted.npy', mmap_mode='r')
+                del self.stage_validation_gradients_predicted
+
+        # Get rid of the temporary directory.
+        if hasattr(self, 'tmp_directory'):
+            logger.info('Deleting temporary directory (%s) for traced data.' % self.tmp_directory)
+            rmtree(self.tmp_directory)
+            del self.tmp_directory
 
         pickle(self, filepath)
+
+        if self.trace_lambdas:
+            self.stage_training_lambdas_truth = np.load(filepath + '.training.lambdas.truth.npy', mmap_mode='r')
+            self.stage_training_lambdas_predicted = np.load(filepath + '.training.lambdas.predicted.npy', mmap_mode='r')
+
+            if hasattr(self, 'validation_performance'):
+                self.stage_validation_lambdas_truth = np.load(filepath + '.validation.lambdas.truth.npy', mmap_mode='r')
+                self.stage_validation_lambdas_predicted = np.load(filepath + '.validation.lambdas.predicted.npy', mmap_mode='r')
+
+        if self.trace_gradients:
+            self.stage_training_gradients_truth = np.load(filepath + '.training.gradients.truth.npy', mmap_mode='r')
+            self.stage_training_gradients_predicted = np.load(filepath + '.training.gradients.predicted.npy', mmap_mode='r')
+
+            if hasattr(self, 'validation_performance'):
+                self.stage_validation_gradients_truth = np.load(filepath + '.validation.gradients.truth.npy', mmap_mode='r')
+                self.stage_validation_gradients_predicted = np.load(filepath + '.validation.gradients.predicted.npy', mmap_mode='r')
 
 
     def save_as_text(self, filepath):
