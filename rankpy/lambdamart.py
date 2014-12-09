@@ -1003,6 +1003,34 @@ class LambdaMART(object):
             ofile.write('\t</ensemble>\n')
             ofile.write('</LambdaMART>\n')
 
+
+    def __del__(self):
+        '''
+        Cleanup the temporary directory for traced lambdas and gradients.
+        '''
+        # Get rid of the temporary directory and all the memory-mapped arrays.
+        if hasattr(self, 'tmp_directory'):
+            if self.trace_lambdas:
+                del self.stage_training_lambdas_truth
+                del self.stage_training_lambdas_predicted
+
+                if hasattr(self, 'validation_performance'):
+                    del self.stage_validation_lambdas_truth
+                    del self.stage_validation_lambdas_predicted
+
+            if self.trace_gradients:
+                del self.stage_training_gradients_truth
+                del self.stage_training_gradients_predicted
+
+                if hasattr(self, 'validation_performance'):
+                    del self.stage_validation_gradients_truth
+                    del self.stage_validation_gradients_predicted
+
+            logger.info('Deleting temporary directory (%s) for traced data.' % self.tmp_directory)
+            rmtree(self.tmp_directory)
+            del self.tmp_directory
+
+
     def __str__(self):
         ''' 
         Return textual representation of the LambdaMART model.
