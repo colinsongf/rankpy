@@ -766,7 +766,7 @@ class LambdaMART(object):
 
         indices = np.linspace(0, queries.document_count(), n_jobs + 1).astype(np.intc)
 
-        Parallel(n_jobs=n_jobs, backend="threading")(delayed(_parallel_helper)
+        Parallel(n_jobs=n_jobs, backend="threading")(delayed(_parallel_helper, check_pickle=False)
                 (LambdaMART, '_LambdaMART__predict', self.estimators, self.shrinkage,
                  queries.feature_vectors[indices[i]:indices[i + 1]],
                  predictions[indices[i]:indices[i + 1]]) for i in range(indices.size - 1))
@@ -802,7 +802,7 @@ class LambdaMART(object):
         if self.trained is False:   
             raise ValueError('the model has not been trained yet')
 
-        importances = Parallel(n_jobs=self.n_jobs, backend="threading")(delayed(getattr)
+        importances = Parallel(n_jobs=self.n_jobs, backend="threading")(delayed(getattr, check_pickle=False)
                               (tree, 'feature_importances_') for tree in self.estimators)
 
         return sum(importances) / self.n_estimators
@@ -1111,7 +1111,7 @@ class LambdaRandomForest(object):
             #       efficient.
             #
             # Warning: The queries need to be memory-mapped...
-            estimators = Parallel(n_jobs=n_jobs, max_nbytes=None)(delayed(_parallel_build_trees)
+            estimators = Parallel(n_jobs=n_jobs, max_nbytes=None)(delayed(_parallel_build_trees, check_pickle=False)
                                  (indptr[i], estimators[indptr[i]:indptr[i + 1]], queries, metric,
                                   self.use_newton_method, training_metric_scale) for i in range(indptr.size - 1))
 
@@ -1191,7 +1191,7 @@ class LambdaRandomForest(object):
 
         indices = np.linspace(0, queries.document_count(), n_jobs + 1).astype(np.intc)
 
-        Parallel(n_jobs=n_jobs, backend="threading")(delayed(_parallel_helper)
+        Parallel(n_jobs=n_jobs, backend="threading")(delayed(_parallel_helper, check_pickle=False)
                 (LambdaRandomForest, '_LambdaRandomForest__predict', self.estimators,
                  queries.feature_vectors[indices[i]:indices[i + 1]],
                  predictions[indices[i]:indices[i + 1]]) for i in range(indices.size - 1))
@@ -1229,7 +1229,7 @@ class LambdaRandomForest(object):
         if self.trained is False:   
             raise ValueError('the model has not been trained yet')
 
-        importances = Parallel(n_jobs=self.n_jobs, backend="threading")(delayed(getattr)
+        importances = Parallel(n_jobs=self.n_jobs, backend="threading")(delayed(getattr, check_pickle=False)
                               (tree, 'feature_importances_') for tree in self.estimators)
 
         return sum(importances) / self.n_estimators
