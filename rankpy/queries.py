@@ -24,6 +24,8 @@ from itertools import chain, izip
 from .utils import pickle, unpickle
 from collections import defaultdict
 
+from warnings import warn
+
 
 logger = logging.getLogger(__name__)
 
@@ -347,7 +349,7 @@ class Queries(object):
 
 
     @classmethod
-    def load(cls, filepath, mmap=None):
+    def load(cls, filepath, mmap=None, order=None):
         '''
         Load the previously saved Queries object from the specified file.
 
@@ -359,10 +361,21 @@ class Queries(object):
         mmap: {None, ‘r+’, ‘r’, ‘w+’, ‘c’}, optional (default is None)
             If not None, then memory-map the feature vectors, using
             the given mode (see `numpy.memmap` for a details).
+
+        order: {'C', 'F'} or None, optional (default is None)
+            Specify the order for the feature vectors array. 'C' and 'F'
+            stand for C-contiguos and F-contiguos order, respectively.
+            If None, the order of the features is the same as in time
+            when `self.save(...)` was called. Note that, if mmap is not
+            None, this parameter is ignored.
+        order:
         '''
         logger.info('Loading queries from %s.' % filepath)
         queries = unpickle(filepath)
         queries.feature_vectors = np.load(filepath + '.feature_vectors.npy', mmap_mode=mmap)
+        # Convert (if needed) feature vectors into wanted order.
+        if mmap is None:
+            queries.feature_vectors = np.asanyarray(queries.feature_vectors, order=order)
         # Recover the query indices pointer array from the relevance strides array.
         setattr(queries, 'query_indptr', np.empty(queries.query_relevance_strides.shape[0] + 1, dtype=np.intc))
         queries.query_indptr[0]  = 0
@@ -379,7 +392,7 @@ class Queries(object):
         return queries
 
 
-    def save(self, filepath):
+    def save(self, filepath, order='C'):
         '''
         Save this Queries object into the specified file.
 
@@ -387,8 +400,12 @@ class Queries(object):
         -----------
         filepath: string
             The filepath where this object will be saved.
+
+        order: {'C', 'F'}, optional (default is 'C')
+            Specify the order for the feature vectors array. 'C' and 'F'
+            stand for C-contiguos and F-contiguos order, respectively.
         '''
-        np.save(filepath + '.feature_vectors.npy', np.ascontiguousarray(self.feature_vectors))
+        np.save(filepath + '.feature_vectors.npy', np.asanyarray(self.feature_vectors, order=order))
         removed_attributes = {}
         # Delete all numpy arrays that can be restored from the 2 arrays above.
         for attribute in ('query_indptr', 'relevance_scores', 'feature_vectors'):
@@ -406,7 +423,7 @@ class Queries(object):
             raise IndexError()
         s = self.query_indptr[i]
         e = self.query_indptr[i + 1]
-        return Query(qid, self.relevance_scores[s:e], self.feature_vectors[s:e,:], base=self)
+        return Query(self.query_ids[i], self.relevance_scores[s:e], self.feature_vectors[s:e,:], base=self)
 
 
     def get_query(self, qid):
@@ -461,12 +478,13 @@ class Queries(object):
         return np.diff(self.query_indptr).max()
 
 
-def train_test_split(queries, train_size=None, test_size=0.2):
+def train_test_split(queries, train_size=None, test_size=0.2, documents=False):
     '''
     Split the specified set of queries into training and test sets.
+
     The portion of queries that ends in the training or test set
     is determined by train_size and test_size parameters, respectively.
-    The train_size parameter takes precedense (if specified)
+    The train_size parameter takes precedence (if specified)
 
     Parameters:
     -----------
@@ -479,10 +497,17 @@ def train_test_split(queries, train_size=None, test_size=0.2):
         will be put into the training set. The complement will make the test set.
 
     test_size: int or float, optional (default is 0.2)
-        If float, denotes the portion of (randomly chosen) queriess that will
+        If float, denotes the portion of (randomly chosen) queries that will
         become part of the test set. If int, the precise number of samples
         will be put into the test set. The complement will make the training set.
+
+    documents: boolean, optional (default is False)
+        Instead of splitting the queries into training and test sets, the documents
+        will be split.
     '''
+    if documents:
+        return __train_test_split_documents(queries, train_size, test_size)
+
     n_queries = queries.query_indptr.size - 1
 
     if train_size is not None:
@@ -557,6 +582,106 @@ def train_test_split(queries, train_size=None, test_size=0.2):
     return train_queries, test_queries
 
 
+def __train_test_split_documents(queries, train_size=None, test_size=0.2):
+    '''
+    Split the specified set of queries into training and test sets.
+
+    Instead of splitting queries into a training and test sets, the documents
+    within each query will be divided. The portion of documents ending
+    in each set is determined by train_size and test_size parameters.
+    The train_size parameter takes precedence (if specified)
+
+    Parameters:
+    -----------
+    queries: Queries object
+        The set of queries that should be partitioned to a training and test set.
+
+    train_size: float, optional (default is None)
+        Denotes the portion of (randomly chosen) queries that will
+        become part of the training set. The complement will make the test set.
+
+    test_size: float, optional (default is 0.2)
+        Denotes the portion of (randomly chosen) queries that will
+        become part of the test set. The complement will make the training set.
+    '''
+    query_document_count = np.diff(queries.query_indptr)
+
+    if train_size is not None:
+        if not isinstance(train_size, float) or train_size >= 1.0 or train_size <= 0.0:
+            raise ValueError('train_size must be float between 0.0 and 1.0')
+
+        query_train_document_count = (train_size * query_document_count).astype(np.intc)
+
+        if np.any(query_train_document_count == 0):
+            warn('some queries in training set would not contain any document '\
+                 'for train_size=%.2f (qid: %r)' % (train_size, np.where(query_train_document_count == 0)[0]))
+
+            query_train_document_count += 2 * (query_train_document_count == 0).astype(np.intc)
+
+            if np.any(query_document_count - query_train_document_count <= 0):
+                raise ValueError('queries with less than 2 documents are not supported')
+    elif test_size is not None:
+        if not isinstance(test_size, float) or test_size >= 1.0 or test_size <= 0.0:
+            raise ValueError('test_size must be float between 0.0 and 1.0')
+
+        query_test_document_count = (test_size * query_document_count).astype(np.intc)
+
+        if np.any(query_test_document_count == 0):
+            warn('some queries in test set would not contain any document '\
+                 'for test_size=%.2f (qid: %r)' % (test_size, np.where(query_test_document_count == 0)[0]))
+
+            query_test_document_count += 2 * (query_test_document_count == 0).astype(np.intc)
+
+            if np.any(query_document_count - query_test_document_count <= 0):
+                raise ValueError('queries with less than 2 documents are not supported')
+
+        query_train_document_count = query_document_count - query_test_document_count
+    else:
+        raise ValueError('train_size and test_size cannot be both None!')
+
+    # Reusing the code of shuffle_split_queries with 2 folds.
+    n_folds = 2
+
+    # Magic that makes the whole thing work (hopefully in every case!).
+    fold_document_indices = [[np.array([], dtype=np.intp)] * n_folds]
+    fold_document_counts = []
+
+    for qid in range(queries.query_count()):
+        fold_document_indices.append(np.array_split(queries.query_indptr[qid] \
+                                      + np.random.permutation(query_document_count[qid]), [query_train_document_count[qid]]))
+        fold_document_counts.append([document_indices.shape[0] for document_indices in fold_document_indices[-1]])
+
+    # Using numpy arrays in Fortran-contiguous order for fancy and efficient column indexing.
+    fold_document_indices = np.array(fold_document_indices, dtype=object, order='F')
+    fold_document_counts = np.array(fold_document_counts, dtype=np.intc, order='F')
+
+    # This will result in a list of arrays (one per fold) holding indices of documents for each query.
+    fold_document_indices = [np.concatenate(fold_document_indices[:, i]) for i in range(n_folds)]
+
+    # This will result in a list of array (one per fold) holding number of documents per query.
+    fold_document_counts = [fold_document_counts[:, i] for i in range(n_folds)]
+
+    train_folds_document_indices = fold_document_indices[0]
+    train_folds_document_counts = fold_document_counts[0]
+
+    train_feature_vectors = queries.feature_vectors[train_folds_document_indices, :]
+    train_relevance_scores = queries.relevance_scores[train_folds_document_indices]
+    train_query_indptr = np.r_[0, train_folds_document_counts].cumsum()
+        
+    train_queries = Queries(train_feature_vectors, train_relevance_scores, train_query_indptr, queries.max_score, False, query_ids=queries.query_ids, feature_indices=queries.feature_indices)
+
+    test_fold_document_indices = fold_document_indices[1]
+    test_fold_document_counts = fold_document_counts[1]
+
+    test_feature_vectors = queries.feature_vectors[test_fold_document_indices, :]
+    test_relevance_scores = queries.relevance_scores[test_fold_document_indices]
+    test_query_indptr = np.r_[0, test_fold_document_counts].cumsum()
+
+    test_queries = Queries(test_feature_vectors, test_relevance_scores, test_query_indptr, queries.max_score, False, query_ids=queries.query_ids, feature_indices=queries.feature_indices)
+
+    return train_queries, test_queries
+
+
 def shuffle_split_queries(queries, n_folds=5):
     query_document_count  = np.diff(queries.query_indptr)
 
@@ -581,8 +706,6 @@ def shuffle_split_queries(queries, n_folds=5):
 
     # This will result in a list of array (one per fold) holding number of documents per query.
     fold_document_counts = [fold_document_counts[:, i] for i in range(n_folds)]
-
-    cross_validation_queries = []
 
     for valid_fold in range(n_folds):
         valid_fold_document_indices = fold_document_indices[valid_fold]
@@ -610,9 +733,7 @@ def shuffle_split_queries(queries, n_folds=5):
         
         train_queries = Queries(train_feature_vectors, train_relevance_scores, train_query_indptr, queries.max_score, False, query_ids=queries.query_ids, feature_indices=queries.feature_indices)
 
-        cross_validation_queries.append((train_queries, valid_queries))
-
-    return cross_validation_queries
+        yield train_queries, valid_queries
 
 
 def concatenate(queries):
