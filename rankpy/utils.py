@@ -5,13 +5,14 @@
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Lerot is distributed in the hope that it will be useful,
+# RankPy is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Lesser General Public License for more details.
 #
 # You should have received a copy of the GNU Lesser General Public License
 # along with RankPy.  If not, see <http://www.gnu.org/licenses/>.
+
 
 import os
 import numpy
@@ -24,7 +25,7 @@ except ImportError:
 
 
 def pickle(obj, filepath, protocol=-1):
-    '''
+    ''' 
     Pickle the object into the specified file.
 
     Parameters:
@@ -40,7 +41,7 @@ def pickle(obj, filepath, protocol=-1):
 
 
 def unpickle(filepath):
-    '''
+    ''' 
     Unpicle the object serialized in the specified file.
 
     Parameters:
@@ -53,10 +54,10 @@ def unpickle(filepath):
 
 
 def save_spmatrix(filename, X, compress=False, tempdir=None):
-    """
+    ''' 
     Serializes X into file using numpy .npz format
     with an optional compression.
-    """
+    '''
     is_csc = False
     if scipy.sparse.isspmatrix_csc(X):
         is_csc = True
@@ -81,12 +82,19 @@ def save_spmatrix(filename, X, compress=False, tempdir=None):
 
 
 def load_spmatrix(filename):
-    """
+    ''' 
     Load a sparse matrix X from the specified .npz file.
-    """
+    '''
     npz = numpy.load(filename)
 
     if npz['is_csc']:
         return scipy.sparse.csc_matrix((npz['data'], npz['indices'], npz['indptr']), shape=npz['shape'])
     else:
         return scipy.sparse.csr_matrix((npz['data'], npz['indices'], npz['indptr']), shape=npz['shape'])
+
+
+def _parallel_helper(obj, methodname, *args, **kwargs):
+    ''' 
+    Helper function to avoid pickling problems when using Parallel loops.
+    '''
+    return getattr(obj, methodname)(*args, **kwargs)

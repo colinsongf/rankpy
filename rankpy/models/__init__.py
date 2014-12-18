@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#
 # This file is part of RankPy.
 #
 # RankPy is free software: you can redistribute it and/or modify
@@ -14,9 +16,15 @@
 # along with RankPy.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from rankpy import models, queries, utils
+''' 
+Learning to Rank models
+'''
 
-try:
-    __version__ = __import__('pkg_resources').get_distribution('rankpy').version
-except:
-    __version__ = '?'
+from .lambdamart import LambdaMART
+from .lambdarandomforest import LambdaRandomForest
+
+
+__all__ = [
+    'LambdaMART',
+    'LambdaRandomForest',
+]

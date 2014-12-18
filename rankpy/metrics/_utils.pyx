@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with RankPy.  If not, see <http://www.gnu.org/licenses/>.
 
+
 from cython cimport view
 
 from libc.stdlib cimport calloc, free, rand, srand, qsort

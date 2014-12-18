@@ -32,7 +32,7 @@ setup(
     download_url = "https://bitbucket.org/tunystom/rankpy/downloads",
     ext_modules=[Extension('rankpy.metrics._metrics', sources=['./rankpy/metrics/_metrics.c']),
                  Extension('rankpy.metrics._utils', sources=['./rankpy/metrics/_utils.c']),
-                 Extension('rankpy.lambdamart_inner', sources=['./rankpy/lambdamart_inner.c'])],
+                 Extension('rankpy.models.lambdamart_inner', sources=['./rankpy/models/lambdamart_inner.c'])],
     cmdclass={'build_ext': build_ext},
     packages=find_packages(),
     license = "GNU General Lesser Public License v3 or later (GPLv3+)",

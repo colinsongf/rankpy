@@ -35,6 +35,12 @@ def _parallel_compute_lambdas_and_weights(INT_t qstart, INT_t qend, INT_t[::1] q
                                           DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores,
                                           INT_t[:, ::1] relevance_strides, Metric metric, DOUBLE_t[::1] metric_scale,
                                           DOUBLE_t[::1] output_lambdas, DOUBLE_t[::1] output_weights):
+    '''
+    Helper function to compute pseudo-responses (`lambdas`) and 'optimal' gradient
+    step sizes (`weights`) for the documents associated with the specified queries.
+
+    Parameters:
+    --
     cdef:
         INT_t i, j, k, start,rstart, end, n_documents
         INT_t *document_ranks

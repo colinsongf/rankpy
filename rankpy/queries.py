@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Lerot is distributed in the hope that it will be useful,
+# RankPy is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Lesser General Public License for more details.
@@ -15,14 +15,13 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with RankPy.  If not, see <http://www.gnu.org/licenses/>.
 
+
 import logging
 import numpy as np
 import scipy.sparse as sp
 
-from operator import itemgetter
 from itertools import chain, izip
 from .utils import pickle, unpickle
-from collections import defaultdict
 
 from warnings import warn
 
@@ -30,18 +29,8 @@ from warnings import warn
 logger = logging.getLogger(__name__)
 
 
-class Bunch(dict):
-    '''
-    Container object for convenient data transfer: dictionary-like
-	object, which exposes its keys as attributes.
-    '''
-    def __init__(self, **kwargs):
-        dict.__init__(self, kwargs)
-        self.__dict__ = self
-
-
 class Query(object):
-    '''
+    ''' 
     Data structure representing a single query. It can be either
     stand-alone query or a query that is a part of a dataset, in
     which case the query is just a view into the fields of the
@@ -73,21 +62,21 @@ class Query(object):
 
 
     def document_count(self):
-        '''
+        ''' 
         Return the number of documents for the query.
         '''
         return self.feature_vectors.shape[0]
 
 
     def get_feature_vectors(self):
-        '''
+        ''' 
         Return the feature vectors of the documents for the query.
         '''
         return self.feature_vectors
 
 
     def highest_relevance(self):
-        '''
+        ''' 
         Return the maximum relevance score of a document
         associated with the query.
         '''
@@ -95,11 +84,14 @@ class Query(object):
 
 
     def __str__(self):
+        ''' 
+        Return the textual representation of this Query object.
+        '''
         return 'Query (qid: %d, documents: %d)' % (self.qid, self.relevance_scores.shape[0])
 
 
 class Queries(object):
-    '''
+    ''' 
     Data structure representing queries used for training learning to
 	rank algorithms. It is created from query-document feature vectors,
 	corresponding relevance scores, and index mapping from queries to
@@ -190,12 +182,15 @@ class Queries(object):
 
 
     def __str__(self):
+        ''' 
+        Return the textual representation of Queries.
+        '''
         return 'Queries (%d queries, %d documents, %d max. relevance)' % (self.n_queries, self.n_feature_vectors, self.max_score)
 
 
     @staticmethod
     def load_from_text(filepaths, dtype=np.float32, max_score=None, has_sorted_relevances=False):
-        '''
+        ''' 
         Load queries in the svmlight format from the specified file(s).
 
         SVMlight format example (one line):
@@ -317,7 +312,7 @@ class Queries(object):
 
 
     def save_as_text(self, filepath, shuffle=False):
-        '''
+        ''' 
         Save queries into the specified file in svmlight format.
 
         Parameters:
@@ -350,7 +345,7 @@ class Queries(object):
 
     @classmethod
     def load(cls, filepath, mmap=None, order=None):
-        '''
+        ''' 
         Load the previously saved Queries object from the specified file.
 
         Parameters:
@@ -393,7 +388,7 @@ class Queries(object):
 
 
     def save(self, filepath, order='C'):
-        '''
+        ''' 
         Save this Queries object into the specified file.
 
         Parameters:
@@ -419,6 +414,9 @@ class Queries(object):
 
 
     def __getitem__(self, i):
+        ''' 
+        Return the i-th query.
+        '''
         if i < 0 or i > self.query_count():
             raise IndexError()
         s = self.query_indptr[i]
@@ -427,7 +425,7 @@ class Queries(object):
 
 
     def get_query(self, qid):
-        '''
+        ''' 
         Return the query with the given id.
         '''
         i = np.where(self.query_ids == qid)[0]
@@ -440,7 +438,7 @@ class Queries(object):
 
 
     def document_count(self, qid=None):
-        '''
+        ''' 
         Return the number of documents for the query. If qid is None
         than the total number of "documents" is returned.
         '''
@@ -451,35 +449,35 @@ class Queries(object):
 
 
     def get_feature_vectors(self, qid):
-        '''
+        ''' 
         Return the feature vectors of the documents for the specified query.
         '''
         return self.feature_vectors[self.query_indptr[qid]:self.query_indptr[qid + 1]]
 
 
     def query_count(self):
-        '''
+        ''' 
         Return the number of queries in this Queries.
         '''
         return self.n_queries
 
 
     def highest_relevance(self):
-        '''
+        ''' 
         Return the maximum relevance score of a document.
         '''
         return self.max_score
 
 
     def longest_document_list(self):
-        '''
+        ''' 
         Return the maximum number of documents query can have.
         '''
         return np.diff(self.query_indptr).max()
 
 
 def train_test_split(queries, train_size=None, test_size=0.2, documents=False):
-    '''
+    ''' 
     Split the specified set of queries into training and test sets.
 
     The portion of queries that ends in the training or test set
@@ -503,7 +501,9 @@ def train_test_split(queries, train_size=None, test_size=0.2, documents=False):
 
     documents: boolean, optional (default is False)
         Instead of splitting the queries into training and test sets, the documents
-        will be split.
+        will be split. This way, the number of queries in the two sets will be
+        the same, but the (relative) number of documents will be determined
+        by the train_size and test_size parameters.
     '''
     if documents:
         return __train_test_split_documents(queries, train_size, test_size)
@@ -583,7 +583,7 @@ def train_test_split(queries, train_size=None, test_size=0.2, documents=False):
 
 
 def __train_test_split_documents(queries, train_size=None, test_size=0.2):
-    '''
+    ''' 
     Split the specified set of queries into training and test sets.
 
     Instead of splitting queries into a training and test sets, the documents
@@ -639,11 +639,8 @@ def __train_test_split_documents(queries, train_size=None, test_size=0.2):
     else:
         raise ValueError('train_size and test_size cannot be both None!')
 
-    # Reusing the code of shuffle_split_queries with 2 folds.
-    n_folds = 2
-
     # Magic that makes the whole thing work (hopefully in every case!).
-    fold_document_indices = [[np.array([], dtype=np.intp)] * n_folds]
+    fold_document_indices = [[np.array([], dtype=np.intp)] * 2]
     fold_document_counts = []
 
     for qid in range(queries.query_count()):
@@ -656,10 +653,10 @@ def __train_test_split_documents(queries, train_size=None, test_size=0.2):
     fold_document_counts = np.array(fold_document_counts, dtype=np.intc, order='F')
 
     # This will result in a list of arrays (one per fold) holding indices of documents for each query.
-    fold_document_indices = [np.concatenate(fold_document_indices[:, i]) for i in range(n_folds)]
+    fold_document_indices = [np.concatenate(fold_document_indices[:, i]) for i in range(2)]
 
     # This will result in a list of array (one per fold) holding number of documents per query.
-    fold_document_counts = [fold_document_counts[:, i] for i in range(n_folds)]
+    fold_document_counts = [fold_document_counts[:, i] for i in range(2)]
 
     train_folds_document_indices = fold_document_indices[0]
     train_folds_document_counts = fold_document_counts[0]
@@ -683,6 +680,20 @@ def __train_test_split_documents(queries, train_size=None, test_size=0.2):
 
 
 def shuffle_split_queries(queries, n_folds=5):
+    ''' 
+    Split the specified set of queries into `n_folds` for cross-validation.
+
+    The documents of every query will be evently divided into `n_folds`
+    number of folds.
+
+    Parameters:
+    -----------
+    queries: Queries object
+        The set of queries that should be partitioned to a training and test set.
+
+    n_folds: integer, optional (default is 5)
+        The number of folds.
+    '''
     query_document_count  = np.diff(queries.query_indptr)
 
     if np.any(query_document_count < n_folds):
@@ -737,9 +748,11 @@ def shuffle_split_queries(queries, n_folds=5):
 
 
 def concatenate(queries):
-    '''
-    Concatenates the given list of queries (rankpy.queries.Queries) into a single
-    queries Queries object.
+    ''' 
+    Concatenate the given list of queries into a single Queries object.
+
+    queries: list of Queries
+        The list of queries to concatenate.
     '''
     feature_vectors = np.concatenate([q.feature_vectors for q in queries])
     relevance_scores = np.concatenate([q.relevance_scores for q in queries])
@@ -753,9 +766,9 @@ def concatenate(queries):
     try:
         feature_indices = np.concatenate([q.feature_indices.reshape(1, -1) for q in queries]) - queries[0].feature_indices
     except:
-        raise ValueError('feature indices of some queries does not correspond')
+        raise ValueError('feature indices for some queries does not match')
 
-    assert not np.any(feature_indices), 'feature indices of some queries does not correspond'
+    assert not np.any(feature_indices), 'feature indices for some queries does not match'
 
     feature_indices = queries[0].feature_indices
     
