@@ -731,7 +731,7 @@ typedef npy_double __pyx_t_5numpy_double_t;
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
 
-/* "rankpy/metrics/_utils.pxd":21
+/* "rankpy/metrics/_utils.pxd":22
  * np.import_array()
  * 
  * ctypedef np.float64_t DOUBLE_t             # <<<<<<<<<<<<<<
@@ -740,7 +740,7 @@ typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
  */
 typedef __pyx_t_5numpy_float64_t __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t;
 
-/* "rankpy/metrics/_utils.pxd":22
+/* "rankpy/metrics/_utils.pxd":23
  * 
  * ctypedef np.float64_t DOUBLE_t
  * ctypedef np.int32_t   INT_t             # <<<<<<<<<<<<<<
@@ -812,7 +812,7 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t;
 
-/* "rankpy/metrics/_utils.pyx":37
+/* "rankpy/metrics/_utils.pyx":38
  * # Auxiliary document structure, used for sort-ing and
  * # argsort-ing.
  * cdef struct DOCUMENT_t:             # <<<<<<<<<<<<<<
@@ -1759,7 +1759,7 @@ static PyObject *__pyx_tuple__20;
 static PyObject *__pyx_tuple__21;
 static PyObject *__pyx_tuple__22;
 
-/* "rankpy/metrics/_utils.pyx":48
+/* "rankpy/metrics/_utils.pyx":49
  * 
  * 
  * cdef int __compare(const void *a, const void *b) nogil:             # <<<<<<<<<<<<<<
@@ -1772,7 +1772,7 @@ static int __pyx_f_6rankpy_7metrics_6_utils___compare(void const *__pyx_v_a, voi
   int __pyx_r;
   int __pyx_t_1;
 
-  /* "rankpy/metrics/_utils.pyx":55
+  /* "rankpy/metrics/_utils.pyx":56
  *     resulting rank of the document.
  *     '''
  *     cdef DOUBLE_t diff = ((<DOCUMENT_t*>b)).score - ((<DOCUMENT_t*>a)).score             # <<<<<<<<<<<<<<
@@ -1781,7 +1781,7 @@ static int __pyx_f_6rankpy_7metrics_6_utils___compare(void const *__pyx_v_a, voi
  */
   __pyx_v_diff = (((struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t *)__pyx_v_b)->score - ((struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t *)__pyx_v_a)->score);
 
-  /* "rankpy/metrics/_utils.pyx":56
+  /* "rankpy/metrics/_utils.pyx":57
  *     '''
  *     cdef DOUBLE_t diff = ((<DOCUMENT_t*>b)).score - ((<DOCUMENT_t*>a)).score
  *     if diff < 0:             # <<<<<<<<<<<<<<
@@ -1791,7 +1791,7 @@ static int __pyx_f_6rankpy_7metrics_6_utils___compare(void const *__pyx_v_a, voi
   __pyx_t_1 = ((__pyx_v_diff < 0.0) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_utils.pyx":57
+    /* "rankpy/metrics/_utils.pyx":58
  *     cdef DOUBLE_t diff = ((<DOCUMENT_t*>b)).score - ((<DOCUMENT_t*>a)).score
  *     if diff < 0:
  *         if diff > -1e-12: # "Equal to zero from left"             # <<<<<<<<<<<<<<
@@ -1801,7 +1801,7 @@ static int __pyx_f_6rankpy_7metrics_6_utils___compare(void const *__pyx_v_a, voi
     __pyx_t_1 = ((__pyx_v_diff > -1e-12) != 0);
     if (__pyx_t_1) {
 
-      /* "rankpy/metrics/_utils.pyx":58
+      /* "rankpy/metrics/_utils.pyx":59
  *     if diff < 0:
  *         if diff > -1e-12: # "Equal to zero from left"
  *             return ((<DOCUMENT_t*>b)).nonce - ((<DOCUMENT_t*>a)).nonce             # <<<<<<<<<<<<<<
@@ -1813,7 +1813,7 @@ static int __pyx_f_6rankpy_7metrics_6_utils___compare(void const *__pyx_v_a, voi
     }
     /*else*/ {
 
-      /* "rankpy/metrics/_utils.pyx":60
+      /* "rankpy/metrics/_utils.pyx":61
  *             return ((<DOCUMENT_t*>b)).nonce - ((<DOCUMENT_t*>a)).nonce
  *         else:
  *             return -1             # <<<<<<<<<<<<<<
@@ -1826,7 +1826,7 @@ static int __pyx_f_6rankpy_7metrics_6_utils___compare(void const *__pyx_v_a, voi
   }
   /*else*/ {
 
-    /* "rankpy/metrics/_utils.pyx":62
+    /* "rankpy/metrics/_utils.pyx":63
  *             return -1
  *     else:
  *         if diff < 1e-12: # "Equal to zero from right"             # <<<<<<<<<<<<<<
@@ -1836,7 +1836,7 @@ static int __pyx_f_6rankpy_7metrics_6_utils___compare(void const *__pyx_v_a, voi
     __pyx_t_1 = ((__pyx_v_diff < 1e-12) != 0);
     if (__pyx_t_1) {
 
-      /* "rankpy/metrics/_utils.pyx":63
+      /* "rankpy/metrics/_utils.pyx":64
  *     else:
  *         if diff < 1e-12: # "Equal to zero from right"
  *             return ((<DOCUMENT_t*>b)).nonce - ((<DOCUMENT_t*>a)).nonce             # <<<<<<<<<<<<<<
@@ -1848,7 +1848,7 @@ static int __pyx_f_6rankpy_7metrics_6_utils___compare(void const *__pyx_v_a, voi
     }
     /*else*/ {
 
-      /* "rankpy/metrics/_utils.pyx":65
+      /* "rankpy/metrics/_utils.pyx":66
  *             return ((<DOCUMENT_t*>b)).nonce - ((<DOCUMENT_t*>a)).nonce
  *         else:
  *             return 1             # <<<<<<<<<<<<<<
@@ -1860,7 +1860,7 @@ static int __pyx_f_6rankpy_7metrics_6_utils___compare(void const *__pyx_v_a, voi
     }
   }
 
-  /* "rankpy/metrics/_utils.pyx":48
+  /* "rankpy/metrics/_utils.pyx":49
  * 
  * 
  * cdef int __compare(const void *a, const void *b) nogil:             # <<<<<<<<<<<<<<
@@ -1873,7 +1873,7 @@ static int __pyx_f_6rankpy_7metrics_6_utils___compare(void const *__pyx_v_a, voi
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_utils.pyx":68
+/* "rankpy/metrics/_utils.pyx":69
  * 
  * 
  * cdef void __argranksort(DOUBLE_t *ranking_scores, DOCUMENT_t *documents, INT_t document_position_offset, INT_t n_documents) nogil:             # <<<<<<<<<<<<<<
@@ -1887,7 +1887,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_t_6rankpy_7metr
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_2;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_3;
 
-  /* "rankpy/metrics/_utils.pyx":74
+  /* "rankpy/metrics/_utils.pyx":75
  *     cdef INT_t i
  * 
  *     if not srand_called:             # <<<<<<<<<<<<<<
@@ -1897,7 +1897,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_t_6rankpy_7metr
   __pyx_t_1 = ((!(__pyx_v_6rankpy_7metrics_6_utils_srand_called != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_utils.pyx":75
+    /* "rankpy/metrics/_utils.pyx":76
  * 
  *     if not srand_called:
  *         srand(time(<time_t *>0))             # <<<<<<<<<<<<<<
@@ -1906,7 +1906,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_t_6rankpy_7metr
  */
     srand(time(((time_t *)0)));
 
-    /* "rankpy/metrics/_utils.pyx":77
+    /* "rankpy/metrics/_utils.pyx":78
  *         srand(time(<time_t *>0))
  *         global srand_called
  *         srand_called = True             # <<<<<<<<<<<<<<
@@ -1918,7 +1918,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_t_6rankpy_7metr
   }
   __pyx_L3:;
 
-  /* "rankpy/metrics/_utils.pyx":79
+  /* "rankpy/metrics/_utils.pyx":80
  *         srand_called = True
  * 
  *     for i in range(n_documents):             # <<<<<<<<<<<<<<
@@ -1929,7 +1929,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_t_6rankpy_7metr
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "rankpy/metrics/_utils.pyx":80
+    /* "rankpy/metrics/_utils.pyx":81
  * 
  *     for i in range(n_documents):
  *         documents[i].position = i + document_position_offset             # <<<<<<<<<<<<<<
@@ -1938,7 +1938,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_t_6rankpy_7metr
  */
     (__pyx_v_documents[__pyx_v_i]).position = (__pyx_v_i + __pyx_v_document_position_offset);
 
-    /* "rankpy/metrics/_utils.pyx":81
+    /* "rankpy/metrics/_utils.pyx":82
  *     for i in range(n_documents):
  *         documents[i].position = i + document_position_offset
  *         documents[i].nonce = rand()             # <<<<<<<<<<<<<<
@@ -1947,7 +1947,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_t_6rankpy_7metr
  */
     (__pyx_v_documents[__pyx_v_i]).nonce = rand();
 
-    /* "rankpy/metrics/_utils.pyx":82
+    /* "rankpy/metrics/_utils.pyx":83
  *         documents[i].position = i + document_position_offset
  *         documents[i].nonce = rand()
  *         documents[i].score = ranking_scores[i]             # <<<<<<<<<<<<<<
@@ -1957,7 +1957,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_t_6rankpy_7metr
     (__pyx_v_documents[__pyx_v_i]).score = (__pyx_v_ranking_scores[__pyx_v_i]);
   }
 
-  /* "rankpy/metrics/_utils.pyx":84
+  /* "rankpy/metrics/_utils.pyx":85
  *         documents[i].score = ranking_scores[i]
  * 
  *     qsort(documents, n_documents, sizeof(DOCUMENT_t), __compare)             # <<<<<<<<<<<<<<
@@ -1966,7 +1966,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_t_6rankpy_7metr
  */
   qsort(__pyx_v_documents, __pyx_v_n_documents, (sizeof(struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t)), __pyx_f_6rankpy_7metrics_6_utils___compare);
 
-  /* "rankpy/metrics/_utils.pyx":68
+  /* "rankpy/metrics/_utils.pyx":69
  * 
  * 
  * cdef void __argranksort(DOUBLE_t *ranking_scores, DOCUMENT_t *documents, INT_t document_position_offset, INT_t n_documents) nogil:             # <<<<<<<<<<<<<<
@@ -1977,7 +1977,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_t_6rankpy_7metr
   /* function exit code */
 }
 
-/* "rankpy/metrics/_utils.pyx":87
+/* "rankpy/metrics/_utils.pyx":88
  * 
  * 
  * cdef void __argranksort_queries(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, DOCUMENT_t *documents) nogil:             # <<<<<<<<<<<<<<
@@ -1990,7 +1990,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort_queries(__pyx_t_6rank
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_1;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_2;
 
-  /* "rankpy/metrics/_utils.pyx":93
+  /* "rankpy/metrics/_utils.pyx":94
  *     cdef INT_t i
  * 
  *     for i in range(n_queries):             # <<<<<<<<<<<<<<
@@ -2001,7 +2001,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort_queries(__pyx_t_6rank
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/metrics/_utils.pyx":94
+    /* "rankpy/metrics/_utils.pyx":95
  * 
  *     for i in range(n_queries):
  *         __argranksort(ranking_scores + query_indptr[i], documents + query_indptr[i],             # <<<<<<<<<<<<<<
@@ -2011,7 +2011,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort_queries(__pyx_t_6rank
     __pyx_f_6rankpy_7metrics_6_utils___argranksort((__pyx_v_ranking_scores + (__pyx_v_query_indptr[__pyx_v_i])), (__pyx_v_documents + (__pyx_v_query_indptr[__pyx_v_i])), (__pyx_v_query_indptr[__pyx_v_i]), ((__pyx_v_query_indptr[(__pyx_v_i + 1)]) - (__pyx_v_query_indptr[__pyx_v_i])));
   }
 
-  /* "rankpy/metrics/_utils.pyx":87
+  /* "rankpy/metrics/_utils.pyx":88
  * 
  * 
  * cdef void __argranksort_queries(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, DOCUMENT_t *documents) nogil:             # <<<<<<<<<<<<<<
@@ -2022,7 +2022,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort_queries(__pyx_t_6rank
   /* function exit code */
 }
 
-/* "rankpy/metrics/_utils.pyx":98
+/* "rankpy/metrics/_utils.pyx":99
  * 
  * 
  * cdef void argranksort_c(DOUBLE_t *ranking_scores, INT_t *ranks, INT_t n_documents) nogil:             # <<<<<<<<<<<<<<
@@ -2036,7 +2036,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_c(__pyx_t_6rankpy_7metr
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_1;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_2;
 
-  /* "rankpy/metrics/_utils.pyx":106
+  /* "rankpy/metrics/_utils.pyx":107
  *     cdef:
  *         INT_t i
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))             # <<<<<<<<<<<<<<
@@ -2045,7 +2045,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_c(__pyx_t_6rankpy_7metr
  */
   __pyx_v_documents = ((struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t *)calloc(__pyx_v_n_documents, (sizeof(struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t))));
 
-  /* "rankpy/metrics/_utils.pyx":108
+  /* "rankpy/metrics/_utils.pyx":109
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
  * 
  *     __argranksort(ranking_scores, documents, 0, n_documents)             # <<<<<<<<<<<<<<
@@ -2054,7 +2054,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_c(__pyx_t_6rankpy_7metr
  */
   __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_v_ranking_scores, __pyx_v_documents, 0, __pyx_v_n_documents);
 
-  /* "rankpy/metrics/_utils.pyx":110
+  /* "rankpy/metrics/_utils.pyx":111
  *     __argranksort(ranking_scores, documents, 0, n_documents)
  * 
  *     for i in range(n_documents):             # <<<<<<<<<<<<<<
@@ -2065,7 +2065,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_c(__pyx_t_6rankpy_7metr
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/metrics/_utils.pyx":111
+    /* "rankpy/metrics/_utils.pyx":112
  * 
  *     for i in range(n_documents):
  *         ranks[documents[i].position] = i             # <<<<<<<<<<<<<<
@@ -2075,7 +2075,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_c(__pyx_t_6rankpy_7metr
     (__pyx_v_ranks[(__pyx_v_documents[__pyx_v_i]).position]) = __pyx_v_i;
   }
 
-  /* "rankpy/metrics/_utils.pyx":113
+  /* "rankpy/metrics/_utils.pyx":114
  *         ranks[documents[i].position] = i
  * 
  *     free(documents)             # <<<<<<<<<<<<<<
@@ -2084,7 +2084,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_c(__pyx_t_6rankpy_7metr
  */
   free(__pyx_v_documents);
 
-  /* "rankpy/metrics/_utils.pyx":98
+  /* "rankpy/metrics/_utils.pyx":99
  * 
  * 
  * cdef void argranksort_c(DOUBLE_t *ranking_scores, INT_t *ranks, INT_t n_documents) nogil:             # <<<<<<<<<<<<<<
@@ -2095,7 +2095,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_c(__pyx_t_6rankpy_7metr
   /* function exit code */
 }
 
-/* "rankpy/metrics/_utils.pyx":116
+/* "rankpy/metrics/_utils.pyx":117
  * 
  * 
  * cdef void argranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *ranks) nogil:             # <<<<<<<<<<<<<<
@@ -2114,7 +2114,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_3;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_4;
 
-  /* "rankpy/metrics/_utils.pyx":122
+  /* "rankpy/metrics/_utils.pyx":123
  *     '''
  *     cdef:
  *         INT_t i, j, r, n_documents = query_indptr[n_queries] - query_indptr[0]             # <<<<<<<<<<<<<<
@@ -2123,7 +2123,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
  */
   __pyx_v_n_documents = ((__pyx_v_query_indptr[__pyx_v_n_queries]) - (__pyx_v_query_indptr[0]));
 
-  /* "rankpy/metrics/_utils.pyx":123
+  /* "rankpy/metrics/_utils.pyx":124
  *     cdef:
  *         INT_t i, j, r, n_documents = query_indptr[n_queries] - query_indptr[0]
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))             # <<<<<<<<<<<<<<
@@ -2132,7 +2132,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
  */
   __pyx_v_documents = ((struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t *)calloc(__pyx_v_n_documents, (sizeof(struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t))));
 
-  /* "rankpy/metrics/_utils.pyx":125
+  /* "rankpy/metrics/_utils.pyx":126
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
  * 
  *     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)             # <<<<<<<<<<<<<<
@@ -2141,7 +2141,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
  */
   __pyx_f_6rankpy_7metrics_6_utils___argranksort_queries(__pyx_v_query_indptr, __pyx_v_n_queries, __pyx_v_ranking_scores, __pyx_v_documents);
 
-  /* "rankpy/metrics/_utils.pyx":127
+  /* "rankpy/metrics/_utils.pyx":128
  *     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)
  * 
  *     for i in range(n_queries):             # <<<<<<<<<<<<<<
@@ -2152,7 +2152,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/metrics/_utils.pyx":128
+    /* "rankpy/metrics/_utils.pyx":129
  * 
  *     for i in range(n_queries):
  *         r = 0             # <<<<<<<<<<<<<<
@@ -2161,7 +2161,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
  */
     __pyx_v_r = 0;
 
-    /* "rankpy/metrics/_utils.pyx":129
+    /* "rankpy/metrics/_utils.pyx":130
  *     for i in range(n_queries):
  *         r = 0
  *         for j in range(query_indptr[i], query_indptr[i + 1]):             # <<<<<<<<<<<<<<
@@ -2172,7 +2172,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
     for (__pyx_t_4 = (__pyx_v_query_indptr[__pyx_v_i]); __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
       __pyx_v_j = __pyx_t_4;
 
-      /* "rankpy/metrics/_utils.pyx":130
+      /* "rankpy/metrics/_utils.pyx":131
  *         r = 0
  *         for j in range(query_indptr[i], query_indptr[i + 1]):
  *             ranks[documents[j].position] = r             # <<<<<<<<<<<<<<
@@ -2181,7 +2181,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
  */
       (__pyx_v_ranks[(__pyx_v_documents[__pyx_v_j]).position]) = __pyx_v_r;
 
-      /* "rankpy/metrics/_utils.pyx":131
+      /* "rankpy/metrics/_utils.pyx":132
  *         for j in range(query_indptr[i], query_indptr[i + 1]):
  *             ranks[documents[j].position] = r
  *             r += 1             # <<<<<<<<<<<<<<
@@ -2192,7 +2192,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
     }
   }
 
-  /* "rankpy/metrics/_utils.pyx":133
+  /* "rankpy/metrics/_utils.pyx":134
  *             r += 1
  * 
  *     free(documents)             # <<<<<<<<<<<<<<
@@ -2201,7 +2201,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
  */
   free(__pyx_v_documents);
 
-  /* "rankpy/metrics/_utils.pyx":116
+  /* "rankpy/metrics/_utils.pyx":117
  * 
  * 
  * cdef void argranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *ranks) nogil:             # <<<<<<<<<<<<<<
@@ -2212,7 +2212,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
   /* function exit code */
 }
 
-/* "rankpy/metrics/_utils.pyx":136
+/* "rankpy/metrics/_utils.pyx":137
  * 
  * 
  * cdef void ranksort_c(DOUBLE_t *ranking_scores, INT_t *ranking, INT_t n_documents) nogil:             # <<<<<<<<<<<<<<
@@ -2227,7 +2227,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_c(__pyx_t_6rankpy_7metrics
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_2;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_3;
 
-  /* "rankpy/metrics/_utils.pyx":144
+  /* "rankpy/metrics/_utils.pyx":145
  *     cdef:
  *         INT_t i
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))             # <<<<<<<<<<<<<<
@@ -2236,7 +2236,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_c(__pyx_t_6rankpy_7metrics
  */
   __pyx_v_documents = ((struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t *)calloc(__pyx_v_n_documents, (sizeof(struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t))));
 
-  /* "rankpy/metrics/_utils.pyx":146
+  /* "rankpy/metrics/_utils.pyx":147
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
  * 
  *     __argranksort(ranking_scores, documents, 0, n_documents)             # <<<<<<<<<<<<<<
@@ -2245,7 +2245,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_c(__pyx_t_6rankpy_7metrics
  */
   __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_v_ranking_scores, __pyx_v_documents, 0, __pyx_v_n_documents);
 
-  /* "rankpy/metrics/_utils.pyx":148
+  /* "rankpy/metrics/_utils.pyx":149
  *     __argranksort(ranking_scores, documents, 0, n_documents)
  * 
  *     for i in range(n_documents):             # <<<<<<<<<<<<<<
@@ -2256,7 +2256,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_c(__pyx_t_6rankpy_7metrics
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/metrics/_utils.pyx":149
+    /* "rankpy/metrics/_utils.pyx":150
  * 
  *     for i in range(n_documents):
  *         ranking[i] = documents[i].position             # <<<<<<<<<<<<<<
@@ -2267,7 +2267,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_c(__pyx_t_6rankpy_7metrics
     (__pyx_v_ranking[__pyx_v_i]) = __pyx_t_3;
   }
 
-  /* "rankpy/metrics/_utils.pyx":151
+  /* "rankpy/metrics/_utils.pyx":152
  *         ranking[i] = documents[i].position
  * 
  *     free(documents)             # <<<<<<<<<<<<<<
@@ -2276,7 +2276,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_c(__pyx_t_6rankpy_7metrics
  */
   free(__pyx_v_documents);
 
-  /* "rankpy/metrics/_utils.pyx":136
+  /* "rankpy/metrics/_utils.pyx":137
  * 
  * 
  * cdef void ranksort_c(DOUBLE_t *ranking_scores, INT_t *ranking, INT_t n_documents) nogil:             # <<<<<<<<<<<<<<
@@ -2287,7 +2287,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_c(__pyx_t_6rankpy_7metrics
   /* function exit code */
 }
 
-/* "rankpy/metrics/_utils.pyx":154
+/* "rankpy/metrics/_utils.pyx":155
  * 
  * 
  * cdef void ranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *ranking) nogil:             # <<<<<<<<<<<<<<
@@ -2305,7 +2305,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_3;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_4;
 
-  /* "rankpy/metrics/_utils.pyx":161
+  /* "rankpy/metrics/_utils.pyx":162
  *     '''
  *     cdef:
  *         INT_t i, j, n_documents = query_indptr[n_queries] - query_indptr[0]             # <<<<<<<<<<<<<<
@@ -2314,7 +2314,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
  */
   __pyx_v_n_documents = ((__pyx_v_query_indptr[__pyx_v_n_queries]) - (__pyx_v_query_indptr[0]));
 
-  /* "rankpy/metrics/_utils.pyx":162
+  /* "rankpy/metrics/_utils.pyx":163
  *     cdef:
  *         INT_t i, j, n_documents = query_indptr[n_queries] - query_indptr[0]
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))             # <<<<<<<<<<<<<<
@@ -2323,7 +2323,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
  */
   __pyx_v_documents = ((struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t *)calloc(__pyx_v_n_documents, (sizeof(struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t))));
 
-  /* "rankpy/metrics/_utils.pyx":164
+  /* "rankpy/metrics/_utils.pyx":165
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
  * 
  *     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)             # <<<<<<<<<<<<<<
@@ -2332,7 +2332,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
  */
   __pyx_f_6rankpy_7metrics_6_utils___argranksort_queries(__pyx_v_query_indptr, __pyx_v_n_queries, __pyx_v_ranking_scores, __pyx_v_documents);
 
-  /* "rankpy/metrics/_utils.pyx":166
+  /* "rankpy/metrics/_utils.pyx":167
  *     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)
  * 
  *     for i in range(n_queries):             # <<<<<<<<<<<<<<
@@ -2343,7 +2343,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/metrics/_utils.pyx":167
+    /* "rankpy/metrics/_utils.pyx":168
  * 
  *     for i in range(n_queries):
  *         for j in range(query_indptr[i], query_indptr[i + 1]):             # <<<<<<<<<<<<<<
@@ -2354,7 +2354,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
     for (__pyx_t_4 = (__pyx_v_query_indptr[__pyx_v_i]); __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
       __pyx_v_j = __pyx_t_4;
 
-      /* "rankpy/metrics/_utils.pyx":168
+      /* "rankpy/metrics/_utils.pyx":169
  *     for i in range(n_queries):
  *         for j in range(query_indptr[i], query_indptr[i + 1]):
  *             ranking[j] = documents[j].position - query_indptr[i]             # <<<<<<<<<<<<<<
@@ -2365,7 +2365,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
     }
   }
 
-  /* "rankpy/metrics/_utils.pyx":170
+  /* "rankpy/metrics/_utils.pyx":171
  *             ranking[j] = documents[j].position - query_indptr[i]
  * 
  *     free(documents)             # <<<<<<<<<<<<<<
@@ -2374,7 +2374,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
  */
   free(__pyx_v_documents);
 
-  /* "rankpy/metrics/_utils.pyx":154
+  /* "rankpy/metrics/_utils.pyx":155
  * 
  * 
  * cdef void ranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *ranking) nogil:             # <<<<<<<<<<<<<<
@@ -2385,7 +2385,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
   /* function exit code */
 }
 
-/* "rankpy/metrics/_utils.pyx":173
+/* "rankpy/metrics/_utils.pyx":174
  * 
  * 
  * cdef void ranksort_relevance_scores_c(DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t n_documents, INT_t *out) nogil:             # <<<<<<<<<<<<<<
@@ -2399,7 +2399,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_c(__pyx_t
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_1;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_2;
 
-  /* "rankpy/metrics/_utils.pyx":179
+  /* "rankpy/metrics/_utils.pyx":180
  *     cdef:
  *         INT_t i
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))             # <<<<<<<<<<<<<<
@@ -2408,7 +2408,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_c(__pyx_t
  */
   __pyx_v_documents = ((struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t *)calloc(__pyx_v_n_documents, (sizeof(struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t))));
 
-  /* "rankpy/metrics/_utils.pyx":181
+  /* "rankpy/metrics/_utils.pyx":182
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
  * 
  *     __argranksort(ranking_scores, documents, 0, n_documents)             # <<<<<<<<<<<<<<
@@ -2417,7 +2417,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_c(__pyx_t
  */
   __pyx_f_6rankpy_7metrics_6_utils___argranksort(__pyx_v_ranking_scores, __pyx_v_documents, 0, __pyx_v_n_documents);
 
-  /* "rankpy/metrics/_utils.pyx":183
+  /* "rankpy/metrics/_utils.pyx":184
  *     __argranksort(ranking_scores, documents, 0, n_documents)
  * 
  *     for i in range(n_documents):             # <<<<<<<<<<<<<<
@@ -2428,7 +2428,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_c(__pyx_t
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/metrics/_utils.pyx":184
+    /* "rankpy/metrics/_utils.pyx":185
  * 
  *     for i in range(n_documents):
  *         out[i] = relevance_scores[documents[i].position]             # <<<<<<<<<<<<<<
@@ -2438,7 +2438,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_c(__pyx_t
     (__pyx_v_out[__pyx_v_i]) = (__pyx_v_relevance_scores[(__pyx_v_documents[__pyx_v_i]).position]);
   }
 
-  /* "rankpy/metrics/_utils.pyx":186
+  /* "rankpy/metrics/_utils.pyx":187
  *         out[i] = relevance_scores[documents[i].position]
  * 
  *     free(documents)             # <<<<<<<<<<<<<<
@@ -2447,7 +2447,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_c(__pyx_t
  */
   free(__pyx_v_documents);
 
-  /* "rankpy/metrics/_utils.pyx":173
+  /* "rankpy/metrics/_utils.pyx":174
  * 
  * 
  * cdef void ranksort_relevance_scores_c(DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t n_documents, INT_t *out) nogil:             # <<<<<<<<<<<<<<
@@ -2458,7 +2458,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_c(__pyx_t
   /* function exit code */
 }
 
-/* "rankpy/metrics/_utils.pyx":189
+/* "rankpy/metrics/_utils.pyx":190
  * 
  * 
  * cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t *out) nogil:             # <<<<<<<<<<<<<<
@@ -2476,7 +2476,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_3;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_4;
 
-  /* "rankpy/metrics/_utils.pyx":195
+  /* "rankpy/metrics/_utils.pyx":196
  *     '''
  *     cdef:
  *         INT_t i, j, n_documents = query_indptr[n_queries] - query_indptr[0]             # <<<<<<<<<<<<<<
@@ -2485,7 +2485,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
  */
   __pyx_v_n_documents = ((__pyx_v_query_indptr[__pyx_v_n_queries]) - (__pyx_v_query_indptr[0]));
 
-  /* "rankpy/metrics/_utils.pyx":196
+  /* "rankpy/metrics/_utils.pyx":197
  *     cdef:
  *         INT_t i, j, n_documents = query_indptr[n_queries] - query_indptr[0]
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))             # <<<<<<<<<<<<<<
@@ -2494,7 +2494,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
  */
   __pyx_v_documents = ((struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t *)calloc(__pyx_v_n_documents, (sizeof(struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t))));
 
-  /* "rankpy/metrics/_utils.pyx":198
+  /* "rankpy/metrics/_utils.pyx":199
  *         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
  * 
  *     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)             # <<<<<<<<<<<<<<
@@ -2503,7 +2503,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
  */
   __pyx_f_6rankpy_7metrics_6_utils___argranksort_queries(__pyx_v_query_indptr, __pyx_v_n_queries, __pyx_v_ranking_scores, __pyx_v_documents);
 
-  /* "rankpy/metrics/_utils.pyx":200
+  /* "rankpy/metrics/_utils.pyx":201
  *     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)
  * 
  *     for i in range(n_queries):             # <<<<<<<<<<<<<<
@@ -2514,7 +2514,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/metrics/_utils.pyx":201
+    /* "rankpy/metrics/_utils.pyx":202
  * 
  *     for i in range(n_queries):
  *         for j in range(query_indptr[i], query_indptr[i + 1]):             # <<<<<<<<<<<<<<
@@ -2525,7 +2525,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
     for (__pyx_t_4 = (__pyx_v_query_indptr[__pyx_v_i]); __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
       __pyx_v_j = __pyx_t_4;
 
-      /* "rankpy/metrics/_utils.pyx":202
+      /* "rankpy/metrics/_utils.pyx":203
  *     for i in range(n_queries):
  *         for j in range(query_indptr[i], query_indptr[i + 1]):
  *             out[j] = relevance_scores[documents[j].position]             # <<<<<<<<<<<<<<
@@ -2536,7 +2536,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
     }
   }
 
-  /* "rankpy/metrics/_utils.pyx":204
+  /* "rankpy/metrics/_utils.pyx":205
  *             out[j] = relevance_scores[documents[j].position]
  * 
  *     free(documents)             # <<<<<<<<<<<<<<
@@ -2545,7 +2545,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
  */
   free(__pyx_v_documents);
 
-  /* "rankpy/metrics/_utils.pyx":189
+  /* "rankpy/metrics/_utils.pyx":190
  * 
  * 
  * cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t *out) nogil:             # <<<<<<<<<<<<<<
@@ -2556,7 +2556,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
   /* function exit code */
 }
 
-/* "rankpy/metrics/_utils.pyx":212
+/* "rankpy/metrics/_utils.pyx":213
  * 
  * 
  * cpdef argranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks):             # <<<<<<<<<<<<<<
@@ -2572,7 +2572,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_argranksort(__Pyx_memviewslice
   Py_ssize_t __pyx_t_2;
   __Pyx_RefNannySetupContext("argranksort", 0);
 
-  /* "rankpy/metrics/_utils.pyx":218
+  /* "rankpy/metrics/_utils.pyx":219
  *     (in descending order) of `ranking_scores`.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -2586,7 +2586,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_argranksort(__Pyx_memviewslice
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_utils.pyx":219
+        /* "rankpy/metrics/_utils.pyx":220
  *     '''
  *     with nogil:
  *         argranksort_c(&ranking_scores[0], &ranks[0], ranking_scores.shape[0])             # <<<<<<<<<<<<<<
@@ -2598,7 +2598,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_argranksort(__Pyx_memviewslice
         __pyx_f_6rankpy_7metrics_6_utils_argranksort_c((&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_1)) )))), (&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_ranks.data) + __pyx_t_2)) )))), (__pyx_v_ranking_scores.shape[0]));
       }
 
-      /* "rankpy/metrics/_utils.pyx":218
+      /* "rankpy/metrics/_utils.pyx":219
  *     (in descending order) of `ranking_scores`.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -2616,7 +2616,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_argranksort(__Pyx_memviewslice
       }
   }
 
-  /* "rankpy/metrics/_utils.pyx":212
+  /* "rankpy/metrics/_utils.pyx":213
  * 
  * 
  * cpdef argranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks):             # <<<<<<<<<<<<<<
@@ -2663,11 +2663,11 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_1argranksort(PyObject *__pyx_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ranks)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("argranksort", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("argranksort", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "argranksort") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "argranksort") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2675,12 +2675,12 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_1argranksort(PyObject *__pyx_
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[0]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ranks = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[1]); if (unlikely(!__pyx_v_ranks.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[0]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranks = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[1]); if (unlikely(!__pyx_v_ranks.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("argranksort", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("argranksort", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._utils.argranksort", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2702,9 +2702,9 @@ static PyObject *__pyx_pf_6rankpy_7metrics_6_utils_argranksort(CYTHON_UNUSED PyO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("argranksort", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_ranks.memview)) { __Pyx_RaiseUnboundLocalError("ranks"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_argranksort(__pyx_v_ranking_scores, __pyx_v_ranks, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_ranks.memview)) { __Pyx_RaiseUnboundLocalError("ranks"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_argranksort(__pyx_v_ranking_scores, __pyx_v_ranks, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2723,7 +2723,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_6_utils_argranksort(CYTHON_UNUSED PyO
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_utils.pyx":222
+/* "rankpy/metrics/_utils.pyx":223
  * 
  * 
  * cpdef argranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks):             # <<<<<<<<<<<<<<
@@ -2740,7 +2740,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_argranksort_queries(__Pyx_memv
   Py_ssize_t __pyx_t_3;
   __Pyx_RefNannySetupContext("argranksort_queries", 0);
 
-  /* "rankpy/metrics/_utils.pyx":227
+  /* "rankpy/metrics/_utils.pyx":228
  *     specified queries, which is determined using the specified ranking scores.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -2754,7 +2754,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_argranksort_queries(__Pyx_memv
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_utils.pyx":228
+        /* "rankpy/metrics/_utils.pyx":229
  *     '''
  *     with nogil:
  *         argranksort_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &ranks[0])             # <<<<<<<<<<<<<<
@@ -2767,7 +2767,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_argranksort_queries(__Pyx_memv
         __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c((&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_1)) )))), ((__pyx_v_query_indptr.shape[0]) - 1), (&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_2)) )))), (&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_ranks.data) + __pyx_t_3)) )))));
       }
 
-      /* "rankpy/metrics/_utils.pyx":227
+      /* "rankpy/metrics/_utils.pyx":228
  *     specified queries, which is determined using the specified ranking scores.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -2785,7 +2785,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_argranksort_queries(__Pyx_memv
       }
   }
 
-  /* "rankpy/metrics/_utils.pyx":222
+  /* "rankpy/metrics/_utils.pyx":223
  * 
  * 
  * cpdef argranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks):             # <<<<<<<<<<<<<<
@@ -2834,16 +2834,16 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_3argranksort_queries(PyObject
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ranking_scores)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("argranksort_queries", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("argranksort_queries", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ranks)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("argranksort_queries", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("argranksort_queries", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "argranksort_queries") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "argranksort_queries") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -2852,13 +2852,13 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_3argranksort_queries(PyObject
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query_indptr = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[0]); if (unlikely(!__pyx_v_query_indptr.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[1]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ranks = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[2]); if (unlikely(!__pyx_v_ranks.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_query_indptr = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[0]); if (unlikely(!__pyx_v_query_indptr.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[1]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranks = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[2]); if (unlikely(!__pyx_v_ranks.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("argranksort_queries", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("argranksort_queries", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._utils.argranksort_queries", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2880,10 +2880,10 @@ static PyObject *__pyx_pf_6rankpy_7metrics_6_utils_2argranksort_queries(CYTHON_U
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("argranksort_queries", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_ranks.memview)) { __Pyx_RaiseUnboundLocalError("ranks"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries(__pyx_v_query_indptr, __pyx_v_ranking_scores, __pyx_v_ranks, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_ranks.memview)) { __Pyx_RaiseUnboundLocalError("ranks"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries(__pyx_v_query_indptr, __pyx_v_ranking_scores, __pyx_v_ranks, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2903,7 +2903,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_6_utils_2argranksort_queries(CYTHON_U
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_utils.pyx":231
+/* "rankpy/metrics/_utils.pyx":232
  * 
  * 
  * cpdef ranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking):             # <<<<<<<<<<<<<<
@@ -2919,7 +2919,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort(__Pyx_memviewslice __
   Py_ssize_t __pyx_t_2;
   __Pyx_RefNannySetupContext("ranksort", 0);
 
-  /* "rankpy/metrics/_utils.pyx":237
+  /* "rankpy/metrics/_utils.pyx":238
  *     position within the sorted array (in descending order) of `ranking_scores`.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -2933,7 +2933,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort(__Pyx_memviewslice __
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_utils.pyx":238
+        /* "rankpy/metrics/_utils.pyx":239
  *     '''
  *     with nogil:
  *         ranksort_c(&ranking_scores[0], &ranking[0], ranking_scores.shape[0])             # <<<<<<<<<<<<<<
@@ -2945,7 +2945,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort(__Pyx_memviewslice __
         __pyx_f_6rankpy_7metrics_6_utils_ranksort_c((&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_1)) )))), (&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_ranking.data) + __pyx_t_2)) )))), (__pyx_v_ranking_scores.shape[0]));
       }
 
-      /* "rankpy/metrics/_utils.pyx":237
+      /* "rankpy/metrics/_utils.pyx":238
  *     position within the sorted array (in descending order) of `ranking_scores`.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -2963,7 +2963,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort(__Pyx_memviewslice __
       }
   }
 
-  /* "rankpy/metrics/_utils.pyx":231
+  /* "rankpy/metrics/_utils.pyx":232
  * 
  * 
  * cpdef ranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking):             # <<<<<<<<<<<<<<
@@ -3010,11 +3010,11 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_5ranksort(PyObject *__pyx_sel
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ranking)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ranksort", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("ranksort", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ranksort") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ranksort") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3022,12 +3022,12 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_5ranksort(PyObject *__pyx_sel
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[0]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ranking = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[1]); if (unlikely(!__pyx_v_ranking.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[0]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranking = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[1]); if (unlikely(!__pyx_v_ranking.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("ranksort", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("ranksort", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._utils.ranksort", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3049,9 +3049,9 @@ static PyObject *__pyx_pf_6rankpy_7metrics_6_utils_4ranksort(CYTHON_UNUSED PyObj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("ranksort", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_ranking.memview)) { __Pyx_RaiseUnboundLocalError("ranking"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_ranksort(__pyx_v_ranking_scores, __pyx_v_ranking, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_ranking.memview)) { __Pyx_RaiseUnboundLocalError("ranking"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_ranksort(__pyx_v_ranking_scores, __pyx_v_ranking, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3070,7 +3070,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_6_utils_4ranksort(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_utils.pyx":241
+/* "rankpy/metrics/_utils.pyx":242
  * 
  * 
  * cpdef ranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking):             # <<<<<<<<<<<<<<
@@ -3087,7 +3087,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_queries(__Pyx_memview
   Py_ssize_t __pyx_t_3;
   __Pyx_RefNannySetupContext("ranksort_queries", 0);
 
-  /* "rankpy/metrics/_utils.pyx":247
+  /* "rankpy/metrics/_utils.pyx":248
  *     at i-th position within the sorted array (in descending order) of `ranking_scores`.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -3101,7 +3101,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_queries(__Pyx_memview
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_utils.pyx":248
+        /* "rankpy/metrics/_utils.pyx":249
  *     '''
  *     with nogil:
  *         ranksort_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &ranking[0])             # <<<<<<<<<<<<<<
@@ -3114,7 +3114,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_queries(__Pyx_memview
         __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c((&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_1)) )))), ((__pyx_v_query_indptr.shape[0]) - 1), (&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_2)) )))), (&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_ranking.data) + __pyx_t_3)) )))));
       }
 
-      /* "rankpy/metrics/_utils.pyx":247
+      /* "rankpy/metrics/_utils.pyx":248
  *     at i-th position within the sorted array (in descending order) of `ranking_scores`.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -3132,7 +3132,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_queries(__Pyx_memview
       }
   }
 
-  /* "rankpy/metrics/_utils.pyx":241
+  /* "rankpy/metrics/_utils.pyx":242
  * 
  * 
  * cpdef ranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking):             # <<<<<<<<<<<<<<
@@ -3181,16 +3181,16 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_7ranksort_queries(PyObject *_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ranking_scores)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ranksort_queries", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("ranksort_queries", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ranking)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ranksort_queries", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("ranksort_queries", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ranksort_queries") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ranksort_queries") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -3199,13 +3199,13 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_7ranksort_queries(PyObject *_
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query_indptr = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[0]); if (unlikely(!__pyx_v_query_indptr.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[1]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ranking = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[2]); if (unlikely(!__pyx_v_ranking.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_query_indptr = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[0]); if (unlikely(!__pyx_v_query_indptr.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[1]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranking = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[2]); if (unlikely(!__pyx_v_ranking.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("ranksort_queries", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("ranksort_queries", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._utils.ranksort_queries", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3227,10 +3227,10 @@ static PyObject *__pyx_pf_6rankpy_7metrics_6_utils_6ranksort_queries(CYTHON_UNUS
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("ranksort_queries", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_ranking.memview)) { __Pyx_RaiseUnboundLocalError("ranking"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries(__pyx_v_query_indptr, __pyx_v_ranking_scores, __pyx_v_ranking, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_ranking.memview)) { __Pyx_RaiseUnboundLocalError("ranking"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries(__pyx_v_query_indptr, __pyx_v_ranking_scores, __pyx_v_ranking, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3250,7 +3250,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_6_utils_6ranksort_queries(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_utils.pyx":251
+/* "rankpy/metrics/_utils.pyx":252
  * 
  * 
  * cpdef ranksort_relevance_scores(DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out):             # <<<<<<<<<<<<<<
@@ -3267,7 +3267,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores(__Py
   Py_ssize_t __pyx_t_3;
   __Pyx_RefNannySetupContext("ranksort_relevance_scores", 0);
 
-  /* "rankpy/metrics/_utils.pyx":255
+  /* "rankpy/metrics/_utils.pyx":256
  *     Rank the specified relevance scores according to the specified ranking scores.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -3281,7 +3281,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores(__Py
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_utils.pyx":256
+        /* "rankpy/metrics/_utils.pyx":257
  *     '''
  *     with nogil:
  *         ranksort_relevance_scores_c(&ranking_scores[0], &relevance_scores[0], ranking_scores.shape[0], &out[0])             # <<<<<<<<<<<<<<
@@ -3294,7 +3294,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores(__Py
         __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_c((&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_1)) )))), (&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_relevance_scores.data) + __pyx_t_2)) )))), (__pyx_v_ranking_scores.shape[0]), (&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_out.data) + __pyx_t_3)) )))));
       }
 
-      /* "rankpy/metrics/_utils.pyx":255
+      /* "rankpy/metrics/_utils.pyx":256
  *     Rank the specified relevance scores according to the specified ranking scores.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -3312,7 +3312,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores(__Py
       }
   }
 
-  /* "rankpy/metrics/_utils.pyx":251
+  /* "rankpy/metrics/_utils.pyx":252
  * 
  * 
  * cpdef ranksort_relevance_scores(DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out):             # <<<<<<<<<<<<<<
@@ -3361,16 +3361,16 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_9ranksort_relevance_scores(Py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_relevance_scores)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_out)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ranksort_relevance_scores") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ranksort_relevance_scores") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -3379,13 +3379,13 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_9ranksort_relevance_scores(Py
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[0]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[1]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_out = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[2]); if (unlikely(!__pyx_v_out.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[0]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[1]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_out = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[2]); if (unlikely(!__pyx_v_out.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._utils.ranksort_relevance_scores", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3407,10 +3407,10 @@ static PyObject *__pyx_pf_6rankpy_7metrics_6_utils_8ranksort_relevance_scores(CY
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("ranksort_relevance_scores", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores(__pyx_v_ranking_scores, __pyx_v_relevance_scores, __pyx_v_out, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores(__pyx_v_ranking_scores, __pyx_v_relevance_scores, __pyx_v_out, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3430,7 +3430,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_6_utils_8ranksort_relevance_scores(CY
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_utils.pyx":259
+/* "rankpy/metrics/_utils.pyx":260
  * 
  * 
  * cpdef ranksort_relevance_scores_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out):             # <<<<<<<<<<<<<<
@@ -3448,7 +3448,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_quer
   Py_ssize_t __pyx_t_4;
   __Pyx_RefNannySetupContext("ranksort_relevance_scores_queries", 0);
 
-  /* "rankpy/metrics/_utils.pyx":264
+  /* "rankpy/metrics/_utils.pyx":265
  *     scores with respect to the given queries.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -3461,7 +3461,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_quer
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_utils.pyx":265
+        /* "rankpy/metrics/_utils.pyx":266
  *     '''
  *     with nogil:
  *         ranksort_relevance_scores_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &relevance_scores[0], &out[0])             # <<<<<<<<<<<<<<
@@ -3473,7 +3473,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_quer
         __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c((&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_1)) )))), ((__pyx_v_query_indptr.shape[0]) - 1), (&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_2)) )))), (&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_relevance_scores.data) + __pyx_t_3)) )))), (&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_out.data) + __pyx_t_4)) )))));
       }
 
-      /* "rankpy/metrics/_utils.pyx":264
+      /* "rankpy/metrics/_utils.pyx":265
  *     scores with respect to the given queries.
  *     '''
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -3490,7 +3490,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_quer
       }
   }
 
-  /* "rankpy/metrics/_utils.pyx":259
+  /* "rankpy/metrics/_utils.pyx":260
  * 
  * 
  * cpdef ranksort_relevance_scores_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out):             # <<<<<<<<<<<<<<
@@ -3541,21 +3541,21 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_11ranksort_relevance_scores_q
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ranking_scores)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores_queries", 1, 4, 4, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores_queries", 1, 4, 4, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_relevance_scores)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores_queries", 1, 4, 4, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores_queries", 1, 4, 4, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_out)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores_queries", 1, 4, 4, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores_queries", 1, 4, 4, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ranksort_relevance_scores_queries") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ranksort_relevance_scores_queries") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -3565,14 +3565,14 @@ static PyObject *__pyx_pw_6rankpy_7metrics_6_utils_11ranksort_relevance_scores_q
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
-    __pyx_v_query_indptr = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[0]); if (unlikely(!__pyx_v_query_indptr.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[1]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[2]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_out = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[3]); if (unlikely(!__pyx_v_out.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_query_indptr = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[0]); if (unlikely(!__pyx_v_query_indptr.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t(values[1]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[2]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_out = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_6_utils_INT_t(values[3]); if (unlikely(!__pyx_v_out.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores_queries", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("ranksort_relevance_scores_queries", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._utils.ranksort_relevance_scores_queries", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3594,11 +3594,11 @@ static PyObject *__pyx_pf_6rankpy_7metrics_6_utils_10ranksort_relevance_scores_q
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("ranksort_relevance_scores_queries", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries(__pyx_v_query_indptr, __pyx_v_ranking_scores, __pyx_v_relevance_scores, __pyx_v_out, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries(__pyx_v_query_indptr, __pyx_v_ranking_scores, __pyx_v_relevance_scores, __pyx_v_out, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -17012,7 +17012,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[2]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -17434,7 +17434,7 @@ PyMODINIT_FUNC PyInit__utils(void)
   /*--- Function import code ---*/
   /*--- Execution code ---*/
 
-  /* "rankpy/metrics/_utils.pyx":33
+  /* "rankpy/metrics/_utils.pyx":34
  * 
  * # Global indicator that srand has been called.
  * cdef bint srand_called = 0             # <<<<<<<<<<<<<<

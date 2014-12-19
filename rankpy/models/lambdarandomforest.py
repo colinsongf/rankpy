@@ -27,11 +27,11 @@ from ..externals.joblib import Parallel, delayed, cpu_count
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 
-from ..utils import _parallel_helper
+from ..utils import parallel_helper
 from ..utils import pickle, unpickle
 from ..metrics._utils import ranksort
 
-from .lambdamart import _compute_lambdas_and_weights
+from .lambdamart import compute_lambdas_and_weights
 from .lambdamart import _estimate_newton_gradient_steps
 
 
@@ -94,7 +94,7 @@ def _parallel_build_trees_shuffle(tree_index, tree, n_trees, queries, metric, us
     logger.info('Started fitting LambdaDecisionTree %d of %d.' % (tree_index, n_trees))
 
     # Compute the pseudo-responses (lambdas) and gradient step sizes (weights).
-    _compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas, training_weights,
+    compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas, training_weights,
                                  scale_values=scale_values)
     # Bootstrap?
     if bootstrap:
@@ -307,7 +307,7 @@ class LambdaRandomForest(object):
             training_weights = np.empty(queries.document_count(), dtype=np.float64)
 
             # Compute the pseudo-responses (lambdas) and gradient step sizes (weights) just once.
-            _compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas, training_weights,
+            compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas, training_weights,
                                          training_scale_values, n_jobs=self.n_jobs)
 
             # Not using Newthon-Raphson optimization?
@@ -354,7 +354,7 @@ class LambdaRandomForest(object):
 
         indices = np.linspace(0, queries.document_count(), n_jobs + 1).astype(np.intc)
 
-        Parallel(n_jobs=n_jobs, backend="threading")(delayed(_parallel_helper, check_pickle=False)
+        Parallel(n_jobs=n_jobs, backend="threading")(delayed(parallel_helper, check_pickle=False)
                 (LambdaRandomForest, '_LambdaRandomForest__predict', self.estimators,
                  queries.feature_vectors[indices[i]:indices[i + 1]],
                  predictions[indices[i]:indices[i + 1]]) for i in range(indices.size - 1))

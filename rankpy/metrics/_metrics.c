@@ -731,7 +731,7 @@ typedef npy_double __pyx_t_5numpy_double_t;
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
 
-/* "rankpy/metrics/_utils.pxd":21
+/* "rankpy/metrics/_utils.pxd":22
  * np.import_array()
  * 
  * ctypedef np.float64_t DOUBLE_t             # <<<<<<<<<<<<<<
@@ -740,7 +740,7 @@ typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
  */
 typedef __pyx_t_5numpy_float64_t __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t;
 
-/* "rankpy/metrics/_utils.pxd":22
+/* "rankpy/metrics/_utils.pxd":23
  * 
  * ctypedef np.float64_t DOUBLE_t
  * ctypedef np.int32_t   INT_t             # <<<<<<<<<<<<<<

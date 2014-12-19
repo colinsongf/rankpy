@@ -32,17 +32,17 @@ from sklearn.tree._tree import TREE_UNDEFINED, TREE_LEAF
 from shutil import rmtree
 from tempfile import mkdtemp
 
-from ..utils import _parallel_helper
+from ..utils import parallel_helper
 from ..utils import pickle, unpickle
 from ..metrics._utils import argranksort, ranksort
 
-from .lambdamart_inner import _parallel_compute_lambdas_and_weights
+from .lambdamart_inner import parallel_compute_lambdas_and_weights
 
 
 logger = logging.getLogger(__name__)
 
 
-def _compute_lambdas_and_weights(queries, ranking_scores, metric, output_lambdas, output_weights, scale_values=None, n_jobs=1):
+def compute_lambdas_and_weights(queries, ranking_scores, metric, output_lambdas, output_weights, scale_values=None, n_jobs=1):
     ''' 
     Compute the pseudo-responses (`lambdas`) and gradient steps sizes (`weights`)
     for each document in the specified set of queries. The pseudo-responses are calculated
@@ -82,7 +82,7 @@ def _compute_lambdas_and_weights(queries, ranking_scores, metric, output_lambdas
         n_jobs = queries.query_count()
 
     Parallel(n_jobs=n_jobs, backend="threading")\
-        (delayed(_parallel_compute_lambdas_and_weights, check_pickle=False)
+        (delayed(parallel_compute_lambdas_and_weights, check_pickle=False)
                     (query_indptr[i], query_indptr[i + 1], queries.query_indptr, ranking_scores,
                      queries.relevance_scores, queries.query_relevance_strides, metric.metric_,
                      scale_values, output_lambdas, output_weights) for i in range(query_indptr.shape[0] - 1))
@@ -338,7 +338,7 @@ class LambdaMART(object):
         # Iteratively build a sequence of regression trees.
         for k in range(self.n_estimators):
             # Computes the pseudo-responses (lambdas) and gradient step sizes (weights) for the current regression tree.
-            _compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas,
+            compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas,
                                          training_weights, training_scale_values, n_jobs=self.n_jobs)
 
             # Build the predictor for the gradients of the loss using either decision tree or random forest.
@@ -365,7 +365,7 @@ class LambdaMART(object):
                 np.copyto(self.stage_training_lambdas_predicted[k], estimator.predict(queries.feature_vectors))
 
                 if validation is not None:
-                    _compute_lambdas_and_weights(validation, self.validation_scores, metric, self.validation_lambdas,
+                    compute_lambdas_and_weights(validation, self.validation_scores, metric, self.validation_lambdas,
                                                  self.validation_weights, validation_scale_values, n_jobs=self.n_jobs)
                     np.copyto(self.stage_validation_lambdas_truth[k], self.validation_lambdas)
                     np.copyto(self.stage_validation_lambdas_predicted[k], estimator.predict(validation.feature_vectors))
@@ -476,7 +476,7 @@ class LambdaMART(object):
 
         indices = np.linspace(0, queries.document_count(), n_jobs + 1).astype(np.intc)
 
-        Parallel(n_jobs=n_jobs, backend="threading")(delayed(_parallel_helper, check_pickle=False)
+        Parallel(n_jobs=n_jobs, backend="threading")(delayed(parallel_helper, check_pickle=False)
                 (LambdaMART, '_LambdaMART__predict', self.estimators, self.shrinkage,
                  queries.feature_vectors[indices[i]:indices[i + 1]],
                  predictions[indices[i]:indices[i + 1]]) for i in range(indices.size - 1))

@@ -93,7 +93,7 @@ def load_spmatrix(filename):
         return scipy.sparse.csr_matrix((npz['data'], npz['indices'], npz['indptr']), shape=npz['shape'])
 
 
-def _parallel_helper(obj, methodname, *args, **kwargs):
+def parallel_helper(obj, methodname, *args, **kwargs):
     ''' 
     Helper function to avoid pickling problems when using Parallel loops.
     '''

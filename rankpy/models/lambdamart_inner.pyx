@@ -24,16 +24,16 @@ from libc.stdlib cimport calloc, free
 from libc.string cimport memset
 from libc.math cimport exp
 
-from .metrics._utils cimport INT_t
-from .metrics._utils cimport DOUBLE_t
-from .metrics._utils cimport argranksort_c
+from ..metrics._utils cimport INT_t
+from ..metrics._utils cimport DOUBLE_t
+from ..metrics._utils cimport argranksort_c
 
-from .metrics._metrics cimport Metric
+from ..metrics._metrics cimport Metric
 
 
-def _parallel_compute_lambdas_and_weights(INT_t qstart, INT_t qend, INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores,
-                                          INT_t[::1] relevance_scores, INT_t[:, ::1] relevance_strides, Metric metric,
-                                          DOUBLE_t[::1] scale_values, DOUBLE_t[::1] output_lambdas, DOUBLE_t[::1] output_weights):
+def parallel_compute_lambdas_and_weights(INT_t qstart, INT_t qend, INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores,
+                                         INT_t[::1] relevance_scores, INT_t[:, ::1] relevance_strides, Metric metric,
+                                         DOUBLE_t[::1] scale_values, DOUBLE_t[::1] output_lambdas, DOUBLE_t[::1] output_weights):
     '''
     Helper function computing pseudo-responses (`lambdas`) and 'optimal'
     gradient steps (`weights`) for the documents belonging to the specified
