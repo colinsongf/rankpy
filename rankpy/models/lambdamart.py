@@ -313,9 +313,9 @@ class LambdaMART(object):
         # Initialize same the components for validation queries as for training.
         if validation is not None:
             if self.base_model is None:
-                self.validation_scores = np.zeros(validation.document_count(), dtype=np.float64)
+                validation_scores = np.zeros(validation.document_count(), dtype=np.float64)
             else:
-                self.validation_scores = np.asanyarray(self.base_model.predict(validation, n_jobs=self.n_jobs), dtype=np.float64)
+                validation_scores = np.asanyarray(self.base_model.predict(validation, n_jobs=self.n_jobs), dtype=np.float64)
 
             validation_scale_values = metric.compute_scale(validation)
             self.validation_performance = np.zeros(self.n_estimators, dtype=np.float64)
@@ -365,7 +365,7 @@ class LambdaMART(object):
                 np.copyto(self.stage_training_lambdas_predicted[k], estimator.predict(queries.feature_vectors))
 
                 if validation is not None:
-                    compute_lambdas_and_weights(validation, self.validation_scores, metric, self.validation_lambdas,
+                    compute_lambdas_and_weights(validation, validation_scores, metric, self.validation_lambdas,
                                                  self.validation_weights, validation_scale_values, n_jobs=self.n_jobs)
                     np.copyto(self.stage_validation_lambdas_truth[k], self.validation_lambdas)
                     np.copyto(self.stage_validation_lambdas_predicted[k], estimator.predict(validation.feature_vectors))
@@ -408,8 +408,8 @@ class LambdaMART(object):
             # and decide whether the training should not be stopped early due to no significant
             # performance improvements.
             if validation is not None:
-                self.validation_scores += self.shrinkage * self.estimators[-1].predict(validation.feature_vectors)
-                self.validation_performance[k] = metric.evaluate_queries(validation, self.validation_scores, scale=validation_scale_values)
+                validation_scores += self.shrinkage * self.estimators[-1].predict(validation.feature_vectors)
+                self.validation_performance[k] = metric.evaluate_queries(validation, validation_scores, scale=validation_scale_values)
 
                 logger.info('#%08d: %s (training):   %11.8f  |  (validation):   %11.8f' % (k + 1, metric, self.training_performance[k], self.validation_performance[k]))
 
