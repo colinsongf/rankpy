@@ -39,7 +39,8 @@ logger = logging.getLogger(__name__)
 
 
 def _parallel_build_trees_shuffle(tree_index, tree, n_trees, queries, metric, use_newton_method, scale_values, bootstrap,
-                                  validation=None, validation_scale_values=None, validation_performance=None):
+                                  training_metric_performance=None, validation=None, validation_scale_values=None,
+                                  validation_metric_performance=None):
     ''' 
     Train the trees on the specified queries using the LambdaMART's lambdas computed
     using the specified metric.
@@ -66,20 +67,23 @@ def _parallel_build_trees_shuffle(tree_index, tree, n_trees, queries, metric, us
         Estimate the gradient step in each terminal node of regression
         tree using Newton-Raphson method.
 
-    scale_values: array of doubles, shape = (n_queries, )
+    scale_values: array of doubles, shape = (n_queries,)
         The precomputed ideal metric value for the specified queries.
 
     boostrap: bool
         Specify to use bootstrap sample from the lambdas computed
         from `reshuffled` documents.
 
+    training_metric_performance: array of doubles, shape = (n_estimators,)
+        The array to store training performance of each trained tree.    
+
     validation: Queries
         The set of queries used for validation.
 
-    validation_scale_values: array of doubles, shape = (n_valid_queries, )
+    validation_scale_values: array of doubles, shape = (n_valid_queries,)
         The precomputed scale factors for metric values of the validation queries.
 
-    validation_performance: array of doubles, shape = (n_estimators,)
+    validation_metric_performance: array of doubles, shape = (n_estimators,)
         The array to store validation performance of each trained tree.
     '''
     # Note, that 0 scores does not mean the order of documents will not change.
@@ -106,19 +110,24 @@ def _parallel_build_trees_shuffle(tree_index, tree, n_trees, queries, metric, us
     # Train the regression tree.
     tree.fit(queries.feature_vectors, training_lambdas, sample_weight=sample_weight, check_input=False)
 
-    # Estimate the ('optimal') gradient step sizes using one iteration
-    # of Newton-Raphson method.
+    # Estimate the 'optimal' gradient step sizes using one iteration of Newton-Raphson method.
     if use_newton_method:
        _estimate_newton_gradient_steps(tree, queries, training_lambdas, training_weights)
 
-    if validation is not None:
-        validation_performance[tree_index] = metric.evaluate_queries(validation, tree.predict(validation.feature_vectors),
-                                                                     scale=validation_scale_values)
+    if training_metric_performance is not None:
+        training_metric_performance[tree_index] = metric.evaluate_queries(queries, tree.predict(queries.feature_vectors),
+                                                                          scale=scale_values)
+
+    if validation is not None and validation_metric_performance is not None:
+        validation_metric_performance[tree_index] = metric.evaluate_queries(validation, tree.predict(validation.feature_vectors),
+                                                                            scale=validation_scale_values)
+
     return tree
 
 
 def _parallel_build_trees_bootstrap(tree_index, tree, n_trees, queries, metric, scale_values, training_lambdas, training_weights,
-                                    bootstrap, validation=None, validation_scale_values=None, validation_performance=None):
+                                    bootstrap, training_metric_performance=None, validation=None, validation_scale_values=None,
+                                    validation_metric_performance=None):
     ''' 
     Train a regression tree for the specified LambdaMART's lambdas, and if not None,
     use weights to optimize the gradient step in terminal nodes using Newton-Raphson
@@ -155,13 +164,16 @@ def _parallel_build_trees_bootstrap(tree_index, tree, n_trees, queries, metric, 
     boostrap: bool
         Specify to use bootstrap sample from the given lambdas.
 
+    training_metric_performance: array of doubles, shape = (n_estimators,)
+        The array to store training performance of each trained tree.    
+
     validation: Queries
         The set of queries used for validation.
 
     validation_scale_values: array of doubles, shape = (n_valid_queries, )
         The precomputed scale factors for metric values of the validation queries.
 
-    validation_performance: array of doubles, shape = (n_estimators,)
+    validation_metric_performance: array of doubles, shape = (n_estimators,)
         The array to store validation performance of each trained tree.    
     '''
     logger.info('Started fitting LambdaDecisionTree %d of %d.' % (tree_index, n_trees))
@@ -176,14 +188,17 @@ def _parallel_build_trees_bootstrap(tree_index, tree, n_trees, queries, metric, 
     # Train the regression tree.
     tree.fit(queries.feature_vectors, training_lambdas, sample_weight=sample_weight, check_input=False)
 
-    # Estimate the ('optimal') gradient step sizes using one iteration
-    # of Newton-Raphson method.
+    # Estimate the 'optimal' gradient step sizes using one iteration of Newton-Raphson method.
     if training_weights is not None:
        _estimate_newton_gradient_steps(tree, queries, training_lambdas, training_weights)
 
-    if validation is not None:
-        validation_performance[tree_index] = metric.evaluate_queries(validation, tree.predict(validation.feature_vectors),
-                                                                     scale=validation_scale_values)
+    if training_metric_performance is not None:
+        training_metric_performance[tree_index] = metric.evaluate_queries(queries, tree.predict(queries.feature_vectors),
+                                                                          scale=scale_values)
+
+    if validation is not None and validation_metric_performance is not None:
+        validation_metric_performance[tree_index] = metric.evaluate_queries(validation, tree.predict(validation.feature_vectors),
+                                                                            scale=validation_scale_values)
     return tree
 
 
@@ -271,13 +286,14 @@ class LambdaRandomForest(object):
         # If the metric used for training is normalized, it is obviously advantageous
         # to precompute the scaling factor for each query in advance.
         training_scale_values = metric.compute_scale(queries)
+        training_metric_performance = np.zeros(self.n_estimators, dtype=np.float64)
 
         if validation is not None:
             validation_scale_values = metric.compute_scale(validation)
-            validation_performance = np.zeros(self.n_estimators, dtype=np.float64)
+            validation_metric_performance = np.zeros(self.n_estimators, dtype=np.float64)
         else:
             validation_scale_values = None
-            validation_performance = None
+            validation_metric_performance = None
 
         logger.info('Training of LambdaRandomForest model has started.')
 
@@ -294,8 +310,9 @@ class LambdaRandomForest(object):
             estimators = Parallel(n_jobs=self.n_jobs, backend='threading')\
                             (delayed(_parallel_build_trees_shuffle, check_pickle=False)
                                           (i, tree, len(estimators), queries, metric, self.use_newton_method, 
-                                           training_scale_values, self.bootstrap, validation, validation_scale_values,
-                                           validation_performance) for i, tree in enumerate(estimators))
+                                           training_scale_values, self.bootstrap, training_metric_performance,
+                                           validation, validation_scale_values, validation_metric_performance)
+                                           for i, tree in enumerate(estimators))
         else:
             # Initial ranking scores.
             training_scores = np.zeros(queries.document_count(), dtype=np.float64)
@@ -318,12 +335,18 @@ class LambdaRandomForest(object):
             estimators = Parallel(n_jobs=self.n_jobs, backend='threading')\
                              (delayed(_parallel_build_trees_bootstrap, check_pickle=False)
                                  (i, tree, len(estimators), queries, metric, training_scale_values,
-                                  training_lambdas, training_weights, self.bootstrap, validation,
-                                  validation_scale_values, validation_performance)
+                                  training_lambdas, training_weights, self.bootstrap, training_metric_performance,
+                                  validation, validation_scale_values, validation_metric_performance)
                                   for i, tree in enumerate(estimators))
 
         # Collect the trained estimators.
         self.estimators.extend(estimators)
+
+        # Set the training and (optionally) validation performances.
+        self.training_metric_performance = training_metric_performance
+
+        if validation is not None:
+            self.validation_metric_performance = validation_metric_performance
         
         # Mark the model as trained.
         self.trained = True
