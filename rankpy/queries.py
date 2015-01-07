@@ -413,15 +413,30 @@ class Queries(object):
             setattr(self, attribute, value)
 
 
-    def __getitem__(self, i):
+    def __getitem__(self, index):
         ''' 
-        Return the i-th query.
+        Return new Queries object containing queries in the `index`.
         '''
-        if i < 0 or i > self.query_count():
-            raise IndexError()
-        s = self.query_indptr[i]
-        e = self.query_indptr[i + 1]
-        return Query(self.query_ids[i], self.relevance_scores[s:e], self.feature_vectors[s:e,:], base=self)
+        # TODO: Make it work with slices?
+        if isinstance(index, np.ndarray) and index.ndim == 1 and index.dtype.kind == 'b':
+            index = index.nonzero()
+
+        # Handle a single index.
+        try:
+            if int(index) == index:
+                index = [index]
+        except:
+            pass
+
+        # Convert list/tuple to ndarray.
+        index = np.asanyarray(index, dtype=np.intc)
+
+        feature_vectors = np.vstack([self.feature_vectors[self.query_indptr[i]:self.query_indptr[i + 1]] for i in index])
+        relevance_scores = np.concatenate([self.relevance_scores[self.query_indptr[i]:self.query_indptr[i + 1]] for i in index])
+        query_indptr = np.r_[0, np.diff(self.query_indptr)[index]].cumsum()
+        query_ids = self.query_ids[index]
+
+        return Queries(feature_vectors, relevance_scores, query_indptr, query_ids=query_ids, feature_indices=self.feature_indices, has_sorted_relevances=True)
 
 
     def get_query(self, qid):
