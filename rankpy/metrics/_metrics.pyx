@@ -312,7 +312,7 @@ cdef class DiscountedCumulativeGain(Metric):
 
         # Should we worry about precision?
         if scale_value == 0.0:
-            return 1.0
+            return 0.0
 
         with nogil:
             n_documents = ranking.shape[0]
@@ -343,7 +343,7 @@ cdef class DiscountedCumulativeGain(Metric):
 
         # Should we worry about precision?
         if scale_value == 0.0:
-            return 1.0
+            return 0.0
 
         with nogil:
             n_documents = ranked_relevance_scores.shape[0]
@@ -407,7 +407,7 @@ cdef class DiscountedCumulativeGain(Metric):
                 if scale_values is not None:
                     # Should we worry about precision?
                     if scale_values[i] == 0.0:
-                        qresult = 1.0
+                        qresult = 0.0
                     else:
                         qresult /= scale_values[i]
 
