@@ -29,7 +29,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 from ..utils import parallel_helper
 from ..utils import pickle, unpickle
-from ..metrics._utils import ranksort
+from ..metrics._utils import ranksort_queries
 
 from .lambdamart import compute_lambdas_and_weights
 from .lambdamart import _estimate_newton_gradient_steps
@@ -387,25 +387,41 @@ class LambdaRandomForest(object):
         return predictions
 
 
-    def predict_ranking(self, query):
+    def predict_rankings(self, queries, compact=False, n_jobs=1):
         ''' 
-        Predict the document ranking of the documents for the given query.
+        Predict rankings of the documents for the given queries.
+
+        If `compact` is set to True then the output will be one
+        long 1d array containing the rankings for all the queries
+        instead of a list of 1d arrays.
+
+        The compact array can be subsequently index using query
+        index pointer array, see `queries.query_indptr`.
 
         query: Query
             The query whose documents should be ranked.
+
+        compact: bool
+            Specify to return rankings in compact format.
+
+         n_jobs: int, optional (default is 1)
+            The number of working threads that will be spawned to compute
+            the ranking scores. If -1, the current number of CPUs will be used.
         '''
         if self.trained is False:
             raise ValueError('the model has not been trained yet')
 
-        predictions = np.zeros(query.document_count(), dtype=np.float64)
-        ranking = np.zeros(query.document_count(), dtype=np.intc)
-
         # Predict the ranking scores for the documents.
-        self.__predict(self.estimators, query.feature_vectors, predictions)
+        predictions = predict(self, queries, n_jobs)
 
-        ranksort(predictions, ranking)
+        rankings = np.zeros(queries.document_count(), dtype=np.intc)
 
-        return ranking
+        ranksort_queries(queries.query_indptr, predictions, rankings)
+
+        if compact:
+            return rankings
+        else:
+            return np.array_split(rankings, queries.query_indptr[1:-1])
 
 
     def feature_importances(self):
