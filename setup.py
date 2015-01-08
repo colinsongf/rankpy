@@ -14,6 +14,7 @@
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import numpy
 
 from setuptools import setup, find_packages, Extension
 from setuptools.command.build_ext import build_ext
@@ -30,9 +31,9 @@ setup(
     keywords = "machine learning, learning to rank, information retrieval",
     url = "https://bitbucket.org/tunystom/rankpy",
     download_url = "https://bitbucket.org/tunystom/rankpy/downloads",
-    ext_modules=[Extension('rankpy.metrics._metrics', sources=['./rankpy/metrics/_metrics.c']),
-                 Extension('rankpy.metrics._utils', sources=['./rankpy/metrics/_utils.c']),
-                 Extension('rankpy.models.lambdamart_inner', sources=['./rankpy/models/lambdamart_inner.c'])],
+    ext_modules=[Extension('rankpy.metrics._metrics', sources=['./rankpy/metrics/_metrics.c'], include_dirs=[numpy.get_include()]),
+                 Extension('rankpy.metrics._utils', sources=['./rankpy/metrics/_utils.c'], include_dirs=[numpy.get_include()]),
+                 Extension('rankpy.models.lambdamart_inner', sources=['./rankpy/models/lambdamart_inner.c'], include_dirs=[numpy.get_include()])],
     cmdclass={'build_ext': build_ext},
     packages=find_packages(),
     license = "GNU General Lesser Public License v3 or later (GPLv3+)",
