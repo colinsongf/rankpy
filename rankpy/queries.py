@@ -555,13 +555,13 @@ class Queries(object):
 
         self.feature_vectors = self.feature_vectors[good_document_mask]
         self.relevance_scores = self.relevance_scores[good_document_mask]
-        self.query_indptr = np.r_[0, good_query_document_counts].cumsum()
+        self.query_indptr = np.r_[0, good_query_document_counts].cumsum(dtype=np.intc)
         self.query_ids = self.query_ids[good_query_mask]
         self.n_queries = len(self.query_indptr) - 1
         self.n_feature_vectors = self.query_indptr[-1]
         self.query_relevance_strides = (self.query_relevance_strides \
-                                         - query_document_counts.cumsum().reshape(-1, 1))[good_query_mask] \
-                                         + good_query_document_counts.cumsum().reshape(-1, 1)
+                                         - query_document_counts.cumsum(dtype=np.intc).reshape(-1, 1))[good_query_mask] \
+                                         + good_query_document_counts.cumsum(dtype=np.intc).reshape(-1, 1)
 
         # Not needed, but keeps things nice and clean.
         self.query_relevance_strides[np.where(self.query_relevance_strides < 0)] = -1
