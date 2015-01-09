@@ -143,7 +143,7 @@ class Queries(object):
         assert self.n_feature_vectors == self.query_indptr[-1], 'the query index pointer is not correct (number of indexed items is not the same as the number of documents)'
         
         if max_score is None:
-            max_score = self.relevance_scores.max()
+            max_score = self.relevance_scores.max() if self.n_queries > 0 else 0
 
         self.max_score = max_score
 
