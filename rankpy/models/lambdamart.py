@@ -512,7 +512,7 @@ class LambdaMART(object):
 
         ranksort_queries(queries.query_indptr, predictions, rankings)
 
-        if compact:
+        if compact or queries.query_count() == 1:
             return rankings
         else:
             return np.array_split(rankings, queries.query_indptr[1:-1])

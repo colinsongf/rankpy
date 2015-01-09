@@ -412,13 +412,13 @@ class LambdaRandomForest(object):
             raise ValueError('the model has not been trained yet')
 
         # Predict the ranking scores for the documents.
-        predictions = predict(self, queries, n_jobs)
+        predictions = self.predict(queries, n_jobs)
 
         rankings = np.zeros(queries.document_count(), dtype=np.intc)
 
         ranksort_queries(queries.query_indptr, predictions, rankings)
 
-        if compact:
+        if compact or queries.query_count() == 1:
             return rankings
         else:
             return np.array_split(rankings, queries.query_indptr[1:-1])
