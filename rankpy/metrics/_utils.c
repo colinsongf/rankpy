@@ -1259,6 +1259,8 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_npy_int32(npy_int32 value);
 
 static CYTHON_INLINE npy_int32 __Pyx_PyInt_As_npy_int32(PyObject *);
 
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
+
 #if CYTHON_CCOMPLEX
   #ifdef __cplusplus
     #define __Pyx_CREAL(z) ((z).real())
@@ -1356,8 +1358,6 @@ static CYTHON_INLINE __pyx_t_double_complex __pyx_t_double_complex_from_parts(do
         static CYTHON_INLINE __pyx_t_double_complex __Pyx_c_pow(__pyx_t_double_complex, __pyx_t_double_complex);
     #endif
 #endif
-
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
 
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
@@ -1994,7 +1994,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort_queries(__pyx_t_6rank
  *     cdef INT_t i
  * 
  *     for i in range(n_queries):             # <<<<<<<<<<<<<<
- *         __argranksort(ranking_scores + query_indptr[i], documents + query_indptr[i],
+ *         __argranksort(ranking_scores + query_indptr[i], documents + query_indptr[i] - query_indptr[0],
  *                       query_indptr[i], query_indptr[i + 1] - query_indptr[i])
  */
   __pyx_t_1 = __pyx_v_n_queries;
@@ -2004,11 +2004,11 @@ static void __pyx_f_6rankpy_7metrics_6_utils___argranksort_queries(__pyx_t_6rank
     /* "rankpy/metrics/_utils.pyx":95
  * 
  *     for i in range(n_queries):
- *         __argranksort(ranking_scores + query_indptr[i], documents + query_indptr[i],             # <<<<<<<<<<<<<<
+ *         __argranksort(ranking_scores + query_indptr[i], documents + query_indptr[i] - query_indptr[0],             # <<<<<<<<<<<<<<
  *                       query_indptr[i], query_indptr[i + 1] - query_indptr[i])
  * 
  */
-    __pyx_f_6rankpy_7metrics_6_utils___argranksort((__pyx_v_ranking_scores + (__pyx_v_query_indptr[__pyx_v_i])), (__pyx_v_documents + (__pyx_v_query_indptr[__pyx_v_i])), (__pyx_v_query_indptr[__pyx_v_i]), ((__pyx_v_query_indptr[(__pyx_v_i + 1)]) - (__pyx_v_query_indptr[__pyx_v_i])));
+    __pyx_f_6rankpy_7metrics_6_utils___argranksort((__pyx_v_ranking_scores + (__pyx_v_query_indptr[__pyx_v_i])), ((__pyx_v_documents + (__pyx_v_query_indptr[__pyx_v_i])) - (__pyx_v_query_indptr[0])), (__pyx_v_query_indptr[__pyx_v_i]), ((__pyx_v_query_indptr[(__pyx_v_i + 1)]) - (__pyx_v_query_indptr[__pyx_v_i])));
   }
 
   /* "rankpy/metrics/_utils.pyx":88
@@ -2111,7 +2111,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
   struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t *__pyx_v_documents;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_1;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_2;
-  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_3;
+  int __pyx_t_3;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_4;
 
   /* "rankpy/metrics/_utils.pyx":123
@@ -2146,7 +2146,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
  * 
  *     for i in range(n_queries):             # <<<<<<<<<<<<<<
  *         r = 0
- *         for j in range(query_indptr[i], query_indptr[i + 1]):
+ *         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
  */
   __pyx_t_1 = __pyx_v_n_queries;
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
@@ -2156,34 +2156,34 @@ static void __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(__pyx_t_6rank
  * 
  *     for i in range(n_queries):
  *         r = 0             # <<<<<<<<<<<<<<
- *         for j in range(query_indptr[i], query_indptr[i + 1]):
- *             ranks[documents[j].position] = r
+ *         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
+ *             ranks[documents[j].position - query_indptr[0]] = r
  */
     __pyx_v_r = 0;
 
     /* "rankpy/metrics/_utils.pyx":130
  *     for i in range(n_queries):
  *         r = 0
- *         for j in range(query_indptr[i], query_indptr[i + 1]):             # <<<<<<<<<<<<<<
- *             ranks[documents[j].position] = r
+ *         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):             # <<<<<<<<<<<<<<
+ *             ranks[documents[j].position - query_indptr[0]] = r
  *             r += 1
  */
-    __pyx_t_3 = (__pyx_v_query_indptr[(__pyx_v_i + 1)]);
-    for (__pyx_t_4 = (__pyx_v_query_indptr[__pyx_v_i]); __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+    __pyx_t_3 = ((__pyx_v_query_indptr[(__pyx_v_i + 1)]) - (__pyx_v_query_indptr[0]));
+    for (__pyx_t_4 = ((__pyx_v_query_indptr[__pyx_v_i]) - (__pyx_v_query_indptr[0])); __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
       __pyx_v_j = __pyx_t_4;
 
       /* "rankpy/metrics/_utils.pyx":131
  *         r = 0
- *         for j in range(query_indptr[i], query_indptr[i + 1]):
- *             ranks[documents[j].position] = r             # <<<<<<<<<<<<<<
+ *         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
+ *             ranks[documents[j].position - query_indptr[0]] = r             # <<<<<<<<<<<<<<
  *             r += 1
  * 
  */
-      (__pyx_v_ranks[(__pyx_v_documents[__pyx_v_j]).position]) = __pyx_v_r;
+      (__pyx_v_ranks[((__pyx_v_documents[__pyx_v_j]).position - (__pyx_v_query_indptr[0]))]) = __pyx_v_r;
 
       /* "rankpy/metrics/_utils.pyx":132
- *         for j in range(query_indptr[i], query_indptr[i + 1]):
- *             ranks[documents[j].position] = r
+ *         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
+ *             ranks[documents[j].position - query_indptr[0]] = r
  *             r += 1             # <<<<<<<<<<<<<<
  * 
  *     free(documents)
@@ -2302,7 +2302,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
   struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t *__pyx_v_documents;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_1;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_2;
-  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_3;
+  int __pyx_t_3;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_4;
 
   /* "rankpy/metrics/_utils.pyx":162
@@ -2336,7 +2336,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
  *     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)
  * 
  *     for i in range(n_queries):             # <<<<<<<<<<<<<<
- *         for j in range(query_indptr[i], query_indptr[i + 1]):
+ *         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
  *             ranking[j] = documents[j].position - query_indptr[i]
  */
   __pyx_t_1 = __pyx_v_n_queries;
@@ -2346,17 +2346,17 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_queries_c(__pyx_t_6rankpy_
     /* "rankpy/metrics/_utils.pyx":168
  * 
  *     for i in range(n_queries):
- *         for j in range(query_indptr[i], query_indptr[i + 1]):             # <<<<<<<<<<<<<<
+ *         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):             # <<<<<<<<<<<<<<
  *             ranking[j] = documents[j].position - query_indptr[i]
  * 
  */
-    __pyx_t_3 = (__pyx_v_query_indptr[(__pyx_v_i + 1)]);
-    for (__pyx_t_4 = (__pyx_v_query_indptr[__pyx_v_i]); __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+    __pyx_t_3 = ((__pyx_v_query_indptr[(__pyx_v_i + 1)]) - (__pyx_v_query_indptr[0]));
+    for (__pyx_t_4 = ((__pyx_v_query_indptr[__pyx_v_i]) - (__pyx_v_query_indptr[0])); __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
       __pyx_v_j = __pyx_t_4;
 
       /* "rankpy/metrics/_utils.pyx":169
  *     for i in range(n_queries):
- *         for j in range(query_indptr[i], query_indptr[i + 1]):
+ *         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
  *             ranking[j] = documents[j].position - query_indptr[i]             # <<<<<<<<<<<<<<
  * 
  *     free(documents)
@@ -2473,7 +2473,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
   struct __pyx_t_6rankpy_7metrics_6_utils_DOCUMENT_t *__pyx_v_documents;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_1;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_2;
-  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_3;
+  int __pyx_t_3;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_4;
 
   /* "rankpy/metrics/_utils.pyx":196
@@ -2507,7 +2507,7 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
  *     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)
  * 
  *     for i in range(n_queries):             # <<<<<<<<<<<<<<
- *         for j in range(query_indptr[i], query_indptr[i + 1]):
+ *         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
  *             out[j] = relevance_scores[documents[j].position]
  */
   __pyx_t_1 = __pyx_v_n_queries;
@@ -2517,17 +2517,17 @@ static void __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c
     /* "rankpy/metrics/_utils.pyx":202
  * 
  *     for i in range(n_queries):
- *         for j in range(query_indptr[i], query_indptr[i + 1]):             # <<<<<<<<<<<<<<
+ *         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):             # <<<<<<<<<<<<<<
  *             out[j] = relevance_scores[documents[j].position]
  * 
  */
-    __pyx_t_3 = (__pyx_v_query_indptr[(__pyx_v_i + 1)]);
-    for (__pyx_t_4 = (__pyx_v_query_indptr[__pyx_v_i]); __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+    __pyx_t_3 = ((__pyx_v_query_indptr[(__pyx_v_i + 1)]) - (__pyx_v_query_indptr[0]));
+    for (__pyx_t_4 = ((__pyx_v_query_indptr[__pyx_v_i]) - (__pyx_v_query_indptr[0])); __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
       __pyx_v_j = __pyx_t_4;
 
       /* "rankpy/metrics/_utils.pyx":203
  *     for i in range(n_queries):
- *         for j in range(query_indptr[i], query_indptr[i + 1]):
+ *         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
  *             out[j] = relevance_scores[documents[j].position]             # <<<<<<<<<<<<<<
  * 
  *     free(documents)
@@ -19734,6 +19734,32 @@ raise_neg_overflow:
     return (npy_int32) -1;
 }
 
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
+    const int neg_one = (int) -1, const_zero = 0;
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(int) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(int) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+        } else if (sizeof(int) <= sizeof(unsigned long long)) {
+            return PyLong_FromUnsignedLongLong((unsigned long long) value);
+        }
+    } else {
+        if (sizeof(int) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(int) <= sizeof(long long)) {
+            return PyLong_FromLongLong((long long) value);
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(int),
+                                     little, !is_unsigned);
+    }
+}
+
 #if CYTHON_CCOMPLEX
   #ifdef __cplusplus
     static CYTHON_INLINE __pyx_t_float_complex __pyx_t_float_complex_from_parts(float x, float y) {
@@ -19973,32 +19999,6 @@ raise_neg_overflow:
         }
     #endif
 #endif
-
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
-    const int neg_one = (int) -1, const_zero = 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(int) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(int) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-        } else if (sizeof(int) <= sizeof(unsigned long long)) {
-            return PyLong_FromUnsignedLongLong((unsigned long long) value);
-        }
-    } else {
-        if (sizeof(int) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(int) <= sizeof(long long)) {
-            return PyLong_FromLongLong((long long) value);
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(int),
-                                     little, !is_unsigned);
-    }
-}
 
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
     const int neg_one = (int) -1, const_zero = 0;

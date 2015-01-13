@@ -92,7 +92,7 @@ cdef void __argranksort_queries(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *
     cdef INT_t i
 
     for i in range(n_queries):
-        __argranksort(ranking_scores + query_indptr[i], documents + query_indptr[i],
+        __argranksort(ranking_scores + query_indptr[i], documents + query_indptr[i] - query_indptr[0],
                       query_indptr[i], query_indptr[i + 1] - query_indptr[i])
 
 
@@ -127,8 +127,8 @@ cdef void argranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *
 
     for i in range(n_queries):
         r = 0
-        for j in range(query_indptr[i], query_indptr[i + 1]):
-            ranks[documents[j].position] = r
+        for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
+            ranks[documents[j].position - query_indptr[0]] = r
             r += 1
 
     free(documents)
@@ -165,7 +165,7 @@ cdef void ranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ran
     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)
 
     for i in range(n_queries):
-        for j in range(query_indptr[i], query_indptr[i + 1]):
+        for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
             ranking[j] = documents[j].position - query_indptr[i]
 
     free(documents)
@@ -199,7 +199,7 @@ cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr, INT_t n_queri
     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)
 
     for i in range(n_queries):
-        for j in range(query_indptr[i], query_indptr[i + 1]):
+        for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
             out[j] = relevance_scores[documents[j].position]
 
     free(documents)
