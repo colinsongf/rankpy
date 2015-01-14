@@ -26,7 +26,7 @@ from libc.math cimport exp
 
 from ..metrics._utils cimport INT_t
 from ..metrics._utils cimport DOUBLE_t
-from ..metrics._utils cimport argranksort_c
+from ..metrics._utils cimport argranksort_queries_c
 
 from ..metrics._metrics cimport Metric
 
@@ -91,11 +91,14 @@ def parallel_compute_lambdas_and_weights(INT_t qstart, INT_t qend, INT_t[::1] qu
         document_ranks = <INT_t *> calloc(n_documents, sizeof(INT_t))
         document_deltas = <DOUBLE_t *> calloc(n_documents, sizeof(DOUBLE_t))
 
+        # Find the rank of each document with respect to the ranking scores over all queries.
+        argranksort_queries_c(&query_indptr[0] + qstart, qend - qstart, &ranking_scores[0], document_ranks)
+
         # Clear output array for lambdas since we will be incrementing.
-        memset((&output_lambdas[0]) + query_indptr[qstart], 0, n_documents * sizeof(DOUBLE_t))
+        memset(&output_lambdas[0] + query_indptr[qstart], 0, n_documents * sizeof(DOUBLE_t))
 
         # Clear output array for weights since we will be incrementing.
-        memset((&output_weights[0]) + query_indptr[qstart], 0, n_documents * sizeof(DOUBLE_t))
+        memset(&output_weights[0] + query_indptr[qstart], 0, n_documents * sizeof(DOUBLE_t))
 
         # Loop through the queries and compute lambdas and weights for every document.
         for i in range(qstart, qend):
@@ -106,8 +109,8 @@ def parallel_compute_lambdas_and_weights(INT_t qstart, INT_t qend, INT_t[::1] qu
             # The number of documents of the current query.
             n_documents = end - start
 
-            # Find the rank of each document with respect to the ranking socres.
-            argranksort_c(&ranking_scores[0], document_ranks, n_documents)
+            # Find the rank of each document with respect to the ranking scores.
+            # argranksort_c(&ranking_scores[0] + start, document_ranks, n_documents)
 
             # Loop through the documents of the current query.
             for j in range(start, end):
@@ -120,7 +123,7 @@ def parallel_compute_lambdas_and_weights(INT_t qstart, INT_t qend, INT_t[::1] qu
 
                 # Compute the (absolute) changes in the metric caused by swapping document 'j' with all
                 # documents 'k' (k >= rstart), which have lower relevance with respect to the query 'i'.
-                metric.delta_c(j - start, rstart - start, n_documents, document_ranks, (&relevance_scores[0]) + start, scale, document_deltas)
+                metric.delta_c(j - start, rstart - start, n_documents, document_ranks + start - query_indptr[qstart], &relevance_scores[0] + start, scale, document_deltas)
 
                 for k in range(rstart, end):
                     rho = (<DOUBLE_t> 1.0) / ((<DOUBLE_t> 1.0) + (<DOUBLE_t> exp(ranking_scores[j] - ranking_scores[k])))

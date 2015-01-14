@@ -1470,7 +1470,7 @@ static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
 static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *, char *, char *, int *); /*proto*/
 
 /* Module declarations from 'rankpy.metrics._utils' */
-static void (*__pyx_f_6rankpy_7metrics_6_utils_argranksort_c)(__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *, __pyx_t_6rankpy_7metrics_6_utils_INT_t *, __pyx_t_6rankpy_7metrics_6_utils_INT_t); /*proto*/
+static void (*__pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c)(__pyx_t_6rankpy_7metrics_6_utils_INT_t *, __pyx_t_6rankpy_7metrics_6_utils_INT_t, __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *, __pyx_t_6rankpy_7metrics_6_utils_INT_t *); /*proto*/
 
 /* Module declarations from 'rankpy.metrics._metrics' */
 static PyTypeObject *__pyx_ptype_6rankpy_7metrics_8_metrics_Metric = 0;
@@ -1972,31 +1972,33 @@ static PyObject *__pyx_pf_6rankpy_6models_16lambdamart_inner_parallel_compute_la
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_1;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_2;
   Py_ssize_t __pyx_t_3;
-  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_4;
+  Py_ssize_t __pyx_t_4;
   Py_ssize_t __pyx_t_5;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_6;
-  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_7;
+  Py_ssize_t __pyx_t_7;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_8;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_9;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_10;
-  long __pyx_t_11;
+  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_11;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_12;
-  __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t __pyx_t_13;
-  Py_ssize_t __pyx_t_14;
-  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_15;
+  long __pyx_t_13;
+  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_14;
+  __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t __pyx_t_15;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_16;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_17;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_18;
-  int __pyx_t_19;
-  Py_ssize_t __pyx_t_20;
+  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_19;
+  int __pyx_t_20;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_21;
-  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_22;
+  Py_ssize_t __pyx_t_22;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_23;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_24;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_25;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_26;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_27;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_28;
+  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_29;
+  __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_t_30;
   __Pyx_RefNannySetupContext("parallel_compute_lambdas_and_weights", 0);
 
   /* "rankpy/models/lambdamart_inner.pyx":86
@@ -2038,58 +2040,69 @@ static PyObject *__pyx_pf_6rankpy_6models_16lambdamart_inner_parallel_compute_la
  *         document_ranks = <INT_t *> calloc(n_documents, sizeof(INT_t))
  *         document_deltas = <DOUBLE_t *> calloc(n_documents, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
  * 
- *         # Clear output array for lambdas since we will be incrementing.
+ *         # Find the rank of each document with respect to the ranking scores over all queries.
  */
         __pyx_v_document_deltas = ((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *)calloc(__pyx_v_n_documents, (sizeof(__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t))));
 
         /* "rankpy/models/lambdamart_inner.pyx":95
  * 
- *         # Clear output array for lambdas since we will be incrementing.
- *         memset((&output_lambdas[0]) + query_indptr[qstart], 0, n_documents * sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
+ *         # Find the rank of each document with respect to the ranking scores over all queries.
+ *         argranksort_queries_c(&query_indptr[0] + qstart, qend - qstart, &ranking_scores[0], document_ranks)             # <<<<<<<<<<<<<<
  * 
- *         # Clear output array for weights since we will be incrementing.
+ *         # Clear output array for lambdas since we will be incrementing.
  */
         __pyx_t_3 = 0;
-        __pyx_t_4 = __pyx_v_qstart;
-        memset(((&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_lambdas.data) + __pyx_t_3)) )))) + (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_4)) )))), 0, (__pyx_v_n_documents * (sizeof(__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t))));
+        __pyx_t_4 = 0;
+        __pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c(((&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_3)) )))) + __pyx_v_qstart), (__pyx_v_qend - __pyx_v_qstart), (&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_4)) )))), __pyx_v_document_ranks);
 
         /* "rankpy/models/lambdamart_inner.pyx":98
  * 
- *         # Clear output array for weights since we will be incrementing.
- *         memset((&output_weights[0]) + query_indptr[qstart], 0, n_documents * sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
+ *         # Clear output array for lambdas since we will be incrementing.
+ *         memset(&output_lambdas[0] + query_indptr[qstart], 0, n_documents * sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
  * 
- *         # Loop through the queries and compute lambdas and weights for every document.
+ *         # Clear output array for weights since we will be incrementing.
  */
         __pyx_t_5 = 0;
         __pyx_t_6 = __pyx_v_qstart;
-        memset(((&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_weights.data) + __pyx_t_5)) )))) + (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_6)) )))), 0, (__pyx_v_n_documents * (sizeof(__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t))));
+        memset(((&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_lambdas.data) + __pyx_t_5)) )))) + (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_6)) )))), 0, (__pyx_v_n_documents * (sizeof(__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t))));
 
         /* "rankpy/models/lambdamart_inner.pyx":101
+ * 
+ *         # Clear output array for weights since we will be incrementing.
+ *         memset(&output_weights[0] + query_indptr[qstart], 0, n_documents * sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
+ * 
+ *         # Loop through the queries and compute lambdas and weights for every document.
+ */
+        __pyx_t_7 = 0;
+        __pyx_t_8 = __pyx_v_qstart;
+        memset(((&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_weights.data) + __pyx_t_7)) )))) + (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_8)) )))), 0, (__pyx_v_n_documents * (sizeof(__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t))));
+
+        /* "rankpy/models/lambdamart_inner.pyx":104
  * 
  *         # Loop through the queries and compute lambdas and weights for every document.
  *         for i in range(qstart, qend):             # <<<<<<<<<<<<<<
  *             start, end = query_indptr[i], query_indptr[i + 1]
  * 
  */
-        __pyx_t_7 = __pyx_v_qend;
-        for (__pyx_t_8 = __pyx_v_qstart; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
-          __pyx_v_i = __pyx_t_8;
+        __pyx_t_9 = __pyx_v_qend;
+        for (__pyx_t_10 = __pyx_v_qstart; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
+          __pyx_v_i = __pyx_t_10;
 
-          /* "rankpy/models/lambdamart_inner.pyx":102
+          /* "rankpy/models/lambdamart_inner.pyx":105
  *         # Loop through the queries and compute lambdas and weights for every document.
  *         for i in range(qstart, qend):
  *             start, end = query_indptr[i], query_indptr[i + 1]             # <<<<<<<<<<<<<<
  * 
  *             scale = 1.0 if scale_values is None else scale_values[i]
  */
-          __pyx_t_9 = __pyx_v_i;
-          __pyx_t_10 = (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_9)) )));
-          __pyx_t_11 = (__pyx_v_i + 1);
+          __pyx_t_11 = __pyx_v_i;
           __pyx_t_12 = (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_11)) )));
-          __pyx_v_start = __pyx_t_10;
-          __pyx_v_end = __pyx_t_12;
+          __pyx_t_13 = (__pyx_v_i + 1);
+          __pyx_t_14 = (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_13)) )));
+          __pyx_v_start = __pyx_t_12;
+          __pyx_v_end = __pyx_t_14;
 
-          /* "rankpy/models/lambdamart_inner.pyx":104
+          /* "rankpy/models/lambdamart_inner.pyx":107
  *             start, end = query_indptr[i], query_indptr[i + 1]
  * 
  *             scale = 1.0 if scale_values is None else scale_values[i]             # <<<<<<<<<<<<<<
@@ -2097,66 +2110,56 @@ static PyObject *__pyx_pf_6rankpy_6models_16lambdamart_inner_parallel_compute_la
  *             # The number of documents of the current query.
  */
           if (((((PyObject *) __pyx_v_scale_values.memview) == Py_None) != 0)) {
-            __pyx_t_13 = 1.0;
+            __pyx_t_15 = 1.0;
           } else {
-            __pyx_t_12 = __pyx_v_i;
-            __pyx_t_13 = (*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_scale_values.data) + __pyx_t_12)) )));
+            __pyx_t_14 = __pyx_v_i;
+            __pyx_t_15 = (*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_scale_values.data) + __pyx_t_14)) )));
           }
-          __pyx_v_scale = __pyx_t_13;
+          __pyx_v_scale = __pyx_t_15;
 
-          /* "rankpy/models/lambdamart_inner.pyx":107
+          /* "rankpy/models/lambdamart_inner.pyx":110
  * 
  *             # The number of documents of the current query.
  *             n_documents = end - start             # <<<<<<<<<<<<<<
  * 
- *             # Find the rank of each document with respect to the ranking socres.
+ *             # Find the rank of each document with respect to the ranking scores.
  */
           __pyx_v_n_documents = (__pyx_v_end - __pyx_v_start);
 
-          /* "rankpy/models/lambdamart_inner.pyx":110
- * 
- *             # Find the rank of each document with respect to the ranking socres.
- *             argranksort_c(&ranking_scores[0], document_ranks, n_documents)             # <<<<<<<<<<<<<<
- * 
- *             # Loop through the documents of the current query.
- */
-          __pyx_t_14 = 0;
-          __pyx_f_6rankpy_7metrics_6_utils_argranksort_c((&(*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_14)) )))), __pyx_v_document_ranks, __pyx_v_n_documents);
-
-          /* "rankpy/models/lambdamart_inner.pyx":113
+          /* "rankpy/models/lambdamart_inner.pyx":116
  * 
  *             # Loop through the documents of the current query.
  *             for j in range(start, end):             # <<<<<<<<<<<<<<
  *                 # The smallest index of a document with a lower relevance score than document 'j'.
  *                 rstart = relevance_strides[i, relevance_scores[j]]
  */
-          __pyx_t_10 = __pyx_v_end;
-          for (__pyx_t_15 = __pyx_v_start; __pyx_t_15 < __pyx_t_10; __pyx_t_15+=1) {
-            __pyx_v_j = __pyx_t_15;
+          __pyx_t_12 = __pyx_v_end;
+          for (__pyx_t_16 = __pyx_v_start; __pyx_t_16 < __pyx_t_12; __pyx_t_16+=1) {
+            __pyx_v_j = __pyx_t_16;
 
-            /* "rankpy/models/lambdamart_inner.pyx":115
+            /* "rankpy/models/lambdamart_inner.pyx":118
  *             for j in range(start, end):
  *                 # The smallest index of a document with a lower relevance score than document 'j'.
  *                 rstart = relevance_strides[i, relevance_scores[j]]             # <<<<<<<<<<<<<<
  * 
  *                 # Is there any document less relevant than document 'j'?
  */
-            __pyx_t_16 = __pyx_v_j;
-            __pyx_t_17 = __pyx_v_i;
-            __pyx_t_18 = (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_relevance_scores.data) + __pyx_t_16)) )));
-            __pyx_v_rstart = (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=1 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ (__pyx_v_relevance_strides.data + __pyx_t_17 * __pyx_v_relevance_strides.strides[0]) )) + __pyx_t_18)) )));
+            __pyx_t_17 = __pyx_v_j;
+            __pyx_t_18 = __pyx_v_i;
+            __pyx_t_19 = (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_relevance_scores.data) + __pyx_t_17)) )));
+            __pyx_v_rstart = (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=1 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ (__pyx_v_relevance_strides.data + __pyx_t_18 * __pyx_v_relevance_strides.strides[0]) )) + __pyx_t_19)) )));
 
-            /* "rankpy/models/lambdamart_inner.pyx":118
+            /* "rankpy/models/lambdamart_inner.pyx":121
  * 
  *                 # Is there any document less relevant than document 'j'?
  *                 if rstart >= end:             # <<<<<<<<<<<<<<
  *                     break
  * 
  */
-            __pyx_t_19 = ((__pyx_v_rstart >= __pyx_v_end) != 0);
-            if (__pyx_t_19) {
+            __pyx_t_20 = ((__pyx_v_rstart >= __pyx_v_end) != 0);
+            if (__pyx_t_20) {
 
-              /* "rankpy/models/lambdamart_inner.pyx":119
+              /* "rankpy/models/lambdamart_inner.pyx":122
  *                 # Is there any document less relevant than document 'j'?
  *                 if rstart >= end:
  *                     break             # <<<<<<<<<<<<<<
@@ -2166,39 +2169,40 @@ static PyObject *__pyx_pf_6rankpy_6models_16lambdamart_inner_parallel_compute_la
               goto __pyx_L9_break;
             }
 
-            /* "rankpy/models/lambdamart_inner.pyx":123
+            /* "rankpy/models/lambdamart_inner.pyx":126
  *                 # Compute the (absolute) changes in the metric caused by swapping document 'j' with all
  *                 # documents 'k' (k >= rstart), which have lower relevance with respect to the query 'i'.
- *                 metric.delta_c(j - start, rstart - start, n_documents, document_ranks, (&relevance_scores[0]) + start, scale, document_deltas)             # <<<<<<<<<<<<<<
+ *                 metric.delta_c(j - start, rstart - start, n_documents, document_ranks + start - query_indptr[qstart], &relevance_scores[0] + start, scale, document_deltas)             # <<<<<<<<<<<<<<
  * 
  *                 for k in range(rstart, end):
  */
-            __pyx_t_20 = 0;
-            ((struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_Metric *)__pyx_v_metric->__pyx_vtab)->delta_c(__pyx_v_metric, (__pyx_v_j - __pyx_v_start), (__pyx_v_rstart - __pyx_v_start), __pyx_v_n_documents, __pyx_v_document_ranks, ((&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_relevance_scores.data) + __pyx_t_20)) )))) + __pyx_v_start), __pyx_v_scale, __pyx_v_document_deltas);
+            __pyx_t_21 = __pyx_v_qstart;
+            __pyx_t_22 = 0;
+            ((struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_Metric *)__pyx_v_metric->__pyx_vtab)->delta_c(__pyx_v_metric, (__pyx_v_j - __pyx_v_start), (__pyx_v_rstart - __pyx_v_start), __pyx_v_n_documents, ((__pyx_v_document_ranks + __pyx_v_start) - (*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_21)) )))), ((&(*((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_INT_t *) __pyx_v_relevance_scores.data) + __pyx_t_22)) )))) + __pyx_v_start), __pyx_v_scale, __pyx_v_document_deltas);
 
-            /* "rankpy/models/lambdamart_inner.pyx":125
- *                 metric.delta_c(j - start, rstart - start, n_documents, document_ranks, (&relevance_scores[0]) + start, scale, document_deltas)
+            /* "rankpy/models/lambdamart_inner.pyx":128
+ *                 metric.delta_c(j - start, rstart - start, n_documents, document_ranks + start - query_indptr[qstart], &relevance_scores[0] + start, scale, document_deltas)
  * 
  *                 for k in range(rstart, end):             # <<<<<<<<<<<<<<
  *                     rho = (<DOUBLE_t> 1.0) / ((<DOUBLE_t> 1.0) + (<DOUBLE_t> exp(ranking_scores[j] - ranking_scores[k])))
  * 
  */
-            __pyx_t_21 = __pyx_v_end;
-            for (__pyx_t_22 = __pyx_v_rstart; __pyx_t_22 < __pyx_t_21; __pyx_t_22+=1) {
-              __pyx_v_k = __pyx_t_22;
+            __pyx_t_23 = __pyx_v_end;
+            for (__pyx_t_24 = __pyx_v_rstart; __pyx_t_24 < __pyx_t_23; __pyx_t_24+=1) {
+              __pyx_v_k = __pyx_t_24;
 
-              /* "rankpy/models/lambdamart_inner.pyx":126
+              /* "rankpy/models/lambdamart_inner.pyx":129
  * 
  *                 for k in range(rstart, end):
  *                     rho = (<DOUBLE_t> 1.0) / ((<DOUBLE_t> 1.0) + (<DOUBLE_t> exp(ranking_scores[j] - ranking_scores[k])))             # <<<<<<<<<<<<<<
  * 
  *                     lambda_ = rho * document_deltas[k - rstart]
  */
-              __pyx_t_23 = __pyx_v_j;
-              __pyx_t_24 = __pyx_v_k;
-              __pyx_v_rho = (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t)1.0) / (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t)1.0) + ((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t)exp(((*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_23)) ))) - (*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_24)) ))))))));
+              __pyx_t_25 = __pyx_v_j;
+              __pyx_t_26 = __pyx_v_k;
+              __pyx_v_rho = (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t)1.0) / (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t)1.0) + ((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t)exp(((*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_25)) ))) - (*((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_26)) ))))))));
 
-              /* "rankpy/models/lambdamart_inner.pyx":128
+              /* "rankpy/models/lambdamart_inner.pyx":131
  *                     rho = (<DOUBLE_t> 1.0) / ((<DOUBLE_t> 1.0) + (<DOUBLE_t> exp(ranking_scores[j] - ranking_scores[k])))
  * 
  *                     lambda_ = rho * document_deltas[k - rstart]             # <<<<<<<<<<<<<<
@@ -2207,7 +2211,7 @@ static PyObject *__pyx_pf_6rankpy_6models_16lambdamart_inner_parallel_compute_la
  */
               __pyx_v_lambda_ = (__pyx_v_rho * (__pyx_v_document_deltas[(__pyx_v_k - __pyx_v_rstart)]));
 
-              /* "rankpy/models/lambdamart_inner.pyx":129
+              /* "rankpy/models/lambdamart_inner.pyx":132
  * 
  *                     lambda_ = rho * document_deltas[k - rstart]
  *                     weight = (1 - rho) * lambda_             # <<<<<<<<<<<<<<
@@ -2216,51 +2220,51 @@ static PyObject *__pyx_pf_6rankpy_6models_16lambdamart_inner_parallel_compute_la
  */
               __pyx_v_weight = ((1.0 - __pyx_v_rho) * __pyx_v_lambda_);
 
-              /* "rankpy/models/lambdamart_inner.pyx":131
+              /* "rankpy/models/lambdamart_inner.pyx":134
  *                     weight = (1 - rho) * lambda_
  * 
  *                     output_lambdas[j] += lambda_             # <<<<<<<<<<<<<<
  *                     output_lambdas[k] -= lambda_
  * 
  */
-              __pyx_t_25 = __pyx_v_j;
-              *((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_lambdas.data) + __pyx_t_25)) )) += __pyx_v_lambda_;
+              __pyx_t_27 = __pyx_v_j;
+              *((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_lambdas.data) + __pyx_t_27)) )) += __pyx_v_lambda_;
 
-              /* "rankpy/models/lambdamart_inner.pyx":132
+              /* "rankpy/models/lambdamart_inner.pyx":135
  * 
  *                     output_lambdas[j] += lambda_
  *                     output_lambdas[k] -= lambda_             # <<<<<<<<<<<<<<
  * 
  *                     output_weights[j] += weight
  */
-              __pyx_t_26 = __pyx_v_k;
-              *((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_lambdas.data) + __pyx_t_26)) )) -= __pyx_v_lambda_;
+              __pyx_t_28 = __pyx_v_k;
+              *((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_lambdas.data) + __pyx_t_28)) )) -= __pyx_v_lambda_;
 
-              /* "rankpy/models/lambdamart_inner.pyx":134
+              /* "rankpy/models/lambdamart_inner.pyx":137
  *                     output_lambdas[k] -= lambda_
  * 
  *                     output_weights[j] += weight             # <<<<<<<<<<<<<<
  *                     output_weights[k] += weight
  * 
  */
-              __pyx_t_27 = __pyx_v_j;
-              *((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_weights.data) + __pyx_t_27)) )) += __pyx_v_weight;
+              __pyx_t_29 = __pyx_v_j;
+              *((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_weights.data) + __pyx_t_29)) )) += __pyx_v_weight;
 
-              /* "rankpy/models/lambdamart_inner.pyx":135
+              /* "rankpy/models/lambdamart_inner.pyx":138
  * 
  *                     output_weights[j] += weight
  *                     output_weights[k] += weight             # <<<<<<<<<<<<<<
  * 
  *         free(document_ranks)
  */
-              __pyx_t_28 = __pyx_v_k;
-              *((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_weights.data) + __pyx_t_28)) )) += __pyx_v_weight;
+              __pyx_t_30 = __pyx_v_k;
+              *((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *) __pyx_v_output_weights.data) + __pyx_t_30)) )) += __pyx_v_weight;
             }
           }
           __pyx_L9_break:;
         }
 
-        /* "rankpy/models/lambdamart_inner.pyx":137
+        /* "rankpy/models/lambdamart_inner.pyx":140
  *                     output_weights[k] += weight
  * 
  *         free(document_ranks)             # <<<<<<<<<<<<<<
@@ -2268,7 +2272,7 @@ static PyObject *__pyx_pf_6rankpy_6models_16lambdamart_inner_parallel_compute_la
  */
         free(__pyx_v_document_ranks);
 
-        /* "rankpy/models/lambdamart_inner.pyx":138
+        /* "rankpy/models/lambdamart_inner.pyx":141
  * 
  *         free(document_ranks)
  *         free(document_deltas)             # <<<<<<<<<<<<<<
@@ -15722,7 +15726,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[2]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -16146,7 +16150,7 @@ PyMODINIT_FUNC PyInit_lambdamart_inner(void)
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   __pyx_t_1 = __Pyx_ImportModule("rankpy.metrics._utils"); if (!__pyx_t_1) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (__Pyx_ImportFunction(__pyx_t_1, "argranksort_c", (void (**)(void))&__pyx_f_6rankpy_7metrics_6_utils_argranksort_c, "void (__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *, __pyx_t_6rankpy_7metrics_6_utils_INT_t *, __pyx_t_6rankpy_7metrics_6_utils_INT_t)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ImportFunction(__pyx_t_1, "argranksort_queries_c", (void (**)(void))&__pyx_f_6rankpy_7metrics_6_utils_argranksort_queries_c, "void (__pyx_t_6rankpy_7metrics_6_utils_INT_t *, __pyx_t_6rankpy_7metrics_6_utils_INT_t, __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *, __pyx_t_6rankpy_7metrics_6_utils_INT_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   Py_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   /*--- Execution code ---*/
 
