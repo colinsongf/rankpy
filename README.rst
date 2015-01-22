@@ -162,6 +162,7 @@ You can download learning to rank data sets here:
 - **MSLR-WEB30K**: http://research.microsoft.com/en-us/um/beijing/projects/mslr/data/MSLR-WEB30K.zip
 - **Yandex Internet Mathematics 2009**: http://imat2009.yandex.ru/academic/mathematic/2009/en/datasets (query identifier need to be parsed out of comment into qid feature)
 
+All credit for making this list goes to Anne Schuth -- check out [Lerot: an Online Learning to Rank Framework](https://bitbucket.org/ilps/lerot).
 
 License
 -------
