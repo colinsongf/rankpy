@@ -34,7 +34,7 @@ from tempfile import mkdtemp
 
 from ..utils import parallel_helper
 from ..utils import pickle, unpickle
-from ..metrics._utils import argranksort, ranksort_queries
+from ..metrics._utils import set_seed, argranksort, ranksort_queries
 
 from .lambdamart_inner import parallel_compute_lambdas_and_weights
 
@@ -42,22 +42,23 @@ from .lambdamart_inner import parallel_compute_lambdas_and_weights
 logger = logging.getLogger(__name__)
 
 
-def compute_lambdas_and_weights(queries, ranking_scores, metric, output_lambdas, output_weights, scale_values=None, n_jobs=1):
+def compute_lambdas_and_weights(queries, ranking_scores, metric, output_lambdas, output_weights,
+                                scale_values=None, influences=None, indices=None, n_jobs=1):
     ''' 
-    Compute the pseudo-responses (`lambdas`) and gradient steps sizes (`weights`)
-    for each document in the specified set of queries. The pseudo-responses are calculated
-    using the given evaluation metric.
+    Compute the first derivatives (`lambdas`) and the second derivatives (`weights`)
+    of an implicit cost function from the given metric and rankings of query documents
+    derived from ranking scores.
 
     Parameters:
     -----------
-    queries: rankpy.queries.Queries
-        The set of queries.
+    queries: Queries
+        The set of queries with documents.
 
     ranking_scores: array, shape = (n_documents,)
-        The ranking score for each document in the queries set.
+        A ranking score for each document in the set of queries.
 
-    metric: information retrieval metric
-        The evaluation metric, for which the lambdas and weights
+    metric: Metric
+        The evaluation metric, ffrom which the lambdas and the weights
         are to be computed.
 
     output_lambdas: array, shape=(n_documents,)
@@ -66,11 +67,20 @@ def compute_lambdas_and_weights(queries, ranking_scores, metric, output_lambdas,
     output_weights: array, shape=(n_documents,)
         Computed weights for every document.
 
-    scale_scale: array, shape=(n_queries,), optional (default is None)
+    scale_value: array, shape=(n_queries,) or None
         The precomputed metric scale value for every query.
 
+    influences: array, shape=(n_max_relevance, n_max_relevance) or None
+        Used to keep track of (proportional) contribution in lambdas
+        of high relevant documents from low relevant documents.
+
+    indices: array, shape=(n_documents, n_leaf_nodes) or None:
+        The indices of terminal nodes which the documents fall into.
+        This parameter can be used to recompute lambdas and weights
+        after regression tree is built.
+
     n_jobs: integer, optional (default is 1)
-        The number of workers, which will compute the lambdas
+        The number of workers, which are used to compute the lambdas
         and weights in parallel.
     '''
     n_jobs = cpu_count() if n_jobs < 0 else n_jobs
@@ -85,13 +95,14 @@ def compute_lambdas_and_weights(queries, ranking_scores, metric, output_lambdas,
         (delayed(parallel_compute_lambdas_and_weights, check_pickle=False)
                     (query_indptr[i], query_indptr[i + 1], queries.query_indptr, ranking_scores,
                      queries.relevance_scores, queries.query_relevance_strides, metric.metric_,
-                     scale_values, output_lambdas, output_weights) for i in range(query_indptr.shape[0] - 1))
+                     scale_values, influences, indices, output_lambdas, output_weights)
+                 for i in range(query_indptr.shape[0] - 1))
 
 
-def _estimate_newton_gradient_steps(estimator, queries, lambdas, weights):
+def _estimate_newton_gradient_steps(estimator, queries, lambdas, weights, indices=None):
     ''' 
-    Compute one iteration of Newton-Raphson method to estimate (optimal) gradient
-    steps for each terminal node of the given estimator (regression tree/forest).
+    Compute a single iteration of Newton's method to estimate optimal gradient
+    steps for each terminal node of the given regression tree.
 
     Parameters:
     -----------
@@ -105,15 +116,21 @@ def _estimate_newton_gradient_steps(estimator, queries, lambdas, weights):
     lambdas: array, shape = (n_documents,)
         The current 1st order derivatives of the loss function.
 
-    weights: array, shape = (n_docuemnts,)
+    weights: array, shape = (n_documents,)
         The current 2nd order derivatives of the loss function.
+
+    indices: array, shape = (n_documents,)
+        The indices of terminal nodes where each document ends. Can be used
+        to speed up computation a little bit.
     '''
     is_random_forest = isinstance(estimator, RandomForestRegressor)
 
     for estimator in estimator.estimators_ if is_random_forest else [estimator]:
         # Get the number of nodes (internal + terminal) in the current regression tree.
         node_count = estimator.tree_.node_count
-        indices = estimator.tree_.apply(queries.feature_vectors)
+
+        if indices is None:
+            indices = estimator.tree_.apply(queries.feature_vectors).astype(np.intc)
 
         np.copyto(estimator.tree_.value, np.bincount(indices, lambdas, node_count).reshape(-1, 1, 1))
 
@@ -121,8 +138,100 @@ def _estimate_newton_gradient_steps(estimator, queries, lambdas, weights):
             np.divide(estimator.tree_.value, np.bincount(indices, weights, node_count).reshape(-1, 1, 1), out=estimator.tree_.value)
 
         # Remove inf's and nas's from the tree.
-        # FIXME: See, if this is really necessary.
         estimator.tree_.value[~np.isfinite(estimator.tree_.value)] = 0.0
+
+    return None if is_random_forest else indices
+
+
+def _estimate_multiple_newton_gradient_steps(estimator, queries, ranking_scores, metric, lambdas, weights,
+                                             scale_values=None, n_iterations=None, verbose=None, shrinkage=0.1, n_jobs=1):
+    ''' 
+    Compute n_iterations of Newton's method to estimate optimal gradient steps
+    for each terminal node of the given regression tree. Note that random forest
+    is not suported and calling the method with it will do only a single iteration.
+
+    If n_iterations is None, the algorithm runs until convergence.
+
+    Parameters:
+    -----------
+    estimator: DecisionTreeRegressor or RandomForestRegressor
+        The regression tree/forest for which the gradient steps are computed.
+
+    queries: Queries
+        The query documents determine which terminal nodes of the tree the
+        cresponding lambdas and weights fall down into.
+
+    ranking_scores: array, shape = (n_documents,)
+        A ranking score for each document in the set of queries.
+
+    metric: Metric
+        The evaluation metric, ffrom which the lambdas and the weights
+        are to be computed.
+
+    lambdas: array, shape = (n_documents,)
+        The current 1st order derivatives of the implicit loss function.
+
+    weights: array, shape = (n_documents,)
+        The current 2nd order derivatives of the implicit loss function.
+
+    scale_value: array, shape=(n_queries,) or None
+        The precomputed metric scale value for every query.
+
+    verbose: int or None
+        Specify the verbosity. If verbose is 1, it will print the largest change
+        in tree predctions. If verbose is 2, it will print the whole vector
+        containing the prediction values inside leaf nodes.
+
+    n_jobs: integer, optional (default is 1)
+        The number of workers, which are used to compute the lambdas
+        and weights in parallel.
+    '''
+    indices = _estimate_newton_gradient_steps(estimator, queries, lambdas, weights)
+
+    if n_iterations == 1 or indices is None:
+        return
+
+    value_copy = np.array(estimator.tree_.value, copy=True)
+
+    ranking_scores_copy = np.array(ranking_scores, copy=True)
+    gammas = np.empty_like(ranking_scores)
+
+    max_change = 0.
+    mean_change = 0.
+
+    leaf_mask = (estimator.tree_.children_left == TREE_LEAF)
+
+    if verbose > 0:
+        logger.info('Initial gamma values: %r' % estimator.tree_.value[leaf_mask].ravel())
+
+    for iteration in xrange(1, (n_iterations or 32767) + 1):
+        # Always use fresh ranking scores.
+        np.copyto(ranking_scores_copy, ranking_scores)
+        np.take(estimator.tree_.value, indices, out=gammas)
+
+        # Take the Newton's step with shrinkage (except for he last step).
+        ranking_scores_copy += shrinkage * gammas
+
+        # 'Recompute' the needed derivatives.
+        compute_lambdas_and_weights(queries, ranking_scores_copy, metric, lambdas,
+                                    weights, scale_values, None, indices, n_jobs)
+
+        # Compute the next Newton's step increment.
+        _estimate_newton_gradient_steps(estimator, queries, lambdas, weights, indices)
+
+        # Check whether the solution converged.
+        max_change = estimator.tree_.value.max()
+        mean_change = np.mean(estimator.tree_.value[leaf_mask])            
+
+        # Compute the next Newton's step increment.
+        value_copy += estimator.tree_.value
+        np.copyto(estimator.tree_.value, value_copy)
+
+        if verbose == 1:
+            logger.info("Iteration %d of Newton's method finished (max change: %.4f, mean change: %.4f)." \
+                        % (iteration, max_change, mean_change))
+        elif verbose == 2:
+            logger.info("Iteration %d Newton's method gammas: %r" % (iteration, estimator.tree_.value[leaf_mask].ravel()))
 
 
 class LambdaMART(object):
@@ -175,6 +284,10 @@ class LambdaMART(object):
     base_model: Base learning to rank model, optional (default is None)
         The base model, which is used to get initial ranking scores.
 
+    n_iterations: int, optional (default is 1) or None
+        The number of steps in regression tree optimization via Newton's 
+        method. If None is given, the optimization will run untill converges.
+
     n_jobs: int, optional (default is 1)
         The number of working sub-processes that will be spawned to compute
         the desired values faster. If -1, the number of CPUs will be used.
@@ -198,7 +311,7 @@ class LambdaMART(object):
     '''
     def __init__(self, n_estimators=1000, shrinkage=0.1, use_newton_method=True, use_random_forest=0,
                  max_depth=5, max_leaf_nodes=None, min_samples_split=2, min_samples_leaf=1, estopping=100,
-                 max_features=None, base_model=None, n_jobs=1, seed=None):
+                 max_features=None, base_model=None, n_iterations=1, n_jobs=1, verbose=0, seed=None):
         self.estimators = []
         self.n_estimators = n_estimators
         self.shrinkage = shrinkage
@@ -212,6 +325,8 @@ class LambdaMART(object):
         self.use_newton_method=use_newton_method
         self.use_random_forest=use_random_forest
         self.n_jobs = max(1, n_jobs if n_jobs >= 0 else n_jobs + cpu_count() + 1)
+        self.n_iterations = n_iterations
+        self.verbose = verbose
         self.training_performance  = None
         self.validation_performance = None
         self.best_performance = None
@@ -242,15 +357,22 @@ class LambdaMART(object):
             The set of queries used in validation for early stopping.
 
         trace: list of strings, optional (default is None)
-            Supported values are: `lambdas`, `gradients`. Since the number of documents
-            and estimators can be large it is not adviced to use the values together.
-            When `lambdas` is given, then the true and estimated lambdas will be stored,
-            and similarly, when `gradients` are given, then the true and estimated
-            gradient will be stored. These two quantities differ only if the Newton
-            method is used for estimating the gradient steps.
+            Supported values are: `lambdas`, `gradients`, and `influences`. Since the
+            number of documents and estimators can be large it is not adviced to use
+            the values together. When `lambdas` is given, then the true and estimated
+            lambdas will be stored, and similarly, when `gradients` are given, then
+            the true and estimated gradient will be stored. These two quantities differ
+            only if the Newton method is used for estimating the gradient steps. Use
+            `influences` if you want to track (proportional) contribution of lambdas
+            from lower relevant documents on high relevant ones.
+
+        verbose: int
+            Specify the verbosity level.
         '''
-        # Initialize the random number generator.
+        # Initialize the random number generators.
         np.random.seed(self.seed)
+        if self.seed is not None:
+            set_seed(self.seed)
 
         # Start with random ranking scores. Originally, the randomness was needed to avoid
         # biased evaluation of the rankings because the query documents are kept in sorted
@@ -283,6 +405,7 @@ class LambdaMART(object):
 
             self.trace_lambdas = trace.count('lambdas') > 0
             self.trace_gradients = trace.count('gradients') > 0
+            self.trace_influences = trace.count('influences') > 0
 
             # The pseudo-responses (lambdas) for each document: the true and estimated values.
             if self.trace_lambdas:
@@ -290,8 +413,9 @@ class LambdaMART(object):
                 self.stage_training_lambdas_truth = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'training.lambdas.truth.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, queries.document_count()))
                 self.stage_training_lambdas_predicted = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'training.lambdas.predicted.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, queries.document_count()))
 
-                self.stage_validation_lambdas_truth = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.lambdas.truth.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
-                self.stage_validation_lambdas_predicted = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.predicted.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
+                if validation is not None:
+                    self.stage_validation_lambdas_truth = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.lambdas.truth.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
+                    self.stage_validation_lambdas_predicted = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.predicted.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
 
             # The (loss) gradient steps for each query-document pair: the true and estimated by the regression trees.
             if self.trace_gradients:
@@ -301,14 +425,25 @@ class LambdaMART(object):
                 self.stage_training_gradients_truth = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'training.gradients.truth.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, queries.document_count()))
                 self.stage_training_gradients_predicted = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'training.gradients.predicted.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, queries.document_count()))
 
-                self.stage_validation_gradients_truth = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.gradients.truth.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
-                self.stage_validation_gradients_predicted = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.gradients.predicted.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
+                if validation is not None:
+                    self.stage_validation_gradients_truth = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.gradients.truth.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
+                    self.stage_validation_gradients_predicted = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.gradients.predicted.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
+
+            if self.trace_influences:
+                self.stage_training_influences = np.zeros((self.n_estimators, queries.highest_relevance() + 1, queries.highest_relevance() + 1), dtype='float64')
+
+                if validation is not None:
+                    self.stage_validation_influences = np.zeros((self.n_estimators, validation.highest_relevance() + 1, validation.highest_relevance() + 1), dtype='float64')
+
+                # Can work only in single threaded mode.
+                self.n_jobs = 1
 
             # Used when the model is saved to get rid of it.
             self.tmp_directory = TEMP_DIRECTORY_NAME
         else:
             self.trace_lambdas = False
             self.trace_gradients = False
+            self.trace_influences = False
 
         # Initialize same the components for validation queries as for training.
         if validation is not None:
@@ -320,7 +455,7 @@ class LambdaMART(object):
             validation_scale_values = metric.compute_scale(validation)
             self.validation_performance = np.zeros(self.n_estimators, dtype=np.float64)
 
-            if self.trace_lambdas:
+            if self.trace_lambdas or self.trace_influences:
                 # The pseudo-responses (lambdas) for each document in validation queries.
                 self.validation_lambdas = np.empty(validation.document_count(), dtype=np.float64)
                 # The optimal gradient descent step sizes for each document in validation queries.
@@ -337,9 +472,11 @@ class LambdaMART(object):
 
         # Iteratively build a sequence of regression trees.
         for k in range(self.n_estimators):
+            training_influences = self.stage_training_influences[k] if self.trace_influences else None
             # Computes the pseudo-responses (lambdas) and gradient step sizes (weights) for the current regression tree.
             compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas,
-                                         training_weights, training_scale_values, n_jobs=self.n_jobs)
+                                        training_weights, training_scale_values, training_influences,
+                                        n_jobs=self.n_jobs)
 
             # Build the predictor for the gradients of the loss using either decision tree or random forest.
             if self.use_random_forest > 0:
@@ -364,16 +501,22 @@ class LambdaMART(object):
                 np.copyto(self.stage_training_lambdas_truth[k], training_lambdas)
                 np.copyto(self.stage_training_lambdas_predicted[k], estimator.predict(queries.feature_vectors))
 
-                if validation is not None:
+            if validation is not None:
+                if self.trace_lambdas or self.trace_influences:
+                    validation_influences = self.stage_validation_influences[k] if self.trace_influences else None
                     compute_lambdas_and_weights(validation, validation_scores, metric, self.validation_lambdas,
-                                                 self.validation_weights, validation_scale_values, n_jobs=self.n_jobs)
+                                                self.validation_weights, validation_scale_values, validation_influences,
+                                                n_jobs=self.n_jobs)
+
+                if self.trace_lambdas:
                     np.copyto(self.stage_validation_lambdas_truth[k], self.validation_lambdas)
                     np.copyto(self.stage_validation_lambdas_predicted[k], estimator.predict(validation.feature_vectors))
 
-            # Estimate the ('optimal') gradient step sizes using one iteration
-            # of Newton-Raphson method.
+            # Estimate the optimal gradient steps using Newton's method.
             if self.use_newton_method:
-                _estimate_newton_gradient_steps(estimator, queries, training_lambdas, training_weights)
+                _estimate_multiple_newton_gradient_steps(estimator, queries, training_scores, metric, training_lambdas,
+                                                         training_weights, training_scale_values, n_iterations=self.n_iterations,
+                                                         shrinkage=self.shrinkage, verbose=self.verbose, n_jobs=self.n_jobs)
 
             # Store the true and estimated gradients for later analysis.
             if self.trace_gradients:
@@ -445,6 +588,34 @@ class LambdaMART(object):
 
         if validation is not None:
             self.validation_performance = np.resize(self.validation_performance, k + 1)
+
+        if self.trace_influences:
+            self.stage_training_influences = np.resize(self.stage_training_influences, (k + 1,
+                                                       queries.highest_relevance() + 1,
+                                                       queries.highest_relevance() + 1))
+
+            influences_normalizer = np.bincount(queries.relevance_scores, minlength=queries.highest_relevance() + 1)
+            influences_normalizer = np.triu(np.ones((queries.highest_relevance() + 1 , 1)) * influences_normalizer, 1)
+            influences_normalizer += influences_normalizer.T
+
+            # Normalize training influences appropriately.
+            with np.errstate(divide='ignore', invalid='ignore'):
+                self.stage_training_influences /= influences_normalizer
+                self.stage_training_influences[np.isnan(self.stage_training_influences)] = 0.0
+            
+            if validation is not None:
+                self.stage_validation_influences =  np.resize(self.stage_validation_influences, (k + 1,
+                                                              validation.highest_relevance() + 1,
+                                                              validation.highest_relevance() + 1))
+
+                influences_normalizer = np.bincount(validation.relevance_scores, minlength=validation.highest_relevance() + 1)
+                influences_normalizer = np.triu(np.ones((validation.highest_relevance() + 1 , 1)) * influences_normalizer, 1)
+                influences_normalizer += influences_normalizer.T
+
+                # Normalize training influences appropriately.
+                with np.errstate(divide='ignore', invalid='ignore'):
+                    self.stage_validation_influences /= influences_normalizer
+                    self.stage_validation_influences[np.isnan(self.stage_validation_influences)] = 0.0
 
         # Mark the model as trained.
         self.trained = True

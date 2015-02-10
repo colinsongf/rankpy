@@ -42,6 +42,7 @@ cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr, INT_t n_queri
 # Python bindings for the C functions defined above.
 # =============================================================================
 
+cpdef set_seed(unsigned int seed)
 
 cpdef argranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks)
 cpdef argranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks)

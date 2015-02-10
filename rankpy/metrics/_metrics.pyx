@@ -21,10 +21,16 @@
 
 from cython cimport view
 
+from cpython cimport Py_INCREF, PyObject
+
 from libc.stdlib cimport calloc, free
 from libc.math cimport log2
 
 from ._utils cimport ranksort_relevance_scores_queries_c
+
+import numpy as np
+cimport numpy as np
+np.import_array()
 
 
 # =============================================================================
@@ -228,6 +234,16 @@ cdef class DiscountedCumulativeGain(Metric):
 
     cdef DOUBLE_t *discount_cache
     cdef INT_t     maximum_documents
+
+
+    property gain:
+        def __get__(self):
+            cdef np.npy_intp shape = self.maximum_relevance + 1
+            cdef np.ndarray arr = np.PyArray_SimpleNewFromData(1, &shape, np.NPY_DOUBLE, self.gain_cache)
+            Py_INCREF(self)
+            arr.base = <PyObject*> self
+            return arr
+
 
     def __cinit__(self, INT_t cutoff, INT_t maximum_relevance, INT_t maximum_documents):
         '''
