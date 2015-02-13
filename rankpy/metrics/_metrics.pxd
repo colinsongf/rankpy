@@ -16,8 +16,12 @@
 
 from cython cimport view
 
-from ._utils cimport DOUBLE_t
-from ._utils cimport INT_t
+cimport numpy as np
+np.import_array()
+
+ctypedef np.npy_float64 DOUBLE_t
+ctypedef np.npy_int64   LONG_t
+ctypedef np.npy_int32   INT_t
 
 
 # =============================================================================

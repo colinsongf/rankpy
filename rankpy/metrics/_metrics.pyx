@@ -23,7 +23,8 @@ from cython cimport view
 
 from cpython cimport Py_INCREF, PyObject
 
-from libc.stdlib cimport calloc, free
+from libc.stdlib cimport malloc, calloc, realloc, free
+from libc.string cimport memset
 from libc.math cimport log2
 
 from ._utils cimport ranksort_relevance_scores_queries_c
@@ -550,3 +551,592 @@ cdef class DiscountedCumulativeGain(Metric):
         else:
             for j in range(n_swapped_document_pairs):
                 out[j] = fabs(out[j])
+
+# =============================================================================
+# Kendall Tau Distance
+# =============================================================================
+
+cdef class KendallTau:
+    cdef LONG_t   *mapping        # Buffer for remapping document IDs to 0, 1, 2, ...
+    cdef DOUBLE_t *fenwick        # Fenwick tree for fast computation of weighted inversions.
+    cdef DOUBLE_t *weights        # The position weights.
+    cdef int       size           # The size of the internal arrays.
+    cdef object    weights_func   # The Python function computing the weight of a given position.
+    
+    def __cinit__(self, weights, capacity=1024):
+        ''' 
+        Creates Kendall Tau distance metric.
+        
+        Parameters
+        ----------
+        weights : function
+            A non-decreasing function of one integer 
+            parameter `i`, which returns the weight
+            of a document at position `i` (0-based).
+            It has to return a single float number.
+            
+            Consider this DCG discount weights,
+            for example:
+            
+                weights(i): -1 / log2(i + 2)
+            
+            Remember that the parameter i is 0-based!
+            
+        capacity: int
+            The initial capacity of the array for precomputed
+            weight values.
+        '''
+        self.mapping = NULL
+        self.fenwick = NULL
+        self.weights = NULL
+        self.size = 0
+        self.weights_func = weights
+        # Initialize the internal arrays.
+        self.inflate_arrays()
+
+
+    def __dealloc__(self):
+        ''' 
+        Free the allocated memory for internal arrays.
+        '''
+        free(self.mapping)
+        free(self.fenwick)
+        free(self.weights)
+        
+
+    cdef int inflate_arrays(self, capacity=-1):
+        ''' 
+        Increase the capacity of the internal arrays to
+        the given capacity.
+        
+        As the name of the function suggests, if `capacity`
+        is smaller than the current capacity of the internal
+        arrays, nothing happens.
+        
+        Parameters
+        ----------
+        capacity : int, optional (default is -1)
+            The new capacity of the internal arrays. If -1
+            is given the capacity of the internal arrays 
+            will be doubled.
+
+        Returns
+        -------
+        code: int
+            -1 on failure, 0 on success.
+        '''
+        cdef int i
+        cdef void * ptr
+        
+        if capacity <= self.size and self.mapping != NULL:
+            return 0
+        
+        if capacity <= -1:
+            if self.size == 0:
+                # Initial capacity.
+                capacity = 1024
+            else:
+                # Double the current capacity. 
+                capacity = 2 * self.size
+        
+        # Because documents not appearing in both lists
+        # are treated as if they were sitting at the 
+        # first position following the end of the lists.
+        capacity += 1
+                
+        # Allocate mapping array.
+        #########################
+        ptr = realloc(self.mapping, capacity * sizeof(LONG_t))
+        
+        if ptr == NULL:
+            return -1
+        
+        self.mapping = <LONG_t *> ptr
+        
+        # Initialize the new elements to -1.
+        memset(<void *>(self.mapping + self.size), -1,
+               (capacity - self.size) * sizeof(LONG_t))
+        
+        # Allocate fenwick array.
+        #########################
+        ptr = realloc(self.fenwick, capacity * sizeof(LONG_t))
+        
+        if ptr == NULL:
+            return -1
+        
+        self.fenwick = <DOUBLE_t *> ptr
+        
+        # Initialize the new elements to 0.
+        memset(<void *>(self.fenwick + self.size), 0,
+               (capacity - self.size) * sizeof(DOUBLE_t))
+        
+        # Allocate weights array.
+        #########################
+        ptr = realloc(self.weights, capacity * sizeof(DOUBLE_t))
+        
+        if ptr == NULL:
+            return -1
+        
+        self.weights = <DOUBLE_t *> ptr
+        
+        # Initialize the values of new weights using `self.weights_func`.
+        for i in range(self.size, capacity):
+            self.weights[i] = self.weights_func(i)
+        
+        self.size = capacity
+        return 0
+    
+    
+    def evaluate(self, X, check_input=True):
+        '''
+        Computes the Kendall Tau distance between the given
+        list X and its ascendingly sorted version.
+        '''
+        cdef int size
+        cdef DOUBLE_t tau
+        
+        if check_input:
+            if not isinstance(X, np.ndarray):
+                X = np.array(X, dtype='int64', order='C')
+
+            if X.ndim != 1:
+                raise ValueError('X is not one dimensional.')
+
+            if not X.flags.c_contiguous:
+                X = np.ascontiguousarray(X)
+
+        cdef np.ndarray[LONG_t, ndim=1] Y = np.sort(X)
+
+        # +1 in case of 0-based permutations.
+        size = max(max(X), max(Y)) + 1
+        
+        # This may cause trouble for huge document IDs!
+        if self.inflate_arrays(size) != 0:
+            raise MemoryError('Cannot allocate %d bytes for internal arrays.'
+                              % (sizeof(DOUBLE_t) * size))
+        
+        cdef LONG_t *x =  <LONG_t *> np.PyArray_DATA(X)
+        cdef LONG_t *y =  <LONG_t *> np.PyArray_DATA(Y)
+        
+        size = min(X.shape[0], Y.shape[0])
+        
+        with nogil:
+            tau = self.kendall_tau(x, y, size)
+
+        return tau
+
+
+    def distance(self, X, Y, check_input=True):
+        ''' 
+        Computes the Kendall Tau distance between the given
+        lists X and Y.
+
+        X and Y does not necessarily need to contain the same
+        set of numbers. In case the numbers differ it is assumed
+        that the lists are prefixes of longer lists, which
+        were cutoff. In that matter, the lists does not even
+        have to be of the same length, if that is the case,
+        the minimum length of the two lists is considered.
+
+        If `check_input` is True, X and Y can be lists/iterables
+        of integer numbers, these arrays will be converted to
+        numpy arrays with `numpy.int64` dtype.
+
+        If `check_input` is False you need to make sure that
+        X and Y are numpy arrays with `numpy.int64` dtype,
+        unless you want to suffer severe consequences.
+        '''
+        cdef int size
+        cdef DOUBLE_t tau
+        
+        if check_input:
+            if not isinstance(X, np.ndarray):
+                X = np.array(X, dtype='int64', order='C')
+
+            if X.ndim != 1:
+                raise ValueError('X is not one dimensional.')
+
+            if not X.flags.c_contiguous:
+                X = np.ascontiguousarray(X)
+
+            if not isinstance(Y, np.ndarray):
+                Y = np.array(Y, dtype='int64', order='C')
+
+            if Y.ndim != 1:
+                raise ValueError('Y is not one dimensional.')
+
+            if not Y.flags.c_contiguous:
+                Y = np.ascontiguousarray(Y)
+        
+        # +1 in case of 0-based permutations.
+        size = max(max(X), max(Y)) + 1
+        
+        # This may cause trouble for huge document IDs!
+        if self.inflate_arrays(size) != 0:
+            raise MemoryError('Cannot allocate %d bytes for internal arrays.'
+                              % (sizeof(DOUBLE_t) * size))
+        
+        cdef LONG_t *x =  <LONG_t *> np.PyArray_DATA(X)
+        cdef LONG_t *y =  <LONG_t *> np.PyArray_DATA(Y)
+        
+        size = min(X.shape[0], Y.shape[0])
+        
+        with nogil:
+            tau = self.kendall_tau(x, y, size)
+
+        return tau
+
+
+    cdef DOUBLE_t kendall_tau(self, LONG_t *X, LONG_t *Y, int size) nogil:
+        return self.kendall_tau_fenwick(X, Y, size)
+
+
+    cdef inline DOUBLE_t kendall_tau_array(self, LONG_t *X, LONG_t *Y, int size) nogil:
+        '''
+        Computes Kendall Tau distance between X and Y using a simple array.
+        This variant should be prefarable in case of short lists.
+        '''
+        cdef int i, j
+        cdef double tau = 0.0
+        
+        for i in range(size):
+            self.mapping[X[i]] = i
+        
+        #print 'weights:'
+        #self.print_farray(self.weights, size + 1)
+        #print
+        #print 'mapping:'
+        #self.print_array(self.mapping, size + 1)
+        
+        # Process documents of Y.
+        for j in range(size):
+            i = self.mapping[Y[j]]
+            # The document in Y that is not in X is treated
+            # as if it was the first document following the
+            # end of list X.
+            tau += self._update_array(i if i >= 0 else size, j, size)
+            if i >= 0:
+                # Offset documents that appear in both lists.
+                # This becomes useful for finding documents
+                # that appeared only in X (see below).
+                self.mapping[Y[j]] += size
+    
+        #print
+        #print 'array:'
+        #self.print_farray(self.fenwick, size + 1)
+        
+        # Process documents of X that does not appear in Y.
+        for j in range(size):
+            i = self.mapping[X[j]]
+            # j >= size ==> X[i] is in Y, we need to
+            # clear it from the array such that it
+            # will not interfere with calculation
+            # of inversions for X[i]'s that are not
+            # in Y.
+            if i >= size:
+                self._restore_array(i - size, size)
+                # Offset the documents back again
+                # for restoring the arrays.
+                self.mapping[X[j]] -= size
+            else:
+                tau += self._get_array(i, size)
+    
+        # Restore the internal arrays.        
+        for j in range(size):
+            i = self.mapping[Y[j]]
+            # Restore the array for documents appearing
+            # only in Y. These documents are put to the
+            # same position, hence the restoration can
+            # be called only once.
+            if i < 0:
+                self._restore_array(size, size)
+                break
+        
+        # Finish the restoration of the arrays
+        # by clearing the mapping.
+        for i in range(size):
+            self.mapping[X[i]] = -1
+
+        return tau
+
+        
+    cdef inline DOUBLE_t _update_array(self, int i, int sigma, int size) nogil:
+        '''
+        Add a document at position `i` and `sigma` in respective lists
+        X and Y into an array and compute the weighted number of
+        inversions the document is with all previously added documents.
+        
+        Parameters
+        ----------
+        i : int
+            The position of the document in X, or -1
+            if it is not there.
+            
+        sigma : int
+            The position of the document in Y.
+        
+        size: int
+            The length of the document lists.
+        
+        Return
+        ------
+        tau: float
+            The weighted number of inversions of the document
+            with all the previously processed documents.
+        '''
+        cdef DOUBLE_t weight, tau = 0.0           
+                    
+        if i == sigma:
+            weight = 1.0 # No displacement.
+        else:
+            # The weight of "bubbling" document from position
+            # i to position sigma.
+            weight = self.weights[i] - self.weights[sigma]
+            # The average weight (denominator makes the weight
+            # always positive).
+            weight /= i - sigma
+            
+        #print 'i: %d, sigma: %d, weight: %4.2f, size: %d' % (i, sigma, weight, size)
+
+        sigma = size - i
+        
+        # Update the array.
+        self.fenwick[sigma] += weight
+        
+        # Compute the weighted number of inversions of
+        # the current document with all the documents
+        # inserted before it.
+        sigma -= 1
+        while sigma >= 0:
+            tau += self.fenwick[sigma] * weight
+            sigma -= 1
+
+        return tau
+    
+    
+    cdef inline DOUBLE_t _get_array(self, int i, int size) nogil:
+        '''
+        Return the weighted number of invertions for i-th document
+        of X, which do not appear in list Y.
+        '''
+        cdef DOUBLE_t weight, tau = 0.0
+    
+        # The weight of "bubbling" document
+        # from position i to the first position
+        # beyond the end of the list.
+        weight = self.weights[i] - self.weights[size]
+        
+        # The average weight (denominator makes
+        # the weight always positive).
+        weight /= i - size
+        
+        # Compute the weighted number of inversions of
+        # the current document with all the documents
+        # inserted before it.
+        while size >= 0:
+            tau += self.fenwick[size] * weight
+            size -= 1
+
+        return tau
+
+
+    cdef inline void _restore_array(self, int i, int size) nogil:
+        '''
+        Remove the weights at position `size - i` from the array.
+        '''
+        self.fenwick[size - i] = 0.0
+
+
+    cdef inline DOUBLE_t kendall_tau_fenwick(self, LONG_t *X, LONG_t *Y, int size) nogil:
+        '''
+        Computes Kendall Tau distance between X and Y using a simple array.
+        This variant should be prefarable in case of short lists.
+        '''
+        cdef int i, j
+        cdef double tau = 0.0
+        
+        for i in range(size):
+            self.mapping[X[i]] = i
+        
+        #print 'weights:'
+        #self.print_farray(self.weights, size + 1)
+        #print
+        #print 'mapping:'
+        #self.print_array(self.mapping, size + 1)
+        
+        # Process documents of Y.
+        for j in range(size):
+            i = self.mapping[Y[j]]
+            # The document in Y that is not in X is treated
+            # as if it was the first document following the
+            # end of list X.
+            tau += self._update_fenwick(i if i >= 0 else size, j, size)
+            if i >= 0:
+                # Offset documents that appear in both lists.
+                # This becomes useful for finding documents
+                # that appeared only in X (see below).
+                self.mapping[Y[j]] += size
+    
+        #print
+        #print 'array:'
+        #self.print_farray(self.fenwick, size + 1)
+        
+        # Process documents of X that does not appear in Y.
+        for j in range(size):
+            i = self.mapping[X[j]]
+            # j >= size ==> X[i] is in Y, we need to
+            # clear it from the array such that it
+            # will not interfere with calculation
+            # of inversions for X[i]'s that are not
+            # in Y.
+            if i >= size:
+                self._restore_fenwick(i - size, size)
+                # Offset the documents back again
+                # for restoring the arrays.
+                self.mapping[X[j]] -= size
+            else:
+                tau += self._get_fenwick(i, size)
+    
+        # Restore the internal arrays.        
+        for j in range(size):
+            i = self.mapping[Y[j]]
+            # Restore the array for documents appearing
+            # only in Y. These documents are put to the
+            # same position, hence the restoration can
+            # be called only once.
+            if i < 0:
+                self._restore_fenwick(size, size)
+                break
+        
+        # Finish the restoration of the arrays
+        # by clearing the mapping.
+        for i in range(size):
+            self.mapping[X[i]] = -1
+
+        return tau
+
+
+    cdef inline DOUBLE_t _update_fenwick(self, int i, int sigma, int size) nogil:
+        '''
+        Insert the weight of a document with displacement |i - sigma|
+        into the Fenwick tree and compute the weighted number of invertions
+        the document is in with all previously inserted documents.
+        '''
+        cdef DOUBLE_t weight, tau = 0.0           
+                    
+        if i == sigma:
+            weight = 1.0 # No displacement.
+        else:
+            # The weight of "bubbling" document from position
+            # i to position sigma.
+            weight = self.weights[i] - self.weights[sigma]
+            # The average weight (denominator makes the weight
+            # always positive).
+            weight /= i - sigma
+            
+        #print 'i: %d, sigma: %d, weight: %4.2f, size: %d' % (i, sigma, weight, size)
+
+        sigma = size - i
+        
+        if sigma != 0:
+            tau += self.fenwick[0] * weight
+
+        # Compute the weighted number of inversions of
+        # the current document with all the documents
+        # inserted before it.
+        while sigma > 0:
+            tau += self.fenwick[sigma] * weight
+            sigma -= sigma & -sigma
+
+        # Invert the indexing.
+        sigma = size - i
+
+        # Update the Fenwick tree.
+        if sigma == 0:
+            # Document below cutoff.
+            self.fenwick[0] += weight
+        else:
+            # Update the Fenwick tree.
+            while sigma <= size:
+                self.fenwick[sigma] += weight
+                sigma += sigma & -sigma
+
+        return tau
+    
+    
+    cdef inline DOUBLE_t _get_fenwick(self, int i, int size) nogil:
+        '''
+        Return the weighted number of invertions for i-th document
+        of X, which do not appear in list Y.
+        '''
+        cdef DOUBLE_t weight, tau = 0.0
+    
+        # The weight of "bubbling" document
+        # from position i to the first position
+        # beyond the end of the list.
+        weight = self.weights[i] - self.weights[size]
+        
+        # The average weight (denominator makes
+        # the weight always positive).
+        weight /= i - size
+        
+        # Compute the weighted number of inversions of
+        # the current document with all the documents
+        # inserted before it.
+        while size > 0:
+            tau += self.fenwick[size] * weight
+            size -= size & -size
+            
+        tau += self.fenwick[0] * weight
+
+        return tau
+
+
+    cdef inline void _restore_fenwick(self, int i, int size) nogil:
+        '''
+        Remove the weight at position `size - i` from the Fenwick tree.
+        '''
+        cdef int j, k
+        cdef DOUBLE_t weight
+        
+        # Invert the indexing.
+        k = size - i
+        
+        # Document below cutoff.
+        if k == 0:
+            self.fenwick[k] = 0.0
+        else:
+            # Need to find the weight of the document first.
+            weight = self.fenwick[k]
+            
+            j = k - (k & -k)
+            k -= 1
+
+            while k > j:
+                weight -= self.fenwick[k]
+                k -= k & -k
+                
+            #print 'Removing weight %f for i: %d' % (weight, size - i)
+            
+            # Remove the weight from the Fenwick tree.
+            i = size - i
+            while i <= size:
+                self.fenwick[i] -= weight
+                i += i & -i
+
+
+    # ==============================================================================
+    # Print functions for debugging...
+    # ==============================================================================
+    cdef void print_array(self, LONG_t *x, int size):
+        cdef int i
+        for i in range(size):
+            print '%d: %d' % (i, x[i])
+        print
+        
+        
+    cdef void print_farray(self, DOUBLE_t *x, int size):
+        cdef int i
+        for i in range(size):
+            print '%d: %4.2f' % (i, x[i])
+        print
