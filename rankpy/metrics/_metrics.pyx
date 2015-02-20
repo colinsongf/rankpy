@@ -53,12 +53,12 @@ cdef inline DOUBLE_t fabs(DOUBLE_t a) nogil:
 
 
 cdef class Metric:
-    '''
+    ''' 
     The interface for an information retrieval evaluation metric.
     '''
 
     def __cinit__(self, INT_t cutoff, INT_t maximum_relevance, INT_t maximum_documents):
-        '''
+        ''' 
         Initialize the metric with the specified cutoff threshold,
         maximum relevance score a document can have, and the maximum
         number of documents per query.
@@ -85,7 +85,7 @@ cdef class Metric:
 
 
     cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value):
-        '''
+        ''' 
         Evaluate the metric on the specified document ranking.
 
         Parameters:
@@ -106,7 +106,7 @@ cdef class Metric:
 
 
     cpdef evaluate(self, INT_t[::1] ranked_relevance_scores, DOUBLE_t scale_value):
-        '''
+        ''' 
         Evaluate the metric on the specified ranked list of document relevance scores.
 
         Parameters:
@@ -124,7 +124,7 @@ cdef class Metric:
 
 
     cpdef evaluate_queries(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] scores, DOUBLE_t[::1] scale_values, DOUBLE_t[::1] out):
-        '''
+        ''' 
         Evaluate the metric on the specified queries. The relevance scores and
         ranking scores of documents, which belong to query `i`, are in
         `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` and  
@@ -155,9 +155,9 @@ cdef class Metric:
 
 
     cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t[::1] out):
-        '''
+        ''' 
         Compute the change in the metric caused by swapping document `i` with every
-        document `offset`, `offset + 1`, ...
+        document `offset`, `offset + 1`, ... (in turn).
 
         The relevance score and document rank of document `i` is `relevance_scores[i]`
         and `document_ranks[i]`, respectively.
@@ -193,16 +193,16 @@ cdef class Metric:
 
 
     cdef void delta_c(self, INT_t i, INT_t offset, INT_t n_documents, INT_t *document_ranks, INT_t *relevance_scores, DOUBLE_t scale_value, DOUBLE_t *out) nogil:
-        '''
+        ''' 
         See description of self.delta(...) method.
         '''
         pass
 
 
     cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] scale_values):
-        '''
+        ''' 
         Compute the ideal metric value for every one of the specified queries.
-        The relevance scores of documents, which belong to query `i`, should be
+        The relevance scores of documents, which belong to query `i`, must be
         stored in `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` in
         descending order.
 
@@ -226,7 +226,7 @@ cdef class Metric:
 
 
 cdef class DiscountedCumulativeGain(Metric):
-    '''
+    ''' 
     Discounted Cumulative Gain (DCG) metric.
     '''
 
@@ -239,6 +239,9 @@ cdef class DiscountedCumulativeGain(Metric):
 
     property gain:
         def __get__(self):
+            ''' 
+            Exposes the gain array to Python as NumPy array.
+            '''
             cdef np.npy_intp shape = self.maximum_relevance + 1
             cdef np.ndarray arr = np.PyArray_SimpleNewFromData(1, &shape, np.NPY_DOUBLE, self.gain_cache)
             Py_INCREF(self)
@@ -247,7 +250,7 @@ cdef class DiscountedCumulativeGain(Metric):
 
 
     def __cinit__(self, INT_t cutoff, INT_t maximum_relevance, INT_t maximum_documents):
-        '''
+        ''' 
         Initialize the metric with the specified cutoff threshold,
         maximum relevance score a document can have, and the maximum
         number of documents per query.
@@ -294,7 +297,7 @@ cdef class DiscountedCumulativeGain(Metric):
 
 
     def __dealloc__(self):
-        '''
+        ''' 
         Clean up the cached gain and discount values.
         '''
         free(self.gain_cache)
@@ -302,14 +305,14 @@ cdef class DiscountedCumulativeGain(Metric):
 
 
     def __reduce__(self):
-        '''
+        ''' 
         Reduce reimplementation, for pickling.
         '''
         return (DiscountedCumulativeGain, (self.cutoff, self.maximum_relevance, self.maximum_documents))
 
 
     cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value):
-        '''
+        ''' 
         Evaluate the metric on the specified document ranking.
 
         Parameters:
@@ -343,7 +346,7 @@ cdef class DiscountedCumulativeGain(Metric):
 
 
     cpdef evaluate(self, INT_t[::1] ranked_relevance_scores, DOUBLE_t scale_value):
-        '''
+        ''' 
         Evaluate the metric on the specified ranked list of document relevance scores.
 
         Parameters:
@@ -374,7 +377,7 @@ cdef class DiscountedCumulativeGain(Metric):
 
 
     cpdef evaluate_queries(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ranking_scores, DOUBLE_t[::1] scale_values, DOUBLE_t[::1] out):
-        '''
+        ''' 
         Evaluate the DCG metric on the specified queries. The relevance scores and
         ranking scores of documents, which belong to query `i`, are in
         `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` and
@@ -397,7 +400,7 @@ cdef class DiscountedCumulativeGain(Metric):
         out: array, shape=(n_documents,), optional
             If not None, it will be filled with the metric value
             for each individual query.
-        '''    
+        '''
         cdef:
             INT_t i, j, n_queries, n_documents
             INT_t *ranked_relevance_scores
@@ -441,9 +444,9 @@ cdef class DiscountedCumulativeGain(Metric):
 
 
     cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t[::1] out):
-        '''
+        ''' 
         Compute the change in the metric caused by swapping document `i` with every
-        document `offset`, `offset + 1`, ...
+        document `offset`, `offset + 1`, ... (in turn)
 
         The relevance score and document rank of document `i` is `relevance_scores[i]`
         and `document_ranks[i]`, respectively.
@@ -477,10 +480,10 @@ cdef class DiscountedCumulativeGain(Metric):
 
 
     cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ideal_values):
-        '''
+        ''' 
         Compute the ideal DCG metric value for every one of the specified queries.
 
-        The relevance scores of documents, which belong to query `i`, should be
+        The relevance scores of documents, which belong to query `i`, must be
         stored in `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` in
         descending order.
 
@@ -508,7 +511,7 @@ cdef class DiscountedCumulativeGain(Metric):
 
 
     cdef void delta_c(self, INT_t i, INT_t offset, INT_t n_documents, INT_t *document_ranks, INT_t *relevance_scores, DOUBLE_t scale_value, DOUBLE_t *out) nogil:
-        '''
+        ''' 
         See description of self.delta(...) method.
         '''
         cdef:
@@ -557,7 +560,7 @@ cdef class DiscountedCumulativeGain(Metric):
 # =============================================================================
 
 cdef class KendallTau:
-    cdef LONG_t   *mapping        # Buffer for remapping document IDs to 0, 1, 2, ...
+    cdef INT_t    *mapping        # Buffer for remapping document IDs to 0, 1, 2, ...
     cdef DOUBLE_t *fenwick        # Fenwick tree for fast computation of weighted inversions.
     cdef DOUBLE_t *weights        # The position weights.
     cdef int       size           # The size of the internal arrays.
@@ -581,8 +584,8 @@ cdef class KendallTau:
                 weights(i): -1 / log2(i + 2)
             
             Remember that the parameter i is 0-based!
-            
-        capacity: int
+
+        capacity: int, optional (default is 1024)
             The initial capacity of the array for precomputed
             weight values.
         '''
@@ -602,6 +605,18 @@ cdef class KendallTau:
         free(self.mapping)
         free(self.fenwick)
         free(self.weights)
+
+
+    def __reduce__(self):
+        return (KendallTau, (self.weights_func,), self.__getstate__())
+
+
+    def __getstate__(self):
+        return {}
+
+
+    def __setstate__(self, d):
+        pass
         
 
     cdef int inflate_arrays(self, capacity=-1):
@@ -646,20 +661,20 @@ cdef class KendallTau:
                 
         # Allocate mapping array.
         #########################
-        ptr = realloc(self.mapping, capacity * sizeof(LONG_t))
+        ptr = realloc(self.mapping, capacity * sizeof(INT_t))
         
         if ptr == NULL:
             return -1
         
-        self.mapping = <LONG_t *> ptr
+        self.mapping = <INT_t *> ptr
         
         # Initialize the new elements to -1.
         memset(<void *>(self.mapping + self.size), -1,
-               (capacity - self.size) * sizeof(LONG_t))
+               (capacity - self.size) * sizeof(INT_t))
         
         # Allocate fenwick array.
         #########################
-        ptr = realloc(self.fenwick, capacity * sizeof(LONG_t))
+        ptr = realloc(self.fenwick, capacity * sizeof(DOUBLE_t))
         
         if ptr == NULL:
             return -1
@@ -688,7 +703,7 @@ cdef class KendallTau:
     
     
     def evaluate(self, X, check_input=True):
-        '''
+        ''' 
         Computes the Kendall Tau distance between the given
         list X and its ascendingly sorted version.
         '''
@@ -697,7 +712,7 @@ cdef class KendallTau:
         
         if check_input:
             if not isinstance(X, np.ndarray):
-                X = np.array(X, dtype='int64', order='C')
+                X = np.array(X, dtype='int32', order='C')
 
             if X.ndim != 1:
                 raise ValueError('X is not one dimensional.')
@@ -705,7 +720,7 @@ cdef class KendallTau:
             if not X.flags.c_contiguous:
                 X = np.ascontiguousarray(X)
 
-        cdef np.ndarray[LONG_t, ndim=1] Y = np.sort(X)
+        cdef np.ndarray[INT_t, ndim=1] Y = np.sort(X)
 
         # +1 in case of 0-based permutations.
         size = max(max(X), max(Y)) + 1
@@ -715,8 +730,8 @@ cdef class KendallTau:
             raise MemoryError('Cannot allocate %d bytes for internal arrays.'
                               % (sizeof(DOUBLE_t) * size))
         
-        cdef LONG_t *x =  <LONG_t *> np.PyArray_DATA(X)
-        cdef LONG_t *y =  <LONG_t *> np.PyArray_DATA(Y)
+        cdef INT_t *x =  <INT_t *> np.PyArray_DATA(X)
+        cdef INT_t *y =  <INT_t *> np.PyArray_DATA(Y)
         
         size = min(X.shape[0], Y.shape[0])
         
@@ -740,10 +755,10 @@ cdef class KendallTau:
 
         If `check_input` is True, X and Y can be lists/iterables
         of integer numbers, these arrays will be converted to
-        numpy arrays with `numpy.int64` dtype.
+        numpy arrays with `numpy.int32` dtype.
 
         If `check_input` is False you need to make sure that
-        X and Y are numpy arrays with `numpy.int64` dtype,
+        X and Y are numpy arrays with `numpy.int32` dtype,
         unless you want to suffer severe consequences.
         '''
         cdef int size
@@ -751,7 +766,7 @@ cdef class KendallTau:
         
         if check_input:
             if not isinstance(X, np.ndarray):
-                X = np.array(X, dtype='int64', order='C')
+                X = np.array(X, dtype='int32', order='C')
 
             if X.ndim != 1:
                 raise ValueError('X is not one dimensional.')
@@ -760,7 +775,7 @@ cdef class KendallTau:
                 X = np.ascontiguousarray(X)
 
             if not isinstance(Y, np.ndarray):
-                Y = np.array(Y, dtype='int64', order='C')
+                Y = np.array(Y, dtype='int32', order='C')
 
             if Y.ndim != 1:
                 raise ValueError('Y is not one dimensional.')
@@ -776,8 +791,8 @@ cdef class KendallTau:
             raise MemoryError('Cannot allocate %d bytes for internal arrays.'
                               % (sizeof(DOUBLE_t) * size))
         
-        cdef LONG_t *x =  <LONG_t *> np.PyArray_DATA(X)
-        cdef LONG_t *y =  <LONG_t *> np.PyArray_DATA(Y)
+        cdef INT_t *x =  <INT_t *> np.PyArray_DATA(X)
+        cdef INT_t *y =  <INT_t *> np.PyArray_DATA(Y)
         
         size = min(X.shape[0], Y.shape[0])
         
@@ -787,12 +802,12 @@ cdef class KendallTau:
         return tau
 
 
-    cdef DOUBLE_t kendall_tau(self, LONG_t *X, LONG_t *Y, int size) nogil:
+    cdef DOUBLE_t kendall_tau(self, INT_t *X, INT_t *Y, int size) nogil:
         return self.kendall_tau_fenwick(X, Y, size)
 
 
-    cdef inline DOUBLE_t kendall_tau_array(self, LONG_t *X, LONG_t *Y, int size) nogil:
-        '''
+    cdef inline DOUBLE_t kendall_tau_array(self, INT_t *X, INT_t *Y, int size) nogil:
+        ''' 
         Computes Kendall Tau distance between X and Y using a simple array.
         This variant should be prefarable in case of short lists.
         '''
@@ -801,12 +816,6 @@ cdef class KendallTau:
         
         for i in range(size):
             self.mapping[X[i]] = i
-        
-        #print 'weights:'
-        #self.print_farray(self.weights, size + 1)
-        #print
-        #print 'mapping:'
-        #self.print_array(self.mapping, size + 1)
         
         # Process documents of Y.
         for j in range(size):
@@ -821,10 +830,6 @@ cdef class KendallTau:
                 # that appeared only in X (see below).
                 self.mapping[Y[j]] += size
     
-        #print
-        #print 'array:'
-        #self.print_farray(self.fenwick, size + 1)
-        
         # Process documents of X that does not appear in Y.
         for j in range(size):
             i = self.mapping[X[j]]
@@ -861,7 +866,7 @@ cdef class KendallTau:
 
         
     cdef inline DOUBLE_t _update_array(self, int i, int sigma, int size) nogil:
-        '''
+        ''' 
         Add a document at position `i` and `sigma` in respective lists
         X and Y into an array and compute the weighted number of
         inversions the document is with all previously added documents.
@@ -896,8 +901,6 @@ cdef class KendallTau:
             # always positive).
             weight /= i - sigma
             
-        #print 'i: %d, sigma: %d, weight: %4.2f, size: %d' % (i, sigma, weight, size)
-
         sigma = size - i
         
         # Update the array.
@@ -915,7 +918,7 @@ cdef class KendallTau:
     
     
     cdef inline DOUBLE_t _get_array(self, int i, int size) nogil:
-        '''
+        ''' 
         Return the weighted number of invertions for i-th document
         of X, which do not appear in list Y.
         '''
@@ -941,14 +944,14 @@ cdef class KendallTau:
 
 
     cdef inline void _restore_array(self, int i, int size) nogil:
-        '''
+        ''' 
         Remove the weights at position `size - i` from the array.
         '''
         self.fenwick[size - i] = 0.0
 
 
-    cdef inline DOUBLE_t kendall_tau_fenwick(self, LONG_t *X, LONG_t *Y, int size) nogil:
-        '''
+    cdef inline DOUBLE_t kendall_tau_fenwick(self, INT_t *X, INT_t *Y, int size) nogil:
+        ''' 
         Computes Kendall Tau distance between X and Y using a simple array.
         This variant should be prefarable in case of short lists.
         '''
@@ -957,12 +960,6 @@ cdef class KendallTau:
         
         for i in range(size):
             self.mapping[X[i]] = i
-        
-        #print 'weights:'
-        #self.print_farray(self.weights, size + 1)
-        #print
-        #print 'mapping:'
-        #self.print_array(self.mapping, size + 1)
         
         # Process documents of Y.
         for j in range(size):
@@ -977,10 +974,6 @@ cdef class KendallTau:
                 # that appeared only in X (see below).
                 self.mapping[Y[j]] += size
     
-        #print
-        #print 'array:'
-        #self.print_farray(self.fenwick, size + 1)
-        
         # Process documents of X that does not appear in Y.
         for j in range(size):
             i = self.mapping[X[j]]
@@ -1017,7 +1010,7 @@ cdef class KendallTau:
 
 
     cdef inline DOUBLE_t _update_fenwick(self, int i, int sigma, int size) nogil:
-        '''
+        ''' 
         Insert the weight of a document with displacement |i - sigma|
         into the Fenwick tree and compute the weighted number of invertions
         the document is in with all previously inserted documents.
@@ -1034,8 +1027,6 @@ cdef class KendallTau:
             # always positive).
             weight /= i - sigma
             
-        #print 'i: %d, sigma: %d, weight: %4.2f, size: %d' % (i, sigma, weight, size)
-
         sigma = size - i
         
         if sigma != 0:
@@ -1065,7 +1056,7 @@ cdef class KendallTau:
     
     
     cdef inline DOUBLE_t _get_fenwick(self, int i, int size) nogil:
-        '''
+        ''' 
         Return the weighted number of invertions for i-th document
         of X, which do not appear in list Y.
         '''
@@ -1093,7 +1084,7 @@ cdef class KendallTau:
 
 
     cdef inline void _restore_fenwick(self, int i, int size) nogil:
-        '''
+        ''' 
         Remove the weight at position `size - i` from the Fenwick tree.
         '''
         cdef int j, k
@@ -1116,27 +1107,8 @@ cdef class KendallTau:
                 weight -= self.fenwick[k]
                 k -= k & -k
                 
-            #print 'Removing weight %f for i: %d' % (weight, size - i)
-            
             # Remove the weight from the Fenwick tree.
             i = size - i
             while i <= size:
                 self.fenwick[i] -= weight
                 i += i & -i
-
-
-    # ==============================================================================
-    # Print functions for debugging...
-    # ==============================================================================
-    cdef void print_array(self, LONG_t *x, int size):
-        cdef int i
-        for i in range(size):
-            print '%d: %d' % (i, x[i])
-        print
-        
-        
-    cdef void print_farray(self, DOUBLE_t *x, int size):
-        cdef int i
-        for i in range(size):
-            print '%d: %4.2f' % (i, x[i])
-        print

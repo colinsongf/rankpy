@@ -733,8 +733,8 @@ typedef npy_double __pyx_t_5numpy_double_t;
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
 
-/* "rankpy/metrics/_utils.pxd":22
- * np.import_array()
+/* "rankpy/metrics/_utils.pxd":21
+ * cimport numpy as np
  * 
  * ctypedef np.float64_t DOUBLE_t             # <<<<<<<<<<<<<<
  * ctypedef np.int32_t   INT_t
@@ -742,36 +742,19 @@ typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
  */
 typedef __pyx_t_5numpy_float64_t __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t;
 
-/* "rankpy/metrics/_utils.pxd":23
+/* "rankpy/metrics/_utils.pxd":22
  * 
  * ctypedef np.float64_t DOUBLE_t
  * ctypedef np.int32_t   INT_t             # <<<<<<<<<<<<<<
  * 
- * 
+ * # =============================================================================
  */
 typedef __pyx_t_5numpy_int32_t __pyx_t_6rankpy_7metrics_6_utils_INT_t;
-
-/* "rankpy/metrics/_metrics.pxd":22
- * np.import_array()
- * 
- * ctypedef np.npy_float64 DOUBLE_t             # <<<<<<<<<<<<<<
- * ctypedef np.npy_int64   LONG_t
- * ctypedef np.npy_int32   INT_t
- */
 typedef npy_float64 __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t;
 
 /* "rankpy/metrics/_metrics.pxd":23
  * 
  * ctypedef np.npy_float64 DOUBLE_t
- * ctypedef np.npy_int64   LONG_t             # <<<<<<<<<<<<<<
- * ctypedef np.npy_int32   INT_t
- * 
- */
-typedef npy_int64 __pyx_t_6rankpy_7metrics_8_metrics_LONG_t;
-
-/* "rankpy/metrics/_metrics.pxd":24
- * ctypedef np.npy_float64 DOUBLE_t
- * ctypedef np.npy_int64   LONG_t
  * ctypedef np.npy_int32   INT_t             # <<<<<<<<<<<<<<
  * 
  * 
@@ -842,9 +825,47 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  * cdef inline object PyArray_MultiIterNew1(a):
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
+struct __pyx_opt_args_6rankpy_7metrics_6_utils_relevance_argsort_v1_c;
+struct __pyx_opt_args_6rankpy_7metrics_6_utils_relevance_argsort_v1;
+struct __pyx_opt_args_6rankpy_7metrics_6_utils_rand_uniform;
+
+/* "rankpy/metrics/_utils.pxd":38
+ * cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t *out) nogil
+ * 
+ * cdef int relevance_argsort_v1_c(INT_t *array, INT_t *indices, INT_t size, INT_t maximum=*) nogil             # <<<<<<<<<<<<<<
+ * cdef void relevance_argsort_v2_c(INT_t *array, INT_t *indices, INT_t size) nogil
+ * 
+ */
+struct __pyx_opt_args_6rankpy_7metrics_6_utils_relevance_argsort_v1_c {
+  int __pyx_n;
+  __pyx_t_6rankpy_7metrics_6_utils_INT_t maximum;
+};
+
+/* "rankpy/metrics/_utils.pxd":58
+ * cpdef ranksort_relevance_scores_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out)
+ * 
+ * cpdef relevance_argsort_v1(INT_t[::1] array, INT_t[::1] indices, INT_t size, INT_t maximum=*)             # <<<<<<<<<<<<<<
+ * cpdef relevance_argsort_v2(INT_t[::1] array, INT_t[::1] indices, INT_t size)
+ * 
+ */
+struct __pyx_opt_args_6rankpy_7metrics_6_utils_relevance_argsort_v1 {
+  int __pyx_n;
+  __pyx_t_6rankpy_7metrics_6_utils_INT_t maximum;
+};
+
+/* "rankpy/metrics/_utils.pxd":62
+ * 
+ * cpdef noise_relenvace_scores(INT_t[::1] relevance_scores, DOUBLE_t [:, ::1] probabilities)
+ * cpdef rand_uniform(DOUBLE_t low=*, DOUBLE_t high=*)             # <<<<<<<<<<<<<<
+ */
+struct __pyx_opt_args_6rankpy_7metrics_6_utils_rand_uniform {
+  int __pyx_n;
+  __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t low;
+  __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t high;
+};
 struct __pyx_opt_args_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays;
 
-/* "rankpy/metrics/_metrics.pyx":607
+/* "rankpy/metrics/_metrics.pyx":622
  * 
  * 
  *     cdef int inflate_arrays(self, capacity=-1):             # <<<<<<<<<<<<<<
@@ -856,7 +877,7 @@ struct __pyx_opt_args_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays {
   PyObject *capacity;
 };
 
-/* "rankpy/metrics/_metrics.pxd":32
+/* "rankpy/metrics/_metrics.pxd":31
  * 
  * 
  * cdef class Metric:             # <<<<<<<<<<<<<<
@@ -886,17 +907,17 @@ struct __pyx_obj_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain {
 };
 
 
-/* "rankpy/metrics/_metrics.pyx":559
+/* "rankpy/metrics/_metrics.pyx":562
  * # =============================================================================
  * 
  * cdef class KendallTau:             # <<<<<<<<<<<<<<
- *     cdef LONG_t   *mapping        # Buffer for remapping document IDs to 0, 1, 2, ...
+ *     cdef INT_t    *mapping        # Buffer for remapping document IDs to 0, 1, 2, ...
  *     cdef DOUBLE_t *fenwick        # Fenwick tree for fast computation of weighted inversions.
  */
 struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau {
   PyObject_HEAD
   struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_KendallTau *__pyx_vtab;
-  __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *mapping;
+  __pyx_t_6rankpy_7metrics_8_metrics_INT_t *mapping;
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *fenwick;
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *weights;
   int size;
@@ -1014,34 +1035,32 @@ struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain {
 static struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain *__pyx_vtabptr_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain;
 
 
-/* "rankpy/metrics/_metrics.pyx":559
+/* "rankpy/metrics/_metrics.pyx":562
  * # =============================================================================
  * 
  * cdef class KendallTau:             # <<<<<<<<<<<<<<
- *     cdef LONG_t   *mapping        # Buffer for remapping document IDs to 0, 1, 2, ...
+ *     cdef INT_t    *mapping        # Buffer for remapping document IDs to 0, 1, 2, ...
  *     cdef DOUBLE_t *fenwick        # Fenwick tree for fast computation of weighted inversions.
  */
 
 struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_KendallTau {
   int (*inflate_arrays)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, struct __pyx_opt_args_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays *__pyx_optional_args);
-  __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*kendall_tau)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, int);
-  __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*kendall_tau_array)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, int);
+  __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*kendall_tau)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, int);
+  __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*kendall_tau_array)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, int);
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*_update_array)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int, int);
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*_get_array)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int);
   void (*_restore_array)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int);
-  __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*kendall_tau_fenwick)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, int);
+  __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*kendall_tau_fenwick)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, int);
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*_update_fenwick)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int, int);
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*_get_fenwick)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int);
   void (*_restore_fenwick)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int);
-  void (*print_array)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, int);
-  void (*print_farray)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *, int);
 };
 static struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_KendallTau *__pyx_vtabptr_6rankpy_7metrics_8_metrics_KendallTau;
-static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, int);
+static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, int);
 static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__update_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int, int);
 static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__get_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int);
 static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__restore_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int);
-static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, int);
+static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, int);
 static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__update_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int, int);
 static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__get_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int);
 static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__restore_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int);
@@ -1216,6 +1235,12 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject
 #endif
 
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
+
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+#else
+#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
+#endif
 
 static void __Pyx_WriteUnraisable(const char *name, int clineno,
                                   int lineno, const char *filename,
@@ -1424,16 +1449,6 @@ static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_Py_intptr_t(Py_intptr_t value);
 
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_npy_int64(npy_int64 value);
-
-static int __Pyx_Print(PyObject*, PyObject *, int);
-#if CYTHON_COMPILING_IN_PYPY || PY_MAJOR_VERSION >= 3
-static PyObject* __pyx_print = 0;
-static PyObject* __pyx_print_kwargs = 0;
-#endif
-
-static int __Pyx_PrintOne(PyObject* stream, PyObject *o);
-
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
 
 #if CYTHON_CCOMPLEX
@@ -1582,17 +1597,15 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_d
 static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_evaluate_queries_ideal(struct __pyx_obj_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain *__pyx_v_self, __Pyx_memviewslice __pyx_v_query_indptr, __Pyx_memviewslice __pyx_v_relevance_scores, __Pyx_memviewslice __pyx_v_ideal_values, int __pyx_skip_dispatch); /* proto*/
 static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_c(struct __pyx_obj_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_INT_t __pyx_v_i, __pyx_t_6rankpy_7metrics_8_metrics_INT_t __pyx_v_offset, __pyx_t_6rankpy_7metrics_8_metrics_INT_t __pyx_v_n_documents, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_document_ranks, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_relevance_scores, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_v_scale_value, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *__pyx_v_out); /* proto*/
 static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, struct __pyx_opt_args_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays *__pyx_optional_args); /* proto*/
-static __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_Y, int __pyx_v_size); /* proto*/
-static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_Y, int __pyx_v_size); /* proto*/
+static __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_Y, int __pyx_v_size); /* proto*/
+static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_Y, int __pyx_v_size); /* proto*/
 static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__update_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, int __pyx_v_i, int __pyx_v_sigma, int __pyx_v_size); /* proto*/
 static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__get_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, int __pyx_v_i, int __pyx_v_size); /* proto*/
 static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__restore_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, int __pyx_v_i, int __pyx_v_size); /* proto*/
-static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_Y, int __pyx_v_size); /* proto*/
+static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_Y, int __pyx_v_size); /* proto*/
 static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__update_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, int __pyx_v_i, int __pyx_v_sigma, int __pyx_v_size); /* proto*/
 static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__get_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, int __pyx_v_i, int __pyx_v_size); /* proto*/
 static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__restore_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, int __pyx_v_i, int __pyx_v_size); /* proto*/
-static void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_print_array(CYTHON_UNUSED struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_x, int __pyx_v_size); /* proto*/
-static void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_print_farray(CYTHON_UNUSED struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *__pyx_v_x, int __pyx_v_size); /* proto*/
 static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__pyx_v_self, PyObject *__pyx_v_index); /* proto*/
 static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_self, PyObject *__pyx_v_obj); /* proto*/
 static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryview_obj *__pyx_v_self, PyObject *__pyx_v_dst, PyObject *__pyx_v_src); /* proto*/
@@ -1754,7 +1767,6 @@ static void __pyx_memoryview_refcount_objects_in_slice_with_gil(char *, Py_ssize
 static void __pyx_memoryview_refcount_objects_in_slice(char *, Py_ssize_t *, Py_ssize_t *, int, int); /*proto*/
 static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *, int, size_t, void *, int); /*proto*/
 static void __pyx_memoryview__slice_assign_scalar(char *, Py_ssize_t *, Py_ssize_t *, int, size_t, void *); /*proto*/
-static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_6rankpy_7metrics_8_metrics_LONG_t = { "LONG_t", NULL, sizeof(__pyx_t_6rankpy_7metrics_8_metrics_LONG_t), { 0 }, 0, IS_UNSIGNED(__pyx_t_6rankpy_7metrics_8_metrics_LONG_t) ? 'U' : 'I', IS_UNSIGNED(__pyx_t_6rankpy_7metrics_8_metrics_LONG_t), 0 };
 static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t = { "INT_t", NULL, sizeof(__pyx_t_6rankpy_7metrics_8_metrics_INT_t), { 0 }, 0, IS_UNSIGNED(__pyx_t_6rankpy_7metrics_8_metrics_INT_t) ? 'U' : 'I', IS_UNSIGNED(__pyx_t_6rankpy_7metrics_8_metrics_INT_t), 0 };
 static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t = { "DOUBLE_t", NULL, sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t), { 0 }, 0, 'R', 0, 0 };
 #define __Pyx_MODULE_NAME "rankpy.metrics._metrics"
@@ -1791,8 +1803,11 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
 static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_14evaluate_queries_ideal(struct __pyx_obj_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain *__pyx_v_self, __Pyx_memviewslice __pyx_v_query_indptr, __Pyx_memviewslice __pyx_v_relevance_scores, __Pyx_memviewslice __pyx_v_ideal_values); /* proto */
 static int __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau___cinit__(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, PyObject *__pyx_v_weights, CYTHON_UNUSED PyObject *__pyx_v_capacity); /* proto */
 static void __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_2__dealloc__(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_check_input); /* proto */
-static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_Y, PyObject *__pyx_v_check_input); /* proto */
+static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4__reduce__(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6__getstate__(CYTHON_UNUSED struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_8__setstate__(CYTHON_UNUSED struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_d); /* proto */
+static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_10evaluate(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_check_input); /* proto */
+static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_12distance(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_Y, PyObject *__pyx_v_check_input); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
@@ -1857,13 +1872,10 @@ static char __pyx_k_Zf[] = "Zf";
 static char __pyx_k_Zg[] = "Zg";
 static char __pyx_k_id[] = "id";
 static char __pyx_k_np[] = "np";
-static char __pyx_k_d_d[] = "%d: %d";
-static char __pyx_k_end[] = "end";
 static char __pyx_k_max[] = "max";
 static char __pyx_k_obj[] = "obj";
 static char __pyx_k_out[] = "out";
 static char __pyx_k_base[] = "base";
-static char __pyx_k_file[] = "file";
 static char __pyx_k_main[] = "__main__";
 static char __pyx_k_mode[] = "mode";
 static char __pyx_k_name[] = "name";
@@ -1880,15 +1892,13 @@ static char __pyx_k_delta[] = "delta";
 static char __pyx_k_dtype[] = "dtype";
 static char __pyx_k_error[] = "error";
 static char __pyx_k_flags[] = "flags";
-static char __pyx_k_int64[] = "int64";
+static char __pyx_k_int32[] = "int32";
 static char __pyx_k_numpy[] = "numpy";
 static char __pyx_k_order[] = "order";
-static char __pyx_k_print[] = "print";
 static char __pyx_k_range[] = "range";
 static char __pyx_k_shape[] = "shape";
 static char __pyx_k_start[] = "start";
 static char __pyx_k_cutoff[] = "cutoff";
-static char __pyx_k_d_4_2f[] = "%d: %4.2f";
 static char __pyx_k_format[] = "format";
 static char __pyx_k_import[] = "__import__";
 static char __pyx_k_name_2[] = "__name__";
@@ -1904,6 +1914,7 @@ static char __pyx_k_weights[] = "weights";
 static char __pyx_k_Ellipsis[] = "Ellipsis";
 static char __pyx_k_capacity[] = "capacity";
 static char __pyx_k_evaluate[] = "evaluate";
+static char __pyx_k_getstate[] = "__getstate__";
 static char __pyx_k_itemsize[] = "itemsize";
 static char __pyx_k_TypeError[] = "TypeError";
 static char __pyx_k_enumerate[] = "enumerate";
@@ -2008,30 +2019,27 @@ static PyObject *__pyx_kp_s_contiguous_and_direct;
 static PyObject *__pyx_kp_s_contiguous_and_indirect;
 static PyObject *__pyx_n_s_cutoff;
 static PyObject *__pyx_kp_s_cutoff_has_to_be_positive_intege;
-static PyObject *__pyx_kp_s_d_4_2f;
-static PyObject *__pyx_kp_s_d_d;
 static PyObject *__pyx_n_s_delta;
 static PyObject *__pyx_n_s_document_ranks;
 static PyObject *__pyx_n_s_dtype;
 static PyObject *__pyx_n_s_dtype_is_object;
-static PyObject *__pyx_n_s_end;
 static PyObject *__pyx_n_s_enumerate;
 static PyObject *__pyx_n_s_error;
 static PyObject *__pyx_n_s_evaluate;
 static PyObject *__pyx_n_s_evaluate_queries;
 static PyObject *__pyx_n_s_evaluate_queries_ideal;
 static PyObject *__pyx_n_s_evaluate_ranking;
-static PyObject *__pyx_n_s_file;
 static PyObject *__pyx_n_s_flags;
 static PyObject *__pyx_n_s_format;
 static PyObject *__pyx_n_s_fortran;
 static PyObject *__pyx_n_u_fortran;
+static PyObject *__pyx_n_s_getstate;
 static PyObject *__pyx_kp_s_got_differing_extents_in_dimensi;
 static PyObject *__pyx_n_s_i;
 static PyObject *__pyx_n_s_id;
 static PyObject *__pyx_n_s_ideal_values;
 static PyObject *__pyx_n_s_import;
-static PyObject *__pyx_n_s_int64;
+static PyObject *__pyx_n_s_int32;
 static PyObject *__pyx_n_s_itemsize;
 static PyObject *__pyx_kp_s_itemsize_0_for_cython_array;
 static PyObject *__pyx_n_s_main;
@@ -2052,7 +2060,6 @@ static PyObject *__pyx_n_s_offset;
 static PyObject *__pyx_n_s_order;
 static PyObject *__pyx_n_s_out;
 static PyObject *__pyx_n_s_pack;
-static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_pyx_getbuffer;
 static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_query_indptr;
@@ -2452,7 +2459,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_6Metric_evaluate_ranking(CYT
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_6Metric_3evaluate_ranking(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_6Metric_2evaluate_ranking[] = "\n        Evaluate the metric on the specified document ranking.\n\n        Parameters:\n        -----------\n        ranking: array of integers, shape = (n_documents,)\n            Specify the list of ranked documents.\n\n        relevance_scores: array of integers, shape = (n_documents,)\n            Specify the relevance score for each document.\n\n        scale_value: double\n            'Optional' parameter for implementation of metrics which evaluations\n            need to be scaled by the ideal metric values. Specific metric\n            implementations, such as NDCG, may use this parameter to speed up\n            their computation.\n        ";
+static char __pyx_doc_6rankpy_7metrics_8_metrics_6Metric_2evaluate_ranking[] = " \n        Evaluate the metric on the specified document ranking.\n\n        Parameters:\n        -----------\n        ranking: array of integers, shape = (n_documents,)\n            Specify the list of ranked documents.\n\n        relevance_scores: array of integers, shape = (n_documents,)\n            Specify the relevance score for each document.\n\n        scale_value: double\n            'Optional' parameter for implementation of metrics which evaluations\n            need to be scaled by the ideal metric values. Specific metric\n            implementations, such as NDCG, may use this parameter to speed up\n            their computation.\n        ";
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_6Metric_3evaluate_ranking(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_ranking = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_relevance_scores = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -2661,7 +2668,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_6Metric_evaluate(CYTHON_UNUS
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_6Metric_5evaluate(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_6Metric_4evaluate[] = "\n        Evaluate the metric on the specified ranked list of document relevance scores.\n\n        Parameters:\n        -----------\n        ranked_relevance_scores: array of integers, shape = (n_documents,)\n            Specify list of relevance scores.\n\n        scale_value: double, shape = (n_documents,)\n            'Optional' parameter for implementation of metrics which evaluations\n            need to be scaled by the ideal metric values. Specific metric\n            implementations, such as NDCG, may use this parameter to speed up\n            their computation.\n        ";
+static char __pyx_doc_6rankpy_7metrics_8_metrics_6Metric_4evaluate[] = " \n        Evaluate the metric on the specified ranked list of document relevance scores.\n\n        Parameters:\n        -----------\n        ranked_relevance_scores: array of integers, shape = (n_documents,)\n            Specify list of relevance scores.\n\n        scale_value: double, shape = (n_documents,)\n            'Optional' parameter for implementation of metrics which evaluations\n            need to be scaled by the ideal metric values. Specific metric\n            implementations, such as NDCG, may use this parameter to speed up\n            their computation.\n        ";
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_6Metric_5evaluate(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_ranked_relevance_scores = { 0, 0, { 0 }, { 0 }, { 0 } };
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_v_scale_value;
@@ -2884,7 +2891,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_6Metric_evaluate_queries(CYT
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_6Metric_7evaluate_queries(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_6Metric_6evaluate_queries[] = "\n        Evaluate the metric on the specified queries. The relevance scores and\n        ranking scores of documents, which belong to query `i`, are in\n        `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` and  \n        `scores[query_indptr[i]:query_indptr[i + 1]]`, respectively.\n        \n        Parameters:\n        -----------\n        query_indptr: array of integers, shape = (n_queries + 1,)\n            The query index pointer.\n\n        relevance_scores, array of integers, shape = (n_documents,)\n            Specify the relevance score for each document.\n\n        scores: array, shape=(n_documents,)\n            Specify the ranking score for each document.\n\n        scale_values: array, shape=(n_queries,), optional\n            'Optional' parameter for implementation of metrics which evaluations\n            need to be scaled by the ideal metric values. Specific metric\n            implementations, such as NDCG, may use this parameter to speed\n            up their computation.\n\n        out: array, shape=(n_documents,), optional\n            If not None, it will be filled with the metric value\n            for each individual query.\n        ";
+static char __pyx_doc_6rankpy_7metrics_8_metrics_6Metric_6evaluate_queries[] = " \n        Evaluate the metric on the specified queries. The relevance scores and\n        ranking scores of documents, which belong to query `i`, are in\n        `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` and  \n        `scores[query_indptr[i]:query_indptr[i + 1]]`, respectively.\n        \n        Parameters:\n        -----------\n        query_indptr: array of integers, shape = (n_queries + 1,)\n            The query index pointer.\n\n        relevance_scores, array of integers, shape = (n_documents,)\n            Specify the relevance score for each document.\n\n        scores: array, shape=(n_documents,)\n            Specify the ranking score for each document.\n\n        scale_values: array, shape=(n_queries,), optional\n            'Optional' parameter for implementation of metrics which evaluations\n            need to be scaled by the ideal metric values. Specific metric\n            implementations, such as NDCG, may use this parameter to speed\n            up their computation.\n\n        out: array, shape=(n_documents,), optional\n            If not None, it will be filled with the metric value\n            for each individual query.\n        ";
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_6Metric_7evaluate_queries(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_query_indptr = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_relevance_scores = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -3111,7 +3118,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_6Metric_delta(CYTHON_UNUSED 
  *     cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t[::1] out):
  *         '''             # <<<<<<<<<<<<<<
  *         Compute the change in the metric caused by swapping document `i` with every
- *         document `offset`, `offset + 1`, ...
+ *         document `offset`, `offset + 1`, ... (in turn).
  */
 
   /* function exit code */
@@ -3147,7 +3154,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_6Metric_delta(CYTHON_UNUSED 
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_6Metric_9delta(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_6Metric_8delta[] = "\n        Compute the change in the metric caused by swapping document `i` with every\n        document `offset`, `offset + 1`, ...\n\n        The relevance score and document rank of document `i` is `relevance_scores[i]`\n        and `document_ranks[i]`, respectively.\n\n        Parameters:\n        -----------\n        i: integer\n            The index of the one document that is being swapped with all\n            the others.\n\n        offset: integer\n            The start index of the sequence of documents that are\n            being swapped.\n\n        document_ranks: array of integers\n            Specify the rank for each document.\n\n        relevance_scores: array of integers\n            Specify the relevance score for each document.\n\n        scale_value: double, shape = (n_documents,)\n            'Optional' parameter for implementation of metrics which evaluations\n            need to be scaled by the ideal metric values. Specific metric\n            implementations, such as NDCG, may use this parameter to speed up\n            their computation.\n\n        out: array of doubles\n            The output array. The array size is expected to be at least as big\n            as the the number of document pairs being swapped, which should be\n            `len(document_ranks) - offset`.\n        ";
+static char __pyx_doc_6rankpy_7metrics_8_metrics_6Metric_8delta[] = " \n        Compute the change in the metric caused by swapping document `i` with every\n        document `offset`, `offset + 1`, ... (in turn).\n\n        The relevance score and document rank of document `i` is `relevance_scores[i]`\n        and `document_ranks[i]`, respectively.\n\n        Parameters:\n        -----------\n        i: integer\n            The index of the one document that is being swapped with all\n            the others.\n\n        offset: integer\n            The start index of the sequence of documents that are\n            being swapped.\n\n        document_ranks: array of integers\n            Specify the rank for each document.\n\n        relevance_scores: array of integers\n            Specify the relevance score for each document.\n\n        scale_value: double, shape = (n_documents,)\n            'Optional' parameter for implementation of metrics which evaluations\n            need to be scaled by the ideal metric values. Specific metric\n            implementations, such as NDCG, may use this parameter to speed up\n            their computation.\n\n        out: array of doubles\n            The output array. The array size is expected to be at least as big\n            as the the number of document pairs being swapped, which should be\n            `len(document_ranks) - offset`.\n        ";
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_6Metric_9delta(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __pyx_t_6rankpy_7metrics_8_metrics_INT_t __pyx_v_i;
   __pyx_t_6rankpy_7metrics_8_metrics_INT_t __pyx_v_offset;
@@ -3374,7 +3381,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_6Metric_evaluate_queries_ide
  *     cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] scale_values):
  *         '''             # <<<<<<<<<<<<<<
  *         Compute the ideal metric value for every one of the specified queries.
- *         The relevance scores of documents, which belong to query `i`, should be
+ *         The relevance scores of documents, which belong to query `i`, must be
  */
 
   /* function exit code */
@@ -3407,7 +3414,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_6Metric_evaluate_queries_ide
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_6Metric_11evaluate_queries_ideal(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_6Metric_10evaluate_queries_ideal[] = "\n        Compute the ideal metric value for every one of the specified queries.\n        The relevance scores of documents, which belong to query `i`, should be\n        stored in `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` in\n        descending order.\n\n        Parameters:\n        -----------\n        query_indptr: array of integers, shape = (n_queries + 1,)\n            The query index pointer.\n\n        relevance_scores, array of integers, shape = (n_documents,)\n            Specify the relevance score for each document.\n\n        scale_values: output array of doubles, shape=(n_queries,)\n            Output array for the ideal metric value of each query.\n        ";
+static char __pyx_doc_6rankpy_7metrics_8_metrics_6Metric_10evaluate_queries_ideal[] = " \n        Compute the ideal metric value for every one of the specified queries.\n        The relevance scores of documents, which belong to query `i`, must be\n        stored in `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` in\n        descending order.\n\n        Parameters:\n        -----------\n        query_indptr: array of integers, shape = (n_queries + 1,)\n            The query index pointer.\n\n        relevance_scores, array of integers, shape = (n_documents,)\n            Specify the relevance score for each document.\n\n        scale_values: output array of doubles, shape=(n_queries,)\n            Output array for the ideal metric value of each query.\n        ";
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_6Metric_11evaluate_queries_ideal(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_query_indptr = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_relevance_scores = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -3508,7 +3515,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_6Metric_10evaluate_queries_
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pxd":38
+/* "rankpy/metrics/_metrics.pxd":37
  * 
  *     # Fields
  *     cdef public INT_t cutoff # The metric cutoff threshold.             # <<<<<<<<<<<<<<
@@ -3538,7 +3545,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_6Metric_6cutoff___get__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int32(__pyx_v_self->cutoff); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 38; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int32(__pyx_v_self->cutoff); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 37; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3576,7 +3583,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_6Metric_6cutoff_2__set__(struct _
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_npy_int32(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 38; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_npy_int32(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 37; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->cutoff = __pyx_t_1;
 
   /* function exit code */
@@ -3594,8 +3601,8 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_6Metric_6cutoff_2__set__(struct _
  * 
  *     property gain:
  *         def __get__(self):             # <<<<<<<<<<<<<<
- *             cdef np.npy_intp shape = self.maximum_relevance + 1
- *             cdef np.ndarray arr = np.PyArray_SimpleNewFromData(1, &shape, np.NPY_DOUBLE, self.gain_cache)
+ *             '''
+ *             Exposes the gain array to Python as NumPy array.
  */
 
 /* Python wrapper */
@@ -3622,29 +3629,29 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "rankpy/metrics/_metrics.pyx":242
- *     property gain:
- *         def __get__(self):
+  /* "rankpy/metrics/_metrics.pyx":245
+ *             Exposes the gain array to Python as NumPy array.
+ *             '''
  *             cdef np.npy_intp shape = self.maximum_relevance + 1             # <<<<<<<<<<<<<<
  *             cdef np.ndarray arr = np.PyArray_SimpleNewFromData(1, &shape, np.NPY_DOUBLE, self.gain_cache)
  *             Py_INCREF(self)
  */
   __pyx_v_shape = (__pyx_v_self->maximum_relevance + 1);
 
-  /* "rankpy/metrics/_metrics.pyx":243
- *         def __get__(self):
+  /* "rankpy/metrics/_metrics.pyx":246
+ *             '''
  *             cdef np.npy_intp shape = self.maximum_relevance + 1
  *             cdef np.ndarray arr = np.PyArray_SimpleNewFromData(1, &shape, np.NPY_DOUBLE, self.gain_cache)             # <<<<<<<<<<<<<<
  *             Py_INCREF(self)
  *             arr.base = <PyObject*> self
  */
-  __pyx_t_1 = PyArray_SimpleNewFromData(1, (&__pyx_v_shape), NPY_DOUBLE, __pyx_v_self->gain_cache); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyArray_SimpleNewFromData(1, (&__pyx_v_shape), NPY_DOUBLE, __pyx_v_self->gain_cache); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_arr = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "rankpy/metrics/_metrics.pyx":244
+  /* "rankpy/metrics/_metrics.pyx":247
  *             cdef np.npy_intp shape = self.maximum_relevance + 1
  *             cdef np.ndarray arr = np.PyArray_SimpleNewFromData(1, &shape, np.NPY_DOUBLE, self.gain_cache)
  *             Py_INCREF(self)             # <<<<<<<<<<<<<<
@@ -3653,7 +3660,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
  */
   Py_INCREF(((PyObject *)__pyx_v_self));
 
-  /* "rankpy/metrics/_metrics.pyx":245
+  /* "rankpy/metrics/_metrics.pyx":248
  *             cdef np.ndarray arr = np.PyArray_SimpleNewFromData(1, &shape, np.NPY_DOUBLE, self.gain_cache)
  *             Py_INCREF(self)
  *             arr.base = <PyObject*> self             # <<<<<<<<<<<<<<
@@ -3662,7 +3669,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
  */
   __pyx_v_arr->base = ((PyObject *)__pyx_v_self);
 
-  /* "rankpy/metrics/_metrics.pyx":246
+  /* "rankpy/metrics/_metrics.pyx":249
  *             Py_INCREF(self)
  *             arr.base = <PyObject*> self
  *             return arr             # <<<<<<<<<<<<<<
@@ -3678,8 +3685,8 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
  * 
  *     property gain:
  *         def __get__(self):             # <<<<<<<<<<<<<<
- *             cdef np.npy_intp shape = self.maximum_relevance + 1
- *             cdef np.ndarray arr = np.PyArray_SimpleNewFromData(1, &shape, np.NPY_DOUBLE, self.gain_cache)
+ *             '''
+ *             Exposes the gain array to Python as NumPy array.
  */
 
   /* function exit code */
@@ -3694,7 +3701,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":249
+/* "rankpy/metrics/_metrics.pyx":252
  * 
  * 
  *     def __cinit__(self, INT_t cutoff, INT_t maximum_relevance, INT_t maximum_documents):             # <<<<<<<<<<<<<<
@@ -3735,16 +3742,16 @@ static int __pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_1__cin
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_maximum_relevance)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_maximum_documents)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -3753,13 +3760,13 @@ static int __pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_1__cin
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_cutoff = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_cutoff == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_maximum_relevance = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_maximum_relevance == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_maximum_documents = __Pyx_PyInt_As_npy_int32(values[2]); if (unlikely((__pyx_v_maximum_documents == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_cutoff = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_cutoff == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_maximum_relevance = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_maximum_relevance == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_maximum_documents = __Pyx_PyInt_As_npy_int32(values[2]); if (unlikely((__pyx_v_maximum_documents == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._metrics.DiscountedCumulativeGain.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3783,7 +3790,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
   __pyx_t_6rankpy_7metrics_8_metrics_INT_t __pyx_t_4;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "rankpy/metrics/_metrics.pyx":272
+  /* "rankpy/metrics/_metrics.pyx":275
  *         cdef DOUBLE_t gain
  * 
  *         self.gain_cache = NULL             # <<<<<<<<<<<<<<
@@ -3792,7 +3799,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
  */
   __pyx_v_self->gain_cache = NULL;
 
-  /* "rankpy/metrics/_metrics.pyx":273
+  /* "rankpy/metrics/_metrics.pyx":276
  * 
  *         self.gain_cache = NULL
  *         self.discount_cache = NULL             # <<<<<<<<<<<<<<
@@ -3801,7 +3808,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
  */
   __pyx_v_self->discount_cache = NULL;
 
-  /* "rankpy/metrics/_metrics.pyx":275
+  /* "rankpy/metrics/_metrics.pyx":278
  *         self.discount_cache = NULL
  * 
  *         if maximum_relevance <= 0:             # <<<<<<<<<<<<<<
@@ -3811,7 +3818,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
   __pyx_t_1 = ((__pyx_v_maximum_relevance <= 0) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":276
+    /* "rankpy/metrics/_metrics.pyx":279
  * 
  *         if maximum_relevance <= 0:
  *             maximum_relevance = 8             # <<<<<<<<<<<<<<
@@ -3823,7 +3830,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
   }
   __pyx_L3:;
 
-  /* "rankpy/metrics/_metrics.pyx":278
+  /* "rankpy/metrics/_metrics.pyx":281
  *             maximum_relevance = 8
  * 
  *         if maximum_documents <= 0:             # <<<<<<<<<<<<<<
@@ -3833,7 +3840,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
   __pyx_t_1 = ((__pyx_v_maximum_documents <= 0) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":279
+    /* "rankpy/metrics/_metrics.pyx":282
  * 
  *         if maximum_documents <= 0:
  *             maximum_documents = 4096             # <<<<<<<<<<<<<<
@@ -3845,7 +3852,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
   }
   __pyx_L4:;
 
-  /* "rankpy/metrics/_metrics.pyx":281
+  /* "rankpy/metrics/_metrics.pyx":284
  *             maximum_documents = 4096
  * 
  *         self.maximum_relevance = maximum_relevance             # <<<<<<<<<<<<<<
@@ -3854,7 +3861,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
  */
   __pyx_v_self->maximum_relevance = __pyx_v_maximum_relevance;
 
-  /* "rankpy/metrics/_metrics.pyx":282
+  /* "rankpy/metrics/_metrics.pyx":285
  * 
  *         self.maximum_relevance = maximum_relevance
  *         self.maximum_documents = maximum_documents             # <<<<<<<<<<<<<<
@@ -3863,7 +3870,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
  */
   __pyx_v_self->maximum_documents = __pyx_v_maximum_documents;
 
-  /* "rankpy/metrics/_metrics.pyx":284
+  /* "rankpy/metrics/_metrics.pyx":287
  *         self.maximum_documents = maximum_documents
  * 
  *         self.gain_cache = <DOUBLE_t*> calloc(self.maximum_relevance + 1, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -3872,7 +3879,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
  */
   __pyx_v_self->gain_cache = ((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *)calloc((__pyx_v_self->maximum_relevance + 1), (sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t))));
 
-  /* "rankpy/metrics/_metrics.pyx":285
+  /* "rankpy/metrics/_metrics.pyx":288
  * 
  *         self.gain_cache = <DOUBLE_t*> calloc(self.maximum_relevance + 1, sizeof(DOUBLE_t))
  *         self.discount_cache = <DOUBLE_t*> calloc(self.maximum_documents, sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -3881,7 +3888,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
  */
   __pyx_v_self->discount_cache = ((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *)calloc(__pyx_v_self->maximum_documents, (sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t))));
 
-  /* "rankpy/metrics/_metrics.pyx":287
+  /* "rankpy/metrics/_metrics.pyx":290
  *         self.discount_cache = <DOUBLE_t*> calloc(self.maximum_documents, sizeof(DOUBLE_t))
  * 
  *         gain = 1.0             # <<<<<<<<<<<<<<
@@ -3890,7 +3897,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
  */
   __pyx_v_gain = 1.0;
 
-  /* "rankpy/metrics/_metrics.pyx":288
+  /* "rankpy/metrics/_metrics.pyx":291
  * 
  *         gain = 1.0
  *         for i in range(maximum_relevance + 1):             # <<<<<<<<<<<<<<
@@ -3901,7 +3908,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "rankpy/metrics/_metrics.pyx":289
+    /* "rankpy/metrics/_metrics.pyx":292
  *         gain = 1.0
  *         for i in range(maximum_relevance + 1):
  *             self.gain_cache[i] = gain - 1.0             # <<<<<<<<<<<<<<
@@ -3910,7 +3917,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
  */
     (__pyx_v_self->gain_cache[__pyx_v_i]) = (__pyx_v_gain - 1.0);
 
-    /* "rankpy/metrics/_metrics.pyx":290
+    /* "rankpy/metrics/_metrics.pyx":293
  *         for i in range(maximum_relevance + 1):
  *             self.gain_cache[i] = gain - 1.0
  *             gain *= 2             # <<<<<<<<<<<<<<
@@ -3920,7 +3927,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
     __pyx_v_gain = (__pyx_v_gain * 2.0);
   }
 
-  /* "rankpy/metrics/_metrics.pyx":292
+  /* "rankpy/metrics/_metrics.pyx":295
  *             gain *= 2
  * 
  *         for i in range(maximum_documents):             # <<<<<<<<<<<<<<
@@ -3931,7 +3938,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
   for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
     __pyx_v_i = __pyx_t_4;
 
-    /* "rankpy/metrics/_metrics.pyx":293
+    /* "rankpy/metrics/_metrics.pyx":296
  * 
  *         for i in range(maximum_documents):
  *             self.discount_cache[i] = log2(2.0 + i)             # <<<<<<<<<<<<<<
@@ -3941,7 +3948,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
     (__pyx_v_self->discount_cache[__pyx_v_i]) = log2((2.0 + __pyx_v_i));
   }
 
-  /* "rankpy/metrics/_metrics.pyx":249
+  /* "rankpy/metrics/_metrics.pyx":252
  * 
  * 
  *     def __cinit__(self, INT_t cutoff, INT_t maximum_relevance, INT_t maximum_documents):             # <<<<<<<<<<<<<<
@@ -3955,7 +3962,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain___cini
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":296
+/* "rankpy/metrics/_metrics.pyx":299
  * 
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -3978,7 +3985,7 @@ static void __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_2__de
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "rankpy/metrics/_metrics.pyx":300
+  /* "rankpy/metrics/_metrics.pyx":303
  *         Clean up the cached gain and discount values.
  *         '''
  *         free(self.gain_cache)             # <<<<<<<<<<<<<<
@@ -3987,7 +3994,7 @@ static void __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_2__de
  */
   free(__pyx_v_self->gain_cache);
 
-  /* "rankpy/metrics/_metrics.pyx":301
+  /* "rankpy/metrics/_metrics.pyx":304
  *         '''
  *         free(self.gain_cache)
  *         free(self.discount_cache)             # <<<<<<<<<<<<<<
@@ -3996,7 +4003,7 @@ static void __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_2__de
  */
   free(__pyx_v_self->discount_cache);
 
-  /* "rankpy/metrics/_metrics.pyx":296
+  /* "rankpy/metrics/_metrics.pyx":299
  * 
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -4008,7 +4015,7 @@ static void __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_2__de
   __Pyx_RefNannyFinishContext();
 }
 
-/* "rankpy/metrics/_metrics.pyx":304
+/* "rankpy/metrics/_metrics.pyx":307
  * 
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -4018,7 +4025,7 @@ static void __pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_2__de
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_5__reduce__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_4__reduce__[] = "\n        Reduce reimplementation, for pickling.\n        ";
+static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_4__reduce__[] = " \n        Reduce reimplementation, for pickling.\n        ";
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_5__reduce__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -4042,7 +4049,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "rankpy/metrics/_metrics.pyx":308
+  /* "rankpy/metrics/_metrics.pyx":311
  *         Reduce reimplementation, for pickling.
  *         '''
  *         return (DiscountedCumulativeGain, (self.cutoff, self.maximum_relevance, self.maximum_documents))             # <<<<<<<<<<<<<<
@@ -4050,13 +4057,13 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int32(__pyx_v_self->__pyx_base.cutoff); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int32(__pyx_v_self->__pyx_base.cutoff); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_npy_int32(__pyx_v_self->maximum_relevance); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_npy_int32(__pyx_v_self->maximum_relevance); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_self->maximum_documents); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_self->maximum_documents); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -4067,7 +4074,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain)));
   PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)((PyObject*)__pyx_ptype_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain)));
@@ -4079,7 +4086,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":304
+  /* "rankpy/metrics/_metrics.pyx":307
  * 
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -4101,7 +4108,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":311
+/* "rankpy/metrics/_metrics.pyx":314
  * 
  * 
  *     cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value):             # <<<<<<<<<<<<<<
@@ -4139,17 +4146,17 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_evaluate_ranking); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_evaluate_ranking); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_7evaluate_ranking)) {
       __Pyx_XDECREF(__pyx_r);
-      if (unlikely(!__pyx_v_ranking.memview)) { __Pyx_RaiseUnboundLocalError("ranking"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_ranking, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_ranking.memview)) { __Pyx_RaiseUnboundLocalError("ranking"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_ranking, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_relevance_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_relevance_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = PyFloat_FromDouble(__pyx_v_scale_value); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyFloat_FromDouble(__pyx_v_scale_value); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_6 = __pyx_t_1; __pyx_t_7 = NULL;
@@ -4164,7 +4171,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_t_8 = 1;
         }
       }
-      __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_9);
       if (__pyx_t_7) {
         PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __Pyx_GIVEREF(__pyx_t_7); __pyx_t_7 = NULL;
@@ -4178,7 +4185,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       __pyx_t_3 = 0;
       __pyx_t_4 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -4190,7 +4197,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":331
+  /* "rankpy/metrics/_metrics.pyx":334
  * 
  *         # Should we worry about precision?
  *         if scale_value == 0.0:             # <<<<<<<<<<<<<<
@@ -4200,7 +4207,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
   __pyx_t_10 = ((__pyx_v_scale_value == 0.0) != 0);
   if (__pyx_t_10) {
 
-    /* "rankpy/metrics/_metrics.pyx":332
+    /* "rankpy/metrics/_metrics.pyx":335
  *         # Should we worry about precision?
  *         if scale_value == 0.0:
  *             return 0.0             # <<<<<<<<<<<<<<
@@ -4213,7 +4220,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
     goto __pyx_L0;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":334
+  /* "rankpy/metrics/_metrics.pyx":337
  *             return 0.0
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4227,7 +4234,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_metrics.pyx":335
+        /* "rankpy/metrics/_metrics.pyx":338
  * 
  *         with nogil:
  *             n_documents = ranking.shape[0]             # <<<<<<<<<<<<<<
@@ -4236,7 +4243,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  */
         __pyx_v_n_documents = (__pyx_v_ranking.shape[0]);
 
-        /* "rankpy/metrics/_metrics.pyx":336
+        /* "rankpy/metrics/_metrics.pyx":339
  *         with nogil:
  *             n_documents = ranking.shape[0]
  *             cutoff = n_documents if self.cutoff < 0 else self.cutoff             # <<<<<<<<<<<<<<
@@ -4250,7 +4257,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
         }
         __pyx_v_cutoff = __pyx_t_11;
 
-        /* "rankpy/metrics/_metrics.pyx":337
+        /* "rankpy/metrics/_metrics.pyx":340
  *             n_documents = ranking.shape[0]
  *             cutoff = n_documents if self.cutoff < 0 else self.cutoff
  *             result = 0.0             # <<<<<<<<<<<<<<
@@ -4259,7 +4266,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  */
         __pyx_v_result = 0.0;
 
-        /* "rankpy/metrics/_metrics.pyx":338
+        /* "rankpy/metrics/_metrics.pyx":341
  *             cutoff = n_documents if self.cutoff < 0 else self.cutoff
  *             result = 0.0
  *             for i in range(imin(cutoff, n_documents)):             # <<<<<<<<<<<<<<
@@ -4270,7 +4277,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
         for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
           __pyx_v_i = __pyx_t_12;
 
-          /* "rankpy/metrics/_metrics.pyx":339
+          /* "rankpy/metrics/_metrics.pyx":342
  *             result = 0.0
  *             for i in range(imin(cutoff, n_documents)):
  *                 result += self.gain_cache[relevance_scores[ranking[i]]] / self.discount_cache[i]             # <<<<<<<<<<<<<<
@@ -4282,7 +4289,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_v_result = (__pyx_v_result + ((__pyx_v_self->gain_cache[(*((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) __pyx_v_relevance_scores.data) + __pyx_t_14)) )))]) / (__pyx_v_self->discount_cache[__pyx_v_i])));
         }
 
-        /* "rankpy/metrics/_metrics.pyx":340
+        /* "rankpy/metrics/_metrics.pyx":343
  *             for i in range(imin(cutoff, n_documents)):
  *                 result += self.gain_cache[relevance_scores[ranking[i]]] / self.discount_cache[i]
  *             result /= scale_value             # <<<<<<<<<<<<<<
@@ -4292,7 +4299,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
         __pyx_v_result = (__pyx_v_result / __pyx_v_scale_value);
       }
 
-      /* "rankpy/metrics/_metrics.pyx":334
+      /* "rankpy/metrics/_metrics.pyx":337
  *             return 0.0
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4310,7 +4317,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       }
   }
 
-  /* "rankpy/metrics/_metrics.pyx":342
+  /* "rankpy/metrics/_metrics.pyx":345
  *             result /= scale_value
  * 
  *         return result             # <<<<<<<<<<<<<<
@@ -4318,13 +4325,13 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_result); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_result); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":311
+  /* "rankpy/metrics/_metrics.pyx":314
  * 
  * 
  *     cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value):             # <<<<<<<<<<<<<<
@@ -4352,7 +4359,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_7evaluate_ranking(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_6evaluate_ranking[] = "\n        Evaluate the metric on the specified document ranking.\n\n        Parameters:\n        -----------\n        ranking: array of integers, shape = (n_documents,)\n            Specify the list of ranked documents.\n\n        relevance_scores: array of integers, shape = (n_documents,)\n            Specify the relevance score for each document.\n\n        scale_value: double\n            Should be 1.0.\n        ";
+static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_6evaluate_ranking[] = " \n        Evaluate the metric on the specified document ranking.\n\n        Parameters:\n        -----------\n        ranking: array of integers, shape = (n_documents,)\n            Specify the list of ranked documents.\n\n        relevance_scores: array of integers, shape = (n_documents,)\n            Specify the relevance score for each document.\n\n        scale_value: double\n            Should be 1.0.\n        ";
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_7evaluate_ranking(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_ranking = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_relevance_scores = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -4384,16 +4391,16 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_relevance_scores)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("evaluate_ranking", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("evaluate_ranking", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_scale_value)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("evaluate_ranking", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("evaluate_ranking", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate_ranking") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate_ranking") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -4402,13 +4409,13 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_ranking = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[0]); if (unlikely(!__pyx_v_ranking.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[1]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_scale_value = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_scale_value == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranking = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[0]); if (unlikely(!__pyx_v_ranking.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[1]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_scale_value = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_scale_value == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("evaluate_ranking", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("evaluate_ranking", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._metrics.DiscountedCumulativeGain.evaluate_ranking", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4430,9 +4437,9 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("evaluate_ranking", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_ranking.memview)) { __Pyx_RaiseUnboundLocalError("ranking"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_evaluate_ranking(__pyx_v_self, __pyx_v_ranking, __pyx_v_relevance_scores, __pyx_v_scale_value, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_ranking.memview)) { __Pyx_RaiseUnboundLocalError("ranking"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_evaluate_ranking(__pyx_v_self, __pyx_v_ranking, __pyx_v_relevance_scores, __pyx_v_scale_value, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4451,7 +4458,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":345
+/* "rankpy/metrics/_metrics.pyx":348
  * 
  * 
  *     cpdef evaluate(self, INT_t[::1] ranked_relevance_scores, DOUBLE_t scale_value):             # <<<<<<<<<<<<<<
@@ -4487,14 +4494,14 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_evaluate); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_evaluate); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_9evaluate)) {
       __Pyx_XDECREF(__pyx_r);
-      if (unlikely(!__pyx_v_ranked_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranked_relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_ranked_relevance_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_ranked_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranked_relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_ranked_relevance_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyFloat_FromDouble(__pyx_v_scale_value); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyFloat_FromDouble(__pyx_v_scale_value); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -4509,7 +4516,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_t_7 = 1;
         }
       }
-      __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       if (__pyx_t_6) {
         PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __Pyx_GIVEREF(__pyx_t_6); __pyx_t_6 = NULL;
@@ -4520,7 +4527,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       __Pyx_GIVEREF(__pyx_t_4);
       __pyx_t_3 = 0;
       __pyx_t_4 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -4532,7 +4539,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":362
+  /* "rankpy/metrics/_metrics.pyx":365
  * 
  *         # Should we worry about precision?
  *         if scale_value == 0.0:             # <<<<<<<<<<<<<<
@@ -4542,7 +4549,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
   __pyx_t_9 = ((__pyx_v_scale_value == 0.0) != 0);
   if (__pyx_t_9) {
 
-    /* "rankpy/metrics/_metrics.pyx":363
+    /* "rankpy/metrics/_metrics.pyx":366
  *         # Should we worry about precision?
  *         if scale_value == 0.0:
  *             return 0.0             # <<<<<<<<<<<<<<
@@ -4555,7 +4562,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
     goto __pyx_L0;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":365
+  /* "rankpy/metrics/_metrics.pyx":368
  *             return 0.0
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4569,7 +4576,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_metrics.pyx":366
+        /* "rankpy/metrics/_metrics.pyx":369
  * 
  *         with nogil:
  *             n_documents = ranked_relevance_scores.shape[0]             # <<<<<<<<<<<<<<
@@ -4578,7 +4585,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  */
         __pyx_v_n_documents = (__pyx_v_ranked_relevance_scores.shape[0]);
 
-        /* "rankpy/metrics/_metrics.pyx":367
+        /* "rankpy/metrics/_metrics.pyx":370
  *         with nogil:
  *             n_documents = ranked_relevance_scores.shape[0]
  *             cutoff = n_documents if self.cutoff < 0 else self.cutoff             # <<<<<<<<<<<<<<
@@ -4592,7 +4599,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
         }
         __pyx_v_cutoff = __pyx_t_10;
 
-        /* "rankpy/metrics/_metrics.pyx":368
+        /* "rankpy/metrics/_metrics.pyx":371
  *             n_documents = ranked_relevance_scores.shape[0]
  *             cutoff = n_documents if self.cutoff < 0 else self.cutoff
  *             result = 0.0             # <<<<<<<<<<<<<<
@@ -4601,7 +4608,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  */
         __pyx_v_result = 0.0;
 
-        /* "rankpy/metrics/_metrics.pyx":369
+        /* "rankpy/metrics/_metrics.pyx":372
  *             cutoff = n_documents if self.cutoff < 0 else self.cutoff
  *             result = 0.0
  *             for i in range(imin(cutoff, n_documents)):             # <<<<<<<<<<<<<<
@@ -4612,7 +4619,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
         for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
           __pyx_v_i = __pyx_t_11;
 
-          /* "rankpy/metrics/_metrics.pyx":370
+          /* "rankpy/metrics/_metrics.pyx":373
  *             result = 0.0
  *             for i in range(imin(cutoff, n_documents)):
  *                 result += self.gain_cache[ranked_relevance_scores[i]] / self.discount_cache[i]             # <<<<<<<<<<<<<<
@@ -4623,7 +4630,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_v_result = (__pyx_v_result + ((__pyx_v_self->gain_cache[(*((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) __pyx_v_ranked_relevance_scores.data) + __pyx_t_12)) )))]) / (__pyx_v_self->discount_cache[__pyx_v_i])));
         }
 
-        /* "rankpy/metrics/_metrics.pyx":371
+        /* "rankpy/metrics/_metrics.pyx":374
  *             for i in range(imin(cutoff, n_documents)):
  *                 result += self.gain_cache[ranked_relevance_scores[i]] / self.discount_cache[i]
  *             result /= scale_value             # <<<<<<<<<<<<<<
@@ -4633,7 +4640,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
         __pyx_v_result = (__pyx_v_result / __pyx_v_scale_value);
       }
 
-      /* "rankpy/metrics/_metrics.pyx":365
+      /* "rankpy/metrics/_metrics.pyx":368
  *             return 0.0
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4651,7 +4658,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       }
   }
 
-  /* "rankpy/metrics/_metrics.pyx":373
+  /* "rankpy/metrics/_metrics.pyx":376
  *             result /= scale_value
  * 
  *         return result             # <<<<<<<<<<<<<<
@@ -4659,13 +4666,13 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_result); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_result); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":345
+  /* "rankpy/metrics/_metrics.pyx":348
  * 
  * 
  *     cpdef evaluate(self, INT_t[::1] ranked_relevance_scores, DOUBLE_t scale_value):             # <<<<<<<<<<<<<<
@@ -4692,7 +4699,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_9evaluate(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_8evaluate[] = "\n        Evaluate the metric on the specified ranked list of document relevance scores.\n\n        Parameters:\n        -----------\n        ranked_relevance_scores: array of integers, shape = (n_documents,)\n            Specify list of relevance scores.\n\n        scale_value: double\n            Should be 1.0.\n        ";
+static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_8evaluate[] = " \n        Evaluate the metric on the specified ranked list of document relevance scores.\n\n        Parameters:\n        -----------\n        ranked_relevance_scores: array of integers, shape = (n_documents,)\n            Specify list of relevance scores.\n\n        scale_value: double\n            Should be 1.0.\n        ";
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_9evaluate(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_ranked_relevance_scores = { 0, 0, { 0 }, { 0 }, { 0 } };
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_v_scale_value;
@@ -4722,11 +4729,11 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_scale_value)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("evaluate", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("evaluate", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4734,12 +4741,12 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_ranked_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[0]); if (unlikely(!__pyx_v_ranked_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_scale_value = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_scale_value == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranked_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[0]); if (unlikely(!__pyx_v_ranked_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_scale_value = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_scale_value == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("evaluate", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("evaluate", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._metrics.DiscountedCumulativeGain.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4761,8 +4768,8 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("evaluate", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_ranked_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranked_relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_evaluate(__pyx_v_self, __pyx_v_ranked_relevance_scores, __pyx_v_scale_value, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_ranked_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranked_relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_evaluate(__pyx_v_self, __pyx_v_ranked_relevance_scores, __pyx_v_scale_value, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4780,7 +4787,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":376
+/* "rankpy/metrics/_metrics.pyx":379
  * 
  * 
  *     cpdef evaluate_queries(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ranking_scores, DOUBLE_t[::1] scale_values, DOUBLE_t[::1] out):             # <<<<<<<<<<<<<<
@@ -4830,24 +4837,24 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_evaluate_queries); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_evaluate_queries); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_11evaluate_queries)) {
       __Pyx_XDECREF(__pyx_r);
-      if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_query_indptr, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_query_indptr, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_relevance_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_relevance_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_ranking_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, 0);; if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_ranking_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, 0);; if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      if (unlikely(!__pyx_v_scale_values.memview)) { __Pyx_RaiseUnboundLocalError("scale_values"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_scale_values, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, 0);; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_scale_values.memview)) { __Pyx_RaiseUnboundLocalError("scale_values"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_scale_values, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, 0);; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
-      if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_out, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_out, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_8 = __pyx_t_1; __pyx_t_9 = NULL;
@@ -4862,7 +4869,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_t_10 = 1;
         }
       }
-      __pyx_t_11 = PyTuple_New(5+__pyx_t_10); if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_11 = PyTuple_New(5+__pyx_t_10); if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_11);
       if (__pyx_t_9) {
         PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_9); __Pyx_GIVEREF(__pyx_t_9); __pyx_t_9 = NULL;
@@ -4882,7 +4889,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       __pyx_t_5 = 0;
       __pyx_t_6 = 0;
       __pyx_t_7 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_11, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_11, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -4894,7 +4901,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":406
+  /* "rankpy/metrics/_metrics.pyx":409
  *             DOUBLE_t result, qresult
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -4908,7 +4915,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_metrics.pyx":407
+        /* "rankpy/metrics/_metrics.pyx":410
  * 
  *         with nogil:
  *             n_queries = query_indptr.shape[0] - 1             # <<<<<<<<<<<<<<
@@ -4917,7 +4924,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  */
         __pyx_v_n_queries = ((__pyx_v_query_indptr.shape[0]) - 1);
 
-        /* "rankpy/metrics/_metrics.pyx":408
+        /* "rankpy/metrics/_metrics.pyx":411
  *         with nogil:
  *             n_queries = query_indptr.shape[0] - 1
  *             n_documents = relevance_scores.shape[0]             # <<<<<<<<<<<<<<
@@ -4926,7 +4933,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  */
         __pyx_v_n_documents = (__pyx_v_relevance_scores.shape[0]);
 
-        /* "rankpy/metrics/_metrics.pyx":410
+        /* "rankpy/metrics/_metrics.pyx":413
  *             n_documents = relevance_scores.shape[0]
  * 
  *             ranked_relevance_scores = <INT_t*> calloc(n_documents, sizeof(INT_t))             # <<<<<<<<<<<<<<
@@ -4935,7 +4942,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  */
         __pyx_v_ranked_relevance_scores = ((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *)calloc(__pyx_v_n_documents, (sizeof(__pyx_t_6rankpy_7metrics_8_metrics_INT_t))));
 
-        /* "rankpy/metrics/_metrics.pyx":412
+        /* "rankpy/metrics/_metrics.pyx":415
  *             ranked_relevance_scores = <INT_t*> calloc(n_documents, sizeof(INT_t))
  * 
  *             ranksort_relevance_scores_queries_c(&query_indptr[0], n_queries, &ranking_scores[0], &relevance_scores[0], ranked_relevance_scores)             # <<<<<<<<<<<<<<
@@ -4947,7 +4954,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
         __pyx_t_13 = 0;
         __pyx_f_6rankpy_7metrics_6_utils_ranksort_relevance_scores_queries_c((&(*((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_10)) )))), __pyx_v_n_queries, (&(*((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *) __pyx_v_ranking_scores.data) + __pyx_t_12)) )))), (&(*((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) __pyx_v_relevance_scores.data) + __pyx_t_13)) )))), __pyx_v_ranked_relevance_scores);
 
-        /* "rankpy/metrics/_metrics.pyx":414
+        /* "rankpy/metrics/_metrics.pyx":417
  *             ranksort_relevance_scores_queries_c(&query_indptr[0], n_queries, &ranking_scores[0], &relevance_scores[0], ranked_relevance_scores)
  * 
  *             result = 0.0             # <<<<<<<<<<<<<<
@@ -4956,7 +4963,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  */
         __pyx_v_result = 0.0;
 
-        /* "rankpy/metrics/_metrics.pyx":416
+        /* "rankpy/metrics/_metrics.pyx":419
  *             result = 0.0
  * 
  *             for i in range(n_queries):             # <<<<<<<<<<<<<<
@@ -4967,7 +4974,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
         for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_14; __pyx_t_15+=1) {
           __pyx_v_i = __pyx_t_15;
 
-          /* "rankpy/metrics/_metrics.pyx":417
+          /* "rankpy/metrics/_metrics.pyx":420
  * 
  *             for i in range(n_queries):
  *                 n_documents = query_indptr[i + 1] - query_indptr[i]             # <<<<<<<<<<<<<<
@@ -4978,7 +4985,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_t_17 = __pyx_v_i;
           __pyx_v_n_documents = ((*((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_16)) ))) - (*((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_17)) ))));
 
-          /* "rankpy/metrics/_metrics.pyx":418
+          /* "rankpy/metrics/_metrics.pyx":421
  *             for i in range(n_queries):
  *                 n_documents = query_indptr[i + 1] - query_indptr[i]
  *                 cutoff = n_documents if self.cutoff < 0 else imin(self.cutoff, n_documents)             # <<<<<<<<<<<<<<
@@ -4992,7 +4999,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           }
           __pyx_v_cutoff = __pyx_t_18;
 
-          /* "rankpy/metrics/_metrics.pyx":420
+          /* "rankpy/metrics/_metrics.pyx":423
  *                 cutoff = n_documents if self.cutoff < 0 else imin(self.cutoff, n_documents)
  * 
  *                 qresult = 0.0             # <<<<<<<<<<<<<<
@@ -5001,7 +5008,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  */
           __pyx_v_qresult = 0.0;
 
-          /* "rankpy/metrics/_metrics.pyx":421
+          /* "rankpy/metrics/_metrics.pyx":424
  * 
  *                 qresult = 0.0
  *                 for j in range(cutoff):             # <<<<<<<<<<<<<<
@@ -5012,7 +5019,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           for (__pyx_t_19 = 0; __pyx_t_19 < __pyx_t_18; __pyx_t_19+=1) {
             __pyx_v_j = __pyx_t_19;
 
-            /* "rankpy/metrics/_metrics.pyx":422
+            /* "rankpy/metrics/_metrics.pyx":425
  *                 qresult = 0.0
  *                 for j in range(cutoff):
  *                     qresult += self.gain_cache[ranked_relevance_scores[query_indptr[i] + j]] / self.discount_cache[j]             # <<<<<<<<<<<<<<
@@ -5023,7 +5030,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
             __pyx_v_qresult = (__pyx_v_qresult + ((__pyx_v_self->gain_cache[(__pyx_v_ranked_relevance_scores[((*((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_20)) ))) + __pyx_v_j)])]) / (__pyx_v_self->discount_cache[__pyx_v_j])));
           }
 
-          /* "rankpy/metrics/_metrics.pyx":424
+          /* "rankpy/metrics/_metrics.pyx":427
  *                     qresult += self.gain_cache[ranked_relevance_scores[query_indptr[i] + j]] / self.discount_cache[j]
  * 
  *                 if scale_values is not None:             # <<<<<<<<<<<<<<
@@ -5033,7 +5040,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_t_21 = ((((PyObject *) __pyx_v_scale_values.memview) != Py_None) != 0);
           if (__pyx_t_21) {
 
-            /* "rankpy/metrics/_metrics.pyx":426
+            /* "rankpy/metrics/_metrics.pyx":429
  *                 if scale_values is not None:
  *                     # Should we worry about precision?
  *                     if scale_values[i] == 0.0:             # <<<<<<<<<<<<<<
@@ -5044,7 +5051,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
             __pyx_t_21 = (((*((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *) __pyx_v_scale_values.data) + __pyx_t_18)) ))) == 0.0) != 0);
             if (__pyx_t_21) {
 
-              /* "rankpy/metrics/_metrics.pyx":427
+              /* "rankpy/metrics/_metrics.pyx":430
  *                     # Should we worry about precision?
  *                     if scale_values[i] == 0.0:
  *                         qresult = 0.0             # <<<<<<<<<<<<<<
@@ -5056,7 +5063,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
             }
             /*else*/ {
 
-              /* "rankpy/metrics/_metrics.pyx":429
+              /* "rankpy/metrics/_metrics.pyx":432
  *                         qresult = 0.0
  *                     else:
  *                         qresult /= scale_values[i]             # <<<<<<<<<<<<<<
@@ -5071,7 +5078,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           }
           __pyx_L10:;
 
-          /* "rankpy/metrics/_metrics.pyx":431
+          /* "rankpy/metrics/_metrics.pyx":434
  *                         qresult /= scale_values[i]
  * 
  *                 if out is not None:             # <<<<<<<<<<<<<<
@@ -5081,7 +5088,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_t_21 = ((((PyObject *) __pyx_v_out.memview) != Py_None) != 0);
           if (__pyx_t_21) {
 
-            /* "rankpy/metrics/_metrics.pyx":432
+            /* "rankpy/metrics/_metrics.pyx":435
  * 
  *                 if out is not None:
  *                     out[i] = qresult             # <<<<<<<<<<<<<<
@@ -5094,7 +5101,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           }
           __pyx_L12:;
 
-          /* "rankpy/metrics/_metrics.pyx":434
+          /* "rankpy/metrics/_metrics.pyx":437
  *                     out[i] = qresult
  * 
  *                 result += qresult             # <<<<<<<<<<<<<<
@@ -5104,7 +5111,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_v_result = (__pyx_v_result + __pyx_v_qresult);
         }
 
-        /* "rankpy/metrics/_metrics.pyx":436
+        /* "rankpy/metrics/_metrics.pyx":439
  *                 result += qresult
  * 
  *             result /= n_queries             # <<<<<<<<<<<<<<
@@ -5113,7 +5120,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  */
         __pyx_v_result = (__pyx_v_result / __pyx_v_n_queries);
 
-        /* "rankpy/metrics/_metrics.pyx":438
+        /* "rankpy/metrics/_metrics.pyx":441
  *             result /= n_queries
  * 
  *             free(ranked_relevance_scores)             # <<<<<<<<<<<<<<
@@ -5123,7 +5130,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
         free(__pyx_v_ranked_relevance_scores);
       }
 
-      /* "rankpy/metrics/_metrics.pyx":406
+      /* "rankpy/metrics/_metrics.pyx":409
  *             DOUBLE_t result, qresult
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5141,7 +5148,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       }
   }
 
-  /* "rankpy/metrics/_metrics.pyx":440
+  /* "rankpy/metrics/_metrics.pyx":443
  *             free(ranked_relevance_scores)
  * 
  *         return result             # <<<<<<<<<<<<<<
@@ -5149,13 +5156,13 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_result); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 440; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_result); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":376
+  /* "rankpy/metrics/_metrics.pyx":379
  * 
  * 
  *     cpdef evaluate_queries(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ranking_scores, DOUBLE_t[::1] scale_values, DOUBLE_t[::1] out):             # <<<<<<<<<<<<<<
@@ -5185,7 +5192,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_11evaluate_queries(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_10evaluate_queries[] = "\n        Evaluate the DCG metric on the specified queries. The relevance scores and\n        ranking scores of documents, which belong to query `i`, are in\n        `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` and\n        `ranking_scores[query_indptr[i]:query_indptr[i + 1]]`, respectively.\n\n        Parameters:\n        -----------\n        query_indptr: array of integers, shape = (n_queries + 1,)\n            The query index pointer.\n\n        relevance_scores, array of integers, shape = (n_queries + 1,)\n            Specify the relevance score for each document.\n\n        ranking_scores: array, shape=(n_queries,)\n            Specify the ranking score for each document.\n\n        scale_values: array, shape=(n_queries,), optional\n            Should be None (defaults to all 1s).\n\n        out: array, shape=(n_documents,), optional\n            If not None, it will be filled with the metric value\n            for each individual query.\n        ";
+static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_10evaluate_queries[] = " \n        Evaluate the DCG metric on the specified queries. The relevance scores and\n        ranking scores of documents, which belong to query `i`, are in\n        `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` and\n        `ranking_scores[query_indptr[i]:query_indptr[i + 1]]`, respectively.\n\n        Parameters:\n        -----------\n        query_indptr: array of integers, shape = (n_queries + 1,)\n            The query index pointer.\n\n        relevance_scores, array of integers, shape = (n_queries + 1,)\n            Specify the relevance score for each document.\n\n        ranking_scores: array, shape=(n_queries,)\n            Specify the ranking score for each document.\n\n        scale_values: array, shape=(n_queries,), optional\n            Should be None (defaults to all 1s).\n\n        out: array, shape=(n_documents,), optional\n            If not None, it will be filled with the metric value\n            for each individual query.\n        ";
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_11evaluate_queries(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_query_indptr = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_relevance_scores = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -5221,26 +5228,26 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_relevance_scores)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("evaluate_queries", 1, 5, 5, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("evaluate_queries", 1, 5, 5, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ranking_scores)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("evaluate_queries", 1, 5, 5, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("evaluate_queries", 1, 5, 5, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_scale_values)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("evaluate_queries", 1, 5, 5, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("evaluate_queries", 1, 5, 5, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_out)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("evaluate_queries", 1, 5, 5, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("evaluate_queries", 1, 5, 5, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate_queries") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate_queries") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -5251,15 +5258,15 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
     }
-    __pyx_v_query_indptr = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[0]); if (unlikely(!__pyx_v_query_indptr.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[1]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t(values[2]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_scale_values = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t(values[3]); if (unlikely(!__pyx_v_scale_values.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_out = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t(values[4]); if (unlikely(!__pyx_v_out.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_query_indptr = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[0]); if (unlikely(!__pyx_v_query_indptr.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[1]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ranking_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t(values[2]); if (unlikely(!__pyx_v_ranking_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_scale_values = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t(values[3]); if (unlikely(!__pyx_v_scale_values.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_out = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t(values[4]); if (unlikely(!__pyx_v_out.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("evaluate_queries", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("evaluate_queries", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._metrics.DiscountedCumulativeGain.evaluate_queries", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5281,12 +5288,12 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("evaluate_queries", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_scale_values.memview)) { __Pyx_RaiseUnboundLocalError("scale_values"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_evaluate_queries(__pyx_v_self, __pyx_v_query_indptr, __pyx_v_relevance_scores, __pyx_v_ranking_scores, __pyx_v_scale_values, __pyx_v_out, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_ranking_scores.memview)) { __Pyx_RaiseUnboundLocalError("ranking_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_scale_values.memview)) { __Pyx_RaiseUnboundLocalError("scale_values"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_evaluate_queries(__pyx_v_self, __pyx_v_query_indptr, __pyx_v_relevance_scores, __pyx_v_ranking_scores, __pyx_v_scale_values, __pyx_v_out, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5308,7 +5315,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":443
+/* "rankpy/metrics/_metrics.pyx":446
  * 
  * 
  *     cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t[::1] out):             # <<<<<<<<<<<<<<
@@ -5342,24 +5349,24 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_d
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_delta); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_delta); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_13delta)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_i); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_i); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyInt_From_npy_int32(__pyx_v_offset); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyInt_From_npy_int32(__pyx_v_offset); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      if (unlikely(!__pyx_v_document_ranks.memview)) { __Pyx_RaiseUnboundLocalError("document_ranks"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_document_ranks, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_document_ranks.memview)) { __Pyx_RaiseUnboundLocalError("document_ranks"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_document_ranks, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_relevance_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_relevance_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_7 = PyFloat_FromDouble(__pyx_v_scale_value); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyFloat_FromDouble(__pyx_v_scale_value); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
-      if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_8 = __pyx_memoryview_fromslice(__pyx_v_out, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, 0);; if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_8 = __pyx_memoryview_fromslice(__pyx_v_out, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, 0);; if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_9 = __pyx_t_1; __pyx_t_10 = NULL;
@@ -5374,7 +5381,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_d
           __pyx_t_11 = 1;
         }
       }
-      __pyx_t_12 = PyTuple_New(6+__pyx_t_11); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_12 = PyTuple_New(6+__pyx_t_11); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_12);
       if (__pyx_t_10) {
         PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_10); __Pyx_GIVEREF(__pyx_t_10); __pyx_t_10 = NULL;
@@ -5397,7 +5404,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_d
       __pyx_t_6 = 0;
       __pyx_t_7 = 0;
       __pyx_t_8 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_12, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_12, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -5409,7 +5416,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_d
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":475
+  /* "rankpy/metrics/_metrics.pyx":478
  *             `len(document_ranks) - offset`.
  *         '''
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5423,7 +5430,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_d
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_metrics.pyx":476
+        /* "rankpy/metrics/_metrics.pyx":479
  *         '''
  *         with nogil:
  *             self.delta_c(i, offset, document_ranks.shape[0], &document_ranks[0], &relevance_scores[0], scale_value, &out[0])             # <<<<<<<<<<<<<<
@@ -5436,7 +5443,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_d
         ((struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base.delta_c(((struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *)__pyx_v_self), __pyx_v_i, __pyx_v_offset, (__pyx_v_document_ranks.shape[0]), (&(*((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) __pyx_v_document_ranks.data) + __pyx_t_11)) )))), (&(*((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) __pyx_v_relevance_scores.data) + __pyx_t_13)) )))), __pyx_v_scale_value, (&(*((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *) __pyx_v_out.data) + __pyx_t_14)) )))));
       }
 
-      /* "rankpy/metrics/_metrics.pyx":475
+      /* "rankpy/metrics/_metrics.pyx":478
  *             `len(document_ranks) - offset`.
  *         '''
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5454,7 +5461,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_d
       }
   }
 
-  /* "rankpy/metrics/_metrics.pyx":443
+  /* "rankpy/metrics/_metrics.pyx":446
  * 
  * 
  *     cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t[::1] out):             # <<<<<<<<<<<<<<
@@ -5487,7 +5494,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_d
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_13delta(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_12delta[] = "\n        Compute the change in the metric caused by swapping document `i` with every\n        document `offset`, `offset + 1`, ...\n\n        The relevance score and document rank of document `i` is `relevance_scores[i]`\n        and `document_ranks[i]`, respectively.\n\n        Parameters:\n        -----------\n        i: integer\n            The index of the one document that is being swapped with all\n            the others.\n\n        offset: integer\n            The start index of the sequence of documents that are\n            being swapped.\n\n        document_ranks: array of integers\n            Specify the rank for each document.\n\n        relevance_scores: array of integers\n            Specify the relevance score for each document.\n\n        scale_value: double, shape = (n_documents,)\n            Should be 1.0.\n\n        out: array of doubles\n            The output array. The array size is expected to be at least as big\n            as the the number of document pairs being swapped, which should be\n            `len(document_ranks) - offset`.\n        ";
+static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_12delta[] = " \n        Compute the change in the metric caused by swapping document `i` with every\n        document `offset`, `offset + 1`, ... (in turn)\n\n        The relevance score and document rank of document `i` is `relevance_scores[i]`\n        and `document_ranks[i]`, respectively.\n\n        Parameters:\n        -----------\n        i: integer\n            The index of the one document that is being swapped with all\n            the others.\n\n        offset: integer\n            The start index of the sequence of documents that are\n            being swapped.\n\n        document_ranks: array of integers\n            Specify the rank for each document.\n\n        relevance_scores: array of integers\n            Specify the relevance score for each document.\n\n        scale_value: double, shape = (n_documents,)\n            Should be 1.0.\n\n        out: array of doubles\n            The output array. The array size is expected to be at least as big\n            as the the number of document pairs being swapped, which should be\n            `len(document_ranks) - offset`.\n        ";
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_13delta(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __pyx_t_6rankpy_7metrics_8_metrics_INT_t __pyx_v_i;
   __pyx_t_6rankpy_7metrics_8_metrics_INT_t __pyx_v_offset;
@@ -5525,31 +5532,31 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_offset)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_document_ranks)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_relevance_scores)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_scale_value)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_out)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "delta") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "delta") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -5561,16 +5568,16 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
       values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
     }
-    __pyx_v_i = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_i == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_offset = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_offset == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_document_ranks = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[2]); if (unlikely(!__pyx_v_document_ranks.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[3]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_scale_value = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_scale_value == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_out = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t(values[5]); if (unlikely(!__pyx_v_out.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_i = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_i == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_offset = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_offset == (npy_int32)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_document_ranks = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[2]); if (unlikely(!__pyx_v_document_ranks.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[3]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_scale_value = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_scale_value == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_out = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t(values[5]); if (unlikely(!__pyx_v_out.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("delta", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._metrics.DiscountedCumulativeGain.delta", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5592,10 +5599,10 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("delta", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_document_ranks.memview)) { __Pyx_RaiseUnboundLocalError("document_ranks"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta(__pyx_v_self, __pyx_v_i, __pyx_v_offset, __pyx_v_document_ranks, __pyx_v_relevance_scores, __pyx_v_scale_value, __pyx_v_out, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_document_ranks.memview)) { __Pyx_RaiseUnboundLocalError("document_ranks"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_out.memview)) { __Pyx_RaiseUnboundLocalError("out"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta(__pyx_v_self, __pyx_v_i, __pyx_v_offset, __pyx_v_document_ranks, __pyx_v_relevance_scores, __pyx_v_scale_value, __pyx_v_out, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5615,7 +5622,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":479
+/* "rankpy/metrics/_metrics.pyx":482
  * 
  * 
  *     cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ideal_values):             # <<<<<<<<<<<<<<
@@ -5657,18 +5664,18 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_evaluate_queries_ideal); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_evaluate_queries_ideal); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_15evaluate_queries_ideal)) {
       __Pyx_XDECREF(__pyx_r);
-      if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_query_indptr, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_query_indptr, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_relevance_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_relevance_scores, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      if (unlikely(!__pyx_v_ideal_values.memview)) { __Pyx_RaiseUnboundLocalError("ideal_values"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_ideal_values, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, 0);; if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_ideal_values.memview)) { __Pyx_RaiseUnboundLocalError("ideal_values"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_ideal_values, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, 0);; if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_6 = __pyx_t_1; __pyx_t_7 = NULL;
@@ -5683,7 +5690,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_t_8 = 1;
         }
       }
-      __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_9);
       if (__pyx_t_7) {
         PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __Pyx_GIVEREF(__pyx_t_7); __pyx_t_7 = NULL;
@@ -5697,7 +5704,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       __pyx_t_3 = 0;
       __pyx_t_4 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -5709,7 +5716,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":501
+  /* "rankpy/metrics/_metrics.pyx":504
  *         cdef INT_t i, j, n_documents, cutoff
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5723,7 +5730,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_metrics.pyx":502
+        /* "rankpy/metrics/_metrics.pyx":505
  * 
  *         with nogil:
  *             for i in range(query_indptr.shape[0] - 1):             # <<<<<<<<<<<<<<
@@ -5734,7 +5741,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
         for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_8; __pyx_t_10+=1) {
           __pyx_v_i = __pyx_t_10;
 
-          /* "rankpy/metrics/_metrics.pyx":503
+          /* "rankpy/metrics/_metrics.pyx":506
  *         with nogil:
  *             for i in range(query_indptr.shape[0] - 1):
  *                 ideal_values[i] = 0.0             # <<<<<<<<<<<<<<
@@ -5744,7 +5751,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_t_11 = __pyx_v_i;
           *((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *) __pyx_v_ideal_values.data) + __pyx_t_11)) )) = 0.0;
 
-          /* "rankpy/metrics/_metrics.pyx":504
+          /* "rankpy/metrics/_metrics.pyx":507
  *             for i in range(query_indptr.shape[0] - 1):
  *                 ideal_values[i] = 0.0
  *                 n_documents = query_indptr[i + 1] - query_indptr[i]             # <<<<<<<<<<<<<<
@@ -5755,7 +5762,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           __pyx_t_13 = __pyx_v_i;
           __pyx_v_n_documents = ((*((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_12)) ))) - (*((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) ( /* dim=0 */ ((char *) (((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *) __pyx_v_query_indptr.data) + __pyx_t_13)) ))));
 
-          /* "rankpy/metrics/_metrics.pyx":505
+          /* "rankpy/metrics/_metrics.pyx":508
  *                 ideal_values[i] = 0.0
  *                 n_documents = query_indptr[i + 1] - query_indptr[i]
  *                 cutoff = n_documents if self.cutoff < 0 else imin(self.cutoff, n_documents)             # <<<<<<<<<<<<<<
@@ -5769,7 +5776,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           }
           __pyx_v_cutoff = __pyx_t_14;
 
-          /* "rankpy/metrics/_metrics.pyx":506
+          /* "rankpy/metrics/_metrics.pyx":509
  *                 n_documents = query_indptr[i + 1] - query_indptr[i]
  *                 cutoff = n_documents if self.cutoff < 0 else imin(self.cutoff, n_documents)
  *                 for j in range(cutoff):             # <<<<<<<<<<<<<<
@@ -5780,7 +5787,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
           for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_14; __pyx_t_15+=1) {
             __pyx_v_j = __pyx_t_15;
 
-            /* "rankpy/metrics/_metrics.pyx":507
+            /* "rankpy/metrics/_metrics.pyx":510
  *                 cutoff = n_documents if self.cutoff < 0 else imin(self.cutoff, n_documents)
  *                 for j in range(cutoff):
  *                     ideal_values[i] += self.gain_cache[relevance_scores[query_indptr[i] + j]] / self.discount_cache[j]             # <<<<<<<<<<<<<<
@@ -5795,7 +5802,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
         }
       }
 
-      /* "rankpy/metrics/_metrics.pyx":501
+      /* "rankpy/metrics/_metrics.pyx":504
  *         cdef INT_t i, j, n_documents, cutoff
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -5813,7 +5820,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
       }
   }
 
-  /* "rankpy/metrics/_metrics.pyx":479
+  /* "rankpy/metrics/_metrics.pyx":482
  * 
  * 
  *     cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ideal_values):             # <<<<<<<<<<<<<<
@@ -5843,7 +5850,7 @@ static PyObject *__pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_e
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_15evaluate_queries_ideal(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_14evaluate_queries_ideal[] = "\n        Compute the ideal DCG metric value for every one of the specified queries.\n\n        The relevance scores of documents, which belong to query `i`, should be\n        stored in `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` in\n        descending order.\n\n        Parameters:\n        -----------\n        query_indptr: array of integers, shape = (n_queries + 1,)\n            The query index pointer.\n\n        relevance_scores, array of integers, shape = (n_documents,)\n            Specify the relevance score for each document. It is expected\n            that these values are sorted in descending order.\n\n        ideal_values: output array of doubles, shape=(n_queries,)\n            Output array for the ideal metric value of each query.\n        ";
+static char __pyx_doc_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_14evaluate_queries_ideal[] = " \n        Compute the ideal DCG metric value for every one of the specified queries.\n\n        The relevance scores of documents, which belong to query `i`, must be\n        stored in `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` in\n        descending order.\n\n        Parameters:\n        -----------\n        query_indptr: array of integers, shape = (n_queries + 1,)\n            The query index pointer.\n\n        relevance_scores, array of integers, shape = (n_documents,)\n            Specify the relevance score for each document. It is expected\n            that these values are sorted in descending order.\n\n        ideal_values: output array of doubles, shape=(n_queries,)\n            Output array for the ideal metric value of each query.\n        ";
 static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_15evaluate_queries_ideal(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_query_indptr = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_relevance_scores = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -5875,16 +5882,16 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_relevance_scores)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("evaluate_queries_ideal", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("evaluate_queries_ideal", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ideal_values)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("evaluate_queries_ideal", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("evaluate_queries_ideal", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate_queries_ideal") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate_queries_ideal") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -5893,13 +5900,13 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_query_indptr = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[0]); if (unlikely(!__pyx_v_query_indptr.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[1]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ideal_values = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t(values[2]); if (unlikely(!__pyx_v_ideal_values.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_query_indptr = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[0]); if (unlikely(!__pyx_v_query_indptr.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_relevance_scores = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t(values[1]); if (unlikely(!__pyx_v_relevance_scores.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ideal_values = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t(values[2]); if (unlikely(!__pyx_v_ideal_values.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("evaluate_queries_ideal", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("evaluate_queries_ideal", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._metrics.DiscountedCumulativeGain.evaluate_queries_ideal", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5921,10 +5928,10 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("evaluate_queries_ideal", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_ideal_values.memview)) { __Pyx_RaiseUnboundLocalError("ideal_values"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_evaluate_queries_ideal(__pyx_v_self, __pyx_v_query_indptr, __pyx_v_relevance_scores, __pyx_v_ideal_values, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_query_indptr.memview)) { __Pyx_RaiseUnboundLocalError("query_indptr"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_relevance_scores.memview)) { __Pyx_RaiseUnboundLocalError("relevance_scores"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_ideal_values.memview)) { __Pyx_RaiseUnboundLocalError("ideal_values"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_evaluate_queries_ideal(__pyx_v_self, __pyx_v_query_indptr, __pyx_v_relevance_scores, __pyx_v_ideal_values, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5944,7 +5951,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":510
+/* "rankpy/metrics/_metrics.pyx":513
  * 
  * 
  *     cdef void delta_c(self, INT_t i, INT_t offset, INT_t n_documents, INT_t *document_ranks, INT_t *relevance_scores, DOUBLE_t scale_value, DOUBLE_t *out) nogil:             # <<<<<<<<<<<<<<
@@ -5965,7 +5972,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
   __pyx_t_6rankpy_7metrics_8_metrics_INT_t __pyx_t_3;
   int __pyx_t_4;
 
-  /* "rankpy/metrics/_metrics.pyx":519
+  /* "rankpy/metrics/_metrics.pyx":522
  *             bint i_above_cutoff, j_above_cutoff
  * 
  *         n_swapped_document_pairs = n_documents - offset             # <<<<<<<<<<<<<<
@@ -5974,7 +5981,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
  */
   __pyx_v_n_swapped_document_pairs = (__pyx_v_n_documents - __pyx_v_offset);
 
-  /* "rankpy/metrics/_metrics.pyx":520
+  /* "rankpy/metrics/_metrics.pyx":523
  * 
  *         n_swapped_document_pairs = n_documents - offset
  *         cutoff  = n_documents if self.cutoff < 0 else self.cutoff             # <<<<<<<<<<<<<<
@@ -5988,7 +5995,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
   }
   __pyx_v_cutoff = __pyx_t_1;
 
-  /* "rankpy/metrics/_metrics.pyx":522
+  /* "rankpy/metrics/_metrics.pyx":525
  *         cutoff  = n_documents if self.cutoff < 0 else self.cutoff
  * 
  *         i_relevance_score = self.gain_cache[relevance_scores[i]]             # <<<<<<<<<<<<<<
@@ -5997,7 +6004,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
  */
   __pyx_v_i_relevance_score = (__pyx_v_self->gain_cache[(__pyx_v_relevance_scores[__pyx_v_i])]);
 
-  /* "rankpy/metrics/_metrics.pyx":523
+  /* "rankpy/metrics/_metrics.pyx":526
  * 
  *         i_relevance_score = self.gain_cache[relevance_scores[i]]
  *         i_position_discount = self.discount_cache[document_ranks[i]]             # <<<<<<<<<<<<<<
@@ -6006,7 +6013,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
  */
   __pyx_v_i_position_discount = (__pyx_v_self->discount_cache[(__pyx_v_document_ranks[__pyx_v_i])]);
 
-  /* "rankpy/metrics/_metrics.pyx":524
+  /* "rankpy/metrics/_metrics.pyx":527
  *         i_relevance_score = self.gain_cache[relevance_scores[i]]
  *         i_position_discount = self.discount_cache[document_ranks[i]]
  *         i_above_cutoff = (document_ranks[i] < cutoff)             # <<<<<<<<<<<<<<
@@ -6015,7 +6022,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
  */
   __pyx_v_i_above_cutoff = ((__pyx_v_document_ranks[__pyx_v_i]) < __pyx_v_cutoff);
 
-  /* "rankpy/metrics/_metrics.pyx":527
+  /* "rankpy/metrics/_metrics.pyx":530
  * 
  *         # Does the document 'i' influences the evaluation (at all)?
  *         if i_above_cutoff:             # <<<<<<<<<<<<<<
@@ -6025,7 +6032,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
   __pyx_t_2 = (__pyx_v_i_above_cutoff != 0);
   if (__pyx_t_2) {
 
-    /* "rankpy/metrics/_metrics.pyx":528
+    /* "rankpy/metrics/_metrics.pyx":531
  *         # Does the document 'i' influences the evaluation (at all)?
  *         if i_above_cutoff:
  *             for j in range(n_swapped_document_pairs):             # <<<<<<<<<<<<<<
@@ -6036,7 +6043,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
     for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_1; __pyx_t_3+=1) {
       __pyx_v_j = __pyx_t_3;
 
-      /* "rankpy/metrics/_metrics.pyx":529
+      /* "rankpy/metrics/_metrics.pyx":532
  *         if i_above_cutoff:
  *             for j in range(n_swapped_document_pairs):
  *                 out[j] = -i_relevance_score / i_position_discount             # <<<<<<<<<<<<<<
@@ -6049,7 +6056,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
   }
   /*else*/ {
 
-    /* "rankpy/metrics/_metrics.pyx":531
+    /* "rankpy/metrics/_metrics.pyx":534
  *                 out[j] = -i_relevance_score / i_position_discount
  *         else:
  *             for j in range(n_swapped_document_pairs):             # <<<<<<<<<<<<<<
@@ -6060,7 +6067,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
     for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_1; __pyx_t_3+=1) {
       __pyx_v_j = __pyx_t_3;
 
-      /* "rankpy/metrics/_metrics.pyx":532
+      /* "rankpy/metrics/_metrics.pyx":535
  *         else:
  *             for j in range(n_swapped_document_pairs):
  *                 out[j] = 0.0             # <<<<<<<<<<<<<<
@@ -6072,7 +6079,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
   }
   __pyx_L3:;
 
-  /* "rankpy/metrics/_metrics.pyx":534
+  /* "rankpy/metrics/_metrics.pyx":537
  *                 out[j] = 0.0
  * 
  *         for j in range(offset, n_documents):             # <<<<<<<<<<<<<<
@@ -6083,7 +6090,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
   for (__pyx_t_3 = __pyx_v_offset; __pyx_t_3 < __pyx_t_1; __pyx_t_3+=1) {
     __pyx_v_j = __pyx_t_3;
 
-    /* "rankpy/metrics/_metrics.pyx":535
+    /* "rankpy/metrics/_metrics.pyx":538
  * 
  *         for j in range(offset, n_documents):
  *             j_above_cutoff = (document_ranks[j] < cutoff)             # <<<<<<<<<<<<<<
@@ -6092,7 +6099,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
  */
     __pyx_v_j_above_cutoff = ((__pyx_v_document_ranks[__pyx_v_j]) < __pyx_v_cutoff);
 
-    /* "rankpy/metrics/_metrics.pyx":537
+    /* "rankpy/metrics/_metrics.pyx":540
  *             j_above_cutoff = (document_ranks[j] < cutoff)
  * 
  *             if j_above_cutoff:             # <<<<<<<<<<<<<<
@@ -6102,7 +6109,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
     __pyx_t_2 = (__pyx_v_j_above_cutoff != 0);
     if (__pyx_t_2) {
 
-      /* "rankpy/metrics/_metrics.pyx":538
+      /* "rankpy/metrics/_metrics.pyx":541
  * 
  *             if j_above_cutoff:
  *                 out[j - offset] += (i_relevance_score - self.gain_cache[relevance_scores[j]]) / self.discount_cache[document_ranks[j]]             # <<<<<<<<<<<<<<
@@ -6115,7 +6122,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
     }
     __pyx_L10:;
 
-    /* "rankpy/metrics/_metrics.pyx":540
+    /* "rankpy/metrics/_metrics.pyx":543
  *                 out[j - offset] += (i_relevance_score - self.gain_cache[relevance_scores[j]]) / self.discount_cache[document_ranks[j]]
  * 
  *             if i_above_cutoff:             # <<<<<<<<<<<<<<
@@ -6125,7 +6132,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
     __pyx_t_2 = (__pyx_v_i_above_cutoff != 0);
     if (__pyx_t_2) {
 
-      /* "rankpy/metrics/_metrics.pyx":541
+      /* "rankpy/metrics/_metrics.pyx":544
  * 
  *             if i_above_cutoff:
  *                 out[j - offset] += self.gain_cache[relevance_scores[j]] / i_position_discount             # <<<<<<<<<<<<<<
@@ -6139,7 +6146,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
     __pyx_L11:;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":543
+  /* "rankpy/metrics/_metrics.pyx":546
  *                 out[j - offset] += self.gain_cache[relevance_scores[j]] / i_position_discount
  * 
  *         if scale_value != 1.0:             # <<<<<<<<<<<<<<
@@ -6149,7 +6156,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
   __pyx_t_2 = ((__pyx_v_scale_value != 1.0) != 0);
   if (__pyx_t_2) {
 
-    /* "rankpy/metrics/_metrics.pyx":545
+    /* "rankpy/metrics/_metrics.pyx":548
  *         if scale_value != 1.0:
  *             # Should we worry about precision?
  *             if scale_value == 0.0:             # <<<<<<<<<<<<<<
@@ -6159,7 +6166,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
     __pyx_t_2 = ((__pyx_v_scale_value == 0.0) != 0);
     if (__pyx_t_2) {
 
-      /* "rankpy/metrics/_metrics.pyx":546
+      /* "rankpy/metrics/_metrics.pyx":549
  *             # Should we worry about precision?
  *             if scale_value == 0.0:
  *                 for j in range(n_swapped_document_pairs):             # <<<<<<<<<<<<<<
@@ -6170,7 +6177,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
       for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_1; __pyx_t_3+=1) {
         __pyx_v_j = __pyx_t_3;
 
-        /* "rankpy/metrics/_metrics.pyx":547
+        /* "rankpy/metrics/_metrics.pyx":550
  *             if scale_value == 0.0:
  *                 for j in range(n_swapped_document_pairs):
  *                     out[j] = 0.0             # <<<<<<<<<<<<<<
@@ -6183,7 +6190,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
     }
     /*else*/ {
 
-      /* "rankpy/metrics/_metrics.pyx":549
+      /* "rankpy/metrics/_metrics.pyx":552
  *                     out[j] = 0.0
  *             else:
  *                 for j in range(n_swapped_document_pairs):             # <<<<<<<<<<<<<<
@@ -6194,7 +6201,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
       for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_1; __pyx_t_3+=1) {
         __pyx_v_j = __pyx_t_3;
 
-        /* "rankpy/metrics/_metrics.pyx":550
+        /* "rankpy/metrics/_metrics.pyx":553
  *             else:
  *                 for j in range(n_swapped_document_pairs):
  *                     out[j] = fabs(out[j] / scale_value)             # <<<<<<<<<<<<<<
@@ -6209,7 +6216,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
   }
   /*else*/ {
 
-    /* "rankpy/metrics/_metrics.pyx":552
+    /* "rankpy/metrics/_metrics.pyx":555
  *                     out[j] = fabs(out[j] / scale_value)
  *         else:
  *             for j in range(n_swapped_document_pairs):             # <<<<<<<<<<<<<<
@@ -6220,7 +6227,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
     for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_1; __pyx_t_3+=1) {
       __pyx_v_j = __pyx_t_3;
 
-      /* "rankpy/metrics/_metrics.pyx":553
+      /* "rankpy/metrics/_metrics.pyx":556
  *         else:
  *             for j in range(n_swapped_document_pairs):
  *                 out[j] = fabs(out[j])             # <<<<<<<<<<<<<<
@@ -6232,7 +6239,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
   }
   __pyx_L12:;
 
-  /* "rankpy/metrics/_metrics.pyx":510
+  /* "rankpy/metrics/_metrics.pyx":513
  * 
  * 
  *     cdef void delta_c(self, INT_t i, INT_t offset, INT_t n_documents, INT_t *document_ranks, INT_t *relevance_scores, DOUBLE_t scale_value, DOUBLE_t *out) nogil:             # <<<<<<<<<<<<<<
@@ -6243,7 +6250,7 @@ static void __pyx_f_6rankpy_7metrics_8_metrics_24DiscountedCumulativeGain_delta_
   /* function exit code */
 }
 
-/* "rankpy/metrics/_metrics.pyx":566
+/* "rankpy/metrics/_metrics.pyx":569
  *     cdef object    weights_func   # The Python function computing the weight of a given position.
  * 
  *     def __cinit__(self, weights, capacity=1024):             # <<<<<<<<<<<<<<
@@ -6287,7 +6294,7 @@ static int __pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_1__cinit__(PyObject 
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 566; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 569; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -6302,7 +6309,7 @@ static int __pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_1__cinit__(PyObject 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 566; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 569; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._metrics.KendallTau.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -6320,7 +6327,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau___cinit__(struct __p
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "rankpy/metrics/_metrics.pyx":589
+  /* "rankpy/metrics/_metrics.pyx":592
  *             weight values.
  *         '''
  *         self.mapping = NULL             # <<<<<<<<<<<<<<
@@ -6329,7 +6336,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau___cinit__(struct __p
  */
   __pyx_v_self->mapping = NULL;
 
-  /* "rankpy/metrics/_metrics.pyx":590
+  /* "rankpy/metrics/_metrics.pyx":593
  *         '''
  *         self.mapping = NULL
  *         self.fenwick = NULL             # <<<<<<<<<<<<<<
@@ -6338,7 +6345,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau___cinit__(struct __p
  */
   __pyx_v_self->fenwick = NULL;
 
-  /* "rankpy/metrics/_metrics.pyx":591
+  /* "rankpy/metrics/_metrics.pyx":594
  *         self.mapping = NULL
  *         self.fenwick = NULL
  *         self.weights = NULL             # <<<<<<<<<<<<<<
@@ -6347,7 +6354,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau___cinit__(struct __p
  */
   __pyx_v_self->weights = NULL;
 
-  /* "rankpy/metrics/_metrics.pyx":592
+  /* "rankpy/metrics/_metrics.pyx":595
  *         self.fenwick = NULL
  *         self.weights = NULL
  *         self.size = 0             # <<<<<<<<<<<<<<
@@ -6356,7 +6363,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau___cinit__(struct __p
  */
   __pyx_v_self->size = 0;
 
-  /* "rankpy/metrics/_metrics.pyx":593
+  /* "rankpy/metrics/_metrics.pyx":596
  *         self.weights = NULL
  *         self.size = 0
  *         self.weights_func = weights             # <<<<<<<<<<<<<<
@@ -6369,7 +6376,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau___cinit__(struct __p
   __Pyx_DECREF(__pyx_v_self->weights_func);
   __pyx_v_self->weights_func = __pyx_v_weights;
 
-  /* "rankpy/metrics/_metrics.pyx":595
+  /* "rankpy/metrics/_metrics.pyx":598
  *         self.weights_func = weights
  *         # Initialize the internal arrays.
  *         self.inflate_arrays()             # <<<<<<<<<<<<<<
@@ -6378,7 +6385,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau___cinit__(struct __p
  */
   ((struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_KendallTau *)__pyx_v_self->__pyx_vtab)->inflate_arrays(__pyx_v_self, NULL);
 
-  /* "rankpy/metrics/_metrics.pyx":566
+  /* "rankpy/metrics/_metrics.pyx":569
  *     cdef object    weights_func   # The Python function computing the weight of a given position.
  * 
  *     def __cinit__(self, weights, capacity=1024):             # <<<<<<<<<<<<<<
@@ -6392,7 +6399,7 @@ static int __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau___cinit__(struct __p
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":598
+/* "rankpy/metrics/_metrics.pyx":601
  * 
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -6415,7 +6422,7 @@ static void __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_2__dealloc__(struct
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "rankpy/metrics/_metrics.pyx":602
+  /* "rankpy/metrics/_metrics.pyx":605
  *         Free the allocated memory for internal arrays.
  *         '''
  *         free(self.mapping)             # <<<<<<<<<<<<<<
@@ -6424,7 +6431,7 @@ static void __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_2__dealloc__(struct
  */
   free(__pyx_v_self->mapping);
 
-  /* "rankpy/metrics/_metrics.pyx":603
+  /* "rankpy/metrics/_metrics.pyx":606
  *         '''
  *         free(self.mapping)
  *         free(self.fenwick)             # <<<<<<<<<<<<<<
@@ -6433,7 +6440,7 @@ static void __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_2__dealloc__(struct
  */
   free(__pyx_v_self->fenwick);
 
-  /* "rankpy/metrics/_metrics.pyx":604
+  /* "rankpy/metrics/_metrics.pyx":607
  *         free(self.mapping)
  *         free(self.fenwick)
  *         free(self.weights)             # <<<<<<<<<<<<<<
@@ -6442,7 +6449,7 @@ static void __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_2__dealloc__(struct
  */
   free(__pyx_v_self->weights);
 
-  /* "rankpy/metrics/_metrics.pyx":598
+  /* "rankpy/metrics/_metrics.pyx":601
  * 
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -6454,7 +6461,206 @@ static void __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_2__dealloc__(struct
   __Pyx_RefNannyFinishContext();
 }
 
-/* "rankpy/metrics/_metrics.pyx":607
+/* "rankpy/metrics/_metrics.pyx":610
+ * 
+ * 
+ *     def __reduce__(self):             # <<<<<<<<<<<<<<
+ *         return (KendallTau, (self.weights_func,), self.__getstate__())
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_5__reduce__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_5__reduce__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__reduce__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4__reduce__(((struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4__reduce__(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__reduce__", 0);
+
+  /* "rankpy/metrics/_metrics.pyx":611
+ * 
+ *     def __reduce__(self):
+ *         return (KendallTau, (self.weights_func,), self.__getstate__())             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__pyx_v_self->weights_func);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_self->weights_func);
+  __Pyx_GIVEREF(__pyx_v_self->weights_func);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  if (__pyx_t_4) {
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  } else {
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_6rankpy_7metrics_8_metrics_KendallTau)));
+  PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)((PyObject*)__pyx_ptype_6rankpy_7metrics_8_metrics_KendallTau)));
+  __Pyx_GIVEREF(((PyObject *)((PyObject*)__pyx_ptype_6rankpy_7metrics_8_metrics_KendallTau)));
+  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "rankpy/metrics/_metrics.pyx":610
+ * 
+ * 
+ *     def __reduce__(self):             # <<<<<<<<<<<<<<
+ *         return (KendallTau, (self.weights_func,), self.__getstate__())
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("rankpy.metrics._metrics.KendallTau.__reduce__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "rankpy/metrics/_metrics.pyx":614
+ * 
+ * 
+ *     def __getstate__(self):             # <<<<<<<<<<<<<<
+ *         return {}
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_7__getstate__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_7__getstate__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__getstate__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6__getstate__(((struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6__getstate__(CYTHON_UNUSED struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__getstate__", 0);
+
+  /* "rankpy/metrics/_metrics.pyx":615
+ * 
+ *     def __getstate__(self):
+ *         return {}             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "rankpy/metrics/_metrics.pyx":614
+ * 
+ * 
+ *     def __getstate__(self):             # <<<<<<<<<<<<<<
+ *         return {}
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("rankpy.metrics._metrics.KendallTau.__getstate__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "rankpy/metrics/_metrics.pyx":618
+ * 
+ * 
+ *     def __setstate__(self, d):             # <<<<<<<<<<<<<<
+ *         pass
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_9__setstate__(PyObject *__pyx_v_self, PyObject *__pyx_v_d); /*proto*/
+static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_9__setstate__(PyObject *__pyx_v_self, PyObject *__pyx_v_d) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__setstate__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_8__setstate__(((struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *)__pyx_v_self), ((PyObject *)__pyx_v_d));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_8__setstate__(CYTHON_UNUSED struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_d) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__setstate__", 0);
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "rankpy/metrics/_metrics.pyx":622
  * 
  * 
  *     cdef int inflate_arrays(self, capacity=-1):             # <<<<<<<<<<<<<<
@@ -6490,18 +6696,18 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
   }
   __Pyx_INCREF(__pyx_v_capacity);
 
-  /* "rankpy/metrics/_metrics.pyx":631
+  /* "rankpy/metrics/_metrics.pyx":646
  *         cdef void * ptr
  * 
  *         if capacity <= self.size and self.mapping != NULL:             # <<<<<<<<<<<<<<
  *             return 0
  * 
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->size); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 631; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->size); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 646; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_v_capacity, __pyx_t_2, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 631; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyObject_RichCompare(__pyx_v_capacity, __pyx_t_2, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 646; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 631; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 646; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_4) {
   } else {
@@ -6513,7 +6719,7 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":632
+    /* "rankpy/metrics/_metrics.pyx":647
  * 
  *         if capacity <= self.size and self.mapping != NULL:
  *             return 0             # <<<<<<<<<<<<<<
@@ -6524,19 +6730,19 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
     goto __pyx_L0;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":634
+  /* "rankpy/metrics/_metrics.pyx":649
  *             return 0
  * 
  *         if capacity <= -1:             # <<<<<<<<<<<<<<
  *             if self.size == 0:
  *                 # Initial capacity.
  */
-  __pyx_t_3 = PyObject_RichCompare(__pyx_v_capacity, __pyx_int_neg_1, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 634; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 634; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyObject_RichCompare(__pyx_v_capacity, __pyx_int_neg_1, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 649; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 649; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":635
+    /* "rankpy/metrics/_metrics.pyx":650
  * 
  *         if capacity <= -1:
  *             if self.size == 0:             # <<<<<<<<<<<<<<
@@ -6546,7 +6752,7 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
     __pyx_t_1 = ((__pyx_v_self->size == 0) != 0);
     if (__pyx_t_1) {
 
-      /* "rankpy/metrics/_metrics.pyx":637
+      /* "rankpy/metrics/_metrics.pyx":652
  *             if self.size == 0:
  *                 # Initial capacity.
  *                 capacity = 1024             # <<<<<<<<<<<<<<
@@ -6559,14 +6765,14 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
     }
     /*else*/ {
 
-      /* "rankpy/metrics/_metrics.pyx":640
+      /* "rankpy/metrics/_metrics.pyx":655
  *             else:
  *                 # Double the current capacity.
  *                 capacity = 2 * self.size             # <<<<<<<<<<<<<<
  * 
  *         # Because documents not appearing in both lists
  */
-      __pyx_t_3 = __Pyx_PyInt_From_long((2 * __pyx_v_self->size)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 640; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_long((2 * __pyx_v_self->size)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 655; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF_SET(__pyx_v_capacity, __pyx_t_3);
       __pyx_t_3 = 0;
@@ -6576,36 +6782,36 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
   }
   __pyx_L6:;
 
-  /* "rankpy/metrics/_metrics.pyx":645
+  /* "rankpy/metrics/_metrics.pyx":660
  *         # are treated as if they were sitting at the
  *         # first position following the end of the lists.
  *         capacity += 1             # <<<<<<<<<<<<<<
  * 
  *         # Allocate mapping array.
  */
-  __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_v_capacity, __pyx_int_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 645; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_v_capacity, __pyx_int_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF_SET(__pyx_v_capacity, __pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "rankpy/metrics/_metrics.pyx":649
+  /* "rankpy/metrics/_metrics.pyx":664
  *         # Allocate mapping array.
  *         #########################
- *         ptr = realloc(self.mapping, capacity * sizeof(LONG_t))             # <<<<<<<<<<<<<<
+ *         ptr = realloc(self.mapping, capacity * sizeof(INT_t))             # <<<<<<<<<<<<<<
  * 
  *         if ptr == NULL:
  */
-  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_LONG_t))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 649; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_INT_t))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_v_capacity, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 649; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyNumber_Multiply(__pyx_v_capacity, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 649; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_ptr = realloc(__pyx_v_self->mapping, __pyx_t_5);
 
-  /* "rankpy/metrics/_metrics.pyx":651
- *         ptr = realloc(self.mapping, capacity * sizeof(LONG_t))
+  /* "rankpy/metrics/_metrics.pyx":666
+ *         ptr = realloc(self.mapping, capacity * sizeof(INT_t))
  * 
  *         if ptr == NULL:             # <<<<<<<<<<<<<<
  *             return -1
@@ -6614,74 +6820,74 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
   __pyx_t_1 = ((__pyx_v_ptr == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":652
+    /* "rankpy/metrics/_metrics.pyx":667
  * 
  *         if ptr == NULL:
  *             return -1             # <<<<<<<<<<<<<<
  * 
- *         self.mapping = <LONG_t *> ptr
+ *         self.mapping = <INT_t *> ptr
  */
     __pyx_r = -1;
     goto __pyx_L0;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":654
+  /* "rankpy/metrics/_metrics.pyx":669
  *             return -1
  * 
- *         self.mapping = <LONG_t *> ptr             # <<<<<<<<<<<<<<
+ *         self.mapping = <INT_t *> ptr             # <<<<<<<<<<<<<<
  * 
  *         # Initialize the new elements to -1.
  */
-  __pyx_v_self->mapping = ((__pyx_t_6rankpy_7metrics_8_metrics_LONG_t *)__pyx_v_ptr);
+  __pyx_v_self->mapping = ((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *)__pyx_v_ptr);
 
-  /* "rankpy/metrics/_metrics.pyx":658
+  /* "rankpy/metrics/_metrics.pyx":673
  *         # Initialize the new elements to -1.
  *         memset(<void *>(self.mapping + self.size), -1,
- *                (capacity - self.size) * sizeof(LONG_t))             # <<<<<<<<<<<<<<
+ *                (capacity - self.size) * sizeof(INT_t))             # <<<<<<<<<<<<<<
  * 
  *         # Allocate fenwick array.
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->size); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->size); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Subtract(__pyx_v_capacity, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyNumber_Subtract(__pyx_v_capacity, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_FromSize_t((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_LONG_t))); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_FromSize_t((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_INT_t))); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = PyNumber_Multiply(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyNumber_Multiply(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_6); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 658; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_6); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "rankpy/metrics/_metrics.pyx":657
+  /* "rankpy/metrics/_metrics.pyx":672
  * 
  *         # Initialize the new elements to -1.
  *         memset(<void *>(self.mapping + self.size), -1,             # <<<<<<<<<<<<<<
- *                (capacity - self.size) * sizeof(LONG_t))
+ *                (capacity - self.size) * sizeof(INT_t))
  * 
  */
   memset(((void *)(__pyx_v_self->mapping + __pyx_v_self->size)), -1, __pyx_t_5);
 
-  /* "rankpy/metrics/_metrics.pyx":662
+  /* "rankpy/metrics/_metrics.pyx":677
  *         # Allocate fenwick array.
  *         #########################
- *         ptr = realloc(self.fenwick, capacity * sizeof(LONG_t))             # <<<<<<<<<<<<<<
+ *         ptr = realloc(self.fenwick, capacity * sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
  * 
  *         if ptr == NULL:
  */
-  __pyx_t_6 = __Pyx_PyInt_FromSize_t((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_LONG_t))); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 662; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyInt_FromSize_t((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t))); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 677; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_v_capacity, __pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 662; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyNumber_Multiply(__pyx_v_capacity, __pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 677; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 662; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 677; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_ptr = realloc(__pyx_v_self->fenwick, __pyx_t_5);
 
-  /* "rankpy/metrics/_metrics.pyx":664
- *         ptr = realloc(self.fenwick, capacity * sizeof(LONG_t))
+  /* "rankpy/metrics/_metrics.pyx":679
+ *         ptr = realloc(self.fenwick, capacity * sizeof(DOUBLE_t))
  * 
  *         if ptr == NULL:             # <<<<<<<<<<<<<<
  *             return -1
@@ -6690,7 +6896,7 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
   __pyx_t_1 = ((__pyx_v_ptr == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":665
+    /* "rankpy/metrics/_metrics.pyx":680
  * 
  *         if ptr == NULL:
  *             return -1             # <<<<<<<<<<<<<<
@@ -6701,7 +6907,7 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
     goto __pyx_L0;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":667
+  /* "rankpy/metrics/_metrics.pyx":682
  *             return -1
  * 
  *         self.fenwick = <DOUBLE_t *> ptr             # <<<<<<<<<<<<<<
@@ -6710,28 +6916,28 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
  */
   __pyx_v_self->fenwick = ((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *)__pyx_v_ptr);
 
-  /* "rankpy/metrics/_metrics.pyx":671
+  /* "rankpy/metrics/_metrics.pyx":686
  *         # Initialize the new elements to 0.
  *         memset(<void *>(self.fenwick + self.size), 0,
  *                (capacity - self.size) * sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
  * 
  *         # Allocate weights array.
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->size); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->size); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = PyNumber_Subtract(__pyx_v_capacity, __pyx_t_2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyNumber_Subtract(__pyx_v_capacity, __pyx_t_2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_FromSize_t((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t))); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_FromSize_t((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t))); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_3); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 671; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_3); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "rankpy/metrics/_metrics.pyx":670
+  /* "rankpy/metrics/_metrics.pyx":685
  * 
  *         # Initialize the new elements to 0.
  *         memset(<void *>(self.fenwick + self.size), 0,             # <<<<<<<<<<<<<<
@@ -6740,23 +6946,23 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
  */
   memset(((void *)(__pyx_v_self->fenwick + __pyx_v_self->size)), 0, __pyx_t_5);
 
-  /* "rankpy/metrics/_metrics.pyx":675
+  /* "rankpy/metrics/_metrics.pyx":690
  *         # Allocate weights array.
  *         #########################
  *         ptr = realloc(self.weights, capacity * sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
  * 
  *         if ptr == NULL:
  */
-  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 675; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_FromSize_t((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t))); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 690; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_v_capacity, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 675; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyNumber_Multiply(__pyx_v_capacity, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 690; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 675; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (size_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 690; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_ptr = realloc(__pyx_v_self->weights, __pyx_t_5);
 
-  /* "rankpy/metrics/_metrics.pyx":677
+  /* "rankpy/metrics/_metrics.pyx":692
  *         ptr = realloc(self.weights, capacity * sizeof(DOUBLE_t))
  * 
  *         if ptr == NULL:             # <<<<<<<<<<<<<<
@@ -6766,7 +6972,7 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
   __pyx_t_1 = ((__pyx_v_ptr == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":678
+    /* "rankpy/metrics/_metrics.pyx":693
  * 
  *         if ptr == NULL:
  *             return -1             # <<<<<<<<<<<<<<
@@ -6777,7 +6983,7 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
     goto __pyx_L0;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":680
+  /* "rankpy/metrics/_metrics.pyx":695
  *             return -1
  * 
  *         self.weights = <DOUBLE_t *> ptr             # <<<<<<<<<<<<<<
@@ -6786,25 +6992,25 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
  */
   __pyx_v_self->weights = ((__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *)__pyx_v_ptr);
 
-  /* "rankpy/metrics/_metrics.pyx":683
+  /* "rankpy/metrics/_metrics.pyx":698
  * 
  *         # Initialize the values of new weights using `self.weights_func`.
  *         for i in range(self.size, capacity):             # <<<<<<<<<<<<<<
  *             self.weights[i] = self.weights_func(i)
  * 
  */
-  __pyx_t_7 = __Pyx_PyInt_As_long(__pyx_v_capacity); if (unlikely((__pyx_t_7 == (long)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 683; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyInt_As_long(__pyx_v_capacity); if (unlikely((__pyx_t_7 == (long)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 698; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   for (__pyx_t_8 = __pyx_v_self->size; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
     __pyx_v_i = __pyx_t_8;
 
-    /* "rankpy/metrics/_metrics.pyx":684
+    /* "rankpy/metrics/_metrics.pyx":699
  *         # Initialize the values of new weights using `self.weights_func`.
  *         for i in range(self.size, capacity):
  *             self.weights[i] = self.weights_func(i)             # <<<<<<<<<<<<<<
  * 
  *         self.size = capacity
  */
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 699; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_v_self->weights_func);
     __pyx_t_6 = __pyx_v_self->weights_func; __pyx_t_9 = NULL;
@@ -6818,37 +7024,37 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
       }
     }
     if (!__pyx_t_9) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 699; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 699; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_10);
       PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_9); __Pyx_GIVEREF(__pyx_t_9); __pyx_t_9 = NULL;
       PyTuple_SET_ITEM(__pyx_t_10, 0+1, __pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_10, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_10, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 699; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     }
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 684; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_11 == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 699; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     (__pyx_v_self->weights[__pyx_v_i]) = __pyx_t_11;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":686
+  /* "rankpy/metrics/_metrics.pyx":701
  *             self.weights[i] = self.weights_func(i)
  * 
  *         self.size = capacity             # <<<<<<<<<<<<<<
  *         return 0
  * 
  */
-  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_v_capacity); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_v_capacity); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->size = __pyx_t_8;
 
-  /* "rankpy/metrics/_metrics.pyx":687
+  /* "rankpy/metrics/_metrics.pyx":702
  * 
  *         self.size = capacity
  *         return 0             # <<<<<<<<<<<<<<
@@ -6858,7 +7064,7 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":607
+  /* "rankpy/metrics/_metrics.pyx":622
  * 
  * 
  *     cdef int inflate_arrays(self, capacity=-1):             # <<<<<<<<<<<<<<
@@ -6881,7 +7087,7 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":690
+/* "rankpy/metrics/_metrics.pyx":705
  * 
  * 
  *     def evaluate(self, X, check_input=True):             # <<<<<<<<<<<<<<
@@ -6890,9 +7096,9 @@ static int __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays(struct
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_5evaluate(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate[] = "\n        Computes the Kendall Tau distance between the given\n        list X and its ascendingly sorted version.\n        ";
-static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_5evaluate(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_11evaluate(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6rankpy_7metrics_8_metrics_10KendallTau_10evaluate[] = " \n        Computes the Kendall Tau distance between the given\n        list X and its ascendingly sorted version.\n        ";
+static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_11evaluate(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_X = 0;
   PyObject *__pyx_v_check_input = 0;
   int __pyx_lineno = 0;
@@ -6926,7 +7132,7 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_5evaluate(PyOb
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 690; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 705; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -6941,25 +7147,25 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_5evaluate(PyOb
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("evaluate", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 690; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("evaluate", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 705; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._metrics.KendallTau.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(((struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *)__pyx_v_self), __pyx_v_X, __pyx_v_check_input);
+  __pyx_r = __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_10evaluate(((struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *)__pyx_v_self), __pyx_v_X, __pyx_v_check_input);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_check_input) {
+static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_10evaluate(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_check_input) {
   int __pyx_v_size;
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_v_tau;
   PyArrayObject *__pyx_v_Y = 0;
-  __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_x;
-  __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_y;
+  __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_x;
+  __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_y;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_Y;
   __Pyx_Buffer __pyx_pybuffer_Y;
   PyObject *__pyx_r = NULL;
@@ -6984,49 +7190,49 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
   __pyx_pybuffernd_Y.data = NULL;
   __pyx_pybuffernd_Y.rcbuffer = &__pyx_pybuffer_Y;
 
-  /* "rankpy/metrics/_metrics.pyx":698
+  /* "rankpy/metrics/_metrics.pyx":713
  *         cdef DOUBLE_t tau
  * 
  *         if check_input:             # <<<<<<<<<<<<<<
  *             if not isinstance(X, np.ndarray):
- *                 X = np.array(X, dtype='int64', order='C')
+ *                 X = np.array(X, dtype='int32', order='C')
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_check_input); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 698; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_check_input); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 713; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":699
+    /* "rankpy/metrics/_metrics.pyx":714
  * 
  *         if check_input:
  *             if not isinstance(X, np.ndarray):             # <<<<<<<<<<<<<<
- *                 X = np.array(X, dtype='int64', order='C')
+ *                 X = np.array(X, dtype='int32', order='C')
  * 
  */
     __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_X, ((PyObject*)__pyx_ptype_5numpy_ndarray)); 
     __pyx_t_2 = ((!(__pyx_t_1 != 0)) != 0);
     if (__pyx_t_2) {
 
-      /* "rankpy/metrics/_metrics.pyx":700
+      /* "rankpy/metrics/_metrics.pyx":715
  *         if check_input:
  *             if not isinstance(X, np.ndarray):
- *                 X = np.array(X, dtype='int64', order='C')             # <<<<<<<<<<<<<<
+ *                 X = np.array(X, dtype='int32', order='C')             # <<<<<<<<<<<<<<
  * 
  *             if X.ndim != 1:
  */
-      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_v_X);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_X);
       __Pyx_GIVEREF(__pyx_v_X);
-      __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_n_s_int64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_n_s_int32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -7037,62 +7243,62 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
     }
     __pyx_L4:;
 
-    /* "rankpy/metrics/_metrics.pyx":702
- *                 X = np.array(X, dtype='int64', order='C')
+    /* "rankpy/metrics/_metrics.pyx":717
+ *                 X = np.array(X, dtype='int32', order='C')
  * 
  *             if X.ndim != 1:             # <<<<<<<<<<<<<<
  *                 raise ValueError('X is not one dimensional.')
  * 
  */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_ndim); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_ndim); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 717; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_6, __pyx_int_1, Py_NE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_6, __pyx_int_1, Py_NE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 717; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 717; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_2) {
 
-      /* "rankpy/metrics/_metrics.pyx":703
+      /* "rankpy/metrics/_metrics.pyx":718
  * 
  *             if X.ndim != 1:
  *                 raise ValueError('X is not one dimensional.')             # <<<<<<<<<<<<<<
  * 
  *             if not X.flags.c_contiguous:
  */
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 703; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_Raise(__pyx_t_5, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 703; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "rankpy/metrics/_metrics.pyx":705
+    /* "rankpy/metrics/_metrics.pyx":720
  *                 raise ValueError('X is not one dimensional.')
  * 
  *             if not X.flags.c_contiguous:             # <<<<<<<<<<<<<<
  *                 X = np.ascontiguousarray(X)
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_flags); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 705; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_flags); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 720; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_c_contiguous); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 705; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_c_contiguous); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 720; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 705; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 720; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_1 = ((!__pyx_t_2) != 0);
     if (__pyx_t_1) {
 
-      /* "rankpy/metrics/_metrics.pyx":706
+      /* "rankpy/metrics/_metrics.pyx":721
  * 
  *             if not X.flags.c_contiguous:
  *                 X = np.ascontiguousarray(X)             # <<<<<<<<<<<<<<
  * 
- *         cdef np.ndarray[LONG_t, ndim=1] Y = np.sort(X)
+ *         cdef np.ndarray[INT_t, ndim=1] Y = np.sort(X)
  */
-      __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_ascontiguousarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_ascontiguousarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_5 = NULL;
@@ -7106,16 +7312,16 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
         }
       }
       if (!__pyx_t_5) {
-        __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_X); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_X); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_6);
       } else {
-        __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_4);
         PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
         __Pyx_INCREF(__pyx_v_X);
         PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_X);
         __Pyx_GIVEREF(__pyx_v_X);
-        __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
@@ -7129,16 +7335,16 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
   }
   __pyx_L3:;
 
-  /* "rankpy/metrics/_metrics.pyx":708
+  /* "rankpy/metrics/_metrics.pyx":723
  *                 X = np.ascontiguousarray(X)
  * 
- *         cdef np.ndarray[LONG_t, ndim=1] Y = np.sort(X)             # <<<<<<<<<<<<<<
+ *         cdef np.ndarray[INT_t, ndim=1] Y = np.sort(X)             # <<<<<<<<<<<<<<
  * 
  *         # +1 in case of 0-based permutations.
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 708; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 723; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sort); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 708; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sort); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 723; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -7152,27 +7358,27 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_X); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 708; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_X); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 723; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 708; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 723; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     __Pyx_INCREF(__pyx_v_X);
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_X);
     __Pyx_GIVEREF(__pyx_v_X);
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 708; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 723; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 708; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 723; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_7 = ((PyArrayObject *)__pyx_t_6);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_Y.rcbuffer->pybuffer, (PyObject*)__pyx_t_7, &__Pyx_TypeInfo_nn___pyx_t_6rankpy_7metrics_8_metrics_LONG_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_Y.rcbuffer->pybuffer, (PyObject*)__pyx_t_7, &__Pyx_TypeInfo_nn___pyx_t_6rankpy_7metrics_8_metrics_INT_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_Y = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_Y.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 708; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 723; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_Y.diminfo[0].strides = __pyx_pybuffernd_Y.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_Y.diminfo[0].shape = __pyx_pybuffernd_Y.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -7180,31 +7386,31 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
   __pyx_v_Y = ((PyArrayObject *)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "rankpy/metrics/_metrics.pyx":711
+  /* "rankpy/metrics/_metrics.pyx":726
  * 
  *         # +1 in case of 0-based permutations.
  *         size = max(max(X), max(Y)) + 1             # <<<<<<<<<<<<<<
  * 
  *         # This may cause trouble for huge document IDs!
  */
-  __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(((PyObject *)__pyx_v_Y));
   PyTuple_SET_ITEM(__pyx_t_6, 0, ((PyObject *)__pyx_v_Y));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_Y));
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_max, __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_max, __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(__pyx_v_X);
   PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_v_X);
   __Pyx_GIVEREF(__pyx_v_X);
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_max, __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_max, __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_1) {
     __Pyx_INCREF(__pyx_t_4);
@@ -7215,21 +7421,21 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Add(__pyx_t_6, __pyx_int_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyNumber_Add(__pyx_t_6, __pyx_int_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_size = __pyx_t_8;
 
-  /* "rankpy/metrics/_metrics.pyx":714
+  /* "rankpy/metrics/_metrics.pyx":729
  * 
  *         # This may cause trouble for huge document IDs!
  *         if self.inflate_arrays(size) != 0:             # <<<<<<<<<<<<<<
  *             raise MemoryError('Cannot allocate %d bytes for internal arrays.'
  *                               % (sizeof(DOUBLE_t) * size))
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_size); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_size); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_9.__pyx_n = 1;
   __pyx_t_9.capacity = __pyx_t_4;
@@ -7238,79 +7444,79 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
   __pyx_t_1 = ((__pyx_t_8 != 0) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":716
+    /* "rankpy/metrics/_metrics.pyx":731
  *         if self.inflate_arrays(size) != 0:
  *             raise MemoryError('Cannot allocate %d bytes for internal arrays.'
  *                               % (sizeof(DOUBLE_t) * size))             # <<<<<<<<<<<<<<
  * 
- *         cdef LONG_t *x =  <LONG_t *> np.PyArray_DATA(X)
+ *         cdef INT_t *x =  <INT_t *> np.PyArray_DATA(X)
  */
-    __pyx_t_4 = __Pyx_PyInt_FromSize_t(((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t)) * __pyx_v_size)); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 716; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyInt_FromSize_t(((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t)) * __pyx_v_size)); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_Cannot_allocate_d_bytes_for_inte, __pyx_t_4); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 716; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_Cannot_allocate_d_bytes_for_inte, __pyx_t_4); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "rankpy/metrics/_metrics.pyx":715
+    /* "rankpy/metrics/_metrics.pyx":730
  *         # This may cause trouble for huge document IDs!
  *         if self.inflate_arrays(size) != 0:
  *             raise MemoryError('Cannot allocate %d bytes for internal arrays.'             # <<<<<<<<<<<<<<
  *                               % (sizeof(DOUBLE_t) * size))
  * 
  */
-    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_6);
     __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/metrics/_metrics.pyx":718
+  /* "rankpy/metrics/_metrics.pyx":733
  *                               % (sizeof(DOUBLE_t) * size))
  * 
- *         cdef LONG_t *x =  <LONG_t *> np.PyArray_DATA(X)             # <<<<<<<<<<<<<<
- *         cdef LONG_t *y =  <LONG_t *> np.PyArray_DATA(Y)
+ *         cdef INT_t *x =  <INT_t *> np.PyArray_DATA(X)             # <<<<<<<<<<<<<<
+ *         cdef INT_t *y =  <INT_t *> np.PyArray_DATA(Y)
  * 
  */
-  if (!(likely(((__pyx_v_X) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_X, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_v_x = ((__pyx_t_6rankpy_7metrics_8_metrics_LONG_t *)PyArray_DATA(((PyArrayObject *)__pyx_v_X)));
+  if (!(likely(((__pyx_v_X) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_X, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 733; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_v_x = ((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *)PyArray_DATA(((PyArrayObject *)__pyx_v_X)));
 
-  /* "rankpy/metrics/_metrics.pyx":719
+  /* "rankpy/metrics/_metrics.pyx":734
  * 
- *         cdef LONG_t *x =  <LONG_t *> np.PyArray_DATA(X)
- *         cdef LONG_t *y =  <LONG_t *> np.PyArray_DATA(Y)             # <<<<<<<<<<<<<<
+ *         cdef INT_t *x =  <INT_t *> np.PyArray_DATA(X)
+ *         cdef INT_t *y =  <INT_t *> np.PyArray_DATA(Y)             # <<<<<<<<<<<<<<
  * 
  *         size = min(X.shape[0], Y.shape[0])
  */
-  __pyx_v_y = ((__pyx_t_6rankpy_7metrics_8_metrics_LONG_t *)PyArray_DATA(((PyArrayObject *)__pyx_v_Y)));
+  __pyx_v_y = ((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *)PyArray_DATA(((PyArrayObject *)__pyx_v_Y)));
 
-  /* "rankpy/metrics/_metrics.pyx":721
- *         cdef LONG_t *y =  <LONG_t *> np.PyArray_DATA(Y)
+  /* "rankpy/metrics/_metrics.pyx":736
+ *         cdef INT_t *y =  <INT_t *> np.PyArray_DATA(Y)
  * 
  *         size = min(X.shape[0], Y.shape[0])             # <<<<<<<<<<<<<<
  * 
  *         with nogil:
  */
   __pyx_t_10 = (__pyx_v_Y->dimensions[0]);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 736; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_5 = __Pyx_PyInt_From_Py_intptr_t(__pyx_t_10); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_From_Py_intptr_t(__pyx_t_10); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_1) {
-    __pyx_t_3 = __Pyx_PyInt_From_Py_intptr_t(__pyx_t_10); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyInt_From_Py_intptr_t(__pyx_t_10); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_6 = __pyx_t_3;
     __pyx_t_3 = 0;
@@ -7319,11 +7525,11 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
     __pyx_t_6 = __pyx_t_4;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_6); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 721; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_6); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 736; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_size = __pyx_t_8;
 
-  /* "rankpy/metrics/_metrics.pyx":723
+  /* "rankpy/metrics/_metrics.pyx":738
  *         size = min(X.shape[0], Y.shape[0])
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -7337,7 +7543,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_metrics.pyx":724
+        /* "rankpy/metrics/_metrics.pyx":739
  * 
  *         with nogil:
  *             tau = self.kendall_tau(x, y, size)             # <<<<<<<<<<<<<<
@@ -7347,7 +7553,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
         __pyx_v_tau = ((struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_KendallTau *)__pyx_v_self->__pyx_vtab)->kendall_tau(__pyx_v_self, __pyx_v_x, __pyx_v_y, __pyx_v_size);
       }
 
-      /* "rankpy/metrics/_metrics.pyx":723
+      /* "rankpy/metrics/_metrics.pyx":738
  *         size = min(X.shape[0], Y.shape[0])
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -7365,7 +7571,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
       }
   }
 
-  /* "rankpy/metrics/_metrics.pyx":726
+  /* "rankpy/metrics/_metrics.pyx":741
  *             tau = self.kendall_tau(x, y, size)
  * 
  *         return tau             # <<<<<<<<<<<<<<
@@ -7373,13 +7579,13 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_tau); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_tau); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 741; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_r = __pyx_t_6;
   __pyx_t_6 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":690
+  /* "rankpy/metrics/_metrics.pyx":705
  * 
  * 
  *     def evaluate(self, X, check_input=True):             # <<<<<<<<<<<<<<
@@ -7410,7 +7616,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":729
+/* "rankpy/metrics/_metrics.pyx":744
  * 
  * 
  *     def distance(self, X, Y, check_input=True):             # <<<<<<<<<<<<<<
@@ -7419,9 +7625,9 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate(stru
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_7distance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6rankpy_7metrics_8_metrics_10KendallTau_6distance[] = " \n        Computes the Kendall Tau distance between the given\n        lists X and Y.\n\n        X and Y does not necessarily need to contain the same\n        set of numbers. In case the numbers differ it is assumed\n        that the lists are prefixes of longer lists, which\n        were cutoff. In that matter, the lists does not even\n        have to be of the same length, if that is the case,\n        the minimum length of the two lists is considered.\n\n        If `check_input` is True, X and Y can be lists/iterables\n        of integer numbers, these arrays will be converted to\n        numpy arrays with `numpy.int64` dtype.\n\n        If `check_input` is False you need to make sure that\n        X and Y are numpy arrays with `numpy.int64` dtype,\n        unless you want to suffer severe consequences.\n        ";
-static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_7distance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_13distance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6rankpy_7metrics_8_metrics_10KendallTau_12distance[] = " \n        Computes the Kendall Tau distance between the given\n        lists X and Y.\n\n        X and Y does not necessarily need to contain the same\n        set of numbers. In case the numbers differ it is assumed\n        that the lists are prefixes of longer lists, which\n        were cutoff. In that matter, the lists does not even\n        have to be of the same length, if that is the case,\n        the minimum length of the two lists is considered.\n\n        If `check_input` is True, X and Y can be lists/iterables\n        of integer numbers, these arrays will be converted to\n        numpy arrays with `numpy.int32` dtype.\n\n        If `check_input` is False you need to make sure that\n        X and Y are numpy arrays with `numpy.int32` dtype,\n        unless you want to suffer severe consequences.\n        ";
+static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_13distance(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_X = 0;
   PyObject *__pyx_v_Y = 0;
   PyObject *__pyx_v_check_input = 0;
@@ -7453,7 +7659,7 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_7distance(PyOb
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_Y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("distance", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("distance", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 744; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -7462,7 +7668,7 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_7distance(PyOb
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "distance") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "distance") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 744; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7479,24 +7685,24 @@ static PyObject *__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_7distance(PyOb
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("distance", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("distance", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 744; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.metrics._metrics.KendallTau.distance", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(((struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *)__pyx_v_self), __pyx_v_X, __pyx_v_Y, __pyx_v_check_input);
+  __pyx_r = __pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_12distance(((struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *)__pyx_v_self), __pyx_v_X, __pyx_v_Y, __pyx_v_check_input);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_Y, PyObject *__pyx_v_check_input) {
+static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_12distance(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_Y, PyObject *__pyx_v_check_input) {
   int __pyx_v_size;
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_v_tau;
-  __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_x;
-  __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_y;
+  __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_x;
+  __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_y;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -7514,49 +7720,49 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
   __Pyx_INCREF(__pyx_v_X);
   __Pyx_INCREF(__pyx_v_Y);
 
-  /* "rankpy/metrics/_metrics.pyx":752
+  /* "rankpy/metrics/_metrics.pyx":767
  *         cdef DOUBLE_t tau
  * 
  *         if check_input:             # <<<<<<<<<<<<<<
  *             if not isinstance(X, np.ndarray):
- *                 X = np.array(X, dtype='int64', order='C')
+ *                 X = np.array(X, dtype='int32', order='C')
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_check_input); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 752; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_check_input); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 767; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":753
+    /* "rankpy/metrics/_metrics.pyx":768
  * 
  *         if check_input:
  *             if not isinstance(X, np.ndarray):             # <<<<<<<<<<<<<<
- *                 X = np.array(X, dtype='int64', order='C')
+ *                 X = np.array(X, dtype='int32', order='C')
  * 
  */
     __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_X, ((PyObject*)__pyx_ptype_5numpy_ndarray)); 
     __pyx_t_2 = ((!(__pyx_t_1 != 0)) != 0);
     if (__pyx_t_2) {
 
-      /* "rankpy/metrics/_metrics.pyx":754
+      /* "rankpy/metrics/_metrics.pyx":769
  *         if check_input:
  *             if not isinstance(X, np.ndarray):
- *                 X = np.array(X, dtype='int64', order='C')             # <<<<<<<<<<<<<<
+ *                 X = np.array(X, dtype='int32', order='C')             # <<<<<<<<<<<<<<
  * 
  *             if X.ndim != 1:
  */
-      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 754; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 754; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 754; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_v_X);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_X);
       __Pyx_GIVEREF(__pyx_v_X);
-      __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 754; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_n_s_int64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 754; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 754; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 754; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_n_s_int32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -7567,62 +7773,62 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
     }
     __pyx_L4:;
 
-    /* "rankpy/metrics/_metrics.pyx":756
- *                 X = np.array(X, dtype='int64', order='C')
+    /* "rankpy/metrics/_metrics.pyx":771
+ *                 X = np.array(X, dtype='int32', order='C')
  * 
  *             if X.ndim != 1:             # <<<<<<<<<<<<<<
  *                 raise ValueError('X is not one dimensional.')
  * 
  */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_ndim); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_ndim); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 771; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_6, __pyx_int_1, Py_NE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_6, __pyx_int_1, Py_NE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 771; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 771; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_2) {
 
-      /* "rankpy/metrics/_metrics.pyx":757
+      /* "rankpy/metrics/_metrics.pyx":772
  * 
  *             if X.ndim != 1:
  *                 raise ValueError('X is not one dimensional.')             # <<<<<<<<<<<<<<
  * 
  *             if not X.flags.c_contiguous:
  */
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_Raise(__pyx_t_5, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "rankpy/metrics/_metrics.pyx":759
+    /* "rankpy/metrics/_metrics.pyx":774
  *                 raise ValueError('X is not one dimensional.')
  * 
  *             if not X.flags.c_contiguous:             # <<<<<<<<<<<<<<
  *                 X = np.ascontiguousarray(X)
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_flags); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 759; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_flags); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 774; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_c_contiguous); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 759; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_c_contiguous); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 774; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 759; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 774; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_1 = ((!__pyx_t_2) != 0);
     if (__pyx_t_1) {
 
-      /* "rankpy/metrics/_metrics.pyx":760
+      /* "rankpy/metrics/_metrics.pyx":775
  * 
  *             if not X.flags.c_contiguous:
  *                 X = np.ascontiguousarray(X)             # <<<<<<<<<<<<<<
  * 
  *             if not isinstance(Y, np.ndarray):
  */
-      __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_ascontiguousarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_ascontiguousarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_5 = NULL;
@@ -7636,16 +7842,16 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
         }
       }
       if (!__pyx_t_5) {
-        __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_X); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_X); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_6);
       } else {
-        __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_4);
         PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
         __Pyx_INCREF(__pyx_v_X);
         PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_X);
         __Pyx_GIVEREF(__pyx_v_X);
-        __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 760; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
@@ -7656,39 +7862,39 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
     }
     __pyx_L6:;
 
-    /* "rankpy/metrics/_metrics.pyx":762
+    /* "rankpy/metrics/_metrics.pyx":777
  *                 X = np.ascontiguousarray(X)
  * 
  *             if not isinstance(Y, np.ndarray):             # <<<<<<<<<<<<<<
- *                 Y = np.array(Y, dtype='int64', order='C')
+ *                 Y = np.array(Y, dtype='int32', order='C')
  * 
  */
     __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_Y, ((PyObject*)__pyx_ptype_5numpy_ndarray)); 
     __pyx_t_2 = ((!(__pyx_t_1 != 0)) != 0);
     if (__pyx_t_2) {
 
-      /* "rankpy/metrics/_metrics.pyx":763
+      /* "rankpy/metrics/_metrics.pyx":778
  * 
  *             if not isinstance(Y, np.ndarray):
- *                 Y = np.array(Y, dtype='int64', order='C')             # <<<<<<<<<<<<<<
+ *                 Y = np.array(Y, dtype='int32', order='C')             # <<<<<<<<<<<<<<
  * 
  *             if Y.ndim != 1:
  */
-      __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 763; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 778; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 763; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 778; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 763; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 778; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_INCREF(__pyx_v_Y);
       PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_v_Y);
       __Pyx_GIVEREF(__pyx_v_Y);
-      __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 763; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 778; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_int64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 763; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 763; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 763; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_int32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 778; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 778; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 778; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -7699,62 +7905,62 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
     }
     __pyx_L7:;
 
-    /* "rankpy/metrics/_metrics.pyx":765
- *                 Y = np.array(Y, dtype='int64', order='C')
+    /* "rankpy/metrics/_metrics.pyx":780
+ *                 Y = np.array(Y, dtype='int32', order='C')
  * 
  *             if Y.ndim != 1:             # <<<<<<<<<<<<<<
  *                 raise ValueError('Y is not one dimensional.')
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_Y, __pyx_n_s_ndim); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 765; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_Y, __pyx_n_s_ndim); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_t_5, __pyx_int_1, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 765; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyObject_RichCompare(__pyx_t_5, __pyx_int_1, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 765; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_2) {
 
-      /* "rankpy/metrics/_metrics.pyx":766
+      /* "rankpy/metrics/_metrics.pyx":781
  * 
  *             if Y.ndim != 1:
  *                 raise ValueError('Y is not one dimensional.')             # <<<<<<<<<<<<<<
  * 
  *             if not Y.flags.c_contiguous:
  */
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 766; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_Raise(__pyx_t_4, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 766; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "rankpy/metrics/_metrics.pyx":768
+    /* "rankpy/metrics/_metrics.pyx":783
  *                 raise ValueError('Y is not one dimensional.')
  * 
  *             if not Y.flags.c_contiguous:             # <<<<<<<<<<<<<<
  *                 Y = np.ascontiguousarray(Y)
  * 
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_Y, __pyx_n_s_flags); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_Y, __pyx_n_s_flags); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 783; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_c_contiguous); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_c_contiguous); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 783; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 768; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 783; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_1 = ((!__pyx_t_2) != 0);
     if (__pyx_t_1) {
 
-      /* "rankpy/metrics/_metrics.pyx":769
+      /* "rankpy/metrics/_metrics.pyx":784
  * 
  *             if not Y.flags.c_contiguous:
  *                 Y = np.ascontiguousarray(Y)             # <<<<<<<<<<<<<<
  * 
  *         # +1 in case of 0-based permutations.
  */
-      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 784; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_ascontiguousarray); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_ascontiguousarray); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 784; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_4 = NULL;
@@ -7768,16 +7974,16 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_Y); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_Y); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 784; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
       } else {
-        __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 784; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_3);
         PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
         __Pyx_INCREF(__pyx_v_Y);
         PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_v_Y);
         __Pyx_GIVEREF(__pyx_v_Y);
-        __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_3, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_3, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 784; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
@@ -7791,31 +7997,31 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
   }
   __pyx_L3:;
 
-  /* "rankpy/metrics/_metrics.pyx":772
+  /* "rankpy/metrics/_metrics.pyx":787
  * 
  *         # +1 in case of 0-based permutations.
  *         size = max(max(X), max(Y)) + 1             # <<<<<<<<<<<<<<
  * 
  *         # This may cause trouble for huge document IDs!
  */
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 787; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_Y);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_Y);
   __Pyx_GIVEREF(__pyx_v_Y);
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_max, __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_max, __pyx_t_5, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 787; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 787; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_X);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_X);
   __Pyx_GIVEREF(__pyx_v_X);
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_max, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_max, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 787; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_4 = PyObject_RichCompare(__pyx_t_6, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyObject_RichCompare(__pyx_t_6, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 787; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 787; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_1) {
     __Pyx_INCREF(__pyx_t_6);
@@ -7826,21 +8032,21 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Add(__pyx_t_5, __pyx_int_1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyNumber_Add(__pyx_t_5, __pyx_int_1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 787; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_6); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_6); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 787; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_size = __pyx_t_7;
 
-  /* "rankpy/metrics/_metrics.pyx":775
+  /* "rankpy/metrics/_metrics.pyx":790
  * 
  *         # This may cause trouble for huge document IDs!
  *         if self.inflate_arrays(size) != 0:             # <<<<<<<<<<<<<<
  *             raise MemoryError('Cannot allocate %d bytes for internal arrays.'
  *                               % (sizeof(DOUBLE_t) * size))
  */
-  __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_size); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_size); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 790; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_8.__pyx_n = 1;
   __pyx_t_8.capacity = __pyx_t_6;
@@ -7849,78 +8055,78 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
   __pyx_t_1 = ((__pyx_t_7 != 0) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":777
+    /* "rankpy/metrics/_metrics.pyx":792
  *         if self.inflate_arrays(size) != 0:
  *             raise MemoryError('Cannot allocate %d bytes for internal arrays.'
  *                               % (sizeof(DOUBLE_t) * size))             # <<<<<<<<<<<<<<
  * 
- *         cdef LONG_t *x =  <LONG_t *> np.PyArray_DATA(X)
+ *         cdef INT_t *x =  <INT_t *> np.PyArray_DATA(X)
  */
-    __pyx_t_6 = __Pyx_PyInt_FromSize_t(((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t)) * __pyx_v_size)); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 777; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyInt_FromSize_t(((sizeof(__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t)) * __pyx_v_size)); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 792; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = __Pyx_PyString_Format(__pyx_kp_s_Cannot_allocate_d_bytes_for_inte, __pyx_t_6); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 777; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyString_Format(__pyx_kp_s_Cannot_allocate_d_bytes_for_inte, __pyx_t_6); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 792; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "rankpy/metrics/_metrics.pyx":776
+    /* "rankpy/metrics/_metrics.pyx":791
  *         # This may cause trouble for huge document IDs!
  *         if self.inflate_arrays(size) != 0:
  *             raise MemoryError('Cannot allocate %d bytes for internal arrays.'             # <<<<<<<<<<<<<<
  *                               % (sizeof(DOUBLE_t) * size))
  * 
  */
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 776; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 791; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 776; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 791; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_Raise(__pyx_t_5, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 776; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 791; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/metrics/_metrics.pyx":779
+  /* "rankpy/metrics/_metrics.pyx":794
  *                               % (sizeof(DOUBLE_t) * size))
  * 
- *         cdef LONG_t *x =  <LONG_t *> np.PyArray_DATA(X)             # <<<<<<<<<<<<<<
- *         cdef LONG_t *y =  <LONG_t *> np.PyArray_DATA(Y)
+ *         cdef INT_t *x =  <INT_t *> np.PyArray_DATA(X)             # <<<<<<<<<<<<<<
+ *         cdef INT_t *y =  <INT_t *> np.PyArray_DATA(Y)
  * 
  */
-  if (!(likely(((__pyx_v_X) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_X, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 779; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_v_x = ((__pyx_t_6rankpy_7metrics_8_metrics_LONG_t *)PyArray_DATA(((PyArrayObject *)__pyx_v_X)));
+  if (!(likely(((__pyx_v_X) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_X, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 794; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_v_x = ((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *)PyArray_DATA(((PyArrayObject *)__pyx_v_X)));
 
-  /* "rankpy/metrics/_metrics.pyx":780
+  /* "rankpy/metrics/_metrics.pyx":795
  * 
- *         cdef LONG_t *x =  <LONG_t *> np.PyArray_DATA(X)
- *         cdef LONG_t *y =  <LONG_t *> np.PyArray_DATA(Y)             # <<<<<<<<<<<<<<
+ *         cdef INT_t *x =  <INT_t *> np.PyArray_DATA(X)
+ *         cdef INT_t *y =  <INT_t *> np.PyArray_DATA(Y)             # <<<<<<<<<<<<<<
  * 
  *         size = min(X.shape[0], Y.shape[0])
  */
-  if (!(likely(((__pyx_v_Y) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_Y, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_v_y = ((__pyx_t_6rankpy_7metrics_8_metrics_LONG_t *)PyArray_DATA(((PyArrayObject *)__pyx_v_Y)));
+  if (!(likely(((__pyx_v_Y) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_Y, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 795; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_v_y = ((__pyx_t_6rankpy_7metrics_8_metrics_INT_t *)PyArray_DATA(((PyArrayObject *)__pyx_v_Y)));
 
-  /* "rankpy/metrics/_metrics.pyx":782
- *         cdef LONG_t *y =  <LONG_t *> np.PyArray_DATA(Y)
+  /* "rankpy/metrics/_metrics.pyx":797
+ *         cdef INT_t *y =  <INT_t *> np.PyArray_DATA(Y)
  * 
  *         size = min(X.shape[0], Y.shape[0])             # <<<<<<<<<<<<<<
  * 
  *         with nogil:
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_Y, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 782; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_Y, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_6 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 782; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_6 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 782; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 782; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_4 = PyObject_RichCompare(__pyx_t_6, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 782; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 782; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyObject_RichCompare(__pyx_t_6, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_1) {
     __Pyx_INCREF(__pyx_t_6);
@@ -7931,11 +8137,11 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 782; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_size = __pyx_t_7;
 
-  /* "rankpy/metrics/_metrics.pyx":784
+  /* "rankpy/metrics/_metrics.pyx":799
  *         size = min(X.shape[0], Y.shape[0])
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -7949,7 +8155,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
       #endif
       /*try:*/ {
 
-        /* "rankpy/metrics/_metrics.pyx":785
+        /* "rankpy/metrics/_metrics.pyx":800
  * 
  *         with nogil:
  *             tau = self.kendall_tau(x, y, size)             # <<<<<<<<<<<<<<
@@ -7959,7 +8165,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
         __pyx_v_tau = ((struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_KendallTau *)__pyx_v_self->__pyx_vtab)->kendall_tau(__pyx_v_self, __pyx_v_x, __pyx_v_y, __pyx_v_size);
       }
 
-      /* "rankpy/metrics/_metrics.pyx":784
+      /* "rankpy/metrics/_metrics.pyx":799
  *         size = min(X.shape[0], Y.shape[0])
  * 
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -7977,7 +8183,7 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
       }
   }
 
-  /* "rankpy/metrics/_metrics.pyx":787
+  /* "rankpy/metrics/_metrics.pyx":802
  *             tau = self.kendall_tau(x, y, size)
  * 
  *         return tau             # <<<<<<<<<<<<<<
@@ -7985,13 +8191,13 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_tau); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 787; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_tau); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 802; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":729
+  /* "rankpy/metrics/_metrics.pyx":744
  * 
  * 
  *     def distance(self, X, Y, check_input=True):             # <<<<<<<<<<<<<<
@@ -8015,20 +8221,20 @@ static PyObject *__pyx_pf_6rankpy_7metrics_8_metrics_10KendallTau_6distance(stru
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":790
+/* "rankpy/metrics/_metrics.pyx":805
  * 
  * 
- *     cdef DOUBLE_t kendall_tau(self, LONG_t *X, LONG_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
+ *     cdef DOUBLE_t kendall_tau(self, INT_t *X, INT_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
  *         return self.kendall_tau_fenwick(X, Y, size)
  * 
  */
 
-static __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_Y, int __pyx_v_size) {
+static __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_Y, int __pyx_v_size) {
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_r;
 
-  /* "rankpy/metrics/_metrics.pyx":791
+  /* "rankpy/metrics/_metrics.pyx":806
  * 
- *     cdef DOUBLE_t kendall_tau(self, LONG_t *X, LONG_t *Y, int size) nogil:
+ *     cdef DOUBLE_t kendall_tau(self, INT_t *X, INT_t *Y, int size) nogil:
  *         return self.kendall_tau_fenwick(X, Y, size)             # <<<<<<<<<<<<<<
  * 
  * 
@@ -8036,10 +8242,10 @@ static __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_me
   __pyx_r = __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_fenwick(__pyx_v_self, __pyx_v_X, __pyx_v_Y, __pyx_v_size);
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":790
+  /* "rankpy/metrics/_metrics.pyx":805
  * 
  * 
- *     cdef DOUBLE_t kendall_tau(self, LONG_t *X, LONG_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
+ *     cdef DOUBLE_t kendall_tau(self, INT_t *X, INT_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
  *         return self.kendall_tau_fenwick(X, Y, size)
  * 
  */
@@ -8049,15 +8255,15 @@ static __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_me
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":794
+/* "rankpy/metrics/_metrics.pyx":809
  * 
  * 
- *     cdef inline DOUBLE_t kendall_tau_array(self, LONG_t *X, LONG_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
+ *     cdef inline DOUBLE_t kendall_tau_array(self, INT_t *X, INT_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
  *         '''
  *         Computes Kendall Tau distance between X and Y using a simple array.
  */
 
-static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_Y, int __pyx_v_size) {
+static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_Y, int __pyx_v_size) {
   int __pyx_v_i;
   int __pyx_v_j;
   double __pyx_v_tau;
@@ -8066,9 +8272,9 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   int __pyx_t_2;
   int __pyx_t_3;
   int __pyx_t_4;
-  __pyx_t_6rankpy_7metrics_8_metrics_LONG_t __pyx_t_5;
+  __pyx_t_6rankpy_7metrics_8_metrics_INT_t __pyx_t_5;
 
-  /* "rankpy/metrics/_metrics.pyx":800
+  /* "rankpy/metrics/_metrics.pyx":815
  *         '''
  *         cdef int i, j
  *         cdef double tau = 0.0             # <<<<<<<<<<<<<<
@@ -8077,7 +8283,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_tau = 0.0;
 
-  /* "rankpy/metrics/_metrics.pyx":802
+  /* "rankpy/metrics/_metrics.pyx":817
  *         cdef double tau = 0.0
  * 
  *         for i in range(size):             # <<<<<<<<<<<<<<
@@ -8088,17 +8294,17 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/metrics/_metrics.pyx":803
+    /* "rankpy/metrics/_metrics.pyx":818
  * 
  *         for i in range(size):
  *             self.mapping[X[i]] = i             # <<<<<<<<<<<<<<
  * 
- *         #print 'weights:'
+ *         # Process documents of Y.
  */
     (__pyx_v_self->mapping[(__pyx_v_X[__pyx_v_i])]) = __pyx_v_i;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":812
+  /* "rankpy/metrics/_metrics.pyx":821
  * 
  *         # Process documents of Y.
  *         for j in range(size):             # <<<<<<<<<<<<<<
@@ -8109,7 +8315,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_j = __pyx_t_2;
 
-    /* "rankpy/metrics/_metrics.pyx":813
+    /* "rankpy/metrics/_metrics.pyx":822
  *         # Process documents of Y.
  *         for j in range(size):
  *             i = self.mapping[Y[j]]             # <<<<<<<<<<<<<<
@@ -8118,7 +8324,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_i = (__pyx_v_self->mapping[(__pyx_v_Y[__pyx_v_j])]);
 
-    /* "rankpy/metrics/_metrics.pyx":817
+    /* "rankpy/metrics/_metrics.pyx":826
  *             # as if it was the first document following the
  *             # end of list X.
  *             tau += self._update_array(i if i >= 0 else size, j, size)             # <<<<<<<<<<<<<<
@@ -8132,7 +8338,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     }
     __pyx_v_tau = (__pyx_v_tau + __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__update_array(__pyx_v_self, __pyx_t_3, __pyx_v_j, __pyx_v_size));
 
-    /* "rankpy/metrics/_metrics.pyx":818
+    /* "rankpy/metrics/_metrics.pyx":827
  *             # end of list X.
  *             tau += self._update_array(i if i >= 0 else size, j, size)
  *             if i >= 0:             # <<<<<<<<<<<<<<
@@ -8142,12 +8348,12 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_t_4 = ((__pyx_v_i >= 0) != 0);
     if (__pyx_t_4) {
 
-      /* "rankpy/metrics/_metrics.pyx":822
+      /* "rankpy/metrics/_metrics.pyx":831
  *                 # This becomes useful for finding documents
  *                 # that appeared only in X (see below).
  *                 self.mapping[Y[j]] += size             # <<<<<<<<<<<<<<
  * 
- *         #print
+ *         # Process documents of X that does not appear in Y.
  */
       __pyx_t_5 = (__pyx_v_Y[__pyx_v_j]);
       (__pyx_v_self->mapping[__pyx_t_5]) = ((__pyx_v_self->mapping[__pyx_t_5]) + __pyx_v_size);
@@ -8156,7 +8362,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_L7:;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":829
+  /* "rankpy/metrics/_metrics.pyx":834
  * 
  *         # Process documents of X that does not appear in Y.
  *         for j in range(size):             # <<<<<<<<<<<<<<
@@ -8167,7 +8373,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_j = __pyx_t_2;
 
-    /* "rankpy/metrics/_metrics.pyx":830
+    /* "rankpy/metrics/_metrics.pyx":835
  *         # Process documents of X that does not appear in Y.
  *         for j in range(size):
  *             i = self.mapping[X[j]]             # <<<<<<<<<<<<<<
@@ -8176,7 +8382,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_i = (__pyx_v_self->mapping[(__pyx_v_X[__pyx_v_j])]);
 
-    /* "rankpy/metrics/_metrics.pyx":836
+    /* "rankpy/metrics/_metrics.pyx":841
  *             # of inversions for X[i]'s that are not
  *             # in Y.
  *             if i >= size:             # <<<<<<<<<<<<<<
@@ -8186,7 +8392,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_t_4 = ((__pyx_v_i >= __pyx_v_size) != 0);
     if (__pyx_t_4) {
 
-      /* "rankpy/metrics/_metrics.pyx":837
+      /* "rankpy/metrics/_metrics.pyx":842
  *             # in Y.
  *             if i >= size:
  *                 self._restore_array(i - size, size)             # <<<<<<<<<<<<<<
@@ -8195,7 +8401,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
       __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__restore_array(__pyx_v_self, (__pyx_v_i - __pyx_v_size), __pyx_v_size);
 
-      /* "rankpy/metrics/_metrics.pyx":840
+      /* "rankpy/metrics/_metrics.pyx":845
  *                 # Offset the documents back again
  *                 # for restoring the arrays.
  *                 self.mapping[X[j]] -= size             # <<<<<<<<<<<<<<
@@ -8208,7 +8414,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     }
     /*else*/ {
 
-      /* "rankpy/metrics/_metrics.pyx":842
+      /* "rankpy/metrics/_metrics.pyx":847
  *                 self.mapping[X[j]] -= size
  *             else:
  *                 tau += self._get_array(i, size)             # <<<<<<<<<<<<<<
@@ -8220,7 +8426,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_L10:;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":845
+  /* "rankpy/metrics/_metrics.pyx":850
  * 
  *         # Restore the internal arrays.
  *         for j in range(size):             # <<<<<<<<<<<<<<
@@ -8231,7 +8437,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_j = __pyx_t_2;
 
-    /* "rankpy/metrics/_metrics.pyx":846
+    /* "rankpy/metrics/_metrics.pyx":851
  *         # Restore the internal arrays.
  *         for j in range(size):
  *             i = self.mapping[Y[j]]             # <<<<<<<<<<<<<<
@@ -8240,7 +8446,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_i = (__pyx_v_self->mapping[(__pyx_v_Y[__pyx_v_j])]);
 
-    /* "rankpy/metrics/_metrics.pyx":851
+    /* "rankpy/metrics/_metrics.pyx":856
  *             # same position, hence the restoration can
  *             # be called only once.
  *             if i < 0:             # <<<<<<<<<<<<<<
@@ -8250,7 +8456,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_t_4 = ((__pyx_v_i < 0) != 0);
     if (__pyx_t_4) {
 
-      /* "rankpy/metrics/_metrics.pyx":852
+      /* "rankpy/metrics/_metrics.pyx":857
  *             # be called only once.
  *             if i < 0:
  *                 self._restore_array(size, size)             # <<<<<<<<<<<<<<
@@ -8259,7 +8465,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
       __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__restore_array(__pyx_v_self, __pyx_v_size, __pyx_v_size);
 
-      /* "rankpy/metrics/_metrics.pyx":853
+      /* "rankpy/metrics/_metrics.pyx":858
  *             if i < 0:
  *                 self._restore_array(size, size)
  *                 break             # <<<<<<<<<<<<<<
@@ -8271,7 +8477,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   }
   __pyx_L12_break:;
 
-  /* "rankpy/metrics/_metrics.pyx":857
+  /* "rankpy/metrics/_metrics.pyx":862
  *         # Finish the restoration of the arrays
  *         # by clearing the mapping.
  *         for i in range(size):             # <<<<<<<<<<<<<<
@@ -8282,7 +8488,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/metrics/_metrics.pyx":858
+    /* "rankpy/metrics/_metrics.pyx":863
  *         # by clearing the mapping.
  *         for i in range(size):
  *             self.mapping[X[i]] = -1             # <<<<<<<<<<<<<<
@@ -8292,7 +8498,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     (__pyx_v_self->mapping[(__pyx_v_X[__pyx_v_i])]) = -1;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":860
+  /* "rankpy/metrics/_metrics.pyx":865
  *             self.mapping[X[i]] = -1
  * 
  *         return tau             # <<<<<<<<<<<<<<
@@ -8302,10 +8508,10 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_r = __pyx_v_tau;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":794
+  /* "rankpy/metrics/_metrics.pyx":809
  * 
  * 
- *     cdef inline DOUBLE_t kendall_tau_array(self, LONG_t *X, LONG_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
+ *     cdef inline DOUBLE_t kendall_tau_array(self, INT_t *X, INT_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
  *         '''
  *         Computes Kendall Tau distance between X and Y using a simple array.
  */
@@ -8315,7 +8521,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":863
+/* "rankpy/metrics/_metrics.pyx":868
  * 
  * 
  *     cdef inline DOUBLE_t _update_array(self, int i, int sigma, int size) nogil:             # <<<<<<<<<<<<<<
@@ -8330,7 +8536,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "rankpy/metrics/_metrics.pyx":887
+  /* "rankpy/metrics/_metrics.pyx":892
  *             with all the previously processed documents.
  *         '''
  *         cdef DOUBLE_t weight, tau = 0.0             # <<<<<<<<<<<<<<
@@ -8339,7 +8545,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_tau = 0.0;
 
-  /* "rankpy/metrics/_metrics.pyx":889
+  /* "rankpy/metrics/_metrics.pyx":894
  *         cdef DOUBLE_t weight, tau = 0.0
  * 
  *         if i == sigma:             # <<<<<<<<<<<<<<
@@ -8349,7 +8555,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_t_1 = ((__pyx_v_i == __pyx_v_sigma) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":890
+    /* "rankpy/metrics/_metrics.pyx":895
  * 
  *         if i == sigma:
  *             weight = 1.0 # No displacement.             # <<<<<<<<<<<<<<
@@ -8361,7 +8567,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   }
   /*else*/ {
 
-    /* "rankpy/metrics/_metrics.pyx":894
+    /* "rankpy/metrics/_metrics.pyx":899
  *             # The weight of "bubbling" document from position
  *             # i to position sigma.
  *             weight = self.weights[i] - self.weights[sigma]             # <<<<<<<<<<<<<<
@@ -8370,19 +8576,19 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_weight = ((__pyx_v_self->weights[__pyx_v_i]) - (__pyx_v_self->weights[__pyx_v_sigma]));
 
-    /* "rankpy/metrics/_metrics.pyx":897
+    /* "rankpy/metrics/_metrics.pyx":902
  *             # The average weight (denominator makes the weight
  *             # always positive).
  *             weight /= i - sigma             # <<<<<<<<<<<<<<
  * 
- *         #print 'i: %d, sigma: %d, weight: %4.2f, size: %d' % (i, sigma, weight, size)
+ *         sigma = size - i
  */
     __pyx_v_weight = (__pyx_v_weight / (__pyx_v_i - __pyx_v_sigma));
   }
   __pyx_L3:;
 
-  /* "rankpy/metrics/_metrics.pyx":901
- *         #print 'i: %d, sigma: %d, weight: %4.2f, size: %d' % (i, sigma, weight, size)
+  /* "rankpy/metrics/_metrics.pyx":904
+ *             weight /= i - sigma
  * 
  *         sigma = size - i             # <<<<<<<<<<<<<<
  * 
@@ -8390,7 +8596,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_sigma = (__pyx_v_size - __pyx_v_i);
 
-  /* "rankpy/metrics/_metrics.pyx":904
+  /* "rankpy/metrics/_metrics.pyx":907
  * 
  *         # Update the array.
  *         self.fenwick[sigma] += weight             # <<<<<<<<<<<<<<
@@ -8400,7 +8606,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_t_2 = __pyx_v_sigma;
   (__pyx_v_self->fenwick[__pyx_t_2]) = ((__pyx_v_self->fenwick[__pyx_t_2]) + __pyx_v_weight);
 
-  /* "rankpy/metrics/_metrics.pyx":909
+  /* "rankpy/metrics/_metrics.pyx":912
  *         # the current document with all the documents
  *         # inserted before it.
  *         sigma -= 1             # <<<<<<<<<<<<<<
@@ -8409,7 +8615,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_sigma = (__pyx_v_sigma - 1);
 
-  /* "rankpy/metrics/_metrics.pyx":910
+  /* "rankpy/metrics/_metrics.pyx":913
  *         # inserted before it.
  *         sigma -= 1
  *         while sigma >= 0:             # <<<<<<<<<<<<<<
@@ -8420,7 +8626,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_t_1 = ((__pyx_v_sigma >= 0) != 0);
     if (!__pyx_t_1) break;
 
-    /* "rankpy/metrics/_metrics.pyx":911
+    /* "rankpy/metrics/_metrics.pyx":914
  *         sigma -= 1
  *         while sigma >= 0:
  *             tau += self.fenwick[sigma] * weight             # <<<<<<<<<<<<<<
@@ -8429,7 +8635,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_tau = (__pyx_v_tau + ((__pyx_v_self->fenwick[__pyx_v_sigma]) * __pyx_v_weight));
 
-    /* "rankpy/metrics/_metrics.pyx":912
+    /* "rankpy/metrics/_metrics.pyx":915
  *         while sigma >= 0:
  *             tau += self.fenwick[sigma] * weight
  *             sigma -= 1             # <<<<<<<<<<<<<<
@@ -8439,7 +8645,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_v_sigma = (__pyx_v_sigma - 1);
   }
 
-  /* "rankpy/metrics/_metrics.pyx":914
+  /* "rankpy/metrics/_metrics.pyx":917
  *             sigma -= 1
  * 
  *         return tau             # <<<<<<<<<<<<<<
@@ -8449,7 +8655,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_r = __pyx_v_tau;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":863
+  /* "rankpy/metrics/_metrics.pyx":868
  * 
  * 
  *     cdef inline DOUBLE_t _update_array(self, int i, int sigma, int size) nogil:             # <<<<<<<<<<<<<<
@@ -8462,7 +8668,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":917
+/* "rankpy/metrics/_metrics.pyx":920
  * 
  * 
  *     cdef inline DOUBLE_t _get_array(self, int i, int size) nogil:             # <<<<<<<<<<<<<<
@@ -8476,7 +8682,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_r;
   int __pyx_t_1;
 
-  /* "rankpy/metrics/_metrics.pyx":922
+  /* "rankpy/metrics/_metrics.pyx":925
  *         of X, which do not appear in list Y.
  *         '''
  *         cdef DOUBLE_t weight, tau = 0.0             # <<<<<<<<<<<<<<
@@ -8485,7 +8691,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_tau = 0.0;
 
-  /* "rankpy/metrics/_metrics.pyx":927
+  /* "rankpy/metrics/_metrics.pyx":930
  *         # from position i to the first position
  *         # beyond the end of the list.
  *         weight = self.weights[i] - self.weights[size]             # <<<<<<<<<<<<<<
@@ -8494,7 +8700,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_weight = ((__pyx_v_self->weights[__pyx_v_i]) - (__pyx_v_self->weights[__pyx_v_size]));
 
-  /* "rankpy/metrics/_metrics.pyx":931
+  /* "rankpy/metrics/_metrics.pyx":934
  *         # The average weight (denominator makes
  *         # the weight always positive).
  *         weight /= i - size             # <<<<<<<<<<<<<<
@@ -8503,7 +8709,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_weight = (__pyx_v_weight / (__pyx_v_i - __pyx_v_size));
 
-  /* "rankpy/metrics/_metrics.pyx":936
+  /* "rankpy/metrics/_metrics.pyx":939
  *         # the current document with all the documents
  *         # inserted before it.
  *         while size >= 0:             # <<<<<<<<<<<<<<
@@ -8514,7 +8720,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_t_1 = ((__pyx_v_size >= 0) != 0);
     if (!__pyx_t_1) break;
 
-    /* "rankpy/metrics/_metrics.pyx":937
+    /* "rankpy/metrics/_metrics.pyx":940
  *         # inserted before it.
  *         while size >= 0:
  *             tau += self.fenwick[size] * weight             # <<<<<<<<<<<<<<
@@ -8523,7 +8729,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_tau = (__pyx_v_tau + ((__pyx_v_self->fenwick[__pyx_v_size]) * __pyx_v_weight));
 
-    /* "rankpy/metrics/_metrics.pyx":938
+    /* "rankpy/metrics/_metrics.pyx":941
  *         while size >= 0:
  *             tau += self.fenwick[size] * weight
  *             size -= 1             # <<<<<<<<<<<<<<
@@ -8533,7 +8739,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_v_size = (__pyx_v_size - 1);
   }
 
-  /* "rankpy/metrics/_metrics.pyx":940
+  /* "rankpy/metrics/_metrics.pyx":943
  *             size -= 1
  * 
  *         return tau             # <<<<<<<<<<<<<<
@@ -8543,7 +8749,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_r = __pyx_v_tau;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":917
+  /* "rankpy/metrics/_metrics.pyx":920
  * 
  * 
  *     cdef inline DOUBLE_t _get_array(self, int i, int size) nogil:             # <<<<<<<<<<<<<<
@@ -8556,7 +8762,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":943
+/* "rankpy/metrics/_metrics.pyx":946
  * 
  * 
  *     cdef inline void _restore_array(self, int i, int size) nogil:             # <<<<<<<<<<<<<<
@@ -8566,7 +8772,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
 
 static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__restore_array(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, int __pyx_v_i, int __pyx_v_size) {
 
-  /* "rankpy/metrics/_metrics.pyx":947
+  /* "rankpy/metrics/_metrics.pyx":950
  *         Remove the weights at position `size - i` from the array.
  *         '''
  *         self.fenwick[size - i] = 0.0             # <<<<<<<<<<<<<<
@@ -8575,7 +8781,7 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
  */
   (__pyx_v_self->fenwick[(__pyx_v_size - __pyx_v_i)]) = 0.0;
 
-  /* "rankpy/metrics/_metrics.pyx":943
+  /* "rankpy/metrics/_metrics.pyx":946
  * 
  * 
  *     cdef inline void _restore_array(self, int i, int size) nogil:             # <<<<<<<<<<<<<<
@@ -8586,15 +8792,15 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
   /* function exit code */
 }
 
-/* "rankpy/metrics/_metrics.pyx":950
+/* "rankpy/metrics/_metrics.pyx":953
  * 
  * 
- *     cdef inline DOUBLE_t kendall_tau_fenwick(self, LONG_t *X, LONG_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
+ *     cdef inline DOUBLE_t kendall_tau_fenwick(self, INT_t *X, INT_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
  *         '''
  *         Computes Kendall Tau distance between X and Y using a simple array.
  */
 
-static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_Y, int __pyx_v_size) {
+static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_fenwick(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_X, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *__pyx_v_Y, int __pyx_v_size) {
   int __pyx_v_i;
   int __pyx_v_j;
   double __pyx_v_tau;
@@ -8603,9 +8809,9 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   int __pyx_t_2;
   int __pyx_t_3;
   int __pyx_t_4;
-  __pyx_t_6rankpy_7metrics_8_metrics_LONG_t __pyx_t_5;
+  __pyx_t_6rankpy_7metrics_8_metrics_INT_t __pyx_t_5;
 
-  /* "rankpy/metrics/_metrics.pyx":956
+  /* "rankpy/metrics/_metrics.pyx":959
  *         '''
  *         cdef int i, j
  *         cdef double tau = 0.0             # <<<<<<<<<<<<<<
@@ -8614,7 +8820,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_tau = 0.0;
 
-  /* "rankpy/metrics/_metrics.pyx":958
+  /* "rankpy/metrics/_metrics.pyx":961
  *         cdef double tau = 0.0
  * 
  *         for i in range(size):             # <<<<<<<<<<<<<<
@@ -8625,17 +8831,17 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/metrics/_metrics.pyx":959
+    /* "rankpy/metrics/_metrics.pyx":962
  * 
  *         for i in range(size):
  *             self.mapping[X[i]] = i             # <<<<<<<<<<<<<<
  * 
- *         #print 'weights:'
+ *         # Process documents of Y.
  */
     (__pyx_v_self->mapping[(__pyx_v_X[__pyx_v_i])]) = __pyx_v_i;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":968
+  /* "rankpy/metrics/_metrics.pyx":965
  * 
  *         # Process documents of Y.
  *         for j in range(size):             # <<<<<<<<<<<<<<
@@ -8646,7 +8852,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_j = __pyx_t_2;
 
-    /* "rankpy/metrics/_metrics.pyx":969
+    /* "rankpy/metrics/_metrics.pyx":966
  *         # Process documents of Y.
  *         for j in range(size):
  *             i = self.mapping[Y[j]]             # <<<<<<<<<<<<<<
@@ -8655,7 +8861,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_i = (__pyx_v_self->mapping[(__pyx_v_Y[__pyx_v_j])]);
 
-    /* "rankpy/metrics/_metrics.pyx":973
+    /* "rankpy/metrics/_metrics.pyx":970
  *             # as if it was the first document following the
  *             # end of list X.
  *             tau += self._update_fenwick(i if i >= 0 else size, j, size)             # <<<<<<<<<<<<<<
@@ -8669,7 +8875,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     }
     __pyx_v_tau = (__pyx_v_tau + __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__update_fenwick(__pyx_v_self, __pyx_t_3, __pyx_v_j, __pyx_v_size));
 
-    /* "rankpy/metrics/_metrics.pyx":974
+    /* "rankpy/metrics/_metrics.pyx":971
  *             # end of list X.
  *             tau += self._update_fenwick(i if i >= 0 else size, j, size)
  *             if i >= 0:             # <<<<<<<<<<<<<<
@@ -8679,12 +8885,12 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_t_4 = ((__pyx_v_i >= 0) != 0);
     if (__pyx_t_4) {
 
-      /* "rankpy/metrics/_metrics.pyx":978
+      /* "rankpy/metrics/_metrics.pyx":975
  *                 # This becomes useful for finding documents
  *                 # that appeared only in X (see below).
  *                 self.mapping[Y[j]] += size             # <<<<<<<<<<<<<<
  * 
- *         #print
+ *         # Process documents of X that does not appear in Y.
  */
       __pyx_t_5 = (__pyx_v_Y[__pyx_v_j]);
       (__pyx_v_self->mapping[__pyx_t_5]) = ((__pyx_v_self->mapping[__pyx_t_5]) + __pyx_v_size);
@@ -8693,7 +8899,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_L7:;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":985
+  /* "rankpy/metrics/_metrics.pyx":978
  * 
  *         # Process documents of X that does not appear in Y.
  *         for j in range(size):             # <<<<<<<<<<<<<<
@@ -8704,7 +8910,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_j = __pyx_t_2;
 
-    /* "rankpy/metrics/_metrics.pyx":986
+    /* "rankpy/metrics/_metrics.pyx":979
  *         # Process documents of X that does not appear in Y.
  *         for j in range(size):
  *             i = self.mapping[X[j]]             # <<<<<<<<<<<<<<
@@ -8713,7 +8919,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_i = (__pyx_v_self->mapping[(__pyx_v_X[__pyx_v_j])]);
 
-    /* "rankpy/metrics/_metrics.pyx":992
+    /* "rankpy/metrics/_metrics.pyx":985
  *             # of inversions for X[i]'s that are not
  *             # in Y.
  *             if i >= size:             # <<<<<<<<<<<<<<
@@ -8723,7 +8929,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_t_4 = ((__pyx_v_i >= __pyx_v_size) != 0);
     if (__pyx_t_4) {
 
-      /* "rankpy/metrics/_metrics.pyx":993
+      /* "rankpy/metrics/_metrics.pyx":986
  *             # in Y.
  *             if i >= size:
  *                 self._restore_fenwick(i - size, size)             # <<<<<<<<<<<<<<
@@ -8732,7 +8938,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
       __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__restore_fenwick(__pyx_v_self, (__pyx_v_i - __pyx_v_size), __pyx_v_size);
 
-      /* "rankpy/metrics/_metrics.pyx":996
+      /* "rankpy/metrics/_metrics.pyx":989
  *                 # Offset the documents back again
  *                 # for restoring the arrays.
  *                 self.mapping[X[j]] -= size             # <<<<<<<<<<<<<<
@@ -8745,7 +8951,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     }
     /*else*/ {
 
-      /* "rankpy/metrics/_metrics.pyx":998
+      /* "rankpy/metrics/_metrics.pyx":991
  *                 self.mapping[X[j]] -= size
  *             else:
  *                 tau += self._get_fenwick(i, size)             # <<<<<<<<<<<<<<
@@ -8757,7 +8963,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_L10:;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":1001
+  /* "rankpy/metrics/_metrics.pyx":994
  * 
  *         # Restore the internal arrays.
  *         for j in range(size):             # <<<<<<<<<<<<<<
@@ -8768,7 +8974,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_j = __pyx_t_2;
 
-    /* "rankpy/metrics/_metrics.pyx":1002
+    /* "rankpy/metrics/_metrics.pyx":995
  *         # Restore the internal arrays.
  *         for j in range(size):
  *             i = self.mapping[Y[j]]             # <<<<<<<<<<<<<<
@@ -8777,7 +8983,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_i = (__pyx_v_self->mapping[(__pyx_v_Y[__pyx_v_j])]);
 
-    /* "rankpy/metrics/_metrics.pyx":1007
+    /* "rankpy/metrics/_metrics.pyx":1000
  *             # same position, hence the restoration can
  *             # be called only once.
  *             if i < 0:             # <<<<<<<<<<<<<<
@@ -8787,7 +8993,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_t_4 = ((__pyx_v_i < 0) != 0);
     if (__pyx_t_4) {
 
-      /* "rankpy/metrics/_metrics.pyx":1008
+      /* "rankpy/metrics/_metrics.pyx":1001
  *             # be called only once.
  *             if i < 0:
  *                 self._restore_fenwick(size, size)             # <<<<<<<<<<<<<<
@@ -8796,7 +9002,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
       __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__restore_fenwick(__pyx_v_self, __pyx_v_size, __pyx_v_size);
 
-      /* "rankpy/metrics/_metrics.pyx":1009
+      /* "rankpy/metrics/_metrics.pyx":1002
  *             if i < 0:
  *                 self._restore_fenwick(size, size)
  *                 break             # <<<<<<<<<<<<<<
@@ -8808,7 +9014,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   }
   __pyx_L12_break:;
 
-  /* "rankpy/metrics/_metrics.pyx":1013
+  /* "rankpy/metrics/_metrics.pyx":1006
  *         # Finish the restoration of the arrays
  *         # by clearing the mapping.
  *         for i in range(size):             # <<<<<<<<<<<<<<
@@ -8819,7 +9025,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/metrics/_metrics.pyx":1014
+    /* "rankpy/metrics/_metrics.pyx":1007
  *         # by clearing the mapping.
  *         for i in range(size):
  *             self.mapping[X[i]] = -1             # <<<<<<<<<<<<<<
@@ -8829,7 +9035,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     (__pyx_v_self->mapping[(__pyx_v_X[__pyx_v_i])]) = -1;
   }
 
-  /* "rankpy/metrics/_metrics.pyx":1016
+  /* "rankpy/metrics/_metrics.pyx":1009
  *             self.mapping[X[i]] = -1
  * 
  *         return tau             # <<<<<<<<<<<<<<
@@ -8839,10 +9045,10 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_r = __pyx_v_tau;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":950
+  /* "rankpy/metrics/_metrics.pyx":953
  * 
  * 
- *     cdef inline DOUBLE_t kendall_tau_fenwick(self, LONG_t *X, LONG_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
+ *     cdef inline DOUBLE_t kendall_tau_fenwick(self, INT_t *X, INT_t *Y, int size) nogil:             # <<<<<<<<<<<<<<
  *         '''
  *         Computes Kendall Tau distance between X and Y using a simple array.
  */
@@ -8852,7 +9058,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":1019
+/* "rankpy/metrics/_metrics.pyx":1012
  * 
  * 
  *     cdef inline DOUBLE_t _update_fenwick(self, int i, int sigma, int size) nogil:             # <<<<<<<<<<<<<<
@@ -8868,7 +9074,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   long __pyx_t_2;
   int __pyx_t_3;
 
-  /* "rankpy/metrics/_metrics.pyx":1025
+  /* "rankpy/metrics/_metrics.pyx":1018
  *         the document is in with all previously inserted documents.
  *         '''
  *         cdef DOUBLE_t weight, tau = 0.0             # <<<<<<<<<<<<<<
@@ -8877,7 +9083,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_tau = 0.0;
 
-  /* "rankpy/metrics/_metrics.pyx":1027
+  /* "rankpy/metrics/_metrics.pyx":1020
  *         cdef DOUBLE_t weight, tau = 0.0
  * 
  *         if i == sigma:             # <<<<<<<<<<<<<<
@@ -8887,7 +9093,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_t_1 = ((__pyx_v_i == __pyx_v_sigma) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":1028
+    /* "rankpy/metrics/_metrics.pyx":1021
  * 
  *         if i == sigma:
  *             weight = 1.0 # No displacement.             # <<<<<<<<<<<<<<
@@ -8899,7 +9105,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   }
   /*else*/ {
 
-    /* "rankpy/metrics/_metrics.pyx":1032
+    /* "rankpy/metrics/_metrics.pyx":1025
  *             # The weight of "bubbling" document from position
  *             # i to position sigma.
  *             weight = self.weights[i] - self.weights[sigma]             # <<<<<<<<<<<<<<
@@ -8908,19 +9114,19 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_weight = ((__pyx_v_self->weights[__pyx_v_i]) - (__pyx_v_self->weights[__pyx_v_sigma]));
 
-    /* "rankpy/metrics/_metrics.pyx":1035
+    /* "rankpy/metrics/_metrics.pyx":1028
  *             # The average weight (denominator makes the weight
  *             # always positive).
  *             weight /= i - sigma             # <<<<<<<<<<<<<<
  * 
- *         #print 'i: %d, sigma: %d, weight: %4.2f, size: %d' % (i, sigma, weight, size)
+ *         sigma = size - i
  */
     __pyx_v_weight = (__pyx_v_weight / (__pyx_v_i - __pyx_v_sigma));
   }
   __pyx_L3:;
 
-  /* "rankpy/metrics/_metrics.pyx":1039
- *         #print 'i: %d, sigma: %d, weight: %4.2f, size: %d' % (i, sigma, weight, size)
+  /* "rankpy/metrics/_metrics.pyx":1030
+ *             weight /= i - sigma
  * 
  *         sigma = size - i             # <<<<<<<<<<<<<<
  * 
@@ -8928,7 +9134,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_sigma = (__pyx_v_size - __pyx_v_i);
 
-  /* "rankpy/metrics/_metrics.pyx":1041
+  /* "rankpy/metrics/_metrics.pyx":1032
  *         sigma = size - i
  * 
  *         if sigma != 0:             # <<<<<<<<<<<<<<
@@ -8938,7 +9144,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_t_1 = ((__pyx_v_sigma != 0) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":1042
+    /* "rankpy/metrics/_metrics.pyx":1033
  * 
  *         if sigma != 0:
  *             tau += self.fenwick[0] * weight             # <<<<<<<<<<<<<<
@@ -8950,7 +9156,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   }
   __pyx_L4:;
 
-  /* "rankpy/metrics/_metrics.pyx":1047
+  /* "rankpy/metrics/_metrics.pyx":1038
  *         # the current document with all the documents
  *         # inserted before it.
  *         while sigma > 0:             # <<<<<<<<<<<<<<
@@ -8961,7 +9167,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_t_1 = ((__pyx_v_sigma > 0) != 0);
     if (!__pyx_t_1) break;
 
-    /* "rankpy/metrics/_metrics.pyx":1048
+    /* "rankpy/metrics/_metrics.pyx":1039
  *         # inserted before it.
  *         while sigma > 0:
  *             tau += self.fenwick[sigma] * weight             # <<<<<<<<<<<<<<
@@ -8970,7 +9176,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_tau = (__pyx_v_tau + ((__pyx_v_self->fenwick[__pyx_v_sigma]) * __pyx_v_weight));
 
-    /* "rankpy/metrics/_metrics.pyx":1049
+    /* "rankpy/metrics/_metrics.pyx":1040
  *         while sigma > 0:
  *             tau += self.fenwick[sigma] * weight
  *             sigma -= sigma & -sigma             # <<<<<<<<<<<<<<
@@ -8980,7 +9186,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_v_sigma = (__pyx_v_sigma - (__pyx_v_sigma & (-__pyx_v_sigma)));
   }
 
-  /* "rankpy/metrics/_metrics.pyx":1052
+  /* "rankpy/metrics/_metrics.pyx":1043
  * 
  *         # Invert the indexing.
  *         sigma = size - i             # <<<<<<<<<<<<<<
@@ -8989,7 +9195,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_sigma = (__pyx_v_size - __pyx_v_i);
 
-  /* "rankpy/metrics/_metrics.pyx":1055
+  /* "rankpy/metrics/_metrics.pyx":1046
  * 
  *         # Update the Fenwick tree.
  *         if sigma == 0:             # <<<<<<<<<<<<<<
@@ -8999,7 +9205,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_t_1 = ((__pyx_v_sigma == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":1057
+    /* "rankpy/metrics/_metrics.pyx":1048
  *         if sigma == 0:
  *             # Document below cutoff.
  *             self.fenwick[0] += weight             # <<<<<<<<<<<<<<
@@ -9012,7 +9218,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   }
   /*else*/ {
 
-    /* "rankpy/metrics/_metrics.pyx":1060
+    /* "rankpy/metrics/_metrics.pyx":1051
  *         else:
  *             # Update the Fenwick tree.
  *             while sigma <= size:             # <<<<<<<<<<<<<<
@@ -9023,7 +9229,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
       __pyx_t_1 = ((__pyx_v_sigma <= __pyx_v_size) != 0);
       if (!__pyx_t_1) break;
 
-      /* "rankpy/metrics/_metrics.pyx":1061
+      /* "rankpy/metrics/_metrics.pyx":1052
  *             # Update the Fenwick tree.
  *             while sigma <= size:
  *                 self.fenwick[sigma] += weight             # <<<<<<<<<<<<<<
@@ -9033,7 +9239,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
       __pyx_t_3 = __pyx_v_sigma;
       (__pyx_v_self->fenwick[__pyx_t_3]) = ((__pyx_v_self->fenwick[__pyx_t_3]) + __pyx_v_weight);
 
-      /* "rankpy/metrics/_metrics.pyx":1062
+      /* "rankpy/metrics/_metrics.pyx":1053
  *             while sigma <= size:
  *                 self.fenwick[sigma] += weight
  *                 sigma += sigma & -sigma             # <<<<<<<<<<<<<<
@@ -9045,7 +9251,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   }
   __pyx_L7:;
 
-  /* "rankpy/metrics/_metrics.pyx":1064
+  /* "rankpy/metrics/_metrics.pyx":1055
  *                 sigma += sigma & -sigma
  * 
  *         return tau             # <<<<<<<<<<<<<<
@@ -9055,7 +9261,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_r = __pyx_v_tau;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":1019
+  /* "rankpy/metrics/_metrics.pyx":1012
  * 
  * 
  *     cdef inline DOUBLE_t _update_fenwick(self, int i, int sigma, int size) nogil:             # <<<<<<<<<<<<<<
@@ -9068,7 +9274,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":1067
+/* "rankpy/metrics/_metrics.pyx":1058
  * 
  * 
  *     cdef inline DOUBLE_t _get_fenwick(self, int i, int size) nogil:             # <<<<<<<<<<<<<<
@@ -9082,7 +9288,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_r;
   int __pyx_t_1;
 
-  /* "rankpy/metrics/_metrics.pyx":1072
+  /* "rankpy/metrics/_metrics.pyx":1063
  *         of X, which do not appear in list Y.
  *         '''
  *         cdef DOUBLE_t weight, tau = 0.0             # <<<<<<<<<<<<<<
@@ -9091,7 +9297,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_tau = 0.0;
 
-  /* "rankpy/metrics/_metrics.pyx":1077
+  /* "rankpy/metrics/_metrics.pyx":1068
  *         # from position i to the first position
  *         # beyond the end of the list.
  *         weight = self.weights[i] - self.weights[size]             # <<<<<<<<<<<<<<
@@ -9100,7 +9306,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_weight = ((__pyx_v_self->weights[__pyx_v_i]) - (__pyx_v_self->weights[__pyx_v_size]));
 
-  /* "rankpy/metrics/_metrics.pyx":1081
+  /* "rankpy/metrics/_metrics.pyx":1072
  *         # The average weight (denominator makes
  *         # the weight always positive).
  *         weight /= i - size             # <<<<<<<<<<<<<<
@@ -9109,7 +9315,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_weight = (__pyx_v_weight / (__pyx_v_i - __pyx_v_size));
 
-  /* "rankpy/metrics/_metrics.pyx":1086
+  /* "rankpy/metrics/_metrics.pyx":1077
  *         # the current document with all the documents
  *         # inserted before it.
  *         while size > 0:             # <<<<<<<<<<<<<<
@@ -9120,7 +9326,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_t_1 = ((__pyx_v_size > 0) != 0);
     if (!__pyx_t_1) break;
 
-    /* "rankpy/metrics/_metrics.pyx":1087
+    /* "rankpy/metrics/_metrics.pyx":1078
  *         # inserted before it.
  *         while size > 0:
  *             tau += self.fenwick[size] * weight             # <<<<<<<<<<<<<<
@@ -9129,7 +9335,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
     __pyx_v_tau = (__pyx_v_tau + ((__pyx_v_self->fenwick[__pyx_v_size]) * __pyx_v_weight));
 
-    /* "rankpy/metrics/_metrics.pyx":1088
+    /* "rankpy/metrics/_metrics.pyx":1079
  *         while size > 0:
  *             tau += self.fenwick[size] * weight
  *             size -= size & -size             # <<<<<<<<<<<<<<
@@ -9139,7 +9345,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
     __pyx_v_size = (__pyx_v_size - (__pyx_v_size & (-__pyx_v_size)));
   }
 
-  /* "rankpy/metrics/_metrics.pyx":1090
+  /* "rankpy/metrics/_metrics.pyx":1081
  *             size -= size & -size
  * 
  *         tau += self.fenwick[0] * weight             # <<<<<<<<<<<<<<
@@ -9148,7 +9354,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
  */
   __pyx_v_tau = (__pyx_v_tau + ((__pyx_v_self->fenwick[0]) * __pyx_v_weight));
 
-  /* "rankpy/metrics/_metrics.pyx":1092
+  /* "rankpy/metrics/_metrics.pyx":1083
  *         tau += self.fenwick[0] * weight
  * 
  *         return tau             # <<<<<<<<<<<<<<
@@ -9158,7 +9364,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   __pyx_r = __pyx_v_tau;
   goto __pyx_L0;
 
-  /* "rankpy/metrics/_metrics.pyx":1067
+  /* "rankpy/metrics/_metrics.pyx":1058
  * 
  * 
  *     cdef inline DOUBLE_t _get_fenwick(self, int i, int size) nogil:             # <<<<<<<<<<<<<<
@@ -9171,7 +9377,7 @@ static CYTHON_INLINE __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t __pyx_f_6rankpy
   return __pyx_r;
 }
 
-/* "rankpy/metrics/_metrics.pyx":1095
+/* "rankpy/metrics/_metrics.pyx":1086
  * 
  * 
  *     cdef inline void _restore_fenwick(self, int i, int size) nogil:             # <<<<<<<<<<<<<<
@@ -9186,7 +9392,7 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "rankpy/metrics/_metrics.pyx":1103
+  /* "rankpy/metrics/_metrics.pyx":1094
  * 
  *         # Invert the indexing.
  *         k = size - i             # <<<<<<<<<<<<<<
@@ -9195,7 +9401,7 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
  */
   __pyx_v_k = (__pyx_v_size - __pyx_v_i);
 
-  /* "rankpy/metrics/_metrics.pyx":1106
+  /* "rankpy/metrics/_metrics.pyx":1097
  * 
  *         # Document below cutoff.
  *         if k == 0:             # <<<<<<<<<<<<<<
@@ -9205,7 +9411,7 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
   __pyx_t_1 = ((__pyx_v_k == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/metrics/_metrics.pyx":1107
+    /* "rankpy/metrics/_metrics.pyx":1098
  *         # Document below cutoff.
  *         if k == 0:
  *             self.fenwick[k] = 0.0             # <<<<<<<<<<<<<<
@@ -9217,7 +9423,7 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
   }
   /*else*/ {
 
-    /* "rankpy/metrics/_metrics.pyx":1110
+    /* "rankpy/metrics/_metrics.pyx":1101
  *         else:
  *             # Need to find the weight of the document first.
  *             weight = self.fenwick[k]             # <<<<<<<<<<<<<<
@@ -9226,7 +9432,7 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
  */
     __pyx_v_weight = (__pyx_v_self->fenwick[__pyx_v_k]);
 
-    /* "rankpy/metrics/_metrics.pyx":1112
+    /* "rankpy/metrics/_metrics.pyx":1103
  *             weight = self.fenwick[k]
  * 
  *             j = k - (k & -k)             # <<<<<<<<<<<<<<
@@ -9235,7 +9441,7 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
  */
     __pyx_v_j = (__pyx_v_k - (__pyx_v_k & (-__pyx_v_k)));
 
-    /* "rankpy/metrics/_metrics.pyx":1113
+    /* "rankpy/metrics/_metrics.pyx":1104
  * 
  *             j = k - (k & -k)
  *             k -= 1             # <<<<<<<<<<<<<<
@@ -9244,7 +9450,7 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
  */
     __pyx_v_k = (__pyx_v_k - 1);
 
-    /* "rankpy/metrics/_metrics.pyx":1115
+    /* "rankpy/metrics/_metrics.pyx":1106
  *             k -= 1
  * 
  *             while k > j:             # <<<<<<<<<<<<<<
@@ -9255,7 +9461,7 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
       __pyx_t_1 = ((__pyx_v_k > __pyx_v_j) != 0);
       if (!__pyx_t_1) break;
 
-      /* "rankpy/metrics/_metrics.pyx":1116
+      /* "rankpy/metrics/_metrics.pyx":1107
  * 
  *             while k > j:
  *                 weight -= self.fenwick[k]             # <<<<<<<<<<<<<<
@@ -9264,17 +9470,17 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
  */
       __pyx_v_weight = (__pyx_v_weight - (__pyx_v_self->fenwick[__pyx_v_k]));
 
-      /* "rankpy/metrics/_metrics.pyx":1117
+      /* "rankpy/metrics/_metrics.pyx":1108
  *             while k > j:
  *                 weight -= self.fenwick[k]
  *                 k -= k & -k             # <<<<<<<<<<<<<<
  * 
- *             #print 'Removing weight %f for i: %d' % (weight, size - i)
+ *             # Remove the weight from the Fenwick tree.
  */
       __pyx_v_k = (__pyx_v_k - (__pyx_v_k & (-__pyx_v_k)));
     }
 
-    /* "rankpy/metrics/_metrics.pyx":1122
+    /* "rankpy/metrics/_metrics.pyx":1111
  * 
  *             # Remove the weight from the Fenwick tree.
  *             i = size - i             # <<<<<<<<<<<<<<
@@ -9283,7 +9489,7 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
  */
     __pyx_v_i = (__pyx_v_size - __pyx_v_i);
 
-    /* "rankpy/metrics/_metrics.pyx":1123
+    /* "rankpy/metrics/_metrics.pyx":1112
  *             # Remove the weight from the Fenwick tree.
  *             i = size - i
  *             while i <= size:             # <<<<<<<<<<<<<<
@@ -9294,29 +9500,26 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
       __pyx_t_1 = ((__pyx_v_i <= __pyx_v_size) != 0);
       if (!__pyx_t_1) break;
 
-      /* "rankpy/metrics/_metrics.pyx":1124
+      /* "rankpy/metrics/_metrics.pyx":1113
  *             i = size - i
  *             while i <= size:
  *                 self.fenwick[i] -= weight             # <<<<<<<<<<<<<<
  *                 i += i & -i
- * 
  */
       __pyx_t_2 = __pyx_v_i;
       (__pyx_v_self->fenwick[__pyx_t_2]) = ((__pyx_v_self->fenwick[__pyx_t_2]) - __pyx_v_weight);
 
-      /* "rankpy/metrics/_metrics.pyx":1125
+      /* "rankpy/metrics/_metrics.pyx":1114
  *             while i <= size:
  *                 self.fenwick[i] -= weight
  *                 i += i & -i             # <<<<<<<<<<<<<<
- * 
- * 
  */
       __pyx_v_i = (__pyx_v_i + (__pyx_v_i & (-__pyx_v_i)));
     }
   }
   __pyx_L3:;
 
-  /* "rankpy/metrics/_metrics.pyx":1095
+  /* "rankpy/metrics/_metrics.pyx":1086
  * 
  * 
  *     cdef inline void _restore_fenwick(self, int i, int size) nogil:             # <<<<<<<<<<<<<<
@@ -9325,175 +9528,6 @@ static CYTHON_INLINE void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__resto
  */
 
   /* function exit code */
-}
-
-/* "rankpy/metrics/_metrics.pyx":1131
- *     # Print functions for debugging...
- *     # ==============================================================================
- *     cdef void print_array(self, LONG_t *x, int size):             # <<<<<<<<<<<<<<
- *         cdef int i
- *         for i in range(size):
- */
-
-static void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_print_array(CYTHON_UNUSED struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *__pyx_v_x, int __pyx_v_size) {
-  int __pyx_v_i;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("print_array", 0);
-
-  /* "rankpy/metrics/_metrics.pyx":1133
- *     cdef void print_array(self, LONG_t *x, int size):
- *         cdef int i
- *         for i in range(size):             # <<<<<<<<<<<<<<
- *             print '%d: %d' % (i, x[i])
- *         print
- */
-  __pyx_t_1 = __pyx_v_size;
-  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
-    __pyx_v_i = __pyx_t_2;
-
-    /* "rankpy/metrics/_metrics.pyx":1134
- *         cdef int i
- *         for i in range(size):
- *             print '%d: %d' % (i, x[i])             # <<<<<<<<<<<<<<
- *         print
- * 
- */
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyInt_From_npy_int64((__pyx_v_x[__pyx_v_i])); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_5);
-    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_4);
-    __Pyx_GIVEREF(__pyx_t_4);
-    __pyx_t_3 = 0;
-    __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_d_d, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (__Pyx_PrintOne(0, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  }
-
-  /* "rankpy/metrics/_metrics.pyx":1135
- *         for i in range(size):
- *             print '%d: %d' % (i, x[i])
- *         print             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  if (__Pyx_Print(0, __pyx_empty_tuple, 1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-
-  /* "rankpy/metrics/_metrics.pyx":1131
- *     # Print functions for debugging...
- *     # ==============================================================================
- *     cdef void print_array(self, LONG_t *x, int size):             # <<<<<<<<<<<<<<
- *         cdef int i
- *         for i in range(size):
- */
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_WriteUnraisable("rankpy.metrics._metrics.KendallTau.print_array", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-}
-
-/* "rankpy/metrics/_metrics.pyx":1138
- * 
- * 
- *     cdef void print_farray(self, DOUBLE_t *x, int size):             # <<<<<<<<<<<<<<
- *         cdef int i
- *         for i in range(size):
- */
-
-static void __pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_print_farray(CYTHON_UNUSED struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *__pyx_v_self, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *__pyx_v_x, int __pyx_v_size) {
-  int __pyx_v_i;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("print_farray", 0);
-
-  /* "rankpy/metrics/_metrics.pyx":1140
- *     cdef void print_farray(self, DOUBLE_t *x, int size):
- *         cdef int i
- *         for i in range(size):             # <<<<<<<<<<<<<<
- *             print '%d: %4.2f' % (i, x[i])
- *         print
- */
-  __pyx_t_1 = __pyx_v_size;
-  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
-    __pyx_v_i = __pyx_t_2;
-
-    /* "rankpy/metrics/_metrics.pyx":1141
- *         cdef int i
- *         for i in range(size):
- *             print '%d: %4.2f' % (i, x[i])             # <<<<<<<<<<<<<<
- *         print
- */
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyFloat_FromDouble((__pyx_v_x[__pyx_v_i])); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_5);
-    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_4);
-    __Pyx_GIVEREF(__pyx_t_4);
-    __pyx_t_3 = 0;
-    __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_d_4_2f, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (__Pyx_PrintOne(0, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  }
-
-  /* "rankpy/metrics/_metrics.pyx":1142
- *         for i in range(size):
- *             print '%d: %4.2f' % (i, x[i])
- *         print             # <<<<<<<<<<<<<<
- */
-  if (__Pyx_Print(0, __pyx_empty_tuple, 1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-
-  /* "rankpy/metrics/_metrics.pyx":1138
- * 
- * 
- *     cdef void print_farray(self, DOUBLE_t *x, int size):             # <<<<<<<<<<<<<<
- *         cdef int i
- *         for i in range(size):
- */
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_WriteUnraisable("rankpy.metrics._metrics.KendallTau.print_farray", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
 }
 
 /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":194
@@ -22208,7 +22242,7 @@ static PyTypeObject __pyx_type_6rankpy_7metrics_8_metrics_Metric = {
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
-  "\n    The interface for an information retrieval evaluation metric.\n    ", /*tp_doc*/
+  " \n    The interface for an information retrieval evaluation metric.\n    ", /*tp_doc*/
   0, /*tp_traverse*/
   0, /*tp_clear*/
   0, /*tp_richcompare*/
@@ -22314,7 +22348,7 @@ static PyTypeObject __pyx_type_6rankpy_7metrics_8_metrics_DiscountedCumulativeGa
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
-  "\n    Discounted Cumulative Gain (DCG) metric.\n    ", /*tp_doc*/
+  " \n    Discounted Cumulative Gain (DCG) metric.\n    ", /*tp_doc*/
   0, /*tp_traverse*/
   0, /*tp_clear*/
   0, /*tp_richcompare*/
@@ -22404,8 +22438,11 @@ static int __pyx_tp_clear_6rankpy_7metrics_8_metrics_KendallTau(PyObject *o) {
 }
 
 static PyMethodDef __pyx_methods_6rankpy_7metrics_8_metrics_KendallTau[] = {
-  {"evaluate", (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_5evaluate, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6rankpy_7metrics_8_metrics_10KendallTau_4evaluate},
-  {"distance", (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_7distance, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6rankpy_7metrics_8_metrics_10KendallTau_6distance},
+  {"__reduce__", (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_5__reduce__, METH_NOARGS, 0},
+  {"__getstate__", (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_7__getstate__, METH_NOARGS, 0},
+  {"__setstate__", (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_9__setstate__, METH_O, 0},
+  {"evaluate", (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_11evaluate, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6rankpy_7metrics_8_metrics_10KendallTau_10evaluate},
+  {"distance", (PyCFunction)__pyx_pw_6rankpy_7metrics_8_metrics_10KendallTau_13distance, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6rankpy_7metrics_8_metrics_10KendallTau_12distance},
   {0, 0, 0, 0}
 };
 
@@ -23185,30 +23222,27 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_contiguous_and_indirect, __pyx_k_contiguous_and_indirect, sizeof(__pyx_k_contiguous_and_indirect), 0, 0, 1, 0},
   {&__pyx_n_s_cutoff, __pyx_k_cutoff, sizeof(__pyx_k_cutoff), 0, 0, 1, 1},
   {&__pyx_kp_s_cutoff_has_to_be_positive_intege, __pyx_k_cutoff_has_to_be_positive_intege, sizeof(__pyx_k_cutoff_has_to_be_positive_intege), 0, 0, 1, 0},
-  {&__pyx_kp_s_d_4_2f, __pyx_k_d_4_2f, sizeof(__pyx_k_d_4_2f), 0, 0, 1, 0},
-  {&__pyx_kp_s_d_d, __pyx_k_d_d, sizeof(__pyx_k_d_d), 0, 0, 1, 0},
   {&__pyx_n_s_delta, __pyx_k_delta, sizeof(__pyx_k_delta), 0, 0, 1, 1},
   {&__pyx_n_s_document_ranks, __pyx_k_document_ranks, sizeof(__pyx_k_document_ranks), 0, 0, 1, 1},
   {&__pyx_n_s_dtype, __pyx_k_dtype, sizeof(__pyx_k_dtype), 0, 0, 1, 1},
   {&__pyx_n_s_dtype_is_object, __pyx_k_dtype_is_object, sizeof(__pyx_k_dtype_is_object), 0, 0, 1, 1},
-  {&__pyx_n_s_end, __pyx_k_end, sizeof(__pyx_k_end), 0, 0, 1, 1},
   {&__pyx_n_s_enumerate, __pyx_k_enumerate, sizeof(__pyx_k_enumerate), 0, 0, 1, 1},
   {&__pyx_n_s_error, __pyx_k_error, sizeof(__pyx_k_error), 0, 0, 1, 1},
   {&__pyx_n_s_evaluate, __pyx_k_evaluate, sizeof(__pyx_k_evaluate), 0, 0, 1, 1},
   {&__pyx_n_s_evaluate_queries, __pyx_k_evaluate_queries, sizeof(__pyx_k_evaluate_queries), 0, 0, 1, 1},
   {&__pyx_n_s_evaluate_queries_ideal, __pyx_k_evaluate_queries_ideal, sizeof(__pyx_k_evaluate_queries_ideal), 0, 0, 1, 1},
   {&__pyx_n_s_evaluate_ranking, __pyx_k_evaluate_ranking, sizeof(__pyx_k_evaluate_ranking), 0, 0, 1, 1},
-  {&__pyx_n_s_file, __pyx_k_file, sizeof(__pyx_k_file), 0, 0, 1, 1},
   {&__pyx_n_s_flags, __pyx_k_flags, sizeof(__pyx_k_flags), 0, 0, 1, 1},
   {&__pyx_n_s_format, __pyx_k_format, sizeof(__pyx_k_format), 0, 0, 1, 1},
   {&__pyx_n_s_fortran, __pyx_k_fortran, sizeof(__pyx_k_fortran), 0, 0, 1, 1},
   {&__pyx_n_u_fortran, __pyx_k_fortran, sizeof(__pyx_k_fortran), 0, 1, 0, 1},
+  {&__pyx_n_s_getstate, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
   {&__pyx_kp_s_got_differing_extents_in_dimensi, __pyx_k_got_differing_extents_in_dimensi, sizeof(__pyx_k_got_differing_extents_in_dimensi), 0, 0, 1, 0},
   {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {&__pyx_n_s_id, __pyx_k_id, sizeof(__pyx_k_id), 0, 0, 1, 1},
   {&__pyx_n_s_ideal_values, __pyx_k_ideal_values, sizeof(__pyx_k_ideal_values), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
-  {&__pyx_n_s_int64, __pyx_k_int64, sizeof(__pyx_k_int64), 0, 0, 1, 1},
+  {&__pyx_n_s_int32, __pyx_k_int32, sizeof(__pyx_k_int32), 0, 0, 1, 1},
   {&__pyx_n_s_itemsize, __pyx_k_itemsize, sizeof(__pyx_k_itemsize), 0, 0, 1, 1},
   {&__pyx_kp_s_itemsize_0_for_cython_array, __pyx_k_itemsize_0_for_cython_array, sizeof(__pyx_k_itemsize_0_for_cython_array), 0, 0, 1, 0},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
@@ -23229,7 +23263,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_order, __pyx_k_order, sizeof(__pyx_k_order), 0, 0, 1, 1},
   {&__pyx_n_s_out, __pyx_k_out, sizeof(__pyx_k_out), 0, 0, 1, 1},
   {&__pyx_n_s_pack, __pyx_k_pack, sizeof(__pyx_k_pack), 0, 0, 1, 1},
-  {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_getbuffer, __pyx_k_pyx_getbuffer, sizeof(__pyx_k_pyx_getbuffer), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_query_indptr, __pyx_k_query_indptr, sizeof(__pyx_k_query_indptr), 0, 0, 1, 1},
@@ -23262,9 +23295,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_max = __Pyx_GetBuiltinName(__pyx_n_s_max); if (!__pyx_builtin_max) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 291; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_max = __Pyx_GetBuiltinName(__pyx_n_s_max); if (!__pyx_builtin_max) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) {__pyx_filename = __pyx_f[2]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_Ellipsis = __Pyx_GetBuiltinName(__pyx_n_s_Ellipsis); if (!__pyx_builtin_Ellipsis) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -23296,36 +23329,36 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "rankpy/metrics/_metrics.pyx":703
+  /* "rankpy/metrics/_metrics.pyx":718
  * 
  *             if X.ndim != 1:
  *                 raise ValueError('X is not one dimensional.')             # <<<<<<<<<<<<<<
  * 
  *             if not X.flags.c_contiguous:
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_X_is_not_one_dimensional); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 703; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_X_is_not_one_dimensional); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "rankpy/metrics/_metrics.pyx":757
+  /* "rankpy/metrics/_metrics.pyx":772
  * 
  *             if X.ndim != 1:
  *                 raise ValueError('X is not one dimensional.')             # <<<<<<<<<<<<<<
  * 
  *             if not X.flags.c_contiguous:
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_X_is_not_one_dimensional); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_X_is_not_one_dimensional); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "rankpy/metrics/_metrics.pyx":766
+  /* "rankpy/metrics/_metrics.pyx":781
  * 
  *             if Y.ndim != 1:
  *                 raise ValueError('Y is not one dimensional.')             # <<<<<<<<<<<<<<
  * 
  *             if not Y.flags.c_contiguous:
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_Y_is_not_one_dimensional); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 766; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_Y_is_not_one_dimensional); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
@@ -23703,21 +23736,19 @@ PyMODINIT_FUNC PyInit__metrics(void)
   __pyx_ptype_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain = &__pyx_type_6rankpy_7metrics_8_metrics_DiscountedCumulativeGain;
   __pyx_vtabptr_6rankpy_7metrics_8_metrics_KendallTau = &__pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau;
   __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau.inflate_arrays = (int (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, struct __pyx_opt_args_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays *__pyx_optional_args))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_inflate_arrays;
-  __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau.kendall_tau = (__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau;
-  __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau.kendall_tau_array = (__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_array;
+  __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau.kendall_tau = (__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau;
+  __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau.kendall_tau_array = (__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_array;
   __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau._update_array = (__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__update_array;
   __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau._get_array = (__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__get_array;
   __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau._restore_array = (void (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__restore_array;
-  __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau.kendall_tau_fenwick = (__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_fenwick;
+  __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau.kendall_tau_fenwick = (__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_kendall_tau_fenwick;
   __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau._update_fenwick = (__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__update_fenwick;
   __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau._get_fenwick = (__pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__get_fenwick;
   __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau._restore_fenwick = (void (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, int, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau__restore_fenwick;
-  __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau.print_array = (void (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_LONG_t *, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_print_array;
-  __pyx_vtable_6rankpy_7metrics_8_metrics_KendallTau.print_farray = (void (*)(struct __pyx_obj_6rankpy_7metrics_8_metrics_KendallTau *, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *, int))__pyx_f_6rankpy_7metrics_8_metrics_10KendallTau_print_farray;
-  if (PyType_Ready(&__pyx_type_6rankpy_7metrics_8_metrics_KendallTau) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_6rankpy_7metrics_8_metrics_KendallTau) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 562; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_6rankpy_7metrics_8_metrics_KendallTau.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_6rankpy_7metrics_8_metrics_KendallTau.tp_dict, __pyx_vtabptr_6rankpy_7metrics_8_metrics_KendallTau) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "KendallTau", (PyObject *)&__pyx_type_6rankpy_7metrics_8_metrics_KendallTau) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_6rankpy_7metrics_8_metrics_KendallTau.tp_dict, __pyx_vtabptr_6rankpy_7metrics_8_metrics_KendallTau) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 562; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "KendallTau", (PyObject *)&__pyx_type_6rankpy_7metrics_8_metrics_KendallTau) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 562; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_6rankpy_7metrics_8_metrics_KendallTau = &__pyx_type_6rankpy_7metrics_8_metrics_KendallTau;
   if (PyType_Ready(&__pyx_type___pyx_array) < 0) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type___pyx_array.tp_print = 0;
@@ -25064,6 +25095,21 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObjec
 }
 #endif
 
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+#ifdef __Pyx_CyFunction_USED
+    if (likely(PyCFunction_Check(func) || PyObject_TypeCheck(func, __pyx_CyFunctionType))) {
+#else
+    if (likely(PyCFunction_Check(func))) {
+#endif
+        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
+            return __Pyx_PyObject_CallMethO(func, NULL);
+        }
+    }
+    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
+}
+#endif
+
 static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,
                                   CYTHON_UNUSED int lineno, CYTHON_UNUSED const char *filename,
                                   int full_traceback) {
@@ -25833,7 +25879,7 @@ static void __Pyx_ReleaseBuffer(Py_buffer *view) {
 #endif
 
 
-        static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
+          static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
     PyObject *empty_list = 0;
     PyObject *module = 0;
     PyObject *global_dict = 0;
@@ -26460,173 +26506,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_Py_intptr_t(Py_intptr_t value) {
                                      little, !is_unsigned);
     }
 }
-
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_npy_int64(npy_int64 value) {
-    const npy_int64 neg_one = (npy_int64) -1, const_zero = 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(npy_int64) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(npy_int64) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-        } else if (sizeof(npy_int64) <= sizeof(unsigned long long)) {
-            return PyLong_FromUnsignedLongLong((unsigned long long) value);
-        }
-    } else {
-        if (sizeof(npy_int64) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(npy_int64) <= sizeof(long long)) {
-            return PyLong_FromLongLong((long long) value);
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(npy_int64),
-                                     little, !is_unsigned);
-    }
-}
-
-#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
-static PyObject *__Pyx_GetStdout(void) {
-    PyObject *f = PySys_GetObject((char *)"stdout");
-    if (!f) {
-        PyErr_SetString(PyExc_RuntimeError, "lost sys.stdout");
-    }
-    return f;
-}
-static int __Pyx_Print(PyObject* f, PyObject *arg_tuple, int newline) {
-    int i;
-    if (!f) {
-        if (!(f = __Pyx_GetStdout()))
-            return -1;
-    }
-    Py_INCREF(f);
-    for (i=0; i < PyTuple_GET_SIZE(arg_tuple); i++) {
-        PyObject* v;
-        if (PyFile_SoftSpace(f, 1)) {
-            if (PyFile_WriteString(" ", f) < 0)
-                goto error;
-        }
-        v = PyTuple_GET_ITEM(arg_tuple, i);
-        if (PyFile_WriteObject(v, f, Py_PRINT_RAW) < 0)
-            goto error;
-        if (PyString_Check(v)) {
-            char *s = PyString_AsString(v);
-            Py_ssize_t len = PyString_Size(v);
-            if (len > 0) {
-                switch (s[len-1]) {
-                    case ' ': break;
-                    case '\f': case '\r': case '\n': case '\t': case '\v':
-                        PyFile_SoftSpace(f, 0);
-                        break;
-                    default:  break;
-                }
-            }
-        }
-    }
-    if (newline) {
-        if (PyFile_WriteString("\n", f) < 0)
-            goto error;
-        PyFile_SoftSpace(f, 0);
-    }
-    Py_DECREF(f);
-    return 0;
-error:
-    Py_DECREF(f);
-    return -1;
-}
-#else
-static int __Pyx_Print(PyObject* stream, PyObject *arg_tuple, int newline) {
-    PyObject* kwargs = 0;
-    PyObject* result = 0;
-    PyObject* end_string;
-    if (unlikely(!__pyx_print)) {
-        __pyx_print = PyObject_GetAttr(__pyx_b, __pyx_n_s_print);
-        if (!__pyx_print)
-            return -1;
-    }
-    if (stream) {
-        kwargs = PyDict_New();
-        if (unlikely(!kwargs))
-            return -1;
-        if (unlikely(PyDict_SetItem(kwargs, __pyx_n_s_file, stream) < 0))
-            goto bad;
-        if (!newline) {
-            end_string = PyUnicode_FromStringAndSize(" ", 1);
-            if (unlikely(!end_string))
-                goto bad;
-            if (PyDict_SetItem(kwargs, __pyx_n_s_end, end_string) < 0) {
-                Py_DECREF(end_string);
-                goto bad;
-            }
-            Py_DECREF(end_string);
-        }
-    } else if (!newline) {
-        if (unlikely(!__pyx_print_kwargs)) {
-            __pyx_print_kwargs = PyDict_New();
-            if (unlikely(!__pyx_print_kwargs))
-                return -1;
-            end_string = PyUnicode_FromStringAndSize(" ", 1);
-            if (unlikely(!end_string))
-                return -1;
-            if (PyDict_SetItem(__pyx_print_kwargs, __pyx_n_s_end, end_string) < 0) {
-                Py_DECREF(end_string);
-                return -1;
-            }
-            Py_DECREF(end_string);
-        }
-        kwargs = __pyx_print_kwargs;
-    }
-    result = PyObject_Call(__pyx_print, arg_tuple, kwargs);
-    if (unlikely(kwargs) && (kwargs != __pyx_print_kwargs))
-        Py_DECREF(kwargs);
-    if (!result)
-        return -1;
-    Py_DECREF(result);
-    return 0;
-bad:
-    if (kwargs != __pyx_print_kwargs)
-        Py_XDECREF(kwargs);
-    return -1;
-}
-#endif
-
-#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
-static int __Pyx_PrintOne(PyObject* f, PyObject *o) {
-    if (!f) {
-        if (!(f = __Pyx_GetStdout()))
-            return -1;
-    }
-    Py_INCREF(f);
-    if (PyFile_SoftSpace(f, 0)) {
-        if (PyFile_WriteString(" ", f) < 0)
-            goto error;
-    }
-    if (PyFile_WriteObject(o, f, Py_PRINT_RAW) < 0)
-        goto error;
-    if (PyFile_WriteString("\n", f) < 0)
-        goto error;
-    Py_DECREF(f);
-    return 0;
-error:
-    Py_DECREF(f);
-    return -1;
-    /* the line below is just to avoid C compiler
-     * warnings about unused functions */
-    return __Pyx_Print(f, NULL, 0);
-}
-#else
-static int __Pyx_PrintOne(PyObject* stream, PyObject *o) {
-    int res;
-    PyObject* arg_tuple = PyTuple_Pack(1, o);
-    if (unlikely(!arg_tuple))
-        return -1;
-    res = __Pyx_Print(stream, arg_tuple, 1);
-    Py_DECREF(arg_tuple);
-    return res;
-}
-#endif
 
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *x) {
     const long neg_one = (long) -1, const_zero = 0;

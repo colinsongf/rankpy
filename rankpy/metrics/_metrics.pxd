@@ -20,7 +20,6 @@ cimport numpy as np
 np.import_array()
 
 ctypedef np.npy_float64 DOUBLE_t
-ctypedef np.npy_int64   LONG_t
 ctypedef np.npy_int32   INT_t
 
 
