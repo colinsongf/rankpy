@@ -17,11 +17,9 @@
 from cython cimport view
 
 cimport numpy as np
-np.import_array()
 
 ctypedef np.float64_t DOUBLE_t
 ctypedef np.int32_t   INT_t
-
 
 # =============================================================================
 # C function definitions
@@ -37,10 +35,14 @@ cdef void ranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ran
 cdef void ranksort_relevance_scores_c(DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t n_documents, INT_t *out) nogil
 cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t *out) nogil
 
+cdef int relevance_argsort_v1_c(INT_t *array, INT_t *indices, INT_t size, INT_t maximum=*) nogil
+cdef void relevance_argsort_v2_c(INT_t *array, INT_t *indices, INT_t size) nogil
+
 
 # =============================================================================
 # Python bindings for the C functions defined above.
 # =============================================================================
+
 
 cpdef set_seed(unsigned int seed)
 
@@ -52,3 +54,9 @@ cpdef ranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, IN
 
 cpdef ranksort_relevance_scores(DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out)
 cpdef ranksort_relevance_scores_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out)
+
+cpdef relevance_argsort_v1(INT_t[::1] array, INT_t[::1] indices, INT_t size, INT_t maximum=*)
+cpdef relevance_argsort_v2(INT_t[::1] array, INT_t[::1] indices, INT_t size)
+
+cpdef noise_relenvace_scores(INT_t[::1] relevance_scores, DOUBLE_t [:, ::1] probabilities)
+cpdef rand_uniform(DOUBLE_t low=*, DOUBLE_t high=*)
