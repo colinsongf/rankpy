@@ -18,10 +18,11 @@ import numpy as np
 from warnings import warn
 
 from ._metrics import DiscountedCumulativeGain as DCG
+from ._utils import relevance_argsort_v1
 
 
 class DiscountedCumulativeGain(object):
-    '''
+    ''' 
     Discounted Cumulative Gain metric.
 
     Note that it is really recommended to use the optional parameter `queries`
@@ -81,7 +82,7 @@ class DiscountedCumulativeGain(object):
 
 
     def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None):
-        '''
+        ''' 
         Evaluate the DCG metric on the specified ranked list of document relevance scores.
 
         The function input can be either ranked list of relevance labels (`ranked_labels`),
@@ -115,7 +116,7 @@ class DiscountedCumulativeGain(object):
 
 
     def evaluate_queries(self, queries, scores, scale=None, out=None):
-        '''
+        ''' 
         Evaluate the DCG metric on the specified set of queries (`queries`). The documents
         are sorted by corresponding ranking scores (`scores`) and the metric is then
         computed as the average of the metric values evaluated on each query document
@@ -148,7 +149,7 @@ class DiscountedCumulativeGain(object):
 
 
     def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, out=None):
-        '''
+        ''' 
         Compute the change in the DCG metric after swapping document 'i' with
         each document in the document list starting at 'offset'.
 
@@ -199,22 +200,22 @@ class DiscountedCumulativeGain(object):
         return out
 
 
-    def compute_scale(self, queries):
-        '''
+    def compute_scale(self, queries, relevance_scores=None):
+        ''' 
         Since DCG is not normalized, return None.
         '''
         return None
 
 
     def __str__(self):
-        '''
+        ''' 
         Return the textual description of the metric.
         '''
         return 'DCG' if self.metric_.cutoff < 0 else 'DCG@%d' % self.metric_.cutoff
 
 
 class NormalizedDiscountedCumulativeGain(object):
-    '''
+    ''' 
     Normalized Discounted Cumulative Gain metric.
 
     Note that it is really recommended to use the optional parameter `queries`
@@ -276,7 +277,7 @@ class NormalizedDiscountedCumulativeGain(object):
 
 
     def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None):
-        '''
+        ''' 
         Evaluate NDCG metric on the specified ranked list of document relevance scores.
 
         The function input can be either ranked list of relevance labels (`ranked_labels`),
@@ -311,7 +312,7 @@ class NormalizedDiscountedCumulativeGain(object):
 
 
     def evaluate_queries(self, queries, scores, scale=None, out=None):
-        '''
+        ''' 
         Evaluate the NDCG metric on the specified set of queries (`queries`). The documents
         are sorted by corresponding ranking scores (`scores`) and the metric is then
         computed as the average of the metric values evaluated on each query document
@@ -352,7 +353,7 @@ class NormalizedDiscountedCumulativeGain(object):
 
 
     def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, out=None):
-        '''
+        ''' 
         Compute the change in the NDCG metric after swapping document 'i' with
         each document in the document list starting at 'offset'.
 
@@ -407,12 +408,26 @@ class NormalizedDiscountedCumulativeGain(object):
         return out
 
 
-    def compute_scale(self, queries):
-        '''
-        Return the ideal DCG value for each query.
+    def compute_scale(self, queries, relevance_scores=None):
+        ''' 
+        Return the ideal DCG value for each query. Optionally, external
+        relevance assessments can be used instead of the relevances
+        present in the queries.
         '''
         ideal_values = np.empty(queries.query_count(), dtype=np.float64)
-        self.metric_.evaluate_queries_ideal(queries.query_indptr, queries.relevance_scores, ideal_values)
+        if relevance_scores is not None:
+            if queries.document_count() != relevance_scores.shape[0]:
+                raise ValueError('number of documents and relevance scores do not match')
+            # Need to sort the relevance labels first.
+            indices = np.empty(relevance_scores.shape[0], dtype=np.intc)
+            relevance_argsort_v1(relevance_scores, indices, relevance_scores.shape[0])
+            # Creates a copy.
+            relevance_scores = relevance_scores[indices]
+        else:
+            # Assuming these are sorted.
+            relevance_scores = queries.relevance_scores
+
+        self.metric_.evaluate_queries_ideal(queries.query_indptr, relevance_scores, ideal_values)
         return ideal_values
 
 
