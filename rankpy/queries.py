@@ -235,7 +235,7 @@ class Queries(object):
 
         def purge_query(qid, data, indices, indptr):
             '''Remove the last query added to the set according to `purge`.'''
-            if purge is None or qid is None:
+            if purge in (None, 0) or qid is None:
                 return 0
 
             if purge == 1:
@@ -404,7 +404,8 @@ class Queries(object):
 
         mmap: {None, ‘r+’, ‘r’, ‘w+’, ‘c’}, optional (default is None)
             If not None, then memory-map the feature vectors, using
-            the given mode (see `numpy.memmap` for a details).
+            the given mode (see `numpy.memmap` for a details). This
+            will work only if the feature matrix has been saved separately.
 
         order: {'C', 'F'} or None, optional (default is None)
             Specify the order for the feature vectors array. 'C' and 'F'
@@ -416,7 +417,8 @@ class Queries(object):
         '''
         logger.info('Loading queries from %s.' % filepath)
         queries = unpickle(filepath)
-        queries.feature_vectors = np.load(filepath + '.feature_vectors.npy', mmap_mode=mmap)
+        if not hasattr(queries, 'feature_vectors'):
+            queries.feature_vectors = np.load(filepath + '.feature_vectors.npy', mmap_mode=mmap)
         # Convert (if needed) feature vectors into wanted order.
         if mmap is None:
             queries.feature_vectors = np.asanyarray(queries.feature_vectors, order=order)
@@ -436,7 +438,7 @@ class Queries(object):
         return queries
 
 
-    def save(self, filepath, order='C'):
+    def save(self, filepath, order='C', separate=False):
         ''' 
         Save this Queries object into the specified file.
 
@@ -448,16 +450,32 @@ class Queries(object):
         order: {'C', 'F'}, optional (default is 'C')
             Specify the order for the feature vectors array. 'C' and 'F'
             stand for C-contiguos and F-contiguos order, respectively.
+
+        separate: bool
+            If set to True, feature matrix is saved in a separate
+            file, which can be advantageous later because the matrix
+            can be memory mapped on load.
         '''
-        np.save(filepath + '.feature_vectors.npy', np.asanyarray(self.feature_vectors, order=order))
+        # The name of the attributes that will be removed
+        # from the object before pickling.
+        removed_attribute_names = ['query_indptr', 'relevance_scores']
+
+        # Save feature vectors separately to allow memory mapping.
+        if separate:
+            np.save(filepath + '.feature_vectors.npy', np.asanyarray(self.feature_vectors, order=order))
+            removed_attribute_names.append('feature_vectors')
+
         removed_attributes = {}
-        # Delete all numpy arrays that can be restored from the 2 arrays above.
-        for attribute in ('query_indptr', 'relevance_scores', 'feature_vectors'):
+
+        # Delete the listed attributes.
+        for attribute in removed_attribute_names:
             removed_attributes[attribute] = getattr(self, attribute)
             delattr(self, attribute)
+
         # Pickle...
         pickle(self, filepath)
-        # ... and restore the object's properties.
+
+        # ... and restore the attributes.
         for attribute, value in removed_attributes.iteritems():
             setattr(self, attribute, value)
 
@@ -466,7 +484,22 @@ class Queries(object):
         ''' 
         Return new Queries object containing queries in the `index`.
         '''
-        # TODO: Make it work with slices?
+        # Handle slices.
+        if isinstance(index, slice):
+            start, stop, step = index.indices(self.query_count())
+
+            # Special treatment for continuous slices.
+            if step == 1:
+                feature_vectors = self.feature_vectors[self.query_indptr[start]:self.query_indptr[stop]]
+                relevance_scores = self.relevance_scores[self.query_indptr[start]:self.query_indptr[stop]]
+                query_indptr = np.array(self.query_indptr[start:stop + 1]) - self.query_indptr[start]
+                query_ids = self.query_ids[start:stop]
+
+                return Queries(feature_vectors, relevance_scores, query_indptr, query_ids=query_ids, feature_indices=self.feature_indices, has_sorted_relevances=True)
+            else:
+                index = np.arange(start, stop, step)
+
+        # Handle boolean mask.
         if isinstance(index, np.ndarray) and index.ndim == 1 and index.dtype.kind == 'b':
             index = index.nonzero()
 
@@ -477,7 +510,7 @@ class Queries(object):
         except:
             pass
 
-        # Convert list/tuple to ndarray.
+        # Handle Python lists.
         index = np.asanyarray(index, dtype=np.intc)
 
         feature_vectors = np.vstack([self.feature_vectors[self.query_indptr[i]:self.query_indptr[i + 1]] for i in index])
@@ -491,9 +524,9 @@ class Queries(object):
     def adjust(self, min_score=None, purge=2, return_indices=False):
         ''' 
         Adjust the document set such that the minimum relevance score is changed
-        to the given value (all values are adjusted by accordingly) and queries,
+        to the given value (all values are adjusted accordingly) and queries,
         which have only irrelevant documents (purge is 1) or documents with the
-        same relevancescores (purge == 2) are removed.
+        same relevance scores (purge == 2) are removed.
 
         Parameters
         ----------
@@ -565,7 +598,6 @@ class Queries(object):
 
         # Not needed, but keeps things nice and clean.
         self.query_relevance_strides[np.where(self.query_relevance_strides < 0)] = -1
-
 
 
     def get_query(self, qid):
