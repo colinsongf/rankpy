@@ -368,12 +368,12 @@ class LambdaRandomForest(object):
 
             for fold_indices in estimator_indices:
                 # Using multithreading backend since GIL is released in the code.
-                estimators = Parallel(n_jobs=self.n_jobs, backend='threading')\
-                                 (delayed(_parallel_build_trees_bootstrap, check_pickle=False)
-                                          (i, estimators[i], len(estimators), metric, training_lambdas,
-                                           training_weights, self.bootstrap, queries, training_scale_values,
-                                           validation, validation_ranking_scores[i - fold_indices[0] + 1])
-                                  for i in fold_indices)
+                fold_estimators = Parallel(n_jobs=self.n_jobs, backend='threading')\
+                                      (delayed(_parallel_build_trees_bootstrap, check_pickle=False)
+                                              (i, estimators[i], len(estimators), metric, training_lambdas,
+                                               training_weights, self.bootstrap, queries, training_scale_values,
+                                               validation, validation_ranking_scores[i - fold_indices[0] + 1])
+                                       for i in fold_indices)
 
                 self.estimators.extend(fold_estimators)
 
@@ -404,7 +404,7 @@ class LambdaRandomForest(object):
                     break
 
                 # Copy last ranking scores for the next validation "fold".
-                if estimator_indices.shape[0] == self.estopping:
+                if fold_indices.shape[0] == self.estopping:
                     validation_ranking_scores[0, :] = validation_ranking_scores[-1, :]
 
         if validation is not queries:
