@@ -38,9 +38,9 @@ from .lambdamart import _estimate_newton_gradient_steps
 logger = logging.getLogger(__name__)
 
 
-def _parallel_build_trees_shuffle(tree_index, tree, n_trees, queries, metric, use_newton_method, scale_values, bootstrap,
-                                  training_metric_performance=None, validation=None, validation_scale_values=None,
-                                  validation_metric_performance=None):
+def _parallel_build_trees_shuffle(tree_index, tree, n_trees, metric, use_newton_method,
+                                  bootstrap, queries, scale_values, validation=None,
+                                  validation_ranking_scores=None):
     ''' 
     Train the trees on the specified queries using the LambdaMART's lambdas computed
     using the specified metric.
@@ -56,9 +56,6 @@ def _parallel_build_trees_shuffle(tree_index, tree, n_trees, queries, metric, us
     n_trees: int
         The total number of trees that will be trained.
 
-    queries: Queries object
-        The set of queries from which the tree models will be trained.
-
     metric: Metric
         Specify evaluation metric which will be used as a utility
         function optimized by the tree (through pseudo-responses).
@@ -67,25 +64,27 @@ def _parallel_build_trees_shuffle(tree_index, tree, n_trees, queries, metric, us
         Estimate the gradient step in each terminal node of regression
         tree using Newton-Raphson method.
 
-    scale_values: array of doubles, shape = (n_queries,)
-        The precomputed ideal metric value for the specified queries.
-
     boostrap: bool
         Specify to use bootstrap sample from the lambdas computed
         from `reshuffled` documents.
 
-    training_metric_performance: array of doubles, shape = (n_estimators,)
-        The array to store training performance of each trained tree.    
+    queries: Queries object
+        The set of queries from which the tree models will be trained.
+
+    scale_values: array of doubles, shape = (n_queries,)
+        The precomputed ideal metric value for the specified queries.
 
     validation: Queries
         The set of queries used for validation.
 
-    validation_scale_values: array of doubles, shape = (n_valid_queries,)
-        The precomputed scale factors for metric values of the validation queries.
-
-    validation_metric_performance: array of doubles, shape = (n_estimators,)
-        The array to store validation performance of each trained tree.
+    validation_ranking_scores: array of doubles, shape = (n_validation_documents,)
+        The ranking scores for each document in validation set.
     '''
+    if validation is None:
+        logger.info('Started fitting LambdaDecisionTree %d of %d.' % (tree_index, n_trees))
+    else:
+        logger.info('Started fitting %d-th LambdaDecisionTree.' % tree_index)
+
     # Note, that 0 scores does not mean the order of documents will not change.
     training_scores = np.zeros(queries.document_count(), dtype=np.float64)
 
@@ -95,11 +94,9 @@ def _parallel_build_trees_shuffle(tree_index, tree, n_trees, queries, metric, us
     # The optimal gradient descent step sizes for each document.
     training_weights = np.empty(queries.document_count(), dtype=np.float64)
 
-    logger.info('Started fitting LambdaDecisionTree %d of %d.' % (tree_index, n_trees))
-
     # Compute the pseudo-responses (lambdas) and gradient step sizes (weights).
     compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas, training_weights,
-                                 scale_values=scale_values)
+                                scale_values=scale_values)
     # Bootstrap?
     if bootstrap:
         n_lambdas = queries.document_count()
@@ -114,20 +111,18 @@ def _parallel_build_trees_shuffle(tree_index, tree, n_trees, queries, metric, us
     if use_newton_method:
        _estimate_newton_gradient_steps(tree, queries, training_lambdas, training_weights)
 
-    if training_metric_performance is not None:
-        training_metric_performance[tree_index] = metric.evaluate_queries(queries, tree.predict(queries.feature_vectors),
-                                                                          scale=scale_values)
-
-    if validation is not None and validation_metric_performance is not None:
-        validation_metric_performance[tree_index] = metric.evaluate_queries(validation, tree.predict(validation.feature_vectors),
-                                                                            scale=validation_scale_values)
+    if validation is not None:
+        if validation_ranking_scores is not None:
+            validation_ranking_scores[:] = tree.predict(validation.feature_vectors)
+        else:
+            raise ValueError('validation_ranking_scores cannot be None if validation != None')
 
     return tree
 
 
-def _parallel_build_trees_bootstrap(tree_index, tree, n_trees, queries, metric, scale_values, training_lambdas, training_weights,
-                                    bootstrap, training_metric_performance=None, validation=None, validation_scale_values=None,
-                                    validation_metric_performance=None):
+def _parallel_build_trees_bootstrap(tree_index, tree, n_trees, metric, training_lambdas,
+                                    training_weights, bootstrap, queries, scale_values,
+                                    validation=None, validation_ranking_scores=None):
     ''' 
     Train a regression tree for the specified LambdaMART's lambdas, and if not None,
     use weights to optimize the gradient step in terminal nodes using Newton-Raphson
@@ -144,16 +139,9 @@ def _parallel_build_trees_bootstrap(tree_index, tree, n_trees, queries, metric, 
     n_trees: int
         The total number of trees that will be trained.
 
-    queries: Queries
-        The set of queries from which the tree model is being
-        trained.
-
     metric: Metric
         Specify evaluation metric which will be used as a utility
         function (i.e. metric of `goodness`) optimized by the trees.
-
-    scale_values: array of doubles, shape = (n_queries, )
-        The precomputed scale factors for metric values of the queries.
 
     training_lambdas: array of doubles, shape = (n_documents,)
         The precomputed lambdas for every document.
@@ -164,19 +152,23 @@ def _parallel_build_trees_bootstrap(tree_index, tree, n_trees, queries, metric, 
     boostrap: bool
         Specify to use bootstrap sample from the given lambdas.
 
-    training_metric_performance: array of doubles, shape = (n_estimators,)
-        The array to store training performance of each trained tree.    
+    queries: Queries
+        The set of queries from which the tree model is being
+        trained.
+
+    scale_values: array of doubles, shape = (n_queries, )
+        The precomputed scale factors for metric values of the queries.
 
     validation: Queries
         The set of queries used for validation.
 
-    validation_scale_values: array of doubles, shape = (n_valid_queries, )
-        The precomputed scale factors for metric values of the validation queries.
-
-    validation_metric_performance: array of doubles, shape = (n_estimators,)
-        The array to store validation performance of each trained tree.    
+    validation_ranking_scores: array of doubles, shape = (n_validation_documents,)
+        The ranking scores for each document in validation set.
     '''
-    logger.info('Started fitting LambdaDecisionTree %d of %d.' % (tree_index, n_trees))
+    if validation is None:
+        logger.info('Started fitting LambdaDecisionTree %d of %d.' % (tree_index, n_trees))
+    else:
+        logger.info('Started fitting %d-th LambdaDecisionTree.' % tree_index)
 
     # Bootstrap?
     if bootstrap:
@@ -192,13 +184,12 @@ def _parallel_build_trees_bootstrap(tree_index, tree, n_trees, queries, metric, 
     if training_weights is not None:
        _estimate_newton_gradient_steps(tree, queries, training_lambdas, training_weights)
 
-    if training_metric_performance is not None:
-        training_metric_performance[tree_index] = metric.evaluate_queries(queries, tree.predict(queries.feature_vectors),
-                                                                          scale=scale_values)
+    if validation is not None:
+        if validation_ranking_scores is not None:
+            validation_ranking_scores[:] = tree.predict(validation.feature_vectors)
+        else:
+            raise ValueError('validation_ranking_scores cannot be None if validation != None')
 
-    if validation is not None and validation_metric_performance is not None:
-        validation_metric_performance[tree_index] = metric.evaluate_queries(validation, tree.predict(validation.feature_vectors),
-                                                                            scale=validation_scale_values)
     return tree
 
 
@@ -244,9 +235,9 @@ class LambdaRandomForest(object):
         The seed for random number generator that internally is used. This
         value should not be None only for debugging.
     '''
-    def __init__(self, n_estimators=1000, use_newton_method=True, max_depth=None, max_leaf_nodes=None,
+    def __init__(self, n_estimators=10000, use_newton_method=True, max_depth=None, max_leaf_nodes=None,
                  min_samples_split=2, min_samples_leaf=1, max_features=None, n_jobs=1, shuffle=True,
-                 bootstrap=False, seed=None):
+                 bootstrap=False, estopping=100, seed=None):
         self.estimators = []
         self.n_estimators = n_estimators
         self.max_depth = max_depth
@@ -257,6 +248,7 @@ class LambdaRandomForest(object):
         self.use_newton_method = use_newton_method
         self.shuffle = shuffle
         self.bootstrap = bootstrap
+        self.estopping = n_estimators if estopping is None else estopping
         self.n_jobs = max(1, n_jobs if n_jobs >= 0 else n_jobs + cpu_count() + 1)
         self.trained = False
         self.seed = seed
@@ -273,7 +265,7 @@ class LambdaRandomForest(object):
 
         Parameters:
         -----------
-        metric: metrics.AbstractMetric object
+        metric: Metric object
             Specify evaluation metric which will be used as a utility
             function (i.e. metric of `goodness`) optimized by this model.
 
@@ -286,14 +278,12 @@ class LambdaRandomForest(object):
         # If the metric used for training is normalized, it is obviously advantageous
         # to precompute the scaling factor for each query in advance.
         training_scale_values = metric.compute_scale(queries)
-        training_metric_performance = np.zeros(self.n_estimators, dtype=np.float64)
 
-        if validation is not None:
-            validation_scale_values = metric.compute_scale(validation)
-            validation_metric_performance = np.zeros(self.n_estimators, dtype=np.float64)
-        else:
-            validation_scale_values = None
-            validation_metric_performance = None
+        if validation is None:
+            validation = queries
+
+        validation_scale_values = metric.compute_scale(validation)
+        validation_ranking_scores = np.zeros((self.n_jobs + 1, validation.document_count()), dtype=np.float64)
 
         logger.info('Training of LambdaRandomForest model has started.')
 
@@ -305,14 +295,59 @@ class LambdaRandomForest(object):
                                                     min_samples_split=self.min_samples_split,
                                                     min_samples_leaf=self.min_samples_leaf,
                                                     max_features=self.max_features))
+
+        # Best performance and index of the last tree.
+        best_performance = -np.inf
+        best_performance_k = -1
+
+        # How many iterations the performance has not improved on validation set.
+        performance_not_improved = 0
+
+        if self.n_estimators > self.n_jobs:
+            estimator_indices = np.array_split(np.arange(self.n_estimators, dtype=np.intc), self.n_estimators / self.n_jobs)
+        else:
+            estimator_indices = [np.arange(self.n_estimators)]
+
         if self.shuffle:
-            # Using multithreading backend since GIL is being released.
-            estimators = Parallel(n_jobs=self.n_jobs, backend='threading')\
-                            (delayed(_parallel_build_trees_shuffle, check_pickle=False)
-                                          (i, tree, len(estimators), queries, metric, self.use_newton_method, 
-                                           training_scale_values, self.bootstrap, training_metric_performance,
-                                           validation, validation_scale_values, validation_metric_performance)
-                                           for i, tree in enumerate(estimators))
+            for fold_indices in estimator_indices:
+                fold_estimators = Parallel(n_jobs=self.n_jobs, backend='threading')\
+                                      (delayed(_parallel_build_trees_shuffle, check_pickle=False)
+                                               (i, estimators[i], len(estimators), metric, self.use_newton_method,
+                                                self.bootstrap, queries, training_scale_values, validation,
+                                                validation_ranking_scores[i - fold_indices[0] + 1])
+                                       for i in fold_indices)
+
+                self.estimators.extend(fold_estimators)
+
+                np.cumsum(validation_ranking_scores, axis=0, out=validation_ranking_scores)
+
+                for i, ranking_scores in enumerate(validation_ranking_scores[1:, :]):
+                    validation_performance = metric.evaluate_queries(validation, ranking_scores, scale=validation_scale_values)
+
+                    logger.info('#%08d: %s (%s): %11.8f' % (fold_indices[i], 'training' if validation is queries else 'validation',
+                                                            metric, validation_performance))
+
+                    if validation_performance > best_performance:
+                        best_performance = validation_performance
+                        best_performance_k = fold_indices[i]
+                        performance_not_improved = 0
+                    else:
+                        performance_not_improved += 1
+
+                    # Break for early stopping.
+                    if performance_not_improved >= self.estopping:
+                        break
+
+                if performance_not_improved >= self.estopping:
+                    logger.info('Stopping early since no improvement on %s queries'\
+                                ' has been observed for %d iterations (since iteration %d)'\
+                                 % ('training' if validation is queries else 'validation',
+                                    self.estopping, best_performance_k + 1))
+                    break
+
+                # Copy last ranking scores for the next validation "fold".
+                if fold_indices.shape[0] == self.estopping:
+                    validation_ranking_scores[0, :] = validation_ranking_scores[-1, :]
         else:
             # Initial ranking scores.
             training_scores = np.zeros(queries.document_count(), dtype=np.float64)
@@ -325,29 +360,67 @@ class LambdaRandomForest(object):
 
             # Compute the pseudo-responses (lambdas) and gradient step sizes (weights) just once.
             compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas, training_weights,
-                                         training_scale_values, n_jobs=self.n_jobs)
+                                        training_scale_values, n_jobs=self.n_jobs)
 
             # Not using Newthon-Raphson optimization?
             if not self.use_newton_method:
                 training_weights = None
 
-            # Using multithreading backend since GIL is released in the code.
-            estimators = Parallel(n_jobs=self.n_jobs, backend='threading')\
-                             (delayed(_parallel_build_trees_bootstrap, check_pickle=False)
-                                 (i, tree, len(estimators), queries, metric, training_scale_values,
-                                  training_lambdas, training_weights, self.bootstrap, training_metric_performance,
-                                  validation, validation_scale_values, validation_metric_performance)
-                                  for i, tree in enumerate(estimators))
+            for fold_indices in estimator_indices:
+                # Using multithreading backend since GIL is released in the code.
+                estimators = Parallel(n_jobs=self.n_jobs, backend='threading')\
+                                 (delayed(_parallel_build_trees_bootstrap, check_pickle=False)
+                                          (i, estimators[i], len(estimators), metric, training_lambdas,
+                                           training_weights, self.bootstrap, queries, training_scale_values,
+                                           validation, validation_ranking_scores[i - fold_indices[0] + 1])
+                                  for i in fold_indices)
 
-        # Collect the trained estimators.
-        self.estimators.extend(estimators)
+                self.estimators.extend(fold_estimators)
 
-        # Set the training and (optionally) validation performances.
-        self.training_metric_performance = training_metric_performance
+                np.cumsum(validation_ranking_scores, axis=0, out=validation_ranking_scores)
 
-        if validation is not None:
-            self.validation_metric_performance = validation_metric_performance
-        
+                for i, ranking_scores in enumerate(validation_ranking_scores[1:, :]):
+                    validation_performance = metric.evaluate_queries(validation, ranking_scores, scale=validation_scale_values)
+
+                    logger.info('#%08d: %s (%s): %11.8f' % (fold_indices[i], 'training' if validation is queries else 'validation',
+                                                            metric, validation_performance))
+
+                    if validation_performance > best_performance:
+                        best_performance = validation_performance
+                        best_performance_k = fold_indices[i]
+                        performance_not_improved = 0
+                    else:
+                        performance_not_improved += 1
+
+                    # Break for early stopping.
+                    if performance_not_improved >= self.estopping:
+                        break
+
+                if performance_not_improved >= self.estopping:
+                    logger.info('Stopping early since no improvement on %s queries'\
+                                ' has been observed for %d iterations (since iteration %d)'\
+                                 % ('training' if validation is queries else 'validation',
+                                    self.estopping, best_performance_k + 1))
+                    break
+
+                # Copy last ranking scores for the next validation "fold".
+                if estimator_indices.shape[0] == self.estopping:
+                    validation_ranking_scores[0, :] = validation_ranking_scores[-1, :]
+
+        if validation is not queries:
+            logger.info('Final model performance (%s) on validation queries: %11.8f' % (metric, best_performance))
+        else:
+            logger.info('Final model performance (%s) on validation queries: %11.8f' % (metric, best_performance))
+
+        # Leave the estimators that led to the best performance,
+        # either on training or validation set.
+        del self.estimators[best_performance_k + 1:]
+
+        # Correct the number of trees.
+        self.n_estimators = len(self.estimators)
+
+        self.best_performance = best_performance
+
         # Mark the model as trained.
         self.trained = True
 
