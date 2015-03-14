@@ -717,8 +717,8 @@ cdef class KendallTau:
             if X.ndim != 1:
                 raise ValueError('X is not one dimensional.')
 
-            if not X.flags.c_contiguous:
-                X = np.ascontiguousarray(X)
+            if X.dtype != np.int32 or not X.flags.c_contiguous:
+                X = np.ascontiguousarray(X, dtype='int32')
 
         cdef np.ndarray[INT_t, ndim=1] Y = np.sort(X)
 
@@ -771,8 +771,8 @@ cdef class KendallTau:
             if X.ndim != 1:
                 raise ValueError('X is not one dimensional.')
 
-            if not X.flags.c_contiguous:
-                X = np.ascontiguousarray(X)
+            if X.dtype != np.int32 or not X.flags.c_contiguous:
+                X = np.ascontiguousarray(X, dtype='int32')
 
             if not isinstance(Y, np.ndarray):
                 Y = np.array(Y, dtype='int32', order='C')
@@ -780,8 +780,8 @@ cdef class KendallTau:
             if Y.ndim != 1:
                 raise ValueError('Y is not one dimensional.')
 
-            if not Y.flags.c_contiguous:
-                Y = np.ascontiguousarray(Y)
+            if Y.dtype != np.int32 or not Y.flags.c_contiguous:
+                Y = np.ascontiguousarray(Y, dtype='int32')
         
         # +1 in case of 0-based permutations.
         size = max(max(X), max(Y)) + 1
