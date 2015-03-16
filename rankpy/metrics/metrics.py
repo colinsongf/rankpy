@@ -436,3 +436,187 @@ class NormalizedDiscountedCumulativeGain(object):
         Return the textual description of the metric.
         '''
         return 'NDCG' if self.metric_.cutoff < 0 else 'NDCG@%d' % self.metric_.cutoff
+
+class ExpectedReciprocalRank(object):
+    def __init__(self, cutoff=-1, max_relevance=None, max_documents=None, queries=None):
+        # Get the maximum relevance score and maximum number of documents
+        # per a query from the specified set(s) of queries...
+        self.cutoff = cutoff
+        if queries is not None:
+            self.max_relevance = max([qs.highest_relevance() for qs in queries])
+            self.max_documents = max([qs.longest_document_list() for qs in queries])
+        else:
+            # or use the parameters given. None values indicate that explicit
+            # values were not given which may lead to unexpected results and
+            # to runtime errors, hence a user warnings are issued.
+            if max_relevance is None:
+                self.max_relevance = 8
+                warn('Maximum relevance label was not explicitly specified ' \
+                     '(using default value 8). This should be avoided in order ' \
+                     'not to encounter runtime error (SegFault)!')
+
+            if max_documents is None:
+                self.max_documents = 8192
+                warn('Maximum number of documents per query was not explicitly specified ' \
+                     '(using default value 8192). This should be avoided in order not to ' \
+                     'encounter runtime error (SegFault)!')
+        self.Ri_array = np.zeros(self.max_relevance + 1, np.double)
+        for label in xrange(self.max_relevance + 1):
+            self.Ri_array[label] = (2.0 ** label - 1) / (2.0 ** self.max_relevance)
+
+
+
+    def Ri(self,label):
+        return self.Ri_array[label]
+
+    def get_score_from_labels_list(self,labels_list):
+        score = 0.0
+        evaluated_size = len(labels_list) if (self.cutoff > len(labels_list) or self.cutoff <= 0) else self.cutoff
+        cumulated_product = 1.0
+        for r in xrange(1, evaluated_size + 1):
+            Rr = self.Ri(labels_list[r - 1])
+            score += Rr / r * cumulated_product
+            cumulated_product *= (1.0 - Rr)
+        return score
+
+    def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None):
+        '''
+        Evaluate NDCG metric on the specified ranked list of document relevance scores.
+
+        The function input can be either ranked list of relevance labels (`ranked_labels`),
+        which is most convenient from the computational point of view, or it can be in
+        the form of ranked list of documents (`ranking`) and corresponding relevance scores
+        (`labels`), from which the ranked document relevance labels are computed.
+
+        Parameters:
+        -----------
+        ranking: array, shape = (n_documents,)
+            Specify list of ranked documents.
+
+        labels: array: shape = (n_documents,)
+            Specify relevance score for each document.
+
+        ranked_labels: array, shape = (n_documents,)
+            Relevance scores of the ranked documents. If not given, then
+            `ranking` and `labels` must not be None, `ranked_labels` will
+            be than inferred from them.
+
+        scale: float, optional (default is None)
+            The ideal DCG value on the given documents. If None is given
+            it will be computed from the document relevance scores.
+        '''
+        if ranked_labels is not None:
+            return self.get_score_from_labels_list(ranked_labels)
+        elif ranking is not None and labels is not None:
+            if ranking.shape[0] != labels.shape[0]:
+                raise ValueError('number of ranked documents != number of relevance labels (%d, %d)' \
+                                  % (ranking.shape[0], labels.shape[0]))
+            ranked_labels = np.array(sorted(labels, key=dict(zip(labels,ranking)).get, reverse=True), dtype=np.intc)
+            return self.get_score_from_labels_list(ranked_labels)
+
+    def evaluate_queries(self, queries, scores, scale=None, out=None):
+        total_score = 0.0
+        for i in range(queries.query_count()):
+            y = queries.relevance_scores[queries.query_indptr[i]:queries.query_indptr[i + 1]]
+            ranking = scores[queries.query_indptr[i]:queries.query_indptr[i + 1]]
+            total_score += self.evaluate(labels=y, ranking=ranking)
+        return total_score / float(queries.query_count())
+
+    def __str__(self):
+        '''
+        Return the textual description of the metric.
+        '''
+        return 'ERR' if self.cutoff < 0 else 'ERR@%d' % self.cutoff
+
+
+class SeznamRank(object):
+    def __init__(self, cutoff=20, max_relevance=None, max_documents=None, queries=None, bw_navig=[], bw_info=[], pw_navig=[], pw_info=[]):
+        """
+        :param cutoff:
+        :param max_relevance:
+        :param max_documents:
+        :param queries:
+        :param bw_navig: constants provided by Seznam.cz
+        :param bw_info: constants provided by Seznam.cz
+        :param pw_navig: constants provided by Seznam.cz
+        :param pw_info: constants provided by Seznam.cz
+        :return:
+        """
+
+        self.cutoff = cutoff
+        if queries is not None:
+            self.max_relevance = max([qs.highest_relevance() for qs in queries])
+            self.max_documents = max([qs.longest_document_list() for qs in queries])
+        else:
+            # or use the parameters given. None values indicate that explicit
+            # values were not given which may lead to unexpected results and
+            # to runtime errors, hence a user warnings are issued.
+            if max_relevance is None:
+                self.max_relevance = 8
+                warn('Maximum relevance label was not explicitly specified ' \
+                     '(using default value 8). This should be avoided in order ' \
+                     'not to encounter runtime error (SegFault)!')
+
+            if max_documents is None:
+                self.max_documents = 8192
+                warn('Maximum number of documents per query was not explicitly specified ' \
+                     '(using default value 8192). This should be avoided in order not to ' \
+                     'encounter runtime error (SegFault)!')
+        self.BOX_WEIGHTS = (bw_info, bw_navig)
+        self.POS_WEIGHTS = (pw_info, pw_navig)
+
+
+
+    def get_score_from_labels_list(self, labels_list):
+        is_navig = True if self.max_relevance in labels_list else False
+        return min(sum(self.BOX_WEIGHTS[is_navig][a - 1] * b for a, b
+                       in zip(labels_list, self.POS_WEIGHTS[is_navig])), 100.0) / 100.0
+
+    def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None):
+        '''
+        Evaluate NDCG metric on the specified ranked list of document relevance scores.
+
+        The function input can be either ranked list of relevance labels (`ranked_labels`),
+        which is most convenient from the computational point of view, or it can be in
+        the form of ranked list of documents (`ranking`) and corresponding relevance scores
+        (`labels`), from which the ranked document relevance labels are computed.
+
+        Parameters:
+        -----------
+        ranking: array, shape = (n_documents,)
+            Specify list of ranked documents.
+
+        labels: array: shape = (n_documents,)
+            Specify relevance score for each document.
+
+        ranked_labels: array, shape = (n_documents,)
+            Relevance scores of the ranked documents. If not given, then
+            `ranking` and `labels` must not be None, `ranked_labels` will
+            be than inferred from them.
+
+        scale: float, optional (default is None)
+            The ideal DCG value on the given documents. If None is given
+            it will be computed from the document relevance scores.
+        '''
+        if ranked_labels is not None:
+            return self.get_score_from_labels_list(ranked_labels)
+        elif ranking is not None and labels is not None:
+            if ranking.shape[0] != labels.shape[0]:
+                raise ValueError('number of ranked documents != number of relevance labels (%d, %d)' \
+                                  % (ranking.shape[0], labels.shape[0]))
+            ranked_labels = np.array(sorted(labels, key=dict(zip(labels,ranking)).get, reverse=True), dtype=np.intc)
+            return self.get_score_from_labels_list(ranked_labels)
+
+    def evaluate_queries(self, queries, scores, scale=None, out=None):
+        total_score = 0.0
+        for i in range(queries.query_count()):
+            y = queries.relevance_scores[queries.query_indptr[i]:queries.query_indptr[i + 1]]
+            ranking = scores[queries.query_indptr[i]:queries.query_indptr[i + 1]]
+            total_score += self.evaluate(labels=y, ranking=ranking)
+        return total_score / float(queries.query_count())
+
+    def __str__(self):
+        '''
+        Return the textual description of the metric.
+        '''
+        return 'SR' if self.cutoff < 0 else 'SR@%d' % self.cutoff

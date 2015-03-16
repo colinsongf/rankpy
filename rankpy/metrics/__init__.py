@@ -22,9 +22,13 @@ Information Retrieval Evaluation Metrics
 
 from .metrics import DiscountedCumulativeGain
 from .metrics import NormalizedDiscountedCumulativeGain
+from .metrics import ExpectedReciprocalRank
+from .metrics import SeznamRank
 
 
 __all__ = [
     'DiscountedCumulativeGain',
     'NormalizedDiscountedCumulativeGain',
+    'ExpectedReciprocalRank',
+    'SeznamRank',
 ]
