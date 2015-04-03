@@ -258,7 +258,7 @@ class LambdaRandomForest(object):
             raise ValueError('cannot use parameter `max_leaf_nodes` with scikit-learn of version smaller than 15')
 
 
-    def fit(self, metric, queries, validation=None):
+    def fit(self, metric, queries, validation=None, min_estimators=None):
         ''' 
         Train the LambdaMART model on the specified queries. Optinally, use the
         specified queries for finding an optimal number of trees using validation.
@@ -271,6 +271,10 @@ class LambdaRandomForest(object):
 
         queries: Queries object
             The set of queries from which this LambdaMART model will be trained.
+
+        min_estimators: int or None, optional, default: None
+            The minimum number of estimators to train. This number of estimators
+            will be trained regardless of the `self.n_estimators` and `self.estopping`.
         '''
         # Initialize the random number generator.
         np.random.seed(self.seed)
@@ -289,6 +293,11 @@ class LambdaRandomForest(object):
 
         estimators = []
 
+        if min_estimators is None:
+            min_estimators = 0
+
+        self.n_estimators = max(self.n_estimators, min_estimators)
+
         for k in range(self.n_estimators):
             estimators.append(DecisionTreeRegressor(max_depth=self.max_depth,
                                                     max_leaf_nodes=self.max_leaf_nodes,
@@ -304,7 +313,7 @@ class LambdaRandomForest(object):
         performance_not_improved = 0
 
         if self.n_estimators > self.n_jobs:
-            estimator_indices = np.array_split(np.arange(self.n_estimators, dtype=np.intc), self.n_estimators / self.n_jobs)
+            estimator_indices = np.array_split(np.arange(self.n_estimators, dtype=np.intc), (self.n_estimators + self.n_jobs - 1) / self.n_jobs)
         else:
             estimator_indices = [np.arange(self.n_estimators)]
 
@@ -319,9 +328,9 @@ class LambdaRandomForest(object):
 
                 self.estimators.extend(fold_estimators)
 
-                np.cumsum(validation_ranking_scores, axis=0, out=validation_ranking_scores)
+                np.cumsum(validation_ranking_scores[:(len(fold_indices) + 1)], axis=0, out=validation_ranking_scores[:(len(fold_indices) + 1)])
 
-                for i, ranking_scores in enumerate(validation_ranking_scores[1:, :]):
+                for i, ranking_scores in enumerate(validation_ranking_scores[1:(len(fold_indices) + 1)]):
                     validation_performance = metric.evaluate_queries(validation, ranking_scores, scale=validation_scale_values)
 
                     logger.info('#%08d: %s (%s): %11.8f' % (fold_indices[i], 'training' if validation is queries else 'validation',
@@ -335,10 +344,10 @@ class LambdaRandomForest(object):
                         performance_not_improved += 1
 
                     # Break for early stopping.
-                    if performance_not_improved >= self.estopping:
+                    if performance_not_improved >= self.estopping and min_estimators <= fold_indices[i] + 1:
                         break
 
-                if performance_not_improved >= self.estopping:
+                if performance_not_improved >= self.estopping and min_estimators <= fold_indices[i] + 1:
                     logger.info('Stopping early since no improvement on %s queries'\
                                 ' has been observed for %d iterations (since iteration %d)'\
                                  % ('training' if validation is queries else 'validation',
@@ -346,8 +355,7 @@ class LambdaRandomForest(object):
                     break
 
                 # Copy last ranking scores for the next validation "fold".
-                if fold_indices.shape[0] == self.estopping:
-                    validation_ranking_scores[0, :] = validation_ranking_scores[-1, :]
+                validation_ranking_scores[0, :] = validation_ranking_scores[len(fold_indices), :]
         else:
             # Initial ranking scores.
             training_scores = np.zeros(queries.document_count(), dtype=np.float64)
@@ -377,7 +385,7 @@ class LambdaRandomForest(object):
 
                 self.estimators.extend(fold_estimators)
 
-                np.cumsum(validation_ranking_scores, axis=0, out=validation_ranking_scores)
+                np.cumsum(validation_ranking_scores[:(len(fold_indices) + 1)], axis=0, out=validation_ranking_scores[:(len(fold_indices) + 1)])
 
                 for i, ranking_scores in enumerate(validation_ranking_scores[1:, :]):
                     validation_performance = metric.evaluate_queries(validation, ranking_scores, scale=validation_scale_values)
@@ -393,10 +401,10 @@ class LambdaRandomForest(object):
                         performance_not_improved += 1
 
                     # Break for early stopping.
-                    if performance_not_improved >= self.estopping:
+                    if performance_not_improved >= self.estopping and min_estimators <= fold_indices[i] + 1:
                         break
 
-                if performance_not_improved >= self.estopping:
+                if performance_not_improved >= self.estopping and min_estimators <= fold_indices[i] + 1:
                     logger.info('Stopping early since no improvement on %s queries'\
                                 ' has been observed for %d iterations (since iteration %d)'\
                                  % ('training' if validation is queries else 'validation',
@@ -404,13 +412,15 @@ class LambdaRandomForest(object):
                     break
 
                 # Copy last ranking scores for the next validation "fold".
-                if fold_indices.shape[0] == self.estopping:
-                    validation_ranking_scores[0, :] = validation_ranking_scores[-1, :]
+                validation_ranking_scores[0, :] = validation_ranking_scores[len(fold_indices), :]
 
         if validation is not queries:
             logger.info('Final model performance (%s) on validation queries: %11.8f' % (metric, best_performance))
         else:
             logger.info('Final model performance (%s) on validation queries: %11.8f' % (metric, best_performance))
+
+        # Make sure the model has the wanted size.
+        best_performance_k = max(best_performance_k, min_estimators - 1)
 
         # Leave the estimators that led to the best performance,
         # either on training or validation set.
@@ -541,6 +551,6 @@ class LambdaRandomForest(object):
         ''' 
         Return textual representation of the LambdaRandomForest model.
         '''
-        return 'LambdaRandomForest(trees=%d, max_depth=%s, max_leaf_nodes=%s, max_features=%s, use_newton_method=%s, trained=%s)' % \
+        return 'LambdaRandomForest(trees=%d, max_depth=%s, max_leaf_nodes=%s, max_features=%s, use_newton_method=%s, bootstrap=%s, shuffle=%s, trained=%s)' % \
                (self.n_estimators, self.max_depth if self.max_leaf_nodes is None else '?', '?' if self.max_leaf_nodes is None else self.max_leaf_nodes,
-                'all' if self.max_features is None else self.max_features, self.use_newton_method, self.trained)
+                'all' if self.max_features is None else self.max_features, self.use_newton_method, self.bootstrap, self.shuffle, self.trained)
