@@ -20,6 +20,7 @@
 Information Retrieval Evaluation Metrics
 '''
 
+from .metrics import WinnerTakesAll
 from .metrics import DiscountedCumulativeGain
 from .metrics import NormalizedDiscountedCumulativeGain
 from .metrics import ExpectedReciprocalRank
@@ -27,6 +28,7 @@ from .metrics import SeznamRank
 
 
 __all__ = [
+    'WinnerTakesAll',
     'DiscountedCumulativeGain',
     'NormalizedDiscountedCumulativeGain',
     'ExpectedReciprocalRank',
