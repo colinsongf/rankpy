@@ -555,6 +555,213 @@ cdef class DiscountedCumulativeGain(Metric):
             for j in range(n_swapped_document_pairs):
                 out[j] = fabs(out[j])
 
+
+# =============================================================================
+# Winner Takes All Metric
+# =============================================================================
+
+
+cdef class WinnerTakesAll(Metric):
+    ''' 
+    Winner Takes All (WTA) metric.
+    '''
+
+    def __cinit__(self, INT_t cutoff, INT_t maximum_relevance, INT_t maximum_documents):
+        ''' 
+        Initialize the metric with the specified cutoff threshold.
+        maximum relevance score a document can have, and the maximum
+        number of documents per query is ignored.
+
+        cutoff: integer
+            Ignored, but must not be 0.
+
+        maximum_relevance: integer
+            Ignored.
+
+        maximum_documents: integer
+            Ignored.
+        '''
+        pass
+
+
+    def __reduce__(self):
+        ''' 
+        Reduce reimplementation, for pickling.
+        '''
+        return (WinnerTakesAll, (-1, 0, 0))
+
+
+    cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value):
+        ''' 
+        Evaluate the metric on the specified document ranking.
+
+        Parameters:
+        -----------
+        ranking: array of integers, shape = (n_documents,)
+            Specify the list of ranked documents.
+
+        relevance_scores: array of integers, shape = (n_documents,)
+            Specify the relevance score for each document.
+
+        scale_value: double
+            Ignored.
+        '''
+        cdef DOUBLE_t result
+        with nogil:
+            result = relevance_scores[ranking[0]]
+        return result
+
+
+    cpdef evaluate(self, INT_t[::1] ranked_relevance_scores, DOUBLE_t scale_value):
+        ''' 
+        Evaluate the metric on the specified ranked list of document relevance scores.
+
+        Parameters:
+        -----------
+        ranked_relevance_scores: array of integers, shape = (n_documents,)
+            Specify list of relevance scores.
+
+        scale_value: double
+           Ignored.
+        '''
+        cdef DOUBLE_t result
+        with nogil:
+            result = ranked_relevance_scores[0]
+        return result
+
+
+    cpdef evaluate_queries(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ranking_scores, DOUBLE_t[::1] scale_values, DOUBLE_t[::1] out):
+        ''' 
+        Evaluate the WTA metric on the specified queries. The relevance scores and
+        ranking scores of documents, which belong to query `i`, are in
+        `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` and
+        `ranking_scores[query_indptr[i]:query_indptr[i + 1]]`, respectively.
+
+        Parameters:
+        -----------
+        query_indptr: array of integers, shape = (n_queries + 1,)
+            The query index pointer.
+
+        relevance_scores, array of integers, shape = (n_queries + 1,)
+            Specify the relevance score for each document.
+
+        ranking_scores: array, shape=(n_queries,)
+            Specify the ranking score for each document.
+
+        scale_values: array, shape=(n_queries,), optional
+            Ignored.
+
+        out: array, shape=(n_documents,), optional
+            If not None, it will be filled with the metric value
+            for each individual query.
+        '''
+        cdef:
+            INT_t i, n_queries, n_documents
+            INT_t *ranked_relevance_scores
+            DOUBLE_t result, qresult
+
+        with nogil:
+            n_queries = query_indptr.shape[0] - 1
+            n_documents = relevance_scores.shape[0]
+            
+            ranked_relevance_scores = <INT_t*> calloc(n_documents, sizeof(INT_t))
+
+            ranksort_relevance_scores_queries_c(&query_indptr[0], n_queries, &ranking_scores[0], &relevance_scores[0], ranked_relevance_scores)
+
+            result = 0.0
+
+            for i in range(n_queries):
+                qresult = ranked_relevance_scores[query_indptr[i]]
+
+                if out is not None:
+                    out[i] = qresult
+
+                result += qresult
+
+            result /= n_queries
+
+            free(ranked_relevance_scores)
+            
+        return result
+
+
+    cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t[::1] out):
+        ''' 
+        Compute the change in the metric caused by swapping document `i` with every
+        document `offset`, `offset + 1`, ... (in turn)
+
+        The relevance score and document rank of document `i` is `relevance_scores[i]`
+        and `document_ranks[i]`, respectively.
+
+        Parameters:
+        -----------
+        i: integer
+            The index of the one document that is being swapped with all
+            the others.
+
+        offset: integer
+            The start index of the sequence of documents that are
+            being swapped.
+
+        document_ranks: array of integers
+            Specify the rank for each document.
+
+        relevance_scores: array of integers
+            Specify the relevance score for each document.
+
+        scale_value: double, shape = (n_documents,)
+            Ignored.
+
+        out: array of doubles
+            The output array. The array size is expected to be at least as big
+            as the the number of document pairs being swapped, which should be
+            `len(document_ranks) - offset`.
+        '''
+        with nogil:
+            self.delta_c(i, offset, document_ranks.shape[0], &document_ranks[0], &relevance_scores[0], scale_value, &out[0])
+
+
+    cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ideal_values):
+        ''' 
+        Compute the ideal WTA metric value for every one of the specified queries.
+
+        The relevance scores of documents, which belong to query `i`, must be
+        stored in `relevance_scores[query_indptr[i]:query_indptr[i + 1]]` in
+        descending order.
+
+        Parameters:
+        -----------
+        query_indptr: array of integers, shape = (n_queries + 1,)
+            The query index pointer.
+
+        relevance_scores, array of integers, shape = (n_documents,)
+            Specify the relevance score for each document. It is expected
+            that these values are sorted in descending order.
+
+        ideal_values: output array of doubles, shape=(n_queries,)
+            Output array for the ideal metric value of each query.
+        '''
+        cdef INT_t i
+
+        with nogil:
+            for i in range(query_indptr.shape[0] - 1):
+                ideal_values[i] = relevance_scores[query_indptr[i]]
+
+
+    cdef void delta_c(self, INT_t i, INT_t offset, INT_t n_documents, INT_t *document_ranks, INT_t *relevance_scores, DOUBLE_t scale_value, DOUBLE_t *out) nogil:
+        ''' 
+        See description of self.delta(...) method.
+        '''
+        cdef INT_t j
+
+        if i != 0:
+            for j in range(offset, n_documents):
+                out[j - offset] = 0.0
+        else:
+            for j in range(offset, n_documents):
+                out[j - offset] = fabs(relevance_scores[j] - relevance_scores[i])
+
+
 # =============================================================================
 # Kendall Tau Distance
 # =============================================================================

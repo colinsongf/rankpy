@@ -17,8 +17,167 @@ import numpy as np
 
 from warnings import warn
 
+from ._metrics import WinnerTakesAll as WTA
 from ._metrics import DiscountedCumulativeGain as DCG
+
 from ._utils import relevance_argsort_v1
+
+
+class WinnerTakesAll(object):
+    ''' 
+    Winner Takes All metric.
+
+    Arguments:
+    ----------
+    cutoff: int, optional (default is -1)
+        Ignored.
+
+    max_relevance: int, optional (default is 4)
+        Ignored.
+
+    max_documents: int, optional (default is 8192):
+        Ignored.
+
+    queries: list of rankpy.queries.Queries
+        Ignored.
+    '''
+    def __init__(self, cutoff=-1, max_relevance=None, max_documents=None, queries=None):
+        # Create the metric cython backend.
+        self.metric_ = WTA(-1, 0, 0)
+
+
+    def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None):
+        ''' 
+        Evaluate the WTA metric on the specified ranked list of document relevance scores.
+
+        The function input can be either ranked list of relevance labels (`ranked_labels`),
+        which is most convenient from the computational point of view, or it can be in
+        the form of ranked list of documents (`ranking`) and corresponding relevance scores
+        (`labels`), from which the ranked document relevance labels are computed.
+
+        Parameters:
+        -----------
+        ranking: array, shape = (n_documents,)
+            Specify list of ranked documents.
+
+        labels: array: shape = (n_documents,)
+            Specify relevance score for each document.
+
+        ranked_labels: array, shape = (n_documents,)
+            Relevance scores of the ranked documents. If not given, then
+            `ranking` and `labels` must not be None, `ranked_labels` will
+            be than inferred from them.
+
+        scale: float, optional (default is None)
+            Ignored.
+        '''
+        if ranked_labels is not None:
+            return self.metric_.evaluate(ranked_labels, 1.0)
+        elif ranking is not None and labels is not None:
+            if ranking.shape[0] != labels.shape[0]:
+                raise ValueError('number of ranked documents != number of relevance labels (%d, %d)' \
+                                  % (ranking.shape[0], labels.shape[0]))
+            return self.metric_.evaluate_ranking(ranking, labels, 1.0)
+
+
+    def evaluate_queries(self, queries, scores, scale=None, out=None):
+        ''' 
+        Evaluate the WTA metric on the specified set of queries (`queries`). The documents
+        are sorted by corresponding ranking scores (`scores`) and the metric is then
+        computed as the average of the metric values evaluated on each query document
+        list. The ties in ranking are broken probabilistically.
+        
+        Parameters:
+        -----------
+        queries: rankpy.queries.Queries
+            The set of queries for which the metric will be computed.
+
+        scores: array, shape=(n_documents,)
+            The ranking scores for each document in the queries.
+
+        scale: array, shape=(n_queries,), or None
+            Ignored.
+
+        out: array, shape=(n_documents,), or None
+            If not None, it will be filled with the metric value
+            for each individual query.
+        '''
+        if queries.document_count() != scores.shape[0]:
+            raise ValueError('number of documents != number of scores (%d, %d)' \
+                             % (queries.document_count(), scores.shape[0]))
+
+        if out is not None and queries.query_count() != out.shape[0]:
+            raise ValueError('number of queries != size of output array (%d, %d)' \
+                             % (queries.query_count(), out.shape[0]))
+
+        return self.metric_.evaluate_queries(queries.query_indptr, queries.relevance_scores, scores, None, out)
+
+
+    def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, out=None):
+        ''' 
+        Compute the change in the WTA metric after swapping document 'i' with
+        each document in the document list starting at 'offset'.
+
+        The relevance and rank of the document 'i' is 'relevance_scores[i]' and
+        'document_ranks[i]', respectively.
+
+        Similarly, 'relevance_scores[j]' and 'document_ranks[j]' for each j starting
+        from 'offset' and ending at the end of the list denote the relevance score
+        and rank of the document that will be swapped with document 'i'.
+
+        Parameters:
+        -----------
+        i: int
+            The index (zero-based) of the document that will appear in every pair
+             of documents that will be swapped.
+
+        offset: int
+            The offset pointer to the start of the documents that will be swapped.
+
+        document_ranks: array
+            The ranks of the documents.
+
+        relevance_scores: array
+            The relevance scores of the documents.
+
+        out: array, optional (default is None)
+            The output array. The array size is expected to be at least equal to
+            the number of documents shorter by the ofset.
+
+        scale: float or None, optional (default is None)
+            Ignored.
+        '''
+        n_documents = len(document_ranks)
+
+        if out is None:
+            out = np.empty(n_documents - offset, dtype=np.float64)
+
+        if out.shape[0] < n_documents - offset:
+            raise ValueError('output array is too small (%d < %d)' \
+                             % (out.shape[0], n_documents - offset))
+
+        if document_ranks.shape[0] != relevance_scores.shape[0]:
+            raise ValueError('document ranks size != relevance scores (%d != %d)' \
+                              % (document_ranks.shape[0], relevance_scores.shape[0]))
+
+        self.metric_.delta(i, offset, document_ranks, relevance_scores, 1.0, out)
+
+        return out
+
+
+    def compute_scale(self, queries, relevance_scores=None):
+        ''' 
+        Since WTA is not normalized (or it can be said that it is already normal),
+        return None.
+        '''
+        return None
+
+
+    def __str__(self):
+        ''' 
+        Return the textual description of the metric.
+        '''
+        return 'WTA' if self.metric_.cutoff < 0 else 'WTA@%d' % self.metric_.cutoff
 
 
 class DiscountedCumulativeGain(object):

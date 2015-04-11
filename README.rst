@@ -164,6 +164,10 @@ You can download learning to rank data sets here:
 
 All credit for making this list goes to Anne Schuth -- check out [Lerot: an Online Learning to Rank Framework](https://bitbucket.org/ilps/lerot).
 
+Acknowledgements
+----------------
+Parts of this project were created during my visit at the ILPS research group at the University of Amsterdam, which was funded by ESF (European Science Foundation) and CTU Media Lab Foundation.
+
 License
 -------
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.

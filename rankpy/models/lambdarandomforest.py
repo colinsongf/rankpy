@@ -328,9 +328,9 @@ class LambdaRandomForest(object):
 
                 self.estimators.extend(fold_estimators)
 
-                np.cumsum(validation_ranking_scores, axis=0, out=validation_ranking_scores)
+                np.cumsum(validation_ranking_scores[:(len(fold_indices) + 1)], axis=0, out=validation_ranking_scores[:(len(fold_indices) + 1)])
 
-                for i, ranking_scores in enumerate(validation_ranking_scores[1:, :]):
+                for i, ranking_scores in enumerate(validation_ranking_scores[1:(len(fold_indices) + 1)]):
                     validation_performance = metric.evaluate_queries(validation, ranking_scores, scale=validation_scale_values)
 
                     logger.info('#%08d: %s (%s): %11.8f' % (fold_indices[i], 'training' if validation is queries else 'validation',
@@ -355,8 +355,7 @@ class LambdaRandomForest(object):
                     break
 
                 # Copy last ranking scores for the next validation "fold".
-                if fold_indices.shape[0] == self.estopping:
-                    validation_ranking_scores[0, :] = validation_ranking_scores[-1, :]
+                validation_ranking_scores[0, :] = validation_ranking_scores[len(fold_indices), :]
         else:
             # Initial ranking scores.
             training_scores = np.zeros(queries.document_count(), dtype=np.float64)
@@ -386,7 +385,7 @@ class LambdaRandomForest(object):
 
                 self.estimators.extend(fold_estimators)
 
-                np.cumsum(validation_ranking_scores, axis=0, out=validation_ranking_scores)
+                np.cumsum(validation_ranking_scores[:(len(fold_indices) + 1)], axis=0, out=validation_ranking_scores[:(len(fold_indices) + 1)])
 
                 for i, ranking_scores in enumerate(validation_ranking_scores[1:, :]):
                     validation_performance = metric.evaluate_queries(validation, ranking_scores, scale=validation_scale_values)
@@ -413,8 +412,7 @@ class LambdaRandomForest(object):
                     break
 
                 # Copy last ranking scores for the next validation "fold".
-                if fold_indices.shape[0] == self.estopping:
-                    validation_ranking_scores[0, :] = validation_ranking_scores[-1, :]
+                validation_ranking_scores[0, :] = validation_ranking_scores[len(fold_indices), :]
 
         if validation is not queries:
             logger.info('Final model performance (%s) on validation queries: %11.8f' % (metric, best_performance))
@@ -422,7 +420,7 @@ class LambdaRandomForest(object):
             logger.info('Final model performance (%s) on validation queries: %11.8f' % (metric, best_performance))
 
         # Make sure the model has the wanted size.
-        best_performance_k = max(best_performance_k, min_estimators)
+        best_performance_k = max(best_performance_k, min_estimators - 1)
 
         # Leave the estimators that led to the best performance,
         # either on training or validation set.

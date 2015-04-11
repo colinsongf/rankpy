@@ -27,6 +27,7 @@ from ..externals.joblib import Parallel, delayed, cpu_count
 from sklearn.ensemble import RandomForestRegressor
 
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.tree import ExtraTreeRegressor
 from sklearn.tree._tree import TREE_UNDEFINED, TREE_LEAF
 
 from shutil import rmtree
@@ -35,6 +36,8 @@ from tempfile import mkdtemp
 from ..utils import parallel_helper
 from ..utils import pickle, unpickle
 from ..metrics._utils import set_seed, argranksort, ranksort_queries
+
+from collections import deque
 
 from .lambdamart_inner import parallel_compute_lambdas_and_weights
 
@@ -253,7 +256,7 @@ class LambdaMART(object):
     LambdaMART learning to rank model.
 
     Arguments:
-    -----------
+    ----------
     n_estimators: int, optional (default is 1000)
         The number of regression tree estimators that will
         compose this ensemble model.
@@ -309,6 +312,12 @@ class LambdaMART(object):
     base_model: learning to rank model
         The learning to rank model used for warm start.
 
+    min_estimators: int, optional, default: 1
+        The minimum number of estimators to train. This number of estimators
+        will be trained regardless of the `self.n_estimators` and `self.estopping`,
+        and even if the best performance on training/validation queries was better
+        for fewer models.
+
     seed: int, optional (default is None)
         The seed for random number generator that internally is used. This
         value should not be None only for debugging.
@@ -325,9 +334,11 @@ class LambdaMART(object):
     '''
     def __init__(self, n_estimators=10000, shrinkage=0.1, use_newton_method=True, use_random_forest=0,
                  max_depth=5, max_leaf_nodes=None, min_samples_split=2, min_samples_leaf=1, estopping=100,
-                 max_features=None, base_model=None, n_iterations=1, n_jobs=1, verbose=0, seed=None):
+                 max_features=None, base_model=None, min_estimators=1, n_iterations=1, n_jobs=1, verbose=0,
+                 random_thresholds=False, seed=None):
         self.estimators = []
         self.n_estimators = n_estimators
+        self.min_estimators = min_estimators
         self.shrinkage = shrinkage
         self.max_depth = max_depth
         self.max_leaf_nodes = max_leaf_nodes
@@ -338,19 +349,112 @@ class LambdaMART(object):
         self.base_model = base_model
         self.use_newton_method=use_newton_method
         self.use_random_forest=use_random_forest
+        self.random_thresholds = random_thresholds
         self.n_jobs = max(1, n_jobs if n_jobs >= 0 else n_jobs + cpu_count() + 1)
         self.n_iterations = n_iterations
         self.verbose = verbose
         self.training_performance  = None
         self.validation_performance = None
         self.best_performance = None
-        self.trained = False
         self.seed = seed
 
         # `max_leaf_nodes` were introduced in version 15 of scikit-learn.
         if self.max_leaf_nodes is not None and int(sklearn.__version__.split('.')[1]) < 15:
             raise ValueError('cannot use parameter `max_leaf_nodes` with scikit-learn of '
                              'version smaller than 15, use max_depth instead.' )
+
+
+    def fit_tree(self, metric, queries, max_estimators=None):
+        ''' 
+        Train just a single tree and add it to the LambdaMART model.
+
+        Parameters:
+        -----------
+        metric: metrics.AbstractMetric object
+            Specify evaluation metric which will be used as a utility
+            function (i.e. metric of `goodness`) optimized for this model.
+
+        queries: Queries object
+            The set of queries from which one LambdaMART tree will be trained.
+
+        max_estimators: integer
+            The maximum number of trees in the model. If a new tree is fitted
+            the oldest is removed.
+        '''
+        # If the model contains at least one tree we need to compute the ranking scores.
+        if self.estimators:
+            ranking_scores = self.predict(queries, n_jobs=self.n_jobs)
+        else:
+            ranking_scores = 0.0001 * np.random.rand(queries.document_count()).astype(np.float64)
+
+        if not isinstance(self.estimators, deque):
+            self.estimators = deque(self.estimators, maxlen=max_estimators)
+
+        # If the metric used for training is normalized, it is obviously advantageous
+        # to precompute the scaling factor for each query in advance.
+        queries_scale_values = metric.compute_scale(queries)
+
+        # The pseudo-responses (lambdas) for each document.
+        queries_lambdas = np.empty(queries.document_count(), dtype=np.float64)
+
+        # The optimal gradient descent step sizes for each document.
+        queries_weights = np.empty(queries.document_count(), dtype=np.float64)
+
+        # The lambdas and predictions may be kept for late analysis.
+        self.trace_lambdas = False
+        self.trace_gradients = False
+        self.trace_influences = False
+
+        logger.info('Training of LambdaMART tree started.')
+
+        # Computes the pseudo-responses (lambdas) and gradient step sizes (weights) for the current regression tree.
+        compute_lambdas_and_weights(queries, ranking_scores, metric, queries_lambdas, queries_weights,
+                                    queries_scale_values, None, None, None, None, n_jobs=self.n_jobs)
+
+        # Build the predictor for the gradients of the loss using either decision tree or random forest.
+        if self.use_random_forest > 0:
+            estimator = RandomForestRegressor(n_estimators=self.use_random_forest,
+                                              max_depth=self.max_depth,
+                                              max_leaf_nodes=self.max_leaf_nodes,
+                                              max_features=self.max_features,
+                                              min_samples_split=self.min_samples_split,
+                                              min_samples_leaf=self.min_samples_leaf,
+                                              n_jobs=self.n_jobs)
+        else:
+            if self.random_thresholds:
+                estimator = ExtraTreeRegressor(max_depth=self.max_depth,
+                                               max_leaf_nodes=self.max_leaf_nodes,
+                                               max_features=self.max_features,
+                                               min_samples_split=self.min_samples_split,
+                                               min_samples_leaf=self.min_samples_leaf)
+            else:
+                estimator = DecisionTreeRegressor(max_depth=self.max_depth,
+                                                  max_leaf_nodes=self.max_leaf_nodes,
+                                                  max_features=self.max_features,
+                                                  min_samples_split=self.min_samples_split,
+                                                  min_samples_leaf=self.min_samples_leaf)
+
+        # Train the regression tree.
+        estimator.fit(queries.feature_vectors, queries_lambdas)
+
+        # Train the regression tree.
+        # estimator.fit(queries.feature_vectors, queries_lambdas / queries_weights, sample_weight=queries_weights)
+
+        # Estimate the optimal gradient steps using Newton's method.
+        if self.use_newton_method:
+            _estimate_multiple_newton_gradient_steps(estimator, queries, ranking_scores, metric, queries_lambdas,
+                                                     queries_weights, queries_scale_values, None, None, None,
+                                                     n_iterations=self.n_iterations, shrinkage=self.shrinkage,
+                                                     verbose=self.verbose, n_jobs=self.n_jobs)
+
+        # Add the new tree(s) to the company.
+        self.estimators.append(estimator)
+
+        # Correct the number of trees.
+        self.n_estimators = len(self.estimators)
+
+        logger.info('Training of LambdaMART tree finished - %s:  %11.8f' \
+                     % (metric, metric.evaluate_queries(queries, ranking_scores, scale=queries_scale_values)))
 
 
     def fit(self, metric, queries, validation=None, trace=None):
@@ -379,9 +483,6 @@ class LambdaMART(object):
             only if the Newton method is used for estimating the gradient steps. Use
             `influences` if you want to track (proportional) contribution of lambdas
             from lower relevant documents on high relevant ones.
-
-        verbose: int
-            Specify the verbosity level.
         '''
         # Initialize the random number generators.
         np.random.seed(self.seed)
@@ -393,7 +494,7 @@ class LambdaMART(object):
         # order by their relevance scores (see `rankpy.queries.Queries`). But since
         # `utils_inner.argranksort` uses its own randomization (documents with the equal
         # scores are shuffled randomly) this purpose lost its meaning. Now it only serves
-        # as a random initialization point as in any other gradient-based type of methdods. 
+        # as a random initialization point as in any other gradient-based type of methods. 
         if self.base_model is None:
             training_scores = 0.0001 * np.random.rand(queries.document_count()).astype(np.float64)
         else:
@@ -429,7 +530,7 @@ class LambdaMART(object):
 
                 if validation is not None:
                     self.stage_validation_lambdas_truth = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.lambdas.truth.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
-                    self.stage_validation_lambdas_predicted = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.predicted.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
+                    self.stage_validation_lambdas_predicted = np.memmap(os.path.join(TEMP_DIRECTORY_NAME, 'validation.lambdas.predicted.tmp.npy'), dtype='float64', mode='w+', shape=(self.n_estimators, validation.document_count()))
 
             # The (loss) gradient steps for each query-document pair: the true and estimated by the regression trees.
             if self.trace_gradients:
@@ -484,6 +585,8 @@ class LambdaMART(object):
 
         logger.info('Training of LambdaMART model has started.')
 
+        self.n_estimators = max(self.n_estimators, self.min_estimators)
+
         # Iteratively build a sequence of regression trees.
         for k in range(self.n_estimators):
             training_influences = self.stage_training_influences[k] if self.trace_influences else None
@@ -502,11 +605,18 @@ class LambdaMART(object):
                                                   min_samples_leaf=self.min_samples_leaf,
                                                   n_jobs=self.n_jobs)
             else:
-                estimator = DecisionTreeRegressor(max_depth=self.max_depth,
-                                                  max_leaf_nodes=self.max_leaf_nodes,
-                                                  max_features=self.max_features,
-                                                  min_samples_split=self.min_samples_split,
-                                                  min_samples_leaf=self.min_samples_leaf)
+                if self.random_thresholds:
+                    estimator = ExtraTreeRegressor(max_depth=self.max_depth,
+                                                   max_leaf_nodes=self.max_leaf_nodes,
+                                                   max_features=self.max_features,
+                                                   min_samples_split=self.min_samples_split,
+                                                   min_samples_leaf=self.min_samples_leaf)
+                else:
+                    estimator = DecisionTreeRegressor(max_depth=self.max_depth,
+                                                      max_leaf_nodes=self.max_leaf_nodes,
+                                                      max_features=self.max_features,
+                                                      min_samples_split=self.min_samples_split,
+                                                      min_samples_leaf=self.min_samples_leaf)
             # Train the regression tree.
             estimator.fit(queries.feature_vectors, training_lambdas)
 
@@ -582,13 +692,16 @@ class LambdaMART(object):
                     best_performance = self.training_performance[k]
                     best_performance_k = k
 
-            if performance_not_improved >= self.estopping:
+            if performance_not_improved >= self.estopping and self.min_estimators <= k + 1:
                 logger.info('Stopping early since no improvement on validation queries'\
                             ' has been observed for %d iterations (since iteration %d)' % (self.estopping, best_performance_k + 1))
                 break
 
         if validation is not None:
             logger.info('Final model performance (%s) on validation queries: %11.8f' % (metric, best_performance))
+
+        # Make sure the model has the wanted size.
+        best_performance_k = max(best_performance_k, self.min_estimators - 1)
 
         # Leave the estimators that led to the best performance,
         # either on training or validation set.
@@ -599,10 +712,11 @@ class LambdaMART(object):
 
         # Set these for further inspection.
         self.training_performance = np.resize(self.training_performance, k + 1)
-        self.best_performance = best_performance
 
         if validation is not None:
             self.validation_performance = np.resize(self.validation_performance, k + 1)
+
+        self.best_performance = best_performance
 
         if self.trace_influences:
             self.stage_training_influences = np.resize(self.stage_training_influences, (k + 1,
@@ -632,9 +746,6 @@ class LambdaMART(object):
                     self.stage_validation_influences /= influences_normalizer
                     self.stage_validation_influences[np.isnan(self.stage_validation_influences)] = 0.0
 
-        # Mark the model as trained.
-        self.trained = True
-
         logger.info('Training of LambdaMART model has finished.')
 
 
@@ -653,7 +764,7 @@ class LambdaMART(object):
             The number of working threads that will be spawned to compute
             the ranking scores. If -1, the current number of CPUs will be used.
         '''
-        if self.trained is False:
+        if not self.estimators:
             raise ValueError('the model has not been trained yet')
 
         predictions = np.zeros(queries.document_count(), dtype=np.float64)
@@ -708,7 +819,7 @@ class LambdaMART(object):
         ''' 
         Return the feature importances.
         '''
-        if self.trained is False:   
+        if not self.estimators:   
             raise ValueError('the model has not been trained yet')
 
         importances = Parallel(n_jobs=self.n_jobs, backend="threading")(delayed(getattr, check_pickle=False)
@@ -718,7 +829,7 @@ class LambdaMART(object):
 
 
     @classmethod
-    def load(cls, filepath, mmap='r'):
+    def load(cls, filepath, mmap='r', load_traced=False):
         ''' 
         Load the previously saved LambdaMART model from the specified file.
 
@@ -734,6 +845,9 @@ class LambdaMART(object):
         logger.info("Loading %s object from %s" % (cls.__name__, filepath))
 
         obj = unpickle(filepath)
+
+        if not load_traced:
+            return obj
 
         if obj.trace_lambdas:
             logger.info('Loading traced (true) lambda values from %s.training.lambdas.truth.npy' % filepath)
@@ -944,6 +1058,6 @@ class LambdaMART(object):
         ''' 
         Return textual representation of the LambdaMART model.
         '''
-        return 'LambdaMART(trees=%d, max_depth=%s, max_leaf_nodes=%s, shrinkage=%.2f, max_features=%s, use_newton_method=%s, trained=%s)' % \
+        return 'LambdaMART(trees=%d, max_depth=%s, max_leaf_nodes=%s, shrinkage=%.2f, max_features=%s, use_newton_method=%s)' % \
                (self.n_estimators, self.max_depth if self.max_leaf_nodes is None else '?', '?' if self.max_leaf_nodes is None else self.max_leaf_nodes,
-                self.shrinkage, 'all' if self.max_features is None else self.max_features, self.use_newton_method, self.trained)
+                self.shrinkage, 'all' if self.max_features is None else self.max_features, self.use_newton_method)
