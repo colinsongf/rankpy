@@ -21,7 +21,7 @@ import numpy as np
 import scipy.sparse as sp
 
 from itertools import chain, izip
-from .utils import pickle, unpickle
+from utils import pickle, unpickle
 
 from warnings import warn
 
@@ -184,7 +184,7 @@ class Queries(object):
 
 
     @staticmethod
-    def load_from_text(filepaths, dtype=np.float32, max_score=None, has_sorted_relevances=False, purge=2):
+    def load_from_text(filepaths, dtype=np.float32, max_score=None, min_feature=None, max_feature=None, has_sorted_relevances=False, purge=2):
         ''' 
         Load queries in the svmlight format from the specified file(s).
 
@@ -205,6 +205,19 @@ class Queries(object):
         max_score: int, optional (default is None)
             The maximum relevance score value. If None, the value is derived
             from the relevance scores in the file.
+
+        min_feature: int or None, optional (default is None)
+            The minimum feature identifier, which is present in the dataset. If
+            None, this value is read from the data. This parameter is important
+            because of internal feature remapping: in case of loading different
+            parts of a dataset (folds), some features may be present in one part
+            and may not be present in another (because all its values are 0) -
+            this would create inconsistent feature mappings between the parts.
+
+        max_feature: int or None, optional (default is None)
+            The maximum feature identifier, which is present in the dataset. If
+            None, this value is read from the data. This parameter is important
+            because of internal feature remapping, see `min_feature` for more.
 
         has_sorted_relevances: bool, optional (default is False)
             If True, it indicates that the relevance scores of the queries in the file
@@ -334,9 +347,26 @@ class Queries(object):
                             % (len(query_indptr) + n_purged_queries - 1, query_indptr[-1] + n_purged_documents,
                                n_purged_queries, n_purged_documents))
 
-        # Remap the features into 0:(# unique feature indices) range.
-        feature_indices = np.unique(indices)
-        indices = np.searchsorted(feature_indices, indices)
+        # Empty dataset.
+        if len(query_indptr) == 1:
+            raise ValueError('the input seems to be empty')
+
+        # Set the minimum feature ID, if not given.
+        if min_feature is None:
+            min_feature = min(indices)
+
+        if max_feature is None:
+            # Remap the features for a proper conversion into dense matrix.
+            feature_indices = np.unique(np.r_[min_feature, indices])
+            indices = np.searchsorted(feature_indices, indices)
+        else:
+            assert min(indices) >= min_feature, 'there is a feature with id smaller than min_feature: %d < %d' \
+                                         % (min(indices), min_feature)
+            assert max(indices) <= max_feature, 'there is a feature with id greater than max_feature: %d > %d' \
+                                                  % (max(indices), max_feature)
+
+            feature_indices = np.arange(min_feature, max_feature + 1, dtype='int32')
+            indices = np.array(indices, dtype='int32') - min_feature
 
         feature_vectors = sp.csr_matrix((data, indices, indptr), dtype=dtype,
                                         shape=(query_indptr[-1], len(feature_indices)))
@@ -344,9 +374,7 @@ class Queries(object):
         # Free the copies of the feature_vectors in non-Numpy arrays (if any), this
         # is important in order not to waste memory for the transfer of the
         # feature vectors to dense format (default option).
-        if feature_vectors.data is not data: del data
-        if feature_vectors.indices is not indices: del indices
-        if feature_vectors.indptr is not indptr: del indptr
+        del data, indices, indptr
 
         feature_vectors = feature_vectors.toarray()
 
