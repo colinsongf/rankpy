@@ -466,7 +466,7 @@ class Queries(object):
         return queries
 
 
-    def save(self, filepath, order='C', separate=False):
+    def save(self, filepath, order='F', separate=False):
         ''' 
         Save this Queries object into the specified file.
 
@@ -475,9 +475,9 @@ class Queries(object):
         filepath: string
             The filepath where this object will be saved.
 
-        order: {'C', 'F'}, optional (default is 'C')
+        order: {'C', 'F'}, optional (default is 'F')
             Specify the order for the feature vectors array. 'C' and 'F'
-            stand for C-contiguos and F-contiguos order, respectively.
+            stand for C-contiguous and F-contiguous order, respectively.
 
         separate: bool
             If set to True, feature matrix is saved in a separate
