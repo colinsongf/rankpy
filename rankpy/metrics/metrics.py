@@ -46,7 +46,7 @@ class WinnerTakesAll(object):
         self.metric_ = WTA(-1, 0, 0)
 
 
-    def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None):
+    def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None, weight=1.0):
         ''' 
         Evaluate the WTA metric on the specified ranked list of document relevance scores.
 
@@ -70,17 +70,20 @@ class WinnerTakesAll(object):
 
         scale: float, optional (default is None)
             Ignored.
+
+        weight: float, optional (default is 1.0)
+            The weight of the query for which the metric is evaluated.           
         '''
         if ranked_labels is not None:
-            return self.metric_.evaluate(ranked_labels, 1.0)
+            return self.metric_.evaluate(ranked_labels, 1.0, weight)
         elif ranking is not None and labels is not None:
             if ranking.shape[0] != labels.shape[0]:
                 raise ValueError('number of ranked documents != number of relevance labels (%d, %d)' \
                                   % (ranking.shape[0], labels.shape[0]))
-            return self.metric_.evaluate_ranking(ranking, labels, 1.0)
+            return self.metric_.evaluate_ranking(ranking, labels, 1.0, weight)
 
 
-    def evaluate_queries(self, queries, scores, scale=None, out=None):
+    def evaluate_queries(self, queries, scores, scale=None, weights=None, out=None):
         ''' 
         Evaluate the WTA metric on the specified set of queries (`queries`). The documents
         are sorted by corresponding ranking scores (`scores`) and the metric is then
@@ -98,6 +101,9 @@ class WinnerTakesAll(object):
         scale: array, shape=(n_queries,), or None
             Ignored.
 
+        weights: array of doubles, shape=(n_queries,), or None
+            The weight of each query for which the metric is evaluated.
+
         out: array, shape=(n_documents,), or None
             If not None, it will be filled with the metric value
             for each individual query.
@@ -106,14 +112,18 @@ class WinnerTakesAll(object):
             raise ValueError('number of documents != number of scores (%d, %d)' \
                              % (queries.document_count(), scores.shape[0]))
 
+        if weights is not None and queries.query_count() != weights.shape[0]:
+            raise ValueError('number of queries != size of weights array (%d, %d)' \
+                             % (queries.query_count(), out.shape[0]))
+
         if out is not None and queries.query_count() != out.shape[0]:
             raise ValueError('number of queries != size of output array (%d, %d)' \
                              % (queries.query_count(), out.shape[0]))
 
-        return self.metric_.evaluate_queries(queries.query_indptr, queries.relevance_scores, scores, None, out)
+        return self.metric_.evaluate_queries(queries.query_indptr, queries.relevance_scores, scores, None, weights, out)
 
 
-    def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, out=None):
+    def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, weight=1.0, out=None):
         ''' 
         Compute the change in the WTA metric after swapping document 'i' with
         each document in the document list starting at 'offset'.
@@ -140,12 +150,15 @@ class WinnerTakesAll(object):
         relevance_scores: array
             The relevance scores of the documents.
 
+        scale: float or None, optional (default is None)
+            Ignored.
+
+        weight: float, optional (default is 1.0)
+            The weight of the query for which the metric is evaluated.
+
         out: array, optional (default is None)
             The output array. The array size is expected to be at least equal to
             the number of documents shorter by the ofset.
-
-        scale: float or None, optional (default is None)
-            Ignored.
         '''
         n_documents = len(document_ranks)
 
@@ -160,12 +173,12 @@ class WinnerTakesAll(object):
             raise ValueError('document ranks size != relevance scores (%d != %d)' \
                               % (document_ranks.shape[0], relevance_scores.shape[0]))
 
-        self.metric_.delta(i, offset, document_ranks, relevance_scores, 1.0, out)
+        self.metric_.delta(i, offset, document_ranks, relevance_scores, 1.0, weight, out)
 
         return out
 
 
-    def compute_scale(self, queries, relevance_scores=None):
+    def compute_scale(self, queries, weights=None, relevance_scores=None):
         ''' 
         Since WTA is not normalized (or it can be said that it is already normal),
         return None.
@@ -240,7 +253,7 @@ class DiscountedCumulativeGain(object):
         self.metric_ = DCG(cutoff, max_relevance, max_documents)
 
 
-    def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None):
+    def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None, weight=1.0):
         ''' 
         Evaluate the DCG metric on the specified ranked list of document relevance scores.
 
@@ -264,17 +277,20 @@ class DiscountedCumulativeGain(object):
 
         scale: float, optional (default is None)
             Ignored.
+
+        weight: float, optional (default is 1.0)
+            The weight of the query for which the metric is evaluated.
         '''
         if ranked_labels is not None:
-            return self.metric_.evaluate(ranked_labels, 1.0)
+            return self.metric_.evaluate(ranked_labels, 1.0, weight)
         elif ranking is not None and labels is not None:
             if ranking.shape[0] != labels.shape[0]:
                 raise ValueError('number of ranked documents != number of relevance labels (%d, %d)' \
                                   % (ranking.shape[0], labels.shape[0]))
-            return self.metric_.evaluate_ranking(ranking, labels, 1.0)
+            return self.metric_.evaluate_ranking(ranking, labels, 1.0, weight)
 
 
-    def evaluate_queries(self, queries, scores, scale=None, out=None):
+    def evaluate_queries(self, queries, scores, scale=None, weights=None, out=None):
         ''' 
         Evaluate the DCG metric on the specified set of queries (`queries`). The documents
         are sorted by corresponding ranking scores (`scores`) and the metric is then
@@ -292,6 +308,9 @@ class DiscountedCumulativeGain(object):
         scale: array, shape=(n_queries,), or None
             Ignored.
 
+        weights: array of doubles, shape=(n_queries,), or None
+            The weight of each query for which the metric is evaluated.
+
         out: array, shape=(n_documents,), or None
             If not None, it will be filled with the metric value
             for each individual query.
@@ -300,14 +319,18 @@ class DiscountedCumulativeGain(object):
             raise ValueError('number of documents != number of scores (%d, %d)' \
                              % (queries.document_count(), scores.shape[0]))
 
+        if weights is not None and queries.query_count() != weights.shape[0]:
+            raise ValueError('number of queries != size of weights array (%d, %d)' \
+                             % (queries.query_count(), out.shape[0]))
+
         if out is not None and queries.query_count() != out.shape[0]:
             raise ValueError('number of queries != size of output array (%d, %d)' \
                              % (queries.query_count(), out.shape[0]))
 
-        return self.metric_.evaluate_queries(queries.query_indptr, queries.relevance_scores, scores, None, out)
+        return self.metric_.evaluate_queries(queries.query_indptr, queries.relevance_scores, scores, None, weights, out)
 
 
-    def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, out=None):
+    def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, weight=1.0, out=None):
         ''' 
         Compute the change in the DCG metric after swapping document 'i' with
         each document in the document list starting at 'offset'.
@@ -334,12 +357,15 @@ class DiscountedCumulativeGain(object):
         relevance_scores: array
             The relevance scores of the documents.
 
+        scale: float or None, optional (default is None)
+            Ignored.
+
+        weight: float, optional (default is 1.0)
+            The weight of the query for which the metric is evaluated.
+
         out: array, optional (default is None)
             The output array. The array size is expected to be at least equal to
             the number of documents shorter by the ofset.
-
-        scale: float or None, optional (default is None)
-            Ignored.
         '''
         n_documents = len(document_ranks)
 
@@ -354,12 +380,12 @@ class DiscountedCumulativeGain(object):
             raise ValueError('document ranks size != relevance scores (%d != %d)' \
                               % (document_ranks.shape[0], relevance_scores.shape[0]))
 
-        self.metric_.delta(i, offset, document_ranks, relevance_scores, 1.0, out)
+        self.metric_.delta(i, offset, document_ranks, relevance_scores, 1.0, weight, out)
 
         return out
 
 
-    def compute_scale(self, queries, relevance_scores=None):
+    def compute_scale(self, queries, weights=None, relevance_scores=None):
         ''' 
         Since DCG is not normalized, return None.
         '''
@@ -435,7 +461,7 @@ class NormalizedDiscountedCumulativeGain(object):
         self.metric_ = DCG(cutoff, max_relevance, max_documents)
 
 
-    def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None):
+    def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None, weight=1.0):
         ''' 
         Evaluate NDCG metric on the specified ranked list of document relevance scores.
 
@@ -460,17 +486,20 @@ class NormalizedDiscountedCumulativeGain(object):
         scale: float, optional (default is None)
             The ideal DCG value on the given documents. If None is given
             it will be computed from the document relevance scores.
+
+        weight: float, optional (default is 1.0)
+            The weight of the query for which the metric is evaluated.
         '''
         if ranked_labels is not None:
-            return self.metric_.evaluate(ranked_labels, scale or self.metric_.evaluate(np.ascontiguousarray(np.sort(ranked_labels)[::-1]), 1.0))
+            return self.metric_.evaluate(ranked_labels, scale or self.metric_.evaluate(np.ascontiguousarray(np.sort(ranked_labels)[::-1]), 1.0, weight))
         elif ranking is not None and labels is not None:
             if ranking.shape[0] != labels.shape[0]:
                 raise ValueError('number of ranked documents != number of relevance labels (%d, %d)' \
                                   % (ranking.shape[0], labels.shape[0]))
-            return self.metric_.evaluate_ranking(ranking, labels, scale or self.metric_.evaluate(np.ascontiguousarray(np.sort(labels)[::-1]), 1.0))
+            return self.metric_.evaluate_ranking(ranking, labels, scale or self.metric_.evaluate(np.ascontiguousarray(np.sort(labels)[::-1]), 1.0, weight), weight)
 
 
-    def evaluate_queries(self, queries, scores, scale=None, out=None):
+    def evaluate_queries(self, queries, scores, scale=None, weights=None, out=None):
         ''' 
         Evaluate the NDCG metric on the specified set of queries (`queries`). The documents
         are sorted by corresponding ranking scores (`scores`) and the metric is then
@@ -489,6 +518,9 @@ class NormalizedDiscountedCumulativeGain(object):
             The ideal DCG values for each query. If None is given it will be
             computed from the document relevance scores.
 
+        weights: array of doubles, shape=(n_queries,), or None
+            The weight of each query for which the metric is evaluated.
+
         out: array, shape=(n_documents,), or None
             If not None, it will be filled with the metric value
             for each individual query.
@@ -498,20 +530,24 @@ class NormalizedDiscountedCumulativeGain(object):
                              % (queries.document_count(), scores.shape[0]))
         if scale is None:
             scale = np.empty(queries.query_count(), dtype=np.float64)
-            self.metric_.evaluate_queries_ideal(queries.query_indptr, queries.relevance_scores, scale)
+            self.metric_.evaluate_queries_ideal(queries.query_indptr, queries.relevance_scores, weights, scale)
 
         if queries.query_count() != scale.shape[0]:
             raise ValueError('number of queries != number of scaling factors (%d != %d)' \
                              % (queries.query_count(), scale.shape[0]))
 
+        if weights is not None and queries.query_count() != weights.shape[0]:
+            raise ValueError('number of queries != size of weights array (%d, %d)' \
+                             % (queries.query_count(), out.shape[0]))
+
         if out is not None and queries.query_count() != out.shape[0]:
             raise ValueError('number of queries != size of output array (%d, %d)' \
                              % (queries.query_count(), out.shape[0]))
 
-        return self.metric_.evaluate_queries(queries.query_indptr, queries.relevance_scores, scores, scale, out)
+        return self.metric_.evaluate_queries(queries.query_indptr, queries.relevance_scores, scores, scale, weights, out)
 
 
-    def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, out=None):
+    def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, weight=1.0, out=None):
         ''' 
         Compute the change in the NDCG metric after swapping document 'i' with
         each document in the document list starting at 'offset'.
@@ -542,6 +578,9 @@ class NormalizedDiscountedCumulativeGain(object):
             The ideal DCG value for the query the documents are associated with.
             If None is given, the scale will be computed from the relevance scores.
 
+        weight: float, optional (default is 1.0)
+            The weight of the query for which the metric is evaluated.
+
         out: array, optional (default is None)
             The output array. The array size is expected to be at least equal to
             the number of documents shorter by the ofset.
@@ -560,23 +599,38 @@ class NormalizedDiscountedCumulativeGain(object):
                              % (document_ranks.shape[0], relevance_scores.shape[0]))
 
         if scale is None:
-            scale = self.metric_.evaluate(np.ascontiguousarray(np.sort(relevance_scores)[::-1]), 1.0)
+            scale = self.metric_.evaluate(np.ascontiguousarray(np.sort(relevance_scores)[::-1]), 1.0, weight)
 
-        self.metric_.delta(i, offset, document_ranks, relevance_scores, scale, out)
+        self.metric_.delta(i, offset, document_ranks, relevance_scores, scale, weight, out)
 
         return out
 
 
-    def compute_scale(self, queries, relevance_scores=None):
+    def compute_scale(self, queries, weights=None, relevance_scores=None):
         ''' 
         Return the ideal DCG value for each query. Optionally, external
         relevance assessments can be used instead of the relevances
         present in the queries.
+
+        Parameters
+        ----------
+        queries: Queries
+            The queries for which the ideal DCG should be computed.
+
+        weights: array of doubles, optional (default is None)
+            The weight of each query.
+
+        relevance_scores: array of integers, optional, (default is None)
+            The relevance scores that should be used instead of the 
+            relevance scores inside queries. Note, this argument is
+            experimental.
         '''
         ideal_values = np.empty(queries.query_count(), dtype=np.float64)
+
         if relevance_scores is not None:
             if queries.document_count() != relevance_scores.shape[0]:
                 raise ValueError('number of documents and relevance scores do not match')
+
             # Need to sort the relevance labels first.
             indices = np.empty(relevance_scores.shape[0], dtype=np.intc)
             relevance_argsort_v1(relevance_scores, indices, relevance_scores.shape[0])
@@ -586,7 +640,8 @@ class NormalizedDiscountedCumulativeGain(object):
             # Assuming these are sorted.
             relevance_scores = queries.relevance_scores
 
-        self.metric_.evaluate_queries_ideal(queries.query_indptr, relevance_scores, ideal_values)
+        self.metric_.evaluate_queries_ideal(queries.query_indptr, relevance_scores, weights, ideal_values)
+
         return ideal_values
 
 
@@ -595,6 +650,7 @@ class NormalizedDiscountedCumulativeGain(object):
         Return the textual description of the metric.
         '''
         return 'NDCG' if self.metric_.cutoff < 0 else 'NDCG@%d' % self.metric_.cutoff
+
 
 class ExpectedReciprocalRank(object):
     def __init__(self, cutoff=-1, max_relevance=None, max_documents=None, queries=None):

@@ -84,7 +84,7 @@ cdef class Metric:
             raise ValueError('cutoff has to be positive integer or (-1) but 0 was given')
 
 
-    cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value):
+    cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t query_weight):
         ''' 
         Evaluate the metric on the specified document ranking.
 
@@ -97,15 +97,16 @@ cdef class Metric:
             Specify the relevance score for each document.
 
         scale_value: double
-            'Optional' parameter for implementation of metrics which evaluations
-            need to be scaled by the ideal metric values. Specific metric
-            implementations, such as NDCG, may use this parameter to speed up
-            their computation.
+            Optional parameter for implementation of metrics which evaluations
+            need to be scaled by the ideal metric values.
+
+        query_weight: double
+            The weight of the query for which the metric is evaluated.
         '''
         pass
 
 
-    cpdef evaluate(self, INT_t[::1] ranked_relevance_scores, DOUBLE_t scale_value):
+    cpdef evaluate(self, INT_t[::1] ranked_relevance_scores, DOUBLE_t scale_value, DOUBLE_t query_weight):
         ''' 
         Evaluate the metric on the specified ranked list of document relevance scores.
 
@@ -115,15 +116,17 @@ cdef class Metric:
             Specify list of relevance scores.
 
         scale_value: double, shape = (n_documents,)
-            'Optional' parameter for implementation of metrics which evaluations
-            need to be scaled by the ideal metric values. Specific metric
-            implementations, such as NDCG, may use this parameter to speed up
-            their computation.
+            Optional parameter for implementation of metrics which evaluations
+            need to be scaled by the ideal metric values.
+
+        query_weight: double
+            The weight of the query for which the metric is evaluated.
         '''
         pass
 
 
-    cpdef evaluate_queries(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] scores, DOUBLE_t[::1] scale_values, DOUBLE_t[::1] out):
+    cpdef evaluate_queries(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] scores,
+                           DOUBLE_t[::1] scale_values, DOUBLE_t[::1] query_weights,  DOUBLE_t[::1] out):
         ''' 
         Evaluate the metric on the specified queries. The relevance scores and
         ranking scores of documents, which belong to query `i`, are in
@@ -147,6 +150,9 @@ cdef class Metric:
             implementations, such as NDCG, may use this parameter to speed
             up their computation.
 
+        query_weights: array of doubles, shape = (n_queries,), optional (default is None)
+            The weight given to each query.
+
         out: array, shape=(n_documents,), optional
             If not None, it will be filled with the metric value
             for each individual query.
@@ -154,7 +160,8 @@ cdef class Metric:
         pass
 
 
-    cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t[::1] out):
+    cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores,
+                DOUBLE_t scale_value, DOUBLE_t query_weight, DOUBLE_t[::1] out):
         ''' 
         Compute the change in the metric caused by swapping document `i` with every
         document `offset`, `offset + 1`, ... (in turn).
@@ -179,10 +186,11 @@ cdef class Metric:
             Specify the relevance score for each document.
 
         scale_value: double, shape = (n_documents,)
-            'Optional' parameter for implementation of metrics which evaluations
-            need to be scaled by the ideal metric values. Specific metric
-            implementations, such as NDCG, may use this parameter to speed up
-            their computation.
+            Optional parameter for implementation of metrics which evaluations
+            need to be scaled by the ideal metric values.
+
+        query_weight: double
+            The weight of the query for which the metric is evaluated.
 
         out: array of doubles
             The output array. The array size is expected to be at least as big
@@ -192,14 +200,16 @@ cdef class Metric:
         pass
 
 
-    cdef void delta_c(self, INT_t i, INT_t offset, INT_t n_documents, INT_t *document_ranks, INT_t *relevance_scores, DOUBLE_t scale_value, DOUBLE_t *out) nogil:
+    cdef void delta_c(self, INT_t i, INT_t offset, INT_t n_documents, INT_t *document_ranks, INT_t *relevance_scores,
+                      DOUBLE_t scale_value, DOUBLE_t query_weight, DOUBLE_t *out) nogil:
         ''' 
         See description of self.delta(...) method.
         '''
         pass
 
 
-    cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] scale_values):
+    cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores,
+                                 DOUBLE_t[::1] query_weights, DOUBLE_t[::1] ideal_values):
         ''' 
         Compute the ideal metric value for every one of the specified queries.
         The relevance scores of documents, which belong to query `i`, must be
@@ -214,7 +224,10 @@ cdef class Metric:
         relevance_scores, array of integers, shape = (n_documents,)
             Specify the relevance score for each document.
 
-        scale_values: output array of doubles, shape=(n_queries,)
+        query_weights: array of doubles, shape = (n_queries,), optional (default is None)
+            The weight given to each query.
+
+        ideal_values: output array of doubles, shape=(n_queries,)
             Output array for the ideal metric value of each query.
         '''
         pass
@@ -311,7 +324,7 @@ cdef class DiscountedCumulativeGain(Metric):
         return (DiscountedCumulativeGain, (self.cutoff, self.maximum_relevance, self.maximum_documents))
 
 
-    cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value):
+    cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t query_weight):
         ''' 
         Evaluate the metric on the specified document ranking.
 
@@ -325,12 +338,14 @@ cdef class DiscountedCumulativeGain(Metric):
 
         scale_value: double
             Should be 1.0.
+
+        query_weight: double
+            The weight of the query for which the metric is evaluated.
         '''
         cdef:
             INT_t i, n_documents, cutoff
             DOUBLE_t result
 
-        # Should we worry about precision?
         if scale_value == 0.0:
             return 0.0
 
@@ -341,11 +356,12 @@ cdef class DiscountedCumulativeGain(Metric):
             for i in range(imin(cutoff, n_documents)):
                 result += self.gain_cache[relevance_scores[ranking[i]]] / self.discount_cache[i]
             result /= scale_value
+            result *= query_weight
 
         return result
 
 
-    cpdef evaluate(self, INT_t[::1] ranked_relevance_scores, DOUBLE_t scale_value):
+    cpdef evaluate(self, INT_t[::1] ranked_relevance_scores, DOUBLE_t scale_value, DOUBLE_t query_weight):
         ''' 
         Evaluate the metric on the specified ranked list of document relevance scores.
 
@@ -356,12 +372,14 @@ cdef class DiscountedCumulativeGain(Metric):
 
         scale_value: double
             Should be 1.0.
+
+        query_weight: double
+            The weight of the query for which the metric is evaluated.
         '''
         cdef:
             INT_t i, n_documents, cutoff
             DOUBLE_t result
 
-        # Should we worry about precision?
         if scale_value == 0.0:
             return 0.0
 
@@ -372,11 +390,13 @@ cdef class DiscountedCumulativeGain(Metric):
             for i in range(imin(cutoff, n_documents)):
                 result += self.gain_cache[ranked_relevance_scores[i]] / self.discount_cache[i]
             result /= scale_value
+            result *= query_weight
 
         return result
 
 
-    cpdef evaluate_queries(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ranking_scores, DOUBLE_t[::1] scale_values, DOUBLE_t[::1] out):
+    cpdef evaluate_queries(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ranking_scores,
+                           DOUBLE_t[::1] scale_values, DOUBLE_t[::1] query_weights, DOUBLE_t[::1] out):
         ''' 
         Evaluate the DCG metric on the specified queries. The relevance scores and
         ranking scores of documents, which belong to query `i`, are in
@@ -388,7 +408,7 @@ cdef class DiscountedCumulativeGain(Metric):
         query_indptr: array of integers, shape = (n_queries + 1,)
             The query index pointer.
 
-        relevance_scores, array of integers, shape = (n_queries + 1,)
+        relevance_scores, array of integers, shape = (n_documents,)
             Specify the relevance score for each document.
 
         ranking_scores: array, shape=(n_queries,)
@@ -396,6 +416,9 @@ cdef class DiscountedCumulativeGain(Metric):
 
         scale_values: array, shape=(n_queries,), optional
             Should be None (defaults to all 1s).
+
+        query_weights: array of doubles, shape = (n_queries,), optional (default is None)
+            The weight given to each query.
 
         out: array, shape=(n_documents,), optional
             If not None, it will be filled with the metric value
@@ -424,8 +447,10 @@ cdef class DiscountedCumulativeGain(Metric):
                 for j in range(cutoff):
                     qresult += self.gain_cache[ranked_relevance_scores[query_indptr[i] + j]] / self.discount_cache[j]
 
+                if query_weights is not None:
+                    qresult *= query_weights[i]
+
                 if scale_values is not None:
-                    # Should we worry about precision?
                     if scale_values[i] == 0.0:
                         qresult = 0.0
                     else:
@@ -436,14 +461,21 @@ cdef class DiscountedCumulativeGain(Metric):
 
                 result += qresult
 
-            result /= n_queries
+            if query_weights is None:
+                result /= n_queries
+            else:
+                qresult = 0.0
+                for i in range(n_queries):
+                    qresult += query_weights[i]
+                result /= qresult
 
             free(ranked_relevance_scores)
             
         return result
 
 
-    cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t[::1] out):
+    cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores, DOUBLE_t scale_value,
+                DOUBLE_t query_weight, DOUBLE_t[::1] out):
         ''' 
         Compute the change in the metric caused by swapping document `i` with every
         document `offset`, `offset + 1`, ... (in turn)
@@ -470,16 +502,20 @@ cdef class DiscountedCumulativeGain(Metric):
         scale_value: double, shape = (n_documents,)
             Should be 1.0.
 
+        query_weight: double
+            The weight of the query for which the metric is evaluated.
+
         out: array of doubles
             The output array. The array size is expected to be at least as big
             as the the number of document pairs being swapped, which should be
             `len(document_ranks) - offset`.
         '''
         with nogil:
-            self.delta_c(i, offset, document_ranks.shape[0], &document_ranks[0], &relevance_scores[0], scale_value, &out[0])
+            self.delta_c(i, offset, document_ranks.shape[0], &document_ranks[0], &relevance_scores[0], scale_value, query_weight, &out[0])
 
 
-    cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ideal_values):
+    cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores,
+                                 DOUBLE_t[::1] query_weights, DOUBLE_t[::1] ideal_values):
         ''' 
         Compute the ideal DCG metric value for every one of the specified queries.
 
@@ -496,6 +532,9 @@ cdef class DiscountedCumulativeGain(Metric):
             Specify the relevance score for each document. It is expected
             that these values are sorted in descending order.
 
+        query_weights: array of doubles, shape = (n_queries,), optional (default is None)
+            The weight given to each query.
+
         ideal_values: output array of doubles, shape=(n_queries,)
             Output array for the ideal metric value of each query.
         '''
@@ -508,9 +547,12 @@ cdef class DiscountedCumulativeGain(Metric):
                 cutoff = n_documents if self.cutoff < 0 else imin(self.cutoff, n_documents)
                 for j in range(cutoff):
                     ideal_values[i] += self.gain_cache[relevance_scores[query_indptr[i] + j]] / self.discount_cache[j]
+                if query_weights is not None:
+                    ideal_values[i] *= query_weights[i]
 
 
-    cdef void delta_c(self, INT_t i, INT_t offset, INT_t n_documents, INT_t *document_ranks, INT_t *relevance_scores, DOUBLE_t scale_value, DOUBLE_t *out) nogil:
+    cdef void delta_c(self, INT_t i, INT_t offset, INT_t n_documents, INT_t *document_ranks, INT_t *relevance_scores,
+                      DOUBLE_t scale_value, DOUBLE_t query_weight, DOUBLE_t *out) nogil:
         ''' 
         See description of self.delta(...) method.
         '''
@@ -544,16 +586,15 @@ cdef class DiscountedCumulativeGain(Metric):
                 out[j - offset] += self.gain_cache[relevance_scores[j]] / i_position_discount
 
         if scale_value != 1.0:
-            # Should we worry about precision?
             if scale_value == 0.0:
                 for j in range(n_swapped_document_pairs):
                     out[j] = 0.0
             else:
                 for j in range(n_swapped_document_pairs):
-                    out[j] = fabs(out[j] / scale_value)
+                    out[j] = query_weight * fabs(out[j] / scale_value)
         else:
             for j in range(n_swapped_document_pairs):
-                out[j] = fabs(out[j])
+                out[j] = query_weight * fabs(out[j])
 
 
 # =============================================================================
@@ -564,6 +605,11 @@ cdef class DiscountedCumulativeGain(Metric):
 cdef class WinnerTakesAll(Metric):
     ''' 
     Winner Takes All (WTA) metric.
+
+    It is assumed that the relevance scores of the documents are binary,
+    i.e. values of 0 and 1. If you want to use this metric on multi-labeled
+    relevances, it is recommended to set query weights to reciprocal of
+    the maximum relevance score of a corresponding query documents.
     '''
 
     def __cinit__(self, INT_t cutoff, INT_t maximum_relevance, INT_t maximum_documents):
@@ -591,7 +637,7 @@ cdef class WinnerTakesAll(Metric):
         return (WinnerTakesAll, (-1, 0, 0))
 
 
-    cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value):
+    cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t query_weight):
         ''' 
         Evaluate the metric on the specified document ranking.
 
@@ -605,14 +651,17 @@ cdef class WinnerTakesAll(Metric):
 
         scale_value: double
             Ignored.
+
+        query_weight: double
+            The weight of the query for which the metric is evaluated.
         '''
         cdef DOUBLE_t result
         with nogil:
-            result = relevance_scores[ranking[0]]
+            result = query_weight * relevance_scores[ranking[0]]
         return result
 
 
-    cpdef evaluate(self, INT_t[::1] ranked_relevance_scores, DOUBLE_t scale_value):
+    cpdef evaluate(self, INT_t[::1] ranked_relevance_scores, DOUBLE_t scale_value, DOUBLE_t query_weight):
         ''' 
         Evaluate the metric on the specified ranked list of document relevance scores.
 
@@ -623,14 +672,18 @@ cdef class WinnerTakesAll(Metric):
 
         scale_value: double
            Ignored.
+
+        query_weight: double
+            The weight of the query for which the metric is evaluated.
         '''
         cdef DOUBLE_t result
         with nogil:
-            result = ranked_relevance_scores[0]
+            result = query_weight * ranked_relevance_scores[0]
         return result
 
 
-    cpdef evaluate_queries(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ranking_scores, DOUBLE_t[::1] scale_values, DOUBLE_t[::1] out):
+    cpdef evaluate_queries(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ranking_scores,
+                           DOUBLE_t[::1] scale_values, DOUBLE_t[::1] query_weights, DOUBLE_t[::1] out):
         ''' 
         Evaluate the WTA metric on the specified queries. The relevance scores and
         ranking scores of documents, which belong to query `i`, are in
@@ -650,6 +703,9 @@ cdef class WinnerTakesAll(Metric):
 
         scale_values: array, shape=(n_queries,), optional
             Ignored.
+
+        query_weights: array of doubles, shape = (n_queries,), optional (default is None)
+            The weight given to each query.
 
         out: array, shape=(n_documents,), optional
             If not None, it will be filled with the metric value
@@ -671,21 +727,33 @@ cdef class WinnerTakesAll(Metric):
             result = 0.0
 
             for i in range(n_queries):
-                qresult = ranked_relevance_scores[query_indptr[i]]
+                if query_weights is None:
+                    qresult = 1.0
+                else:
+                    qresult = query_weights[i]
+
+                qresult *= ranked_relevance_scores[query_indptr[i]]
 
                 if out is not None:
                     out[i] = qresult
 
                 result += qresult
 
-            result /= n_queries
+            if query_weights is None:
+                result /= n_queries
+            else:
+                qresult = 0.0
+                for i in range(n_queries):
+                    qresult += query_weights[i]
+                result /= qresult
 
             free(ranked_relevance_scores)
             
         return result
 
 
-    cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t[::1] out):
+    cpdef delta(self, INT_t i, INT_t offset, INT_t[::1] document_ranks, INT_t[::1] relevance_scores,
+                DOUBLE_t scale_value, DOUBLE_t query_weight, DOUBLE_t[::1] out):
         ''' 
         Compute the change in the metric caused by swapping document `i` with every
         document `offset`, `offset + 1`, ... (in turn)
@@ -712,16 +780,20 @@ cdef class WinnerTakesAll(Metric):
         scale_value: double, shape = (n_documents,)
             Ignored.
 
+        query_weight: double
+            The weight of the query for which the metric is evaluated.
+
         out: array of doubles
             The output array. The array size is expected to be at least as big
             as the the number of document pairs being swapped, which should be
             `len(document_ranks) - offset`.
         '''
         with nogil:
-            self.delta_c(i, offset, document_ranks.shape[0], &document_ranks[0], &relevance_scores[0], scale_value, &out[0])
+            self.delta_c(i, offset, document_ranks.shape[0], &document_ranks[0], &relevance_scores[0], scale_value, query_weight, &out[0])
 
 
-    cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores, DOUBLE_t[::1] ideal_values):
+    cpdef evaluate_queries_ideal(self, INT_t[::1] query_indptr, INT_t[::1] relevance_scores,
+                                 DOUBLE_t[::1] query_weights, DOUBLE_t[::1] ideal_values):
         ''' 
         Compute the ideal WTA metric value for every one of the specified queries.
 
@@ -738,6 +810,9 @@ cdef class WinnerTakesAll(Metric):
             Specify the relevance score for each document. It is expected
             that these values are sorted in descending order.
 
+        query_weights: array of doubles, shape = (n_queries,), optional (default is None)
+            The weight given to each query.
+
         ideal_values: output array of doubles, shape=(n_queries,)
             Output array for the ideal metric value of each query.
         '''
@@ -746,20 +821,26 @@ cdef class WinnerTakesAll(Metric):
         with nogil:
             for i in range(query_indptr.shape[0] - 1):
                 ideal_values[i] = relevance_scores[query_indptr[i]]
+                if query_weights is not None:
+                    ideal_values[i] *= query_weights[i]
 
 
-    cdef void delta_c(self, INT_t i, INT_t offset, INT_t n_documents, INT_t *document_ranks, INT_t *relevance_scores, DOUBLE_t scale_value, DOUBLE_t *out) nogil:
+    cdef void delta_c(self, INT_t i, INT_t offset, INT_t n_documents, INT_t *document_ranks, INT_t *relevance_scores,
+                      DOUBLE_t scale_value, DOUBLE_t query_weight, DOUBLE_t *out) nogil:
         ''' 
         See description of self.delta(...) method.
         '''
         cdef INT_t j
 
-        if i != 0:
+        if document_ranks[i] == 0:
             for j in range(offset, n_documents):
-                out[j - offset] = 0.0
+                out[j - offset] = query_weight * fabs(relevance_scores[j] - relevance_scores[i])
         else:
             for j in range(offset, n_documents):
-                out[j - offset] = fabs(relevance_scores[j] - relevance_scores[i])
+                if document_ranks[j] == 0:
+                    out[j - offset] = query_weight * fabs(relevance_scores[j] - relevance_scores[i])
+                else:
+                    out[j - offset] = 0.0
 
 
 # =============================================================================
