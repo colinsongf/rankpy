@@ -457,7 +457,7 @@ class LambdaMART(object):
                      % (metric, metric.evaluate_queries(queries, ranking_scores, scale=queries_scale_values)))
 
 
-    def fit(self, metric, queries, validation=None, query_weights=None, trace=None):
+    def fit(self, metric, queries, validation=None, query_weights=None, validation_weights=None, trace=None):
         ''' 
         Train the LambdaMART model on the specified queries. Optinally, use the
         specified queries for finding an optimal number of trees using validation.
@@ -477,6 +477,10 @@ class LambdaMART(object):
         query_weights: array of doubles, shape = (n_queries,), optional (default is None)
             The weight given to each training query, which is used to measure its importance.
             Queries with 0.0 weight will never be used in training of the model.
+
+        validation_weights: array of doubles, shape = (n_queries,), optional (default is None)
+            The weight given to each validation query, which is used to measure its importance.
+            Queries with 0.0 weight will never be used in validation of the model.
 
         trace: list of strings, optional (default is None)
             Supported values are: `lambdas`, `gradients`, and `influences`. Since the
@@ -504,8 +508,8 @@ class LambdaMART(object):
         else:
             training_scores = np.asanyarray(self.base_model.predict(queries, n_jobs=self.n_jobs), dtype=np.float64)
 
+        # Set the weight for each training document.
         if query_weights is not None:
-            # The weight for each document.
             document_weights = np.zeros(queries.document_count(), dtype=np.float64)
             for i in xrange(queries.query_count()):
                 document_weights[queries.query_indptr[i]:queries.query_indptr[i + 1]] = query_weights[i]
@@ -579,7 +583,7 @@ class LambdaMART(object):
             else:
                 validation_scores = np.asanyarray(self.base_model.predict(validation, n_jobs=self.n_jobs), dtype=np.float64)
 
-            validation_scale_values = metric.compute_scale(validation)
+            validation_scale_values = metric.compute_scale(validation, validation_weights)
             self.validation_performance = np.zeros(self.n_estimators, dtype=np.float64)
 
             if self.trace_lambdas or self.trace_influences:
@@ -604,7 +608,7 @@ class LambdaMART(object):
             training_influences = self.stage_training_influences[k] if self.trace_influences else None
             # Computes the pseudo-responses (lambdas) and gradient step sizes (weights) for the current regression tree.
             compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas,
-                                        training_weights, training_scale_values, None, None,
+                                        training_weights, training_scale_values, None, query_weights,
                                         None, training_influences, n_jobs=self.n_jobs)
 
             # Build the predictor for the gradients of the loss using either decision tree or random forest.
@@ -643,7 +647,7 @@ class LambdaMART(object):
                 if self.trace_lambdas or self.trace_influences:
                     validation_influences = self.stage_validation_influences[k] if self.trace_influences else None
                     compute_lambdas_and_weights(validation, validation_scores, metric, self.validation_lambdas,
-                                                self.validation_weights, validation_scale_values, None, None, None,
+                                                self.validation_weights, validation_scale_values, None, validation_weights, None,
                                                 validation_influences, n_jobs=self.n_jobs)
 
                 if self.trace_lambdas:
@@ -691,11 +695,7 @@ class LambdaMART(object):
             # performance improvements.
             if validation is not None:
                 validation_scores += self.shrinkage * self.estimators[-1].predict(validation.feature_vectors)
-                self.validation_performance[k] = metric.evaluate_queries(validation, validation_scores, scale=validation_scale_values)
-
-                np.random.seed(self.seed)
-                if self.seed is not None:
-                    set_seed(self.seed)
+                self.validation_performance[k] = metric.evaluate_queries(validation, validation_scores, scale=validation_scale_values, weights=validation_weights)
 
                 logger.info('#%08d: %s (training):   %11.8f  |  (validation):   %11.8f' % (k + 1, metric, self.training_performance[k], self.validation_performance[k]))
 
