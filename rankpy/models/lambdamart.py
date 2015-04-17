@@ -457,7 +457,7 @@ class LambdaMART(object):
                      % (metric, metric.evaluate_queries(queries, ranking_scores, scale=queries_scale_values)))
 
 
-    def fit(self, metric, queries, validation=None, trace=None):
+    def fit(self, metric, queries, validation=None, query_weights=None, trace=None):
         ''' 
         Train the LambdaMART model on the specified queries. Optinally, use the
         specified queries for finding an optimal number of trees using validation.
@@ -473,6 +473,10 @@ class LambdaMART(object):
 
         validation: Queries object
             The set of queries used in validation for early stopping.
+
+        query_weights: array of doubles, shape = (n_queries,), optional (default is None)
+            The weight given to each training query, which is used to measure its importance.
+            Queries with 0.0 weight will never be used in training of the model.
 
         trace: list of strings, optional (default is None)
             Supported values are: `lambdas`, `gradients`, and `influences`. Since the
@@ -500,9 +504,17 @@ class LambdaMART(object):
         else:
             training_scores = np.asanyarray(self.base_model.predict(queries, n_jobs=self.n_jobs), dtype=np.float64)
 
+        if query_weights is not None:
+            # The weight for each document.
+            document_weights = np.zeros(queries.document_count(), dtype=np.float64)
+            for i in xrange(queries.query_count()):
+                document_weights[queries.query_indptr[i]:queries.query_indptr[i + 1]] = query_weights[i]
+        else:
+            document_weights = None
+
         # If the metric used for training is normalized, it is obviously advantageous
         # to precompute the scaling factor for each query in advance.
-        training_scale_values = metric.compute_scale(queries)
+        training_scale_values = metric.compute_scale(queries, query_weights)
         self.training_performance = np.zeros(self.n_estimators, dtype=np.float64)
 
         # The pseudo-responses (lambdas) for each document.
@@ -618,12 +630,14 @@ class LambdaMART(object):
                                                       min_samples_split=self.min_samples_split,
                                                       min_samples_leaf=self.min_samples_leaf)
             # Train the regression tree.
-            estimator.fit(queries.feature_vectors, training_lambdas)
+            estimator.fit(queries.feature_vectors, training_lambdas, sample_weight=document_weights)
 
             # Store the estimated lambdas for later analysis (if wanted).
             if self.trace_lambdas:
                 np.copyto(self.stage_training_lambdas_truth[k], training_lambdas)
                 np.copyto(self.stage_training_lambdas_predicted[k], estimator.predict(queries.feature_vectors))
+                # TODO: Set lambdas of queries with 0 weight to some value indicating that
+                # it was never computed, e.g. NaN?
 
             if validation is not None:
                 if self.trace_lambdas or self.trace_influences:
@@ -639,7 +653,7 @@ class LambdaMART(object):
             # Estimate the optimal gradient steps using Newton's method.
             if self.use_newton_method:
                 _estimate_multiple_newton_gradient_steps(estimator, queries, training_scores, metric, training_lambdas,
-                                                         training_weights, training_scale_values, None, None, None,
+                                                         training_weights, training_scale_values, None, query_weights, None,
                                                          n_iterations=self.n_iterations, shrinkage=self.shrinkage,
                                                          verbose=self.verbose, n_jobs=self.n_jobs)
 
@@ -667,7 +681,7 @@ class LambdaMART(object):
             # Add the new tree(s) to the company.
             self.estimators.append(estimator)
 
-            self.training_performance[k] = metric.evaluate_queries(queries, training_scores, scale=training_scale_values)
+            self.training_performance[k] = metric.evaluate_queries(queries, training_scores, scale=training_scale_values, weights=query_weights)
 
             if validation is None:
                 logger.info('#%08d: %s (training): %11.8f' % (k + 1, metric, self.training_performance[k]))
@@ -678,6 +692,10 @@ class LambdaMART(object):
             if validation is not None:
                 validation_scores += self.shrinkage * self.estimators[-1].predict(validation.feature_vectors)
                 self.validation_performance[k] = metric.evaluate_queries(validation, validation_scores, scale=validation_scale_values)
+
+                np.random.seed(self.seed)
+                if self.seed is not None:
+                    set_seed(self.seed)
 
                 logger.info('#%08d: %s (training):   %11.8f  |  (validation):   %11.8f' % (k + 1, metric, self.training_performance[k], self.validation_performance[k]))
 
