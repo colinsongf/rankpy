@@ -753,15 +753,6 @@ typedef npy_float64 __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t;
 /* "rankpy/metrics/_metrics.pxd":23
  * 
  * ctypedef np.npy_float64 DOUBLE_t
- * ctypedef np.npy_int64   LONG_t             # <<<<<<<<<<<<<<
- * ctypedef np.npy_int32   INT_t
- * 
- */
-typedef npy_int64 __pyx_t_6rankpy_7metrics_8_metrics_LONG_t;
-
-/* "rankpy/metrics/_metrics.pxd":24
- * ctypedef np.npy_float64 DOUBLE_t
- * ctypedef np.npy_int64   LONG_t
  * ctypedef np.npy_int32   INT_t             # <<<<<<<<<<<<<<
  * 
  * 
@@ -832,6 +823,7 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 struct __pyx_opt_args_6rankpy_7metrics_6_utils_relevance_argsort_v1_c;
 struct __pyx_opt_args_6rankpy_7metrics_6_utils_relevance_argsort_v1;
+struct __pyx_opt_args_6rankpy_7metrics_6_utils_rand_uniform;
 
 /* "rankpy/metrics/_utils.pxd":38
  * cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t *out) nogil
@@ -850,14 +842,26 @@ struct __pyx_opt_args_6rankpy_7metrics_6_utils_relevance_argsort_v1_c {
  * 
  * cpdef relevance_argsort_v1(INT_t[::1] array, INT_t[::1] indices, INT_t size, INT_t maximum=*)             # <<<<<<<<<<<<<<
  * cpdef relevance_argsort_v2(INT_t[::1] array, INT_t[::1] indices, INT_t size)
+ * 
  */
 struct __pyx_opt_args_6rankpy_7metrics_6_utils_relevance_argsort_v1 {
   int __pyx_n;
   __pyx_t_6rankpy_7metrics_6_utils_INT_t maximum;
 };
+
+/* "rankpy/metrics/_utils.pxd":62
+ * 
+ * cpdef noise_relenvace_scores(INT_t[::1] relevance_scores, DOUBLE_t [:, ::1] probabilities)
+ * cpdef rand_uniform(DOUBLE_t low=*, DOUBLE_t high=*)             # <<<<<<<<<<<<<<
+ */
+struct __pyx_opt_args_6rankpy_7metrics_6_utils_rand_uniform {
+  int __pyx_n;
+  __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t low;
+  __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t high;
+};
 struct __pyx_opt_args_6rankpy_6models_16lambdamart_inner_sort_in_place;
 
-/* "rankpy/models/lambdamart_inner.pyx":355
+/* "rankpy/models/lambdamart_inner.pyx":356
  * 
  * 
  * cdef void sort_in_place(INT_t *indices, INT_t n_documents, INT_t *relevance_scores,             # <<<<<<<<<<<<<<
@@ -870,7 +874,7 @@ struct __pyx_opt_args_6rankpy_6models_16lambdamart_inner_sort_in_place {
   __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *weights;
 };
 
-/* "rankpy/metrics/_metrics.pxd":32
+/* "rankpy/metrics/_metrics.pxd":31
  * 
  * 
  * cdef class Metric:             # <<<<<<<<<<<<<<
@@ -961,7 +965,7 @@ struct __pyx_memoryviewslice_obj {
 
 
 
-/* "rankpy/metrics/_metrics.pxd":32
+/* "rankpy/metrics/_metrics.pxd":31
  * 
  * 
  * cdef class Metric:             # <<<<<<<<<<<<<<
@@ -970,12 +974,12 @@ struct __pyx_memoryviewslice_obj {
  */
 
 struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_Metric {
-  PyObject *(*evaluate_ranking)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __Pyx_memviewslice, __Pyx_memviewslice, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, int __pyx_skip_dispatch);
-  PyObject *(*evaluate)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __Pyx_memviewslice, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, int __pyx_skip_dispatch);
-  PyObject *(*evaluate_queries)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch);
-  PyObject *(*evaluate_queries_ideal)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch);
-  PyObject *(*delta)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t, __pyx_t_6rankpy_7metrics_8_metrics_INT_t, __Pyx_memviewslice, __Pyx_memviewslice, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, __Pyx_memviewslice, int __pyx_skip_dispatch);
-  void (*delta_c)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t, __pyx_t_6rankpy_7metrics_8_metrics_INT_t, __pyx_t_6rankpy_7metrics_8_metrics_INT_t, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *);
+  PyObject *(*evaluate_ranking)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __Pyx_memviewslice, __Pyx_memviewslice, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, int __pyx_skip_dispatch);
+  PyObject *(*evaluate)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __Pyx_memviewslice, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, int __pyx_skip_dispatch);
+  PyObject *(*evaluate_queries)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch);
+  PyObject *(*evaluate_queries_ideal)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch);
+  PyObject *(*delta)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t, __pyx_t_6rankpy_7metrics_8_metrics_INT_t, __Pyx_memviewslice, __Pyx_memviewslice, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, __Pyx_memviewslice, int __pyx_skip_dispatch);
+  void (*delta_c)(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t, __pyx_t_6rankpy_7metrics_8_metrics_INT_t, __pyx_t_6rankpy_7metrics_8_metrics_INT_t, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_INT_t *, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t, __pyx_t_6rankpy_7metrics_8_metrics_DOUBLE_t *);
 };
 static struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_Metric *__pyx_vtabptr_6rankpy_7metrics_8_metrics_Metric;
 
@@ -2935,13 +2939,13 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             /* "rankpy/models/lambdamart_inner.pyx":261
  *                 # Compute the (absolute) changes in the metric caused by swapping document 'j' with all
  *                 # documents 'k' (k >= rstart), which have lower relevance with respect to the query 'i'.
- *                 metric.delta_c(j - start, rstart - start, n_documents, document_ranks + start - query_indptr[qstart], relevance_scores + start, scale, document_deltas)             # <<<<<<<<<<<<<<
+ *                 metric.delta_c(j - start, rstart - start, n_documents, document_ranks + start - query_indptr[qstart],             # <<<<<<<<<<<<<<
+ *                                relevance_scores + start, scale, query_weight, document_deltas)
  * 
- *                 # Clear the influences for the current document.
  */
-            ((struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_Metric *)__pyx_v_metric->__pyx_vtab)->delta_c(__pyx_v_metric, (__pyx_v_j - __pyx_v_start), (__pyx_v_rstart - __pyx_v_start), __pyx_v_n_documents, ((__pyx_v_document_ranks + __pyx_v_start) - (__pyx_v_query_indptr[__pyx_v_qstart])), (__pyx_v_relevance_scores + __pyx_v_start), __pyx_v_scale, __pyx_v_document_deltas);
+            ((struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_Metric *)__pyx_v_metric->__pyx_vtab)->delta_c(__pyx_v_metric, (__pyx_v_j - __pyx_v_start), (__pyx_v_rstart - __pyx_v_start), __pyx_v_n_documents, ((__pyx_v_document_ranks + __pyx_v_start) - (__pyx_v_query_indptr[__pyx_v_qstart])), (__pyx_v_relevance_scores + __pyx_v_start), __pyx_v_scale, __pyx_v_query_weight, __pyx_v_document_deltas);
 
-            /* "rankpy/models/lambdamart_inner.pyx":264
+            /* "rankpy/models/lambdamart_inner.pyx":265
  * 
  *                 # Clear the influences for the current document.
  *                 if influence_by_relevance != NULL:             # <<<<<<<<<<<<<<
@@ -2951,7 +2955,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             __pyx_t_1 = ((__pyx_v_influence_by_relevance != NULL) != 0);
             if (__pyx_t_1) {
 
-              /* "rankpy/models/lambdamart_inner.pyx":265
+              /* "rankpy/models/lambdamart_inner.pyx":266
  *                 # Clear the influences for the current document.
  *                 if influence_by_relevance != NULL:
  *                     memset(influence_by_relevance, 0, j_relevance_score * sizeof(DOUBLE_t))             # <<<<<<<<<<<<<<
@@ -2963,7 +2967,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             }
             __pyx_L28:;
 
-            /* "rankpy/models/lambdamart_inner.pyx":268
+            /* "rankpy/models/lambdamart_inner.pyx":269
  * 
  *                 # Current forces pushing document 'j' down.
  *                 j_push_down = output_lambdas[j]             # <<<<<<<<<<<<<<
@@ -2972,7 +2976,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
             __pyx_v_j_push_down = (__pyx_v_output_lambdas[__pyx_v_j]);
 
-            /* "rankpy/models/lambdamart_inner.pyx":270
+            /* "rankpy/models/lambdamart_inner.pyx":271
  *                 j_push_down = output_lambdas[j]
  * 
  *                 for k in range(rstart, end):             # <<<<<<<<<<<<<<
@@ -2983,7 +2987,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             for (__pyx_t_10 = __pyx_v_rstart; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
               __pyx_v_k = __pyx_t_10;
 
-              /* "rankpy/models/lambdamart_inner.pyx":271
+              /* "rankpy/models/lambdamart_inner.pyx":272
  * 
  *                 for k in range(rstart, end):
  *                     if leaves_idx != NULL and leaves_idx[j] == leaves_idx[k]:             # <<<<<<<<<<<<<<
@@ -3001,7 +3005,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
               __pyx_L32_bool_binop_done:;
               if (__pyx_t_1) {
 
-                /* "rankpy/models/lambdamart_inner.pyx":272
+                /* "rankpy/models/lambdamart_inner.pyx":273
  *                 for k in range(rstart, end):
  *                     if leaves_idx != NULL and leaves_idx[j] == leaves_idx[k]:
  *                         continue             # <<<<<<<<<<<<<<
@@ -3011,7 +3015,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
                 goto __pyx_L29_continue;
               }
 
-              /* "rankpy/models/lambdamart_inner.pyx":274
+              /* "rankpy/models/lambdamart_inner.pyx":275
  *                         continue
  * 
  *                     if document_weights != NULL:             # <<<<<<<<<<<<<<
@@ -3021,7 +3025,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
               __pyx_t_1 = ((__pyx_v_document_weights != NULL) != 0);
               if (__pyx_t_1) {
 
-                /* "rankpy/models/lambdamart_inner.pyx":275
+                /* "rankpy/models/lambdamart_inner.pyx":276
  * 
  *                     if document_weights != NULL:
  *                         document_pair_weight = query_weight * j_document_weight * document_weights[k]             # <<<<<<<<<<<<<<
@@ -3033,7 +3037,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
               }
               /*else*/ {
 
-                /* "rankpy/models/lambdamart_inner.pyx":277
+                /* "rankpy/models/lambdamart_inner.pyx":278
  *                         document_pair_weight = query_weight * j_document_weight * document_weights[k]
  *                     else:
  *                         document_pair_weight = query_weight             # <<<<<<<<<<<<<<
@@ -3044,7 +3048,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
               }
               __pyx_L34:;
 
-              /* "rankpy/models/lambdamart_inner.pyx":279
+              /* "rankpy/models/lambdamart_inner.pyx":280
  *                         document_pair_weight = query_weight
  * 
  *                     rho = (<DOUBLE_t> 1.0) / ((<DOUBLE_t> 1.0) + (<DOUBLE_t> exp(ranking_scores[j] - ranking_scores[k])))             # <<<<<<<<<<<<<<
@@ -3053,7 +3057,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
               __pyx_v_rho = (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t)1.0) / (((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t)1.0) + ((__pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t)exp(((__pyx_v_ranking_scores[__pyx_v_j]) - (__pyx_v_ranking_scores[__pyx_v_k]))))));
 
-              /* "rankpy/models/lambdamart_inner.pyx":281
+              /* "rankpy/models/lambdamart_inner.pyx":282
  *                     rho = (<DOUBLE_t> 1.0) / ((<DOUBLE_t> 1.0) + (<DOUBLE_t> exp(ranking_scores[j] - ranking_scores[k])))
  * 
  *                     lambda_ = rho * document_pair_weight * document_deltas[k - rstart]             # <<<<<<<<<<<<<<
@@ -3062,7 +3066,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
               __pyx_v_lambda_ = ((__pyx_v_rho * __pyx_v_document_pair_weight) * (__pyx_v_document_deltas[(__pyx_v_k - __pyx_v_rstart)]));
 
-              /* "rankpy/models/lambdamart_inner.pyx":282
+              /* "rankpy/models/lambdamart_inner.pyx":283
  * 
  *                     lambda_ = rho * document_pair_weight * document_deltas[k - rstart]
  *                     weight = (1 - rho) * lambda_             # <<<<<<<<<<<<<<
@@ -3071,7 +3075,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
               __pyx_v_weight = ((1.0 - __pyx_v_rho) * __pyx_v_lambda_);
 
-              /* "rankpy/models/lambdamart_inner.pyx":284
+              /* "rankpy/models/lambdamart_inner.pyx":285
  *                     weight = (1 - rho) * lambda_
  * 
  *                     output_lambdas[j] += lambda_             # <<<<<<<<<<<<<<
@@ -3081,7 +3085,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
               __pyx_t_12 = __pyx_v_j;
               (__pyx_v_output_lambdas[__pyx_t_12]) = ((__pyx_v_output_lambdas[__pyx_t_12]) + __pyx_v_lambda_);
 
-              /* "rankpy/models/lambdamart_inner.pyx":285
+              /* "rankpy/models/lambdamart_inner.pyx":286
  * 
  *                     output_lambdas[j] += lambda_
  *                     output_lambdas[k] -= lambda_             # <<<<<<<<<<<<<<
@@ -3091,7 +3095,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
               __pyx_t_12 = __pyx_v_k;
               (__pyx_v_output_lambdas[__pyx_t_12]) = ((__pyx_v_output_lambdas[__pyx_t_12]) - __pyx_v_lambda_);
 
-              /* "rankpy/models/lambdamart_inner.pyx":287
+              /* "rankpy/models/lambdamart_inner.pyx":288
  *                     output_lambdas[k] -= lambda_
  * 
  *                     output_weights[j] += weight             # <<<<<<<<<<<<<<
@@ -3101,7 +3105,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
               __pyx_t_12 = __pyx_v_j;
               (__pyx_v_output_weights[__pyx_t_12]) = ((__pyx_v_output_weights[__pyx_t_12]) + __pyx_v_weight);
 
-              /* "rankpy/models/lambdamart_inner.pyx":288
+              /* "rankpy/models/lambdamart_inner.pyx":289
  * 
  *                     output_weights[j] += weight
  *                     output_weights[k] += weight             # <<<<<<<<<<<<<<
@@ -3111,7 +3115,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
               __pyx_t_12 = __pyx_v_k;
               (__pyx_v_output_weights[__pyx_t_12]) = ((__pyx_v_output_weights[__pyx_t_12]) + __pyx_v_weight);
 
-              /* "rankpy/models/lambdamart_inner.pyx":290
+              /* "rankpy/models/lambdamart_inner.pyx":291
  *                     output_weights[k] += weight
  * 
  *                     if influence_by_relevance != NULL:             # <<<<<<<<<<<<<<
@@ -3121,7 +3125,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
               __pyx_t_1 = ((__pyx_v_influence_by_relevance != NULL) != 0);
               if (__pyx_t_1) {
 
-                /* "rankpy/models/lambdamart_inner.pyx":291
+                /* "rankpy/models/lambdamart_inner.pyx":292
  * 
  *                     if influence_by_relevance != NULL:
  *                         influence_by_relevance[relevance_scores[k]] += lambda_             # <<<<<<<<<<<<<<
@@ -3136,7 +3140,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
               __pyx_L29_continue:;
             }
 
-            /* "rankpy/models/lambdamart_inner.pyx":293
+            /* "rankpy/models/lambdamart_inner.pyx":294
  *                         influence_by_relevance[relevance_scores[k]] += lambda_
  * 
  *                 if influence_by_relevance != NULL:             # <<<<<<<<<<<<<<
@@ -3146,7 +3150,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             __pyx_t_1 = ((__pyx_v_influence_by_relevance != NULL) != 0);
             if (__pyx_t_1) {
 
-              /* "rankpy/models/lambdamart_inner.pyx":294
+              /* "rankpy/models/lambdamart_inner.pyx":295
  * 
  *                 if influence_by_relevance != NULL:
  *                     for k in range(j_relevance_score):             # <<<<<<<<<<<<<<
@@ -3157,7 +3161,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
               for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
                 __pyx_v_k = __pyx_t_10;
 
-                /* "rankpy/models/lambdamart_inner.pyx":295
+                /* "rankpy/models/lambdamart_inner.pyx":296
  *                 if influence_by_relevance != NULL:
  *                     for k in range(j_relevance_score):
  *                         if influence_by_relevance[k] <= output_lambdas[j]:             # <<<<<<<<<<<<<<
@@ -3167,7 +3171,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
                 __pyx_t_1 = (((__pyx_v_influence_by_relevance[__pyx_v_k]) <= (__pyx_v_output_lambdas[__pyx_v_j])) != 0);
                 if (__pyx_t_1) {
 
-                  /* "rankpy/models/lambdamart_inner.pyx":296
+                  /* "rankpy/models/lambdamart_inner.pyx":297
  *                     for k in range(j_relevance_score):
  *                         if influence_by_relevance[k] <= output_lambdas[j]:
  *                             influences[k * maximum_relevance + j_relevance_score] += influence_by_relevance[k] / output_lambdas[j]             # <<<<<<<<<<<<<<
@@ -3180,7 +3184,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
                 }
                 __pyx_L39:;
 
-                /* "rankpy/models/lambdamart_inner.pyx":297
+                /* "rankpy/models/lambdamart_inner.pyx":298
  *                         if influence_by_relevance[k] <= output_lambdas[j]:
  *                             influences[k * maximum_relevance + j_relevance_score] += influence_by_relevance[k] / output_lambdas[j]
  *                         influences[j_relevance_score * maximum_relevance + k] += influence_by_relevance[k] / (output_lambdas[j] - 2 * j_push_down)             # <<<<<<<<<<<<<<
@@ -3199,7 +3203,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
           __pyx_L21_continue:;
         }
 
-        /* "rankpy/models/lambdamart_inner.pyx":301
+        /* "rankpy/models/lambdamart_inner.pyx":302
  *         # `relevance_strides` array has been constructed here. We need to resort
  *         # all the arrays back and free the memory.
  *         if resort:             # <<<<<<<<<<<<<<
@@ -3209,7 +3213,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
         __pyx_t_1 = (__pyx_v_resort != 0);
         if (__pyx_t_1) {
 
-          /* "rankpy/models/lambdamart_inner.pyx":303
+          /* "rankpy/models/lambdamart_inner.pyx":304
  *         if resort:
  *             # Total number of documents sorted.
  *             n_documents = query_indptr[qend] - query_indptr[qstart]             # <<<<<<<<<<<<<<
@@ -3218,7 +3222,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
           __pyx_v_n_documents = ((__pyx_v_query_indptr[__pyx_v_qend]) - (__pyx_v_query_indptr[__pyx_v_qstart]));
 
-          /* "rankpy/models/lambdamart_inner.pyx":306
+          /* "rankpy/models/lambdamart_inner.pyx":307
  * 
  *             # The inverse sort indices are in the second half of the array.
  *             sort_indices += n_documents             # <<<<<<<<<<<<<<
@@ -3227,7 +3231,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
           __pyx_v_sort_indices = (__pyx_v_sort_indices + __pyx_v_n_documents);
 
-          /* "rankpy/models/lambdamart_inner.pyx":308
+          /* "rankpy/models/lambdamart_inner.pyx":309
  *             sort_indices += n_documents
  * 
  *             for i in range(qstart, qend):             # <<<<<<<<<<<<<<
@@ -3238,7 +3242,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
           for (__pyx_t_3 = __pyx_v_qstart; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
             __pyx_v_i = __pyx_t_3;
 
-            /* "rankpy/models/lambdamart_inner.pyx":309
+            /* "rankpy/models/lambdamart_inner.pyx":310
  * 
  *             for i in range(qstart, qend):
  *                 start, end = query_indptr[i], query_indptr[i + 1]             # <<<<<<<<<<<<<<
@@ -3250,7 +3254,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             __pyx_v_start = __pyx_t_4;
             __pyx_v_end = __pyx_t_5;
 
-            /* "rankpy/models/lambdamart_inner.pyx":312
+            /* "rankpy/models/lambdamart_inner.pyx":313
  * 
  *                 # Make the indexing easier... maybe.
  *                 sort_indices += start - query_indptr[qstart]             # <<<<<<<<<<<<<<
@@ -3259,7 +3263,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
             __pyx_v_sort_indices = (__pyx_v_sort_indices + (__pyx_v_start - (__pyx_v_query_indptr[__pyx_v_qstart])));
 
-            /* "rankpy/models/lambdamart_inner.pyx":313
+            /* "rankpy/models/lambdamart_inner.pyx":314
  *                 # Make the indexing easier... maybe.
  *                 sort_indices += start - query_indptr[qstart]
  *                 relevance_scores += start             # <<<<<<<<<<<<<<
@@ -3268,7 +3272,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
             __pyx_v_relevance_scores = (__pyx_v_relevance_scores + __pyx_v_start);
 
-            /* "rankpy/models/lambdamart_inner.pyx":314
+            /* "rankpy/models/lambdamart_inner.pyx":315
  *                 sort_indices += start - query_indptr[qstart]
  *                 relevance_scores += start
  *                 ranking_scores += start             # <<<<<<<<<<<<<<
@@ -3277,7 +3281,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
             __pyx_v_ranking_scores = (__pyx_v_ranking_scores + __pyx_v_start);
 
-            /* "rankpy/models/lambdamart_inner.pyx":316
+            /* "rankpy/models/lambdamart_inner.pyx":317
  *                 ranking_scores += start
  * 
  *                 if leaves_idx != NULL:             # <<<<<<<<<<<<<<
@@ -3287,7 +3291,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             __pyx_t_1 = ((__pyx_v_leaves_idx != NULL) != 0);
             if (__pyx_t_1) {
 
-              /* "rankpy/models/lambdamart_inner.pyx":317
+              /* "rankpy/models/lambdamart_inner.pyx":318
  * 
  *                 if leaves_idx != NULL:
  *                     leaves_idx += start             # <<<<<<<<<<<<<<
@@ -3299,7 +3303,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             }
             __pyx_L43:;
 
-            /* "rankpy/models/lambdamart_inner.pyx":319
+            /* "rankpy/models/lambdamart_inner.pyx":320
  *                     leaves_idx += start
  * 
  *                 if document_weights != NULL:             # <<<<<<<<<<<<<<
@@ -3309,7 +3313,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             __pyx_t_1 = ((__pyx_v_document_weights != NULL) != 0);
             if (__pyx_t_1) {
 
-              /* "rankpy/models/lambdamart_inner.pyx":320
+              /* "rankpy/models/lambdamart_inner.pyx":321
  * 
  *                 if document_weights != NULL:
  *                     document_weights += start             # <<<<<<<<<<<<<<
@@ -3321,7 +3325,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             }
             __pyx_L44:;
 
-            /* "rankpy/models/lambdamart_inner.pyx":322
+            /* "rankpy/models/lambdamart_inner.pyx":323
  *                     document_weights += start
  * 
  *                 output_lambdas += start             # <<<<<<<<<<<<<<
@@ -3330,7 +3334,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
             __pyx_v_output_lambdas = (__pyx_v_output_lambdas + __pyx_v_start);
 
-            /* "rankpy/models/lambdamart_inner.pyx":323
+            /* "rankpy/models/lambdamart_inner.pyx":324
  * 
  *                 output_lambdas += start
  *                 output_weights += start             # <<<<<<<<<<<<<<
@@ -3339,7 +3343,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
             __pyx_v_output_weights = (__pyx_v_output_weights + __pyx_v_start);
 
-            /* "rankpy/models/lambdamart_inner.pyx":326
+            /* "rankpy/models/lambdamart_inner.pyx":327
  * 
  *                 # Revert back the earlier sort of related arrays.
  *                 sort_in_place(sort_indices, end - start, relevance_scores, ranking_scores,             # <<<<<<<<<<<<<<
@@ -3351,7 +3355,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             __pyx_t_13.weights = __pyx_v_output_weights;
             __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_v_sort_indices, (__pyx_v_end - __pyx_v_start), __pyx_v_relevance_scores, __pyx_v_ranking_scores, __pyx_v_leaves_idx, __pyx_v_document_weights, &__pyx_t_13); 
 
-            /* "rankpy/models/lambdamart_inner.pyx":330
+            /* "rankpy/models/lambdamart_inner.pyx":331
  * 
  *                 # Revert back the offseting.
  *                 sort_indices -= start - query_indptr[qstart]             # <<<<<<<<<<<<<<
@@ -3360,7 +3364,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
             __pyx_v_sort_indices = (__pyx_v_sort_indices - (__pyx_v_start - (__pyx_v_query_indptr[__pyx_v_qstart])));
 
-            /* "rankpy/models/lambdamart_inner.pyx":331
+            /* "rankpy/models/lambdamart_inner.pyx":332
  *                 # Revert back the offseting.
  *                 sort_indices -= start - query_indptr[qstart]
  *                 relevance_scores -= start             # <<<<<<<<<<<<<<
@@ -3369,7 +3373,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
             __pyx_v_relevance_scores = (__pyx_v_relevance_scores - __pyx_v_start);
 
-            /* "rankpy/models/lambdamart_inner.pyx":332
+            /* "rankpy/models/lambdamart_inner.pyx":333
  *                 sort_indices -= start - query_indptr[qstart]
  *                 relevance_scores -= start
  *                 ranking_scores -= start             # <<<<<<<<<<<<<<
@@ -3378,7 +3382,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
             __pyx_v_ranking_scores = (__pyx_v_ranking_scores - __pyx_v_start);
 
-            /* "rankpy/models/lambdamart_inner.pyx":334
+            /* "rankpy/models/lambdamart_inner.pyx":335
  *                 ranking_scores -= start
  * 
  *                 if leaves_idx != NULL:             # <<<<<<<<<<<<<<
@@ -3388,7 +3392,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             __pyx_t_1 = ((__pyx_v_leaves_idx != NULL) != 0);
             if (__pyx_t_1) {
 
-              /* "rankpy/models/lambdamart_inner.pyx":335
+              /* "rankpy/models/lambdamart_inner.pyx":336
  * 
  *                 if leaves_idx != NULL:
  *                     leaves_idx -= start             # <<<<<<<<<<<<<<
@@ -3400,7 +3404,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             }
             __pyx_L45:;
 
-            /* "rankpy/models/lambdamart_inner.pyx":337
+            /* "rankpy/models/lambdamart_inner.pyx":338
  *                     leaves_idx -= start
  * 
  *                 if document_weights != NULL:             # <<<<<<<<<<<<<<
@@ -3410,7 +3414,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             __pyx_t_1 = ((__pyx_v_document_weights != NULL) != 0);
             if (__pyx_t_1) {
 
-              /* "rankpy/models/lambdamart_inner.pyx":338
+              /* "rankpy/models/lambdamart_inner.pyx":339
  * 
  *                 if document_weights != NULL:
  *                     document_weights -= start             # <<<<<<<<<<<<<<
@@ -3422,7 +3426,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             }
             __pyx_L46:;
 
-            /* "rankpy/models/lambdamart_inner.pyx":340
+            /* "rankpy/models/lambdamart_inner.pyx":341
  *                     document_weights -= start
  * 
  *                 output_lambdas -= start             # <<<<<<<<<<<<<<
@@ -3431,7 +3435,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
             __pyx_v_output_lambdas = (__pyx_v_output_lambdas - __pyx_v_start);
 
-            /* "rankpy/models/lambdamart_inner.pyx":341
+            /* "rankpy/models/lambdamart_inner.pyx":342
  * 
  *                 output_lambdas -= start
  *                 output_weights -= start             # <<<<<<<<<<<<<<
@@ -3441,7 +3445,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
             __pyx_v_output_weights = (__pyx_v_output_weights - __pyx_v_start);
           }
 
-          /* "rankpy/models/lambdamart_inner.pyx":344
+          /* "rankpy/models/lambdamart_inner.pyx":345
  * 
  *             # Offset `sort_indices` and `relevance_strides` back.
  *             relevance_strides += qstart * maximum_relevance             # <<<<<<<<<<<<<<
@@ -3450,7 +3454,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
           __pyx_v_relevance_strides = (__pyx_v_relevance_strides + (__pyx_v_qstart * __pyx_v_maximum_relevance));
 
-          /* "rankpy/models/lambdamart_inner.pyx":345
+          /* "rankpy/models/lambdamart_inner.pyx":346
  *             # Offset `sort_indices` and `relevance_strides` back.
  *             relevance_strides += qstart * maximum_relevance
  *             sort_indices -= n_documents             # <<<<<<<<<<<<<<
@@ -3459,7 +3463,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
           __pyx_v_sort_indices = (__pyx_v_sort_indices - __pyx_v_n_documents);
 
-          /* "rankpy/models/lambdamart_inner.pyx":347
+          /* "rankpy/models/lambdamart_inner.pyx":348
  *             sort_indices -= n_documents
  * 
  *             free(relevance_strides)             # <<<<<<<<<<<<<<
@@ -3468,7 +3472,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
           free(__pyx_v_relevance_strides);
 
-          /* "rankpy/models/lambdamart_inner.pyx":348
+          /* "rankpy/models/lambdamart_inner.pyx":349
  * 
  *             free(relevance_strides)
  *             free(sort_indices)             # <<<<<<<<<<<<<<
@@ -3480,7 +3484,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
         }
         __pyx_L40:;
 
-        /* "rankpy/models/lambdamart_inner.pyx":350
+        /* "rankpy/models/lambdamart_inner.pyx":351
  *             free(sort_indices)
  * 
  *         free(document_ranks)             # <<<<<<<<<<<<<<
@@ -3489,7 +3493,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
         free(__pyx_v_document_ranks);
 
-        /* "rankpy/models/lambdamart_inner.pyx":351
+        /* "rankpy/models/lambdamart_inner.pyx":352
  * 
  *         free(document_ranks)
  *         free(document_deltas)             # <<<<<<<<<<<<<<
@@ -3498,7 +3502,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
  */
         free(__pyx_v_document_deltas);
 
-        /* "rankpy/models/lambdamart_inner.pyx":352
+        /* "rankpy/models/lambdamart_inner.pyx":353
  *         free(document_ranks)
  *         free(document_deltas)
  *         free(influence_by_relevance)             # <<<<<<<<<<<<<<
@@ -3537,7 +3541,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
   /* function exit code */
 }
 
-/* "rankpy/models/lambdamart_inner.pyx":355
+/* "rankpy/models/lambdamart_inner.pyx":356
  * 
  * 
  * cdef void sort_in_place(INT_t *indices, INT_t n_documents, INT_t *relevance_scores,             # <<<<<<<<<<<<<<
@@ -3547,7 +3551,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_parallel_compute_lambdas_
 
 static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6rankpy_7metrics_6_utils_INT_t *__pyx_v_indices, __pyx_t_6rankpy_7metrics_6_utils_INT_t __pyx_v_n_documents, __pyx_t_6rankpy_7metrics_6_utils_INT_t *__pyx_v_relevance_scores, __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *__pyx_v_ranking_scores, __pyx_t_6rankpy_7metrics_6_utils_INT_t *__pyx_v_leaves_idx, __pyx_t_6rankpy_7metrics_6_utils_DOUBLE_t *__pyx_v_document_weights, struct __pyx_opt_args_6rankpy_6models_16lambdamart_inner_sort_in_place *__pyx_optional_args) {
 
-  /* "rankpy/models/lambdamart_inner.pyx":357
+  /* "rankpy/models/lambdamart_inner.pyx":358
  * cdef void sort_in_place(INT_t *indices, INT_t n_documents, INT_t *relevance_scores,
  *                         DOUBLE_t *ranking_scores, INT_t *leaves_idx, DOUBLE_t *document_weights,
  *                         DOUBLE_t *lambdas=NULL, DOUBLE_t *weights=NULL) nogil:             # <<<<<<<<<<<<<<
@@ -3577,7 +3581,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
     }
   }
 
-  /* "rankpy/models/lambdamart_inner.pyx":366
+  /* "rankpy/models/lambdamart_inner.pyx":367
  *     cdef DOUBLE_t tmp_lambda, tmp_weight
  * 
  *     for i in range(n_documents):             # <<<<<<<<<<<<<<
@@ -3588,7 +3592,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/models/lambdamart_inner.pyx":368
+    /* "rankpy/models/lambdamart_inner.pyx":369
  *     for i in range(n_documents):
  *         # Skipping fixed points (these elements are in the right place).
  *         if indices[i] != i:             # <<<<<<<<<<<<<<
@@ -3598,7 +3602,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
     __pyx_t_3 = (((__pyx_v_indices[__pyx_v_i]) != __pyx_v_i) != 0);
     if (__pyx_t_3) {
 
-      /* "rankpy/models/lambdamart_inner.pyx":369
+      /* "rankpy/models/lambdamart_inner.pyx":370
  *         # Skipping fixed points (these elements are in the right place).
  *         if indices[i] != i:
  *             start = i             # <<<<<<<<<<<<<<
@@ -3607,7 +3611,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
       __pyx_v_start = __pyx_v_i;
 
-      /* "rankpy/models/lambdamart_inner.pyx":372
+      /* "rankpy/models/lambdamart_inner.pyx":373
  * 
  *             # Temporarily store the items at the beginning of the permutation cycle.
  *             tmp_relevance_score = relevance_scores[start]             # <<<<<<<<<<<<<<
@@ -3616,7 +3620,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
       __pyx_v_tmp_relevance_score = (__pyx_v_relevance_scores[__pyx_v_start]);
 
-      /* "rankpy/models/lambdamart_inner.pyx":373
+      /* "rankpy/models/lambdamart_inner.pyx":374
  *             # Temporarily store the items at the beginning of the permutation cycle.
  *             tmp_relevance_score = relevance_scores[start]
  *             tmp_ranking_score = ranking_scores[start]             # <<<<<<<<<<<<<<
@@ -3625,7 +3629,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
       __pyx_v_tmp_ranking_score = (__pyx_v_ranking_scores[__pyx_v_start]);
 
-      /* "rankpy/models/lambdamart_inner.pyx":375
+      /* "rankpy/models/lambdamart_inner.pyx":376
  *             tmp_ranking_score = ranking_scores[start]
  * 
  *             if leaves_idx != NULL:             # <<<<<<<<<<<<<<
@@ -3635,7 +3639,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       __pyx_t_3 = ((__pyx_v_leaves_idx != NULL) != 0);
       if (__pyx_t_3) {
 
-        /* "rankpy/models/lambdamart_inner.pyx":376
+        /* "rankpy/models/lambdamart_inner.pyx":377
  * 
  *             if leaves_idx != NULL:
  *                 tmp_leave_idx = leaves_idx[start]             # <<<<<<<<<<<<<<
@@ -3647,7 +3651,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       }
       __pyx_L6:;
 
-      /* "rankpy/models/lambdamart_inner.pyx":378
+      /* "rankpy/models/lambdamart_inner.pyx":379
  *                 tmp_leave_idx = leaves_idx[start]
  * 
  *             if document_weights != NULL:             # <<<<<<<<<<<<<<
@@ -3657,7 +3661,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       __pyx_t_3 = ((__pyx_v_document_weights != NULL) != 0);
       if (__pyx_t_3) {
 
-        /* "rankpy/models/lambdamart_inner.pyx":379
+        /* "rankpy/models/lambdamart_inner.pyx":380
  * 
  *             if document_weights != NULL:
  *                 tmp_document_weight = document_weights[start]             # <<<<<<<<<<<<<<
@@ -3669,7 +3673,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       }
       __pyx_L7:;
 
-      /* "rankpy/models/lambdamart_inner.pyx":381
+      /* "rankpy/models/lambdamart_inner.pyx":382
  *                 tmp_document_weight = document_weights[start]
  * 
  *             if lambdas != NULL:             # <<<<<<<<<<<<<<
@@ -3679,7 +3683,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       __pyx_t_3 = ((__pyx_v_lambdas != NULL) != 0);
       if (__pyx_t_3) {
 
-        /* "rankpy/models/lambdamart_inner.pyx":382
+        /* "rankpy/models/lambdamart_inner.pyx":383
  * 
  *             if lambdas != NULL:
  *                 tmp_lambda = lambdas[start]             # <<<<<<<<<<<<<<
@@ -3688,7 +3692,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
         __pyx_v_tmp_lambda = (__pyx_v_lambdas[__pyx_v_start]);
 
-        /* "rankpy/models/lambdamart_inner.pyx":383
+        /* "rankpy/models/lambdamart_inner.pyx":384
  *             if lambdas != NULL:
  *                 tmp_lambda = lambdas[start]
  *                 tmp_weight = weights[start]             # <<<<<<<<<<<<<<
@@ -3700,7 +3704,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       }
       __pyx_L8:;
 
-      /* "rankpy/models/lambdamart_inner.pyx":386
+      /* "rankpy/models/lambdamart_inner.pyx":387
  * 
  *             # merry go round... ihaaa!
  *             while indices[start] != i:             # <<<<<<<<<<<<<<
@@ -3711,7 +3715,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
         __pyx_t_3 = (((__pyx_v_indices[__pyx_v_start]) != __pyx_v_i) != 0);
         if (!__pyx_t_3) break;
 
-        /* "rankpy/models/lambdamart_inner.pyx":387
+        /* "rankpy/models/lambdamart_inner.pyx":388
  *             # merry go round... ihaaa!
  *             while indices[start] != i:
  *                 end = indices[start]             # <<<<<<<<<<<<<<
@@ -3720,7 +3724,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
         __pyx_v_end = (__pyx_v_indices[__pyx_v_start]);
 
-        /* "rankpy/models/lambdamart_inner.pyx":389
+        /* "rankpy/models/lambdamart_inner.pyx":390
  *                 end = indices[start]
  * 
  *                 relevance_scores[start] = relevance_scores[end]             # <<<<<<<<<<<<<<
@@ -3729,7 +3733,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
         (__pyx_v_relevance_scores[__pyx_v_start]) = (__pyx_v_relevance_scores[__pyx_v_end]);
 
-        /* "rankpy/models/lambdamart_inner.pyx":390
+        /* "rankpy/models/lambdamart_inner.pyx":391
  * 
  *                 relevance_scores[start] = relevance_scores[end]
  *                 ranking_scores[start] = ranking_scores[end]             # <<<<<<<<<<<<<<
@@ -3738,7 +3742,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
         (__pyx_v_ranking_scores[__pyx_v_start]) = (__pyx_v_ranking_scores[__pyx_v_end]);
 
-        /* "rankpy/models/lambdamart_inner.pyx":392
+        /* "rankpy/models/lambdamart_inner.pyx":393
  *                 ranking_scores[start] = ranking_scores[end]
  * 
  *                 if leaves_idx != NULL:             # <<<<<<<<<<<<<<
@@ -3748,7 +3752,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
         __pyx_t_3 = ((__pyx_v_leaves_idx != NULL) != 0);
         if (__pyx_t_3) {
 
-          /* "rankpy/models/lambdamart_inner.pyx":393
+          /* "rankpy/models/lambdamart_inner.pyx":394
  * 
  *                 if leaves_idx != NULL:
  *                     leaves_idx[start] = leaves_idx[end]             # <<<<<<<<<<<<<<
@@ -3760,7 +3764,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
         }
         __pyx_L11:;
 
-        /* "rankpy/models/lambdamart_inner.pyx":395
+        /* "rankpy/models/lambdamart_inner.pyx":396
  *                     leaves_idx[start] = leaves_idx[end]
  * 
  *                 if document_weights != NULL:             # <<<<<<<<<<<<<<
@@ -3770,7 +3774,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
         __pyx_t_3 = ((__pyx_v_document_weights != NULL) != 0);
         if (__pyx_t_3) {
 
-          /* "rankpy/models/lambdamart_inner.pyx":396
+          /* "rankpy/models/lambdamart_inner.pyx":397
  * 
  *                 if document_weights != NULL:
  *                     document_weights[start] = document_weights[end]             # <<<<<<<<<<<<<<
@@ -3782,7 +3786,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
         }
         __pyx_L12:;
 
-        /* "rankpy/models/lambdamart_inner.pyx":398
+        /* "rankpy/models/lambdamart_inner.pyx":399
  *                     document_weights[start] = document_weights[end]
  * 
  *                 if lambdas != NULL:             # <<<<<<<<<<<<<<
@@ -3792,7 +3796,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
         __pyx_t_3 = ((__pyx_v_lambdas != NULL) != 0);
         if (__pyx_t_3) {
 
-          /* "rankpy/models/lambdamart_inner.pyx":399
+          /* "rankpy/models/lambdamart_inner.pyx":400
  * 
  *                 if lambdas != NULL:
  *                     lambdas[start] = lambdas[end]             # <<<<<<<<<<<<<<
@@ -3801,7 +3805,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
           (__pyx_v_lambdas[__pyx_v_start]) = (__pyx_v_lambdas[__pyx_v_end]);
 
-          /* "rankpy/models/lambdamart_inner.pyx":400
+          /* "rankpy/models/lambdamart_inner.pyx":401
  *                 if lambdas != NULL:
  *                     lambdas[start] = lambdas[end]
  *                     weights[start] = weights[end]             # <<<<<<<<<<<<<<
@@ -3813,7 +3817,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
         }
         __pyx_L13:;
 
-        /* "rankpy/models/lambdamart_inner.pyx":402
+        /* "rankpy/models/lambdamart_inner.pyx":403
  *                     weights[start] = weights[end]
  * 
  *                 indices[start] = start             # <<<<<<<<<<<<<<
@@ -3822,7 +3826,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
         (__pyx_v_indices[__pyx_v_start]) = __pyx_v_start;
 
-        /* "rankpy/models/lambdamart_inner.pyx":403
+        /* "rankpy/models/lambdamart_inner.pyx":404
  * 
  *                 indices[start] = start
  *                 start = end             # <<<<<<<<<<<<<<
@@ -3832,7 +3836,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
         __pyx_v_start = __pyx_v_end;
       }
 
-      /* "rankpy/models/lambdamart_inner.pyx":407
+      /* "rankpy/models/lambdamart_inner.pyx":408
  *             # Move the items from the beginning of
  *             # the permutation cycle to the end.
  *             relevance_scores[end] = tmp_relevance_score             # <<<<<<<<<<<<<<
@@ -3841,7 +3845,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
       (__pyx_v_relevance_scores[__pyx_v_end]) = __pyx_v_tmp_relevance_score;
 
-      /* "rankpy/models/lambdamart_inner.pyx":408
+      /* "rankpy/models/lambdamart_inner.pyx":409
  *             # the permutation cycle to the end.
  *             relevance_scores[end] = tmp_relevance_score
  *             ranking_scores[end] = tmp_ranking_score             # <<<<<<<<<<<<<<
@@ -3850,7 +3854,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
       (__pyx_v_ranking_scores[__pyx_v_end]) = __pyx_v_tmp_ranking_score;
 
-      /* "rankpy/models/lambdamart_inner.pyx":410
+      /* "rankpy/models/lambdamart_inner.pyx":411
  *             ranking_scores[end] = tmp_ranking_score
  * 
  *             if leaves_idx != NULL:             # <<<<<<<<<<<<<<
@@ -3860,7 +3864,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       __pyx_t_3 = ((__pyx_v_leaves_idx != NULL) != 0);
       if (__pyx_t_3) {
 
-        /* "rankpy/models/lambdamart_inner.pyx":411
+        /* "rankpy/models/lambdamart_inner.pyx":412
  * 
  *             if leaves_idx != NULL:
  *                 leaves_idx[end] = tmp_leave_idx             # <<<<<<<<<<<<<<
@@ -3872,7 +3876,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       }
       __pyx_L14:;
 
-      /* "rankpy/models/lambdamart_inner.pyx":413
+      /* "rankpy/models/lambdamart_inner.pyx":414
  *                 leaves_idx[end] = tmp_leave_idx
  * 
  *             if document_weights != NULL:             # <<<<<<<<<<<<<<
@@ -3882,7 +3886,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       __pyx_t_3 = ((__pyx_v_document_weights != NULL) != 0);
       if (__pyx_t_3) {
 
-        /* "rankpy/models/lambdamart_inner.pyx":414
+        /* "rankpy/models/lambdamart_inner.pyx":415
  * 
  *             if document_weights != NULL:
  *                 document_weights[end] = tmp_document_weight             # <<<<<<<<<<<<<<
@@ -3894,7 +3898,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       }
       __pyx_L15:;
 
-      /* "rankpy/models/lambdamart_inner.pyx":416
+      /* "rankpy/models/lambdamart_inner.pyx":417
  *                 document_weights[end] = tmp_document_weight
  * 
  *             if lambdas != NULL:             # <<<<<<<<<<<<<<
@@ -3904,7 +3908,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       __pyx_t_3 = ((__pyx_v_lambdas != NULL) != 0);
       if (__pyx_t_3) {
 
-        /* "rankpy/models/lambdamart_inner.pyx":417
+        /* "rankpy/models/lambdamart_inner.pyx":418
  * 
  *             if lambdas != NULL:
  *                 lambdas[start] = tmp_lambda             # <<<<<<<<<<<<<<
@@ -3913,7 +3917,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
  */
         (__pyx_v_lambdas[__pyx_v_start]) = __pyx_v_tmp_lambda;
 
-        /* "rankpy/models/lambdamart_inner.pyx":418
+        /* "rankpy/models/lambdamart_inner.pyx":419
  *             if lambdas != NULL:
  *                 lambdas[start] = tmp_lambda
  *                 weights[start] = tmp_weight             # <<<<<<<<<<<<<<
@@ -3925,7 +3929,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
       }
       __pyx_L16:;
 
-      /* "rankpy/models/lambdamart_inner.pyx":420
+      /* "rankpy/models/lambdamart_inner.pyx":421
  *                 weights[start] = tmp_weight
  * 
  *             indices[end] = end             # <<<<<<<<<<<<<<
@@ -3936,7 +3940,7 @@ static void __pyx_f_6rankpy_6models_16lambdamart_inner_sort_in_place(__pyx_t_6ra
     __pyx_L5:;
   }
 
-  /* "rankpy/models/lambdamart_inner.pyx":355
+  /* "rankpy/models/lambdamart_inner.pyx":356
  * 
  * 
  * cdef void sort_in_place(INT_t *indices, INT_t n_documents, INT_t *relevance_scores,             # <<<<<<<<<<<<<<
@@ -17765,8 +17769,8 @@ PyMODINIT_FUNC PyInit_lambdamart_inner(void)
   __pyx_ptype_5numpy_broadcast = __Pyx_ImportType("numpy", "broadcast", sizeof(PyArrayMultiIterObject), 0); if (unlikely(!__pyx_ptype_5numpy_broadcast)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_5numpy_ndarray = __Pyx_ImportType("numpy", "ndarray", sizeof(PyArrayObject), 0); if (unlikely(!__pyx_ptype_5numpy_ndarray)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_5numpy_ufunc = __Pyx_ImportType("numpy", "ufunc", sizeof(PyUFuncObject), 0); if (unlikely(!__pyx_ptype_5numpy_ufunc)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 861; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_ptype_6rankpy_7metrics_8_metrics_Metric = __Pyx_ImportType("rankpy.metrics._metrics", "Metric", sizeof(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric), 1); if (unlikely(!__pyx_ptype_6rankpy_7metrics_8_metrics_Metric)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_vtabptr_6rankpy_7metrics_8_metrics_Metric = (struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_Metric*)__Pyx_GetVtable(__pyx_ptype_6rankpy_7metrics_8_metrics_Metric->tp_dict); if (unlikely(!__pyx_vtabptr_6rankpy_7metrics_8_metrics_Metric)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_6rankpy_7metrics_8_metrics_Metric = __Pyx_ImportType("rankpy.metrics._metrics", "Metric", sizeof(struct __pyx_obj_6rankpy_7metrics_8_metrics_Metric), 1); if (unlikely(!__pyx_ptype_6rankpy_7metrics_8_metrics_Metric)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_vtabptr_6rankpy_7metrics_8_metrics_Metric = (struct __pyx_vtabstruct_6rankpy_7metrics_8_metrics_Metric*)__Pyx_GetVtable(__pyx_ptype_6rankpy_7metrics_8_metrics_Metric->tp_dict); if (unlikely(!__pyx_vtabptr_6rankpy_7metrics_8_metrics_Metric)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   __pyx_t_1 = __Pyx_ImportModule("rankpy.metrics._utils"); if (!__pyx_t_1) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
