@@ -309,9 +309,6 @@ class LambdaMART(object):
         The number of working sub-processes that will be spawned to compute
         the desired values faster. If -1, the number of CPUs will be used.
 
-    base_model: learning to rank model
-        The learning to rank model used for warm start.
-
     min_estimators: int, optional, default: 1
         The minimum number of estimators to train. This number of estimators
         will be trained regardless of the `self.n_estimators` and `self.estopping`,
@@ -457,7 +454,8 @@ class LambdaMART(object):
                      % (metric, metric.evaluate_queries(queries, ranking_scores, scale=queries_scale_values)))
 
 
-    def fit(self, metric, queries, validation=None, query_weights=None, validation_weights=None, trace=None):
+    def fit(self, metric, queries, validation=None, query_weights=None, validation_weights=None, trace=None,
+            n_estimators=None):
         ''' 
         Train the LambdaMART model on the specified queries. Optinally, use the
         specified queries for finding an optimal number of trees using validation.
@@ -491,6 +489,12 @@ class LambdaMART(object):
             only if the Newton method is used for estimating the gradient steps. Use
             `influences` if you want to track (proportional) contribution of lambdas
             from lower relevant documents on high relevant ones.
+
+        n_estimators: int or None, optional, default: None
+            If not None, it overrides the setting of `n_estimators` when the model was
+            initialized. If the model was already trained and `n_estimators` is greater
+            than when the model was created, then the only extra trees are trained. If
+            it is smaller, the parameter is ignored.
         '''
         # Initialize the random number generators.
         np.random.seed(self.seed)
@@ -508,6 +512,21 @@ class LambdaMART(object):
         else:
             training_scores = np.asanyarray(self.base_model.predict(queries, n_jobs=self.n_jobs), dtype=np.float64)
 
+        if n_estimators is not None:
+            # TODO: Is it worth making this work?
+            if trace is not None:
+                raise NotImplementedError('trace != None with n_estimators != None is not supported')
+
+            # Ignored option.
+            if n_estimators <= self.n_estimators:
+                return
+
+            # Should additional trees be trained.
+            if len(self.estimators) > 0:
+                # Override the setting from the constructor.
+                training_scores = self.predict(queries, n_jobs=self.n_jobs)
+                self.n_estimators = n_estimators
+
         # Set the weight for each training document.
         if query_weights is not None:
             document_weights = np.zeros(queries.document_count(), dtype=np.float64)
@@ -519,7 +538,12 @@ class LambdaMART(object):
         # If the metric used for training is normalized, it is obviously advantageous
         # to precompute the scaling factor for each query in advance.
         training_scale_values = metric.compute_scale(queries, query_weights)
-        self.training_performance = np.zeros(self.n_estimators, dtype=np.float64)
+
+        # Extend the training performances array (if needed).
+        if len(self.estimators) > 0:
+            self.training_performance = np.resize(self.training_performance, self.n_estimators)
+        else:
+            self.training_performance = np.zeros(self.n_estimators, dtype=np.float64)
 
         # The pseudo-responses (lambdas) for each document.
         training_lambdas = np.empty(queries.document_count(), dtype=np.float64)
@@ -576,15 +600,20 @@ class LambdaMART(object):
             self.trace_gradients = False
             self.trace_influences = False
 
-        # Initialize same the components for validation queries as for training.
+        # Initialize same the components for validation queries as for training queries.
         if validation is not None:
-            if self.base_model is None:
-                validation_scores = np.zeros(validation.document_count(), dtype=np.float64)
-            else:
-                validation_scores = np.asanyarray(self.base_model.predict(validation, n_jobs=self.n_jobs), dtype=np.float64)
-
             validation_scale_values = metric.compute_scale(validation, validation_weights)
-            self.validation_performance = np.zeros(self.n_estimators, dtype=np.float64)
+
+            if len(self.estimators) > 0:
+                self.validation_performance = np.resize(self.validation_performance, self.n_estimators)
+                validation_scores = self.predict(validation, n_jobs=self.n_jobs)
+            else:
+                self.validation_performance = np.zeros(self.n_estimators, dtype=np.float64)
+
+                if self.base_model is None:
+                    validation_scores = np.zeros(validation.document_count(), dtype=np.float64)
+                else:
+                    validation_scores = np.asanyarray(self.base_model.predict(validation, n_jobs=self.n_jobs), dtype=np.float64)
 
             if self.trace_lambdas or self.trace_influences:
                 # The pseudo-responses (lambdas) for each document in validation queries.
@@ -592,9 +621,12 @@ class LambdaMART(object):
                 # The optimal gradient descent step sizes for each document in validation queries.
                 self.validation_weights = np.empty(validation.document_count(), dtype=np.float64)
 
-        # Hope we will be always maximizing :).
-        best_performance = -np.inf
-        best_performance_k = -1
+        if hasattr(self, 'best_performance'):
+            best_performance = self.best_performance
+        else:
+            best_performance = -np.inf
+
+        best_performance_k = len(self.estimators) - 1
 
         # How many iterations the performance has not improved on validation set.
         performance_not_improved = 0
@@ -604,7 +636,7 @@ class LambdaMART(object):
         self.n_estimators = max(self.n_estimators, self.min_estimators)
 
         # Iteratively build a sequence of regression trees.
-        for k in range(self.n_estimators):
+        for k in range(len(self.estimators), self.n_estimators):
             training_influences = self.stage_training_influences[k] if self.trace_influences else None
             # Computes the pseudo-responses (lambdas) and gradient step sizes (weights) for the current regression tree.
             compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas,
@@ -695,6 +727,7 @@ class LambdaMART(object):
             # performance improvements.
             if validation is not None:
                 validation_scores += self.shrinkage * self.estimators[-1].predict(validation.feature_vectors)
+
                 self.validation_performance[k] = metric.evaluate_queries(validation, validation_scores, scale=validation_scale_values, weights=validation_weights)
 
                 logger.info('#%08d: %s (training):   %11.8f  |  (validation):   %11.8f' % (k + 1, metric, self.training_performance[k], self.validation_performance[k]))
@@ -715,8 +748,9 @@ class LambdaMART(object):
                             ' has been observed for %d iterations (since iteration %d)' % (self.estopping, best_performance_k + 1))
                 break
 
-        if validation is not None:
-            logger.info('Final model performance (%s) on validation queries: %11.8f' % (metric, best_performance))
+        logger.info('Final model performance (%s) on %s queries: %11.8f' % (metric,
+                                                                            'training' if validation is None else 'validation',
+                                                                            best_performance))
 
         # Make sure the model has the wanted size.
         best_performance_k = max(best_performance_k, self.min_estimators - 1)
@@ -726,7 +760,9 @@ class LambdaMART(object):
         del self.estimators[best_performance_k + 1:]
 
         # Correct the number of trees.
-        self.n_estimators = len(self.estimators)
+        if self.n_estimators != len(self.estimators):
+            logger.info('Setting the number of trees of the model to %d.')
+            self.n_estimators = len(self.estimators)
 
         # Set these for further inspection.
         self.training_performance = np.resize(self.training_performance, k + 1)
@@ -785,7 +821,10 @@ class LambdaMART(object):
         if not self.estimators:
             raise ValueError('the model has not been trained yet')
 
-        predictions = np.zeros(queries.document_count(), dtype=np.float64)
+        if self.base_model is not None:
+            predictions = np.asanyarray(self.base_model.predict(queries, n_jobs=n_jobs), dtype=np.float64)
+        else:
+            predictions = np.zeros(queries.document_count(), dtype=np.float64)
 
         n_jobs = max(1, min(n_jobs if n_jobs >= 0 else n_jobs + cpu_count() + 1, queries.document_count()))
 
