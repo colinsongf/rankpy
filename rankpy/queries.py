@@ -184,7 +184,7 @@ class Queries(object):
 
 
     @staticmethod
-    def load_from_text(filepaths, dtype=np.float32, max_score=None, min_feature=None, max_feature=None, has_sorted_relevances=False, purge=2):
+    def load_from_text(filepaths, dtype=np.float32, max_score=None, min_feature=None, max_feature=None, has_sorted_relevances=False, purge=False):
         ''' 
         Load queries in the svmlight format from the specified file(s).
 
@@ -223,11 +223,9 @@ class Queries(object):
             If True, it indicates that the relevance scores of the queries in the file
             are sorted in decreasing order.
 
-        purge: int, optional (default is 2)
-            If set to 1, all queries which have only irrelevant documents
-            are removed. If set to 2, all queries which have documents with
-            the same relevance scores are removed. If None, no query is
-            removed.
+        purge: bool, optional (default is False)
+            If True, all queries which have documents with the same relevance labels
+            are removed. If False, no query is removed.
         '''
         # Arrays used to build CSR matrix of query-document vectors.
         data, indices, indptr = [], [], [0]
@@ -248,13 +246,10 @@ class Queries(object):
 
         def purge_query(qid, data, indices, indptr):
             '''Remove the last query added to the set according to `purge`.'''
-            if purge in (None, 0) or qid is None:
+            if not purge or qid is None:
                 return 0
 
-            if purge == 1:
-                r = 0
-            elif purge == 2:
-                r = relevances[query_indptr[-2]]
+            r = relevances[query_indptr[-2]]
 
             i = query_indptr[-2]
             while i < query_indptr[-1] and relevances[i] == r:
@@ -309,8 +304,8 @@ class Queries(object):
                             n_purged = purge_query(prev_qid, data, indices, indptr)
                             n_purged_documents += n_purged
                             if n_purged > 0:
-                                logger.debug('Ignoring query %d (qid) with %d documents because of purge %d' \
-                                             % (prev_qid, n_purged, purge))
+                                logger.debug('Ignoring query %d (qid) with %d documents because all had the same relevance label.' \
+                                             % (prev_qid, n_purged))
                                 n_purged_queries += 1
                             query_ids.append(qid)
                             query_indptr.append(query_indptr[-1] + 1)
@@ -340,7 +335,7 @@ class Queries(object):
                 n_purged = purge_query(prev_qid, data, indices, indptr)
                 n_purged_documents += n_purged
                 if n_purged > 0:
-                    logger.debug('Ignoring query %d (qid) with %d documents because of purge %d' % (prev_qid, n_purged, purge))
+                    logger.debug('Ignoring query %d (qid) with %d documents because all had the same relevance label.' % (prev_qid, n_purged))
                     n_purged_queries += 1
                 logger.info('Read %d queries and %d documents out of which ' \
                             '%d queries and %d documents were discarded.' \
@@ -549,12 +544,12 @@ class Queries(object):
         return Queries(feature_vectors, relevance_scores, query_indptr, query_ids=query_ids, feature_indices=self.feature_indices, has_sorted_relevances=True)
 
 
-    def adjust(self, min_score=None, purge=2, return_indices=False):
+    def adjust(self, min_score=None, purge=False, scale=False, return_indices=False):
         ''' 
         Adjust the document set such that the minimum relevance score is changed
         to the given value (all values are adjusted accordingly) and queries,
-        which have only irrelevant documents (purge is 1) or documents with the
-        same relevance scores (purge == 2) are removed.
+        which have all documents with the same relevance labels are removed (if
+        purge is True).
 
         Parameters
         ----------
@@ -566,15 +561,19 @@ class Queries(object):
             minimum relevance score. If None is given, nothing
             happens.
 
-        purge: int, optional (default is 2)
-            If set to 1, all queries which have only irrelevant documents
-            are removed. If set to 2, all queries which have documents with
-            the same relevance scores are removed. If None, no query is
+        purge: bool, optional (default is False)
+            If True, queries which have all documents of the same
+            relevance (label) are removed. If False, no query is
             removed.
+
+        scale: bool, optional (default is False)
+            If True, feature values will be scaled into [0, 1]
+            range using (x - min{X}) / (max{X} - min{X}).
 
         return_indices: bool, optional (default is False)
             If True, no query is removed, instead indices of queries that
-            would have been removed are returned.
+            would have been removed are returned. Applicable only if
+            purge is True.
 
         Returns
         -------
@@ -590,42 +589,51 @@ class Queries(object):
                 self.relevance_scores -= current_min_score - min_score
                 self.max_score = self.relevance_scores.max()
 
-        bad_query_indices = []
+        if purge:
+            bad_query_indices = []
 
-        for i in range(self.n_queries):
-            if len(np.unique(self.relevance_scores[self.query_indptr[i]:self.query_indptr[i + 1]])) == 1:
-                if purge == 2 or (purge == 1 and self.relevance_scores[self.query_indptr[i]] == 0):
+            for i in range(self.n_queries):
+                if len(np.unique(self.relevance_scores[self.query_indptr[i]:self.query_indptr[i + 1]])) == 1:
                     bad_query_indices.append(i)
 
-        bad_query_indices = np.array(bad_query_indices, dtype=np.intc)
+            bad_query_indices = np.array(bad_query_indices, dtype=np.intc)
 
-        if return_indices:
-            return bad_query_indices
+            if return_indices:
+                return bad_query_indices
 
-        # Mask for queries that will persist.
-        good_query_mask = np.ones(self.n_queries, dtype=np.bool)
-        good_query_mask[bad_query_indices] = False
+            # Mask for queries that will persist.
+            good_query_mask = np.ones(self.n_queries, dtype=np.bool)
+            good_query_mask[bad_query_indices] = False
 
-        # Mask for documents (feature vectors) that will persist.
-        good_document_mask = np.ones(self.n_feature_vectors, dtype=np.bool)
-        for i in bad_query_indices:
-            good_document_mask[self.query_indptr[i]:self.query_indptr[i + 1]] = False
+            # Mask for documents (feature vectors) that will persist.
+            good_document_mask = np.ones(self.n_feature_vectors, dtype=np.bool)
+            for i in bad_query_indices:
+                good_document_mask[self.query_indptr[i]:self.query_indptr[i + 1]] = False
 
-        query_document_counts = np.diff(self.query_indptr)
-        good_query_document_counts = query_document_counts[good_query_mask]
+            query_document_counts = np.diff(self.query_indptr)
+            good_query_document_counts = query_document_counts[good_query_mask]
 
-        self.feature_vectors = self.feature_vectors[good_document_mask]
-        self.relevance_scores = self.relevance_scores[good_document_mask]
-        self.query_indptr = np.r_[0, good_query_document_counts].cumsum(dtype=np.intc)
-        self.query_ids = self.query_ids[good_query_mask]
-        self.n_queries = len(self.query_indptr) - 1
-        self.n_feature_vectors = self.query_indptr[-1]
-        self.query_relevance_strides = (self.query_relevance_strides \
-                                         - query_document_counts.cumsum(dtype=np.intc).reshape(-1, 1))[good_query_mask] \
-                                         + good_query_document_counts.cumsum(dtype=np.intc).reshape(-1, 1)
+            self.feature_vectors = self.feature_vectors[good_document_mask]
+            self.relevance_scores = self.relevance_scores[good_document_mask]
+            self.query_indptr = np.r_[0, good_query_document_counts].cumsum(dtype=np.intc)
+            self.query_ids = self.query_ids[good_query_mask]
+            self.n_queries = len(self.query_indptr) - 1
+            self.n_feature_vectors = self.query_indptr[-1]
+            self.query_relevance_strides = (self.query_relevance_strides \
+                                             - query_document_counts.cumsum(dtype=np.intc).reshape(-1, 1))[good_query_mask] \
+                                             + good_query_document_counts.cumsum(dtype=np.intc).reshape(-1, 1)
+            # Not needed, but keeps things nice and clean.
+            self.query_relevance_strides[np.where(self.query_relevance_strides < 0)] = -1
 
-        # Not needed, but keeps things nice and clean.
-        self.query_relevance_strides[np.where(self.query_relevance_strides < 0)] = -1
+        if scale:
+            min_feature_values = self.feature_vectors.min(axis=0, keepdims=True)
+            scale_feature_values = self.feature_vectors.max(axis=0, keepdims=True) - min_feature_values
+
+            # To avoid division making NaN's in feature vectors.
+            scale_feature_values[scale_feature_values == 0.] = 1.
+
+            self.feature_vectors -= min_feature_values
+            self.feature_vectors /= scale_feature_values
 
 
     def get_query(self, qid):
@@ -639,7 +647,6 @@ class Queries(object):
         s = self.query_indptr[i]
         e = self.query_indptr[i + 1]
         return Query(qid, self.relevance_scores[s:e], self.feature_vectors[s:e,:], base=self)
-
 
     def document_count(self, qid=None):
         ''' 
