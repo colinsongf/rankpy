@@ -491,7 +491,7 @@ class NormalizedDiscountedCumulativeGain(object):
             The weight of the query for which the metric is evaluated.
         '''
         if ranked_labels is not None:
-            return self.metric_.evaluate(ranked_labels, scale or self.metric_.evaluate(np.ascontiguousarray(np.sort(ranked_labels)[::-1]), 1.0, weight))
+            return self.metric_.evaluate(ranked_labels, scale or self.metric_.evaluate(np.ascontiguousarray(np.sort(ranked_labels)[::-1]), 1.0, weight), weight)
         elif ranking is not None and labels is not None:
             if ranking.shape[0] != labels.shape[0]:
                 raise ValueError('number of ranked documents != number of relevance labels (%d, %d)' \
