@@ -22,6 +22,10 @@ from ._metrics import DiscountedCumulativeGain as DCG
 
 from ._utils import relevance_argsort_v1
 
+from sklearn.utils import check_random_state
+
+INTEGER_MAX = np.iinfo('i').max
+
 
 class WinnerTakesAll(object):
     ''' 
@@ -41,10 +45,20 @@ class WinnerTakesAll(object):
     queries: list of rankpy.queries.Queries
         Ignored.
     '''
-    def __init__(self, cutoff=-1, max_relevance=None, max_documents=None, queries=None):
+    def __init__(self, cutoff=-1, max_relevance=None, max_documents=None,
+                 queries=None, random_state=None):
         # Create the metric cython backend.
-        self.metric_ = WTA(-1, 0, 0)
+        self.random_state = check_random_state(random_state)
+        self.metric_ = WTA(-1, 0, 0, self.random_state.randint(1, INTEGER_MAX))
 
+    def backend(self, copy=True):
+        '''
+        Returns the backend metric object.
+        '''
+        if copy:
+            return WTA(-1, 0, 0, self.random_state.randint(1, INTEGER_MAX))
+        else:
+            self.metric_
 
     def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None, weight=1.0):
         ''' 
@@ -81,7 +95,6 @@ class WinnerTakesAll(object):
                 raise ValueError('number of ranked documents != number of relevance labels (%d, %d)' \
                                   % (ranking.shape[0], labels.shape[0]))
             return self.metric_.evaluate_ranking(ranking, labels, 1.0, weight)
-
 
     def evaluate_queries(self, queries, scores, scale=None, weights=None, out=None):
         ''' 
@@ -121,7 +134,6 @@ class WinnerTakesAll(object):
                              % (queries.query_count(), out.shape[0]))
 
         return self.metric_.evaluate_queries(queries.query_indptr, queries.relevance_scores, scores, None, weights, out)
-
 
     def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, weight=1.0, out=None):
         ''' 
@@ -177,14 +189,12 @@ class WinnerTakesAll(object):
 
         return out
 
-
     def compute_scale(self, queries, weights=None, relevance_scores=None):
         ''' 
         Since WTA is not normalized (or it can be said that it is already normal),
         return None.
         '''
         return None
-
 
     def __str__(self):
         ''' 
@@ -227,7 +237,8 @@ class DiscountedCumulativeGain(object):
         The collections of queries that are known to be evaluated by this metric.
         These are used to compute `max_relevance` and `max_documents`.
     '''
-    def __init__(self, cutoff=-1, max_relevance=None, max_documents=None, queries=None):
+    def __init__(self, cutoff=-1, max_relevance=None, max_documents=None,
+                 queries=None, random_state=None):
         # Get the maximum relevance score and maximum number of documents
         # per a query from the specified set(s) of queries...
         if queries is not None:
@@ -241,17 +252,32 @@ class DiscountedCumulativeGain(object):
                 max_relevance = 8
                 warn('Maximum relevance label was not explicitly specified ' \
                      '(using default value 8). This should be avoided in order ' \
-                     'not to encounter runtime error (SegFault)!')
+                     'not to encounter runtime error (segfault)!')
 
             if max_documents is None:
                 max_documents = 8192
                 warn('Maximum number of documents per query was not explicitly specified ' \
                      '(using default value 8192). This should be avoided in order not to ' \
-                     'encounter runtime error (SegFault)!')
+                     'encounter runtime error (segfault)!')
+
+        self.cutoff = cutoff
+        self.max_relevance = max_relevance
+        self.max_documents = max_documents
+        self.random_state = check_random_state(random_state)
 
         # Create the metric cython backend.
-        self.metric_ = DCG(cutoff, max_relevance, max_documents)
+        self.metric_ = DCG(cutoff, max_relevance, max_documents,
+                           self.random_state.randint(1, INTEGER_MAX))
 
+    def backend(self, copy=True):
+        '''
+        Returns the backend metric object.
+        '''
+        if copy:
+            return DCG(self.cutoff, self.max_relevance, self.max_documents,
+                       self.random_state.randint(1, INTEGER_MAX))
+        else:
+            self.metric_
 
     def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None, weight=1.0):
         ''' 
@@ -288,7 +314,6 @@ class DiscountedCumulativeGain(object):
                 raise ValueError('number of ranked documents != number of relevance labels (%d, %d)' \
                                   % (ranking.shape[0], labels.shape[0]))
             return self.metric_.evaluate_ranking(ranking, labels, 1.0, weight)
-
 
     def evaluate_queries(self, queries, scores, scale=None, weights=None, out=None):
         ''' 
@@ -328,7 +353,6 @@ class DiscountedCumulativeGain(object):
                              % (queries.query_count(), out.shape[0]))
 
         return self.metric_.evaluate_queries(queries.query_indptr, queries.relevance_scores, scores, None, weights, out)
-
 
     def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, weight=1.0, out=None):
         ''' 
@@ -435,7 +459,8 @@ class NormalizedDiscountedCumulativeGain(object):
         The collections of queries that are known to be evaluated by this metric.
         These are used to compute `max_relevance` and `max_documents`.
     '''
-    def __init__(self, cutoff=-1, max_relevance=None, max_documents=None, queries=None):
+    def __init__(self, cutoff=-1, max_relevance=None, max_documents=None,
+                 queries=None, random_state=None):
         # Get the maximum relevance score and maximum number of documents
         # per a query from the specified set(s) of queries...
         if queries is not None:
@@ -457,9 +482,24 @@ class NormalizedDiscountedCumulativeGain(object):
                      '(using default value 8192). This should be avoided in order not to ' \
                      'encounter runtime error (SegFault)!')
 
+        self.cutoff = cutoff
+        self.max_relevance = max_relevance
+        self.max_documents = max_documents
+        self.random_state = check_random_state(random_state)
+        
         # Create the metric cython backend.
-        self.metric_ = DCG(cutoff, max_relevance, max_documents)
+        self.metric_ = DCG(cutoff, max_relevance, max_documents,
+                           self.random_state.randint(1, INTEGER_MAX))
 
+    def backend(self, copy=True):
+        '''
+        Returns the backend metric object.
+        '''
+        if copy:
+            return DCG(self.cutoff, self.max_relevance, self.max_documents,
+                       self.random_state.randint(1, INTEGER_MAX))
+        else:
+            self.metric_
 
     def evaluate(self, ranking=None, labels=None, ranked_labels=None, scale=None, weight=1.0):
         ''' 
@@ -497,7 +537,6 @@ class NormalizedDiscountedCumulativeGain(object):
                 raise ValueError('number of ranked documents != number of relevance labels (%d, %d)' \
                                   % (ranking.shape[0], labels.shape[0]))
             return self.metric_.evaluate_ranking(ranking, labels, scale or self.metric_.evaluate(np.ascontiguousarray(np.sort(labels)[::-1]), 1.0, weight), weight)
-
 
     def evaluate_queries(self, queries, scores, scale=None, weights=None, out=None):
         ''' 
@@ -545,7 +584,6 @@ class NormalizedDiscountedCumulativeGain(object):
                              % (queries.query_count(), out.shape[0]))
 
         return self.metric_.evaluate_queries(queries.query_indptr, queries.relevance_scores, scores, scale, weights, out)
-
 
     def compute_delta(self, i, offset, document_ranks, relevance_scores, scale=None, weight=1.0, out=None):
         ''' 
@@ -604,7 +642,6 @@ class NormalizedDiscountedCumulativeGain(object):
         self.metric_.delta(i, offset, document_ranks, relevance_scores, scale, weight, out)
 
         return out
-
 
     def compute_scale(self, queries, weights=None, relevance_scores=None):
         ''' 

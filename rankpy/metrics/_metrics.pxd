@@ -34,7 +34,9 @@ cdef class Metric:
     #
 
     # Fields
-    cdef public INT_t cutoff # The metric cutoff threshold.
+    cdef public INT_t cutoff       # The metric cutoff threshold.
+    cdef public unsigned int seed  # The RNG seed for random shuffling of
+                                   # documents with the same ranking score.
 
     # Python methods
     cpdef evaluate_ranking(self, INT_t[::1] document_ranks, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t query_weight)

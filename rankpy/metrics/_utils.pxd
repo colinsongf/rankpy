@@ -25,38 +25,35 @@ ctypedef np.int32_t   INT_t
 # C function definitions
 # =============================================================================
 
+cdef void argranksort_c(DOUBLE_t *ranking_scores, INT_t *ranks, INT_t n_documents, unsigned int *seed) nogil
+cdef void argranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *ranks, unsigned int *seed) nogil
 
-cdef void argranksort_c(DOUBLE_t *ranking_scores, INT_t *ranks, INT_t n_documents) nogil
-cdef void argranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *ranks) nogil
+cdef void ranksort_c(DOUBLE_t *ranking_scores, INT_t *ranking, INT_t n_documents, unsigned int *seed) nogil
+cdef void ranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *ranking, unsigned int *seed) nogil
 
-cdef void ranksort_c(DOUBLE_t *ranking_scores, INT_t *ranking, INT_t n_documents) nogil
-cdef void ranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *ranking) nogil
-
-cdef void ranksort_relevance_scores_c(DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t n_documents, INT_t *out) nogil
-cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t *out) nogil
+cdef void ranksort_relevance_scores_c(DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t n_documents, INT_t *out, unsigned int *seed) nogil
+cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t *out, unsigned int *seed) nogil
 
 cdef int relevance_argsort_v1_c(INT_t *array, INT_t *indices, INT_t size, INT_t maximum=*) nogil
 cdef void relevance_argsort_v2_c(INT_t *array, INT_t *indices, INT_t size) nogil
 
+cdef unsigned int get_seed(object random_state=*)
 
 # =============================================================================
 # Python bindings for the C functions defined above.
 # =============================================================================
 
+cpdef argranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks, object random_state=*)
+cpdef argranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks, object random_state=*)
 
-cpdef set_seed(unsigned int seed)
+cpdef ranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking, object random_state=*)
+cpdef ranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking, object random_state=*)
 
-cpdef argranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks)
-cpdef argranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks)
-
-cpdef ranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking)
-cpdef ranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking)
-
-cpdef ranksort_relevance_scores(DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out)
-cpdef ranksort_relevance_scores_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out)
+cpdef ranksort_relevance_scores(DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out, object random_state=*)
+cpdef ranksort_relevance_scores_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out, object random_state=*)
 
 cpdef relevance_argsort_v1(INT_t[::1] array, INT_t[::1] indices, INT_t size, INT_t maximum=*)
 cpdef relevance_argsort_v2(INT_t[::1] array, INT_t[::1] indices, INT_t size)
 
-cpdef noise_relenvace_scores(INT_t[::1] relevance_scores, DOUBLE_t [:, ::1] probabilities)
-cpdef rand_uniform(DOUBLE_t low=*, DOUBLE_t high=*)
+cpdef noise_relenvace_scores(INT_t[::1] relevance_scores, DOUBLE_t [:, ::1] probabilities, object random_state=*)
+cpdef rand_uniform(DOUBLE_t low, DOUBLE_t high, object random_state=*)

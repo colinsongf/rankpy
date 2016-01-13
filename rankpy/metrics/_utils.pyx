@@ -40,12 +40,7 @@ from numpy import int32   as INT
 
 # The minimum value of 32 bit integer.
 cdef INT_t INT32_MIN = np.iinfo('i').min
-
-# Global indicator that srand has been called.
-cdef bint srand_called = 0
-
-# Global our_rand_r seed.
-cdef unsigned int rand_r_seed = rand()
+cdef INT_t INT32_MAX = np.iinfo('i').max
 
 # Auxiliary document structure, used for sort-ing and
 # argsort-ing.
@@ -83,26 +78,29 @@ cdef int __compare(const void *a, const void *b) nogil:
             return 1
 
 
-cdef void __argranksort(DOUBLE_t *ranking_scores, DOCUMENT_t *documents, INT_t document_position_offset, INT_t n_documents) nogil:
+cdef void __argranksort(DOUBLE_t *ranking_scores,
+                        DOCUMENT_t *documents,
+                        INT_t document_position_offset,
+                        INT_t n_documents,
+                        unsigned int *seed) nogil:
     ''' 
     Auxiliary function for ranksort and argranksort functions.
     '''
     cdef INT_t i
 
-    if not srand_called:
-        srand(time(<time_t *>0))
-        global srand_called
-        srand_called = True
-
     for i in range(n_documents):
         documents[i].position = i + document_position_offset
-        documents[i].nonce = rand()
+        documents[i].nonce = our_rand_r(seed)
         documents[i].score = ranking_scores[i]
 
     qsort(documents, n_documents, sizeof(DOCUMENT_t), __compare)
 
 
-cdef void __argranksort_queries(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, DOCUMENT_t *documents) nogil:
+cdef void __argranksort_queries(INT_t *query_indptr,
+                                INT_t n_queries,
+                                DOUBLE_t *ranking_scores,
+                                DOCUMENT_t *documents,
+                                unsigned int *seed) nogil:
     ''' 
     Auxiliary function for ranksort_queries and argranksort_queries functions.
     '''
@@ -110,10 +108,13 @@ cdef void __argranksort_queries(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *
 
     for i in range(n_queries):
         __argranksort(ranking_scores + query_indptr[i], documents + query_indptr[i] - query_indptr[0],
-                      query_indptr[i], query_indptr[i + 1] - query_indptr[i])
+                      query_indptr[i], query_indptr[i + 1] - query_indptr[i], seed)
 
 
-cdef void argranksort_c(DOUBLE_t *ranking_scores, INT_t *ranks, INT_t n_documents) nogil:
+cdef void argranksort_c(DOUBLE_t *ranking_scores,
+                        INT_t *ranks,
+                        INT_t n_documents,
+                        unsigned int *seed) nogil:
     ''' 
     Return the rank position of the documents associated with the specified ranking_scores,
     i.e. `ranks[i]` is the position of the `ranking_scores[i]` within the sorted array
@@ -123,7 +124,7 @@ cdef void argranksort_c(DOUBLE_t *ranking_scores, INT_t *ranks, INT_t n_document
         INT_t i
         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
 
-    __argranksort(ranking_scores, documents, 0, n_documents)
+    __argranksort(ranking_scores, documents, 0, n_documents, seed)
 
     for i in range(n_documents):
         ranks[documents[i].position] = i
@@ -131,7 +132,11 @@ cdef void argranksort_c(DOUBLE_t *ranking_scores, INT_t *ranks, INT_t n_document
     free(documents)
     
 
-cdef void argranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *ranks) nogil:
+cdef void argranksort_queries_c(INT_t *query_indptr,
+                                INT_t n_queries,
+                                DOUBLE_t *ranking_scores,
+                                INT_t *ranks,
+                                unsigned int *seed) nogil:
     ''' 
     Return the rank position of the documents within the document list of
     specified queries, which is determined using the specified ranking scores.
@@ -140,7 +145,7 @@ cdef void argranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *
         INT_t i, j, r, n_documents = query_indptr[n_queries] - query_indptr[0]
         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
 
-    __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)
+    __argranksort_queries(query_indptr, n_queries, ranking_scores, documents, seed)
 
     for i in range(n_queries):
         r = 0
@@ -151,7 +156,10 @@ cdef void argranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *
     free(documents)
 
 
-cdef void ranksort_c(DOUBLE_t *ranking_scores, INT_t *ranking, INT_t n_documents) nogil:
+cdef void ranksort_c(DOUBLE_t *ranking_scores,
+                     INT_t *ranking,
+                     INT_t n_documents,
+                     unsigned int *seed) nogil:
     ''' 
     Return the ranking of the documents associated with the specified ranking scores,
     i.e. `ranking[i]` identifies the ranking score which would be placed at i-th
@@ -161,7 +169,7 @@ cdef void ranksort_c(DOUBLE_t *ranking_scores, INT_t *ranking, INT_t n_documents
         INT_t i
         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
 
-    __argranksort(ranking_scores, documents, 0, n_documents)
+    __argranksort(ranking_scores, documents, 0, n_documents, seed)
 
     for i in range(n_documents):
         ranking[i] = documents[i].position
@@ -169,7 +177,11 @@ cdef void ranksort_c(DOUBLE_t *ranking_scores, INT_t *ranking, INT_t n_documents
     free(documents)
 
 
-cdef void ranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *ranking) nogil:
+cdef void ranksort_queries_c(INT_t *query_indptr,
+                             INT_t n_queries,
+                             DOUBLE_t *ranking_scores,
+                             INT_t *ranking,
+                             unsigned int *seed) nogil:
     ''' 
     Return the ranking of the documents associated with the specified ranking scores,
     i.e. `ranking_scores[ranking[i]]` will be the ranking score which would be placed
@@ -179,7 +191,7 @@ cdef void ranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ran
         INT_t i, j, n_documents = query_indptr[n_queries] - query_indptr[0]
         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
 
-    __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)
+    __argranksort_queries(query_indptr, n_queries, ranking_scores, documents, seed)
 
     for i in range(n_queries):
         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
@@ -188,7 +200,11 @@ cdef void ranksort_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ran
     free(documents)
 
 
-cdef void ranksort_relevance_scores_c(DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t n_documents, INT_t *out) nogil:
+cdef void ranksort_relevance_scores_c(DOUBLE_t *ranking_scores,
+                                      INT_t *relevance_scores,
+                                      INT_t n_documents,
+                                      INT_t *out,
+                                      unsigned int *seed) nogil:
     ''' 
     Rank the specified relevance scores according to the specified ranking scores.
     '''
@@ -196,7 +212,7 @@ cdef void ranksort_relevance_scores_c(DOUBLE_t *ranking_scores, INT_t *relevance
         INT_t i
         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
 
-    __argranksort(ranking_scores, documents, 0, n_documents)
+    __argranksort(ranking_scores, documents, 0, n_documents, seed)
 
     for i in range(n_documents):
         out[i] = relevance_scores[documents[i].position]
@@ -204,7 +220,12 @@ cdef void ranksort_relevance_scores_c(DOUBLE_t *ranking_scores, INT_t *relevance
     free(documents)
 
 
-cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr, INT_t n_queries, DOUBLE_t *ranking_scores, INT_t *relevance_scores, INT_t *out) nogil:
+cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr,
+                                              INT_t n_queries,
+                                              DOUBLE_t *ranking_scores,
+                                              INT_t *relevance_scores,
+                                              INT_t *out,
+                                              unsigned int *seed) nogil:
     ''' 
     Rank the specified relevance scores according to the specified ranking
     scores with respect to the given queries.
@@ -213,7 +234,7 @@ cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr, INT_t n_queri
         INT_t i, j, n_documents = query_indptr[n_queries] - query_indptr[0]
         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
 
-    __argranksort_queries(query_indptr, n_queries, ranking_scores, documents)
+    __argranksort_queries(query_indptr, n_queries, ranking_scores, documents, seed)
 
     for i in range(n_queries):
         for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
@@ -270,73 +291,80 @@ cdef void relevance_argsort_v2_c(INT_t *array, INT_t *indices, INT_t size) nogil
     introargsort_c(array, indices, size, 2 * <INT_t>log(size))
 
 
+cdef unsigned int get_seed(object random_state=None):
+    if random_state is None:
+        random_state = np.random.mtrand._rand
+    random_state.randint(1, INT32_MAX)
+
+
 # =============================================================================
 # Python bindings for the C functions defined above.
 # =============================================================================
 
-cpdef set_seed(unsigned int seed):
-    srand(seed)
-    global srand_called
-    srand_called = True
 
-
-cpdef argranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks):
+cpdef argranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks, object random_state=None):
     ''' 
     Return the rank position of the documents associated with the specified ranking_scores,
     i.e. `ranks[i]` is the position of the `ranking_scores[i]` within the sorted array
     (in descending order) of `ranking_scores`.
     '''
+    cdef unsigned int seed = get_seed(random_state)
     with nogil:
-        argranksort_c(&ranking_scores[0], &ranks[0], ranking_scores.shape[0])
+        argranksort_c(&ranking_scores[0], &ranks[0], ranking_scores.shape[0], &seed)
 
 
-cpdef argranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks):
+cpdef argranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks, object random_state=None):
     ''' 
     Return the rank position of the documents within the document list of
     specified queries, which is determined using the specified ranking scores.
     '''
+    cdef unsigned int seed = get_seed(random_state)
     with nogil:
-        argranksort_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &ranks[0])
+        argranksort_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &ranks[0], &seed)
 
 
-cpdef ranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking):
+cpdef ranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking, object random_state=None):
     ''' 
     Return the ranking of the documents associated with the specified ranking scores,
     i.e. `ranking[i]` identifies the ranking score which would be placed at i-th
     position within the sorted array (in descending order) of `ranking_scores`.
     '''
+    cdef unsigned int seed = get_seed(random_state)
     with nogil:
-        ranksort_c(&ranking_scores[0], &ranking[0], ranking_scores.shape[0])
+        ranksort_c(&ranking_scores[0], &ranking[0], ranking_scores.shape[0], &seed)
 
 
-cpdef ranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking):
+cpdef ranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking, object random_state=None):
     ''' 
     Return the ranking of the documents associated with the specified ranking scores,
     i.e. `ranking_scores[ranking[i]]` will be the ranking score which would be placed
     at i-th position within the sorted array (in descending order) of `ranking_scores`.
     '''
+    cdef unsigned int seed = get_seed(random_state)
     with nogil:
-        ranksort_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &ranking[0])
+        ranksort_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &ranking[0], &seed)
 
 
-cpdef ranksort_relevance_scores(DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out):
+cpdef ranksort_relevance_scores(DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out, object random_state=None):
     ''' 
     Rank the specified relevance scores according to the specified ranking scores.
     '''
+    cdef unsigned int seed = get_seed(random_state)
     with nogil:
-        ranksort_relevance_scores_c(&ranking_scores[0], &relevance_scores[0], ranking_scores.shape[0], &out[0])
+        ranksort_relevance_scores_c(&ranking_scores[0], &relevance_scores[0], ranking_scores.shape[0], &out[0], &seed)
 
 
-cpdef ranksort_relevance_scores_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out):
+cpdef ranksort_relevance_scores_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out, object random_state=None):
     ''' 
     Rank the specified relevance scores according to the specified ranking
     scores with respect to the given queries.
     '''
+    cdef unsigned int seed = get_seed(random_state)
     with nogil:
-        ranksort_relevance_scores_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &relevance_scores[0], &out[0])
+        ranksort_relevance_scores_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &relevance_scores[0], &out[0], &seed)
 
 
-cpdef noise_relenvace_scores(INT_t[::1] relevance_scores, DOUBLE_t [:, ::1] probabilities):
+cpdef noise_relenvace_scores(INT_t[::1] relevance_scores, DOUBLE_t [:, ::1] probabilities, object random_state=None):
     ''' 
     Create a new relevance scores by introducing noise into given relevances.
     The probability of score `i` changing into `j` is `probabilities[i, j]`.
@@ -347,6 +375,7 @@ cpdef noise_relenvace_scores(INT_t[::1] relevance_scores, DOUBLE_t [:, ::1] prob
         INT_t n_documents = relevance_scores.shape[0]
         np.ndarray[INT_t, ndim=1] scores = np.empty(n_documents, dtype=INT)
         DOUBLE_t p
+        unsigned int seed = get_seed(random_state)
 
     with nogil:
         # Go through all relevance scores and noise them.
@@ -358,7 +387,7 @@ cpdef noise_relenvace_scores(INT_t[::1] relevance_scores, DOUBLE_t [:, ::1] prob
             scores[i] = n_scores - 1
 
             # Sample a random number from [0, 1).
-            p = rand_uniform_c()
+            p = rand_uniform_c(0.0, 1.0, &seed)
 
             # Change the relevance according to p and probabilities.
             for j in range(n_scores):
@@ -391,8 +420,9 @@ cpdef relevance_argsort_v2(INT_t[::1] array, INT_t[::1] indices, INT_t size):
         relevance_argsort_v2_c(&array[0], &indices[0], size)
 
 
-cpdef rand_uniform(DOUBLE_t low=0.0, DOUBLE_t high=1.0):
-    return rand_uniform_c(low, high)
+cpdef rand_uniform(DOUBLE_t low, DOUBLE_t high, object random_state=None):
+    cdef unsigned int seed = get_seed(random_state)
+    return rand_uniform_c(low, high, &seed)
 
 
 # ================================================================================
@@ -544,7 +574,7 @@ cdef inline double log(double x) nogil:
 
 # rand_r replacement using a 32bit XorShift generator
 # See http://www.jstatsoft.org/v08/i14/paper for details
-cdef inline int our_rand_r(unsigned int *seed=&rand_r_seed) nogil:
+cdef inline int our_rand_r(unsigned int *seed) nogil:
     seed[0] ^= <unsigned int>(seed[0] << 13)
     seed[0] ^= <unsigned int>(seed[0] >> 17)
     seed[0] ^= <unsigned int>(seed[0] << 5)
@@ -552,18 +582,18 @@ cdef inline int our_rand_r(unsigned int *seed=&rand_r_seed) nogil:
     return <int>(seed[0] & <unsigned int>RAND_R_MAX)
 
 
-cdef inline int rand_int_c(int low, int high, unsigned int *random_state=&rand_r_seed) nogil:
+cdef inline int rand_int_c(int low, int high, unsigned int *seed) nogil:
     ''' 
     Generate a random integer in [low, end).
     '''
-    return low + our_rand_r(random_state) % (high - low)
+    return low + our_rand_r(seed) % (high - low)
 
 
-cdef inline double rand_uniform_c(double low=0.0, double high=1.0, unsigned int *random_state=&rand_r_seed) nogil:
+cdef inline double rand_uniform_c(double low, double high, unsigned int *seed) nogil:
     ''' 
     Generate a random double in [low; high).
     '''
-    return ((high - low) * <double> our_rand_r(random_state) / <double> RAND_R_MAX) + low
+    return ((high - low) * <double> our_rand_r(seed) / <double> RAND_R_MAX) + low
 
 
 # ================================================================================

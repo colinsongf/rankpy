@@ -56,8 +56,8 @@ cdef class Metric:
     ''' 
     The interface for an information retrieval evaluation metric.
     '''
-
-    def __cinit__(self, INT_t cutoff, INT_t maximum_relevance, INT_t maximum_documents):
+    def __cinit__(self, INT_t cutoff, INT_t maximum_relevance, INT_t maximum_documents,
+                  unsigned int seed):
         ''' 
         Initialize the metric with the specified cutoff threshold,
         maximum relevance score a document can have, and the maximum
@@ -79,9 +79,13 @@ cdef class Metric:
             The maximum number of documents a query can have.
         '''
         self.cutoff = cutoff
+        self.seed = seed
 
         if cutoff == 0:
             raise ValueError('cutoff has to be positive integer or (-1) but 0 was given')
+
+        if seed == 0:
+            raise ValueError('seed cannot be 0')
 
 
     cpdef evaluate_ranking(self, INT_t[::1] ranking, INT_t[::1] relevance_scores, DOUBLE_t scale_value, DOUBLE_t query_weight):
@@ -262,7 +266,8 @@ cdef class DiscountedCumulativeGain(Metric):
             return arr
 
 
-    def __cinit__(self, INT_t cutoff, INT_t maximum_relevance, INT_t maximum_documents):
+    def __cinit__(self, INT_t cutoff, INT_t maximum_relevance,
+                  INT_t maximum_documents, unsigned int seed):
         ''' 
         Initialize the metric with the specified cutoff threshold,
         maximum relevance score a document can have, and the maximum
@@ -435,7 +440,7 @@ cdef class DiscountedCumulativeGain(Metric):
             
             ranked_relevance_scores = <INT_t*> calloc(n_documents, sizeof(INT_t))
 
-            ranksort_relevance_scores_queries_c(&query_indptr[0], n_queries, &ranking_scores[0], &relevance_scores[0], ranked_relevance_scores)
+            ranksort_relevance_scores_queries_c(&query_indptr[0], n_queries, &ranking_scores[0], &relevance_scores[0], ranked_relevance_scores, &self.seed)
 
             result = 0.0
 
@@ -612,7 +617,8 @@ cdef class WinnerTakesAll(Metric):
     the maximum relevance score of a corresponding query documents.
     '''
 
-    def __cinit__(self, INT_t cutoff, INT_t maximum_relevance, INT_t maximum_documents):
+    def __cinit__(self, INT_t cutoff, INT_t maximum_relevance,
+                  INT_t maximum_documents, unsigned int seed):
         ''' 
         Initialize the metric with the specified cutoff threshold.
         maximum relevance score a document can have, and the maximum
@@ -722,7 +728,7 @@ cdef class WinnerTakesAll(Metric):
             
             ranked_relevance_scores = <INT_t*> calloc(n_documents, sizeof(INT_t))
 
-            ranksort_relevance_scores_queries_c(&query_indptr[0], n_queries, &ranking_scores[0], &relevance_scores[0], ranked_relevance_scores)
+            ranksort_relevance_scores_queries_c(&query_indptr[0], n_queries, &ranking_scores[0], &relevance_scores[0], ranked_relevance_scores, &self.seed)
 
             result = 0.0
 
