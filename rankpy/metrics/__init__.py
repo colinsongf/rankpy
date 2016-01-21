@@ -25,6 +25,7 @@ from .metrics import DiscountedCumulativeGain
 from .metrics import NormalizedDiscountedCumulativeGain
 from .metrics import ExpectedReciprocalRank
 from .metrics import SeznamRank
+from .metrics import MetricFactory
 
 
 __all__ = [
@@ -33,4 +34,5 @@ __all__ = [
     'NormalizedDiscountedCumulativeGain',
     'ExpectedReciprocalRank',
     'SeznamRank',
+    'MetricFactory',
 ]
