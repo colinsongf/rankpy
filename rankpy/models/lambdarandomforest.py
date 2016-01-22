@@ -32,7 +32,7 @@ from ..utils import pickle, unpickle
 from ..metrics._utils import ranksort_queries
 
 from .lambdamart import compute_lambdas_and_weights
-from .lambdamart import _estimate_newton_gradient_steps
+from .lambdamart import compute_newton_gradient_steps
 
 
 logger = logging.getLogger(__name__)
@@ -109,7 +109,7 @@ def _parallel_build_trees_shuffle(tree_index, tree, n_trees, metric, use_newton_
 
     # Estimate the 'optimal' gradient step sizes using one iteration of Newton-Raphson method.
     if use_newton_method:
-       _estimate_newton_gradient_steps(tree, queries, training_lambdas, training_weights)
+       compute_newton_gradient_steps(tree, queries, training_lambdas, training_weights)
 
     if validation is not None:
         if validation_ranking_scores is not None:
@@ -182,7 +182,7 @@ def _parallel_build_trees_bootstrap(tree_index, tree, n_trees, metric, training_
 
     # Estimate the 'optimal' gradient step sizes using one iteration of Newton-Raphson method.
     if training_weights is not None:
-       _estimate_newton_gradient_steps(tree, queries, training_lambdas, training_weights)
+       compute_newton_gradient_steps(tree, queries, training_lambdas, training_weights)
 
     if validation is not None:
         if validation_ranking_scores is not None:

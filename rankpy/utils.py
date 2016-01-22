@@ -148,3 +148,10 @@ def _get_partition_indices(start, end, n_jobs):
         return np.linspace(start, end, n_jobs + 1).astype(np.intc)
     else:
         return np.arange(end - start + 1, dtype=np.intc)
+
+def aslist(*args):
+    '''
+    Helper method which wraps the parameters into a list and removes
+    any None element from it.
+    '''
+    return filter(None, args)

@@ -312,8 +312,7 @@ cdef DOUBLE_t parallel_compute_lambdas_and_weights_c(
                 # to the query 'i'.
                 metric.delta_c(j - start, rstart - start, n_documents,
                                document_ranks + start - query_indptr[qstart],
-                               relevance_scores + start, scale, query_weight,
-                               document_deltas)
+                               relevance_scores + start, scale, document_deltas)
 
                 # Clear the influences for the current document.
                 if influence_by_relevance != NULL:
