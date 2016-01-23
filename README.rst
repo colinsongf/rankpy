@@ -139,7 +139,6 @@ Using RankPy: Simple Example
         2016-01-23 11:10:24,502 : Valid queries: Queries (339 queries, 13813 documents, 46 features, 2 max. relevance)
         2016-01-23 11:10:24,502 : Test queries: Queries (336 queries, 13652 documents, 46 features, 2 max. relevance)
         2016-01-23 11:10:24,502 : ================================================================================
-        2016-01-23 11:10:24,561 : ================================================================================
         2016-01-23 11:10:24,561 : Train queries: Queries (1017 queries, 42158 documents, 41 features, 2 max. relevance)
         2016-01-23 11:10:24,561 : Valid queries: Queries (339 queries, 13813 documents, 41 features, 2 max. relevance)
         2016-01-23 11:10:24,561 : Test queries: Queries (336 queries, 13652 documents, 41 features, 2 max. relevance)
