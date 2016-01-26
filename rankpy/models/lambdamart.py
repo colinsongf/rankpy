@@ -1010,14 +1010,15 @@ class LambdaMART(object):
         else:
             return np.array_split(rankings, queries.query_indptr[1:-1])
 
-    def feature_importances(self):
+    def feature_importances(self, n_jobs=1):
         '''
         Return the feature importances.
         '''
         if len(self.estimators) == 0:
             raise ValueError('the model has not been trained yet')
 
-        importances = Parallel(n_jobs=self.n_jobs, backend="threading")(
+        importances = Parallel(n_jobs=_get_n_jobs(n_jobs),
+                               backend="threading")(
                           delayed(getattr, check_pickle=False)(
                               tree, 'feature_importances_'
                           )
