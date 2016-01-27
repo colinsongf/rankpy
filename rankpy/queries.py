@@ -39,8 +39,27 @@ class QueryDocumentSlices(object):
         self.queries = queries
 
     def __getitem__(self, i):
-        return slice(self.queries.query_indptr[i],
-                     self.queries.query_indptr[i + 1])
+        '''
+        Returns a slice for indexing documents of query `i` or a bitmask array,
+        (if `i` is an array) for masking documents of specified queries.
+        '''
+        indptr = self.queries.query_indptr
+
+        if isinstance(i, np.ndarray):
+            if i.ndim != 1:
+                raise ValueError('index array has more than 1 dimension')
+            if i.dtype.kind == 'b':
+                i = i.nonzero()[0]
+
+            mask = np.zeros(self.queries.document_count(), dtype='bool')
+
+            for k in i:
+                mask[indptr[k]:indptr[k + 1]] = True
+
+            return mask
+
+        else:
+            return slice(indptr[i], indptr[i + 1])
 
 
 class Queries(object):

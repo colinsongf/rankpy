@@ -319,7 +319,7 @@ class LambdaMART(object):
     def __init__(self, metric='NDCG', n_estimators=1000, max_depth=None,
                  max_leaf_nodes=7, max_features=None, min_samples_split=2,
                  min_samples_leaf=1, shrinkage=0.1, use_newton_method=True,
-                 use_random_forest=0, random_thresholds=False,
+                 use_random_forest=0, random_thresholds=False, subsample=1.0,
                  use_logit_boost=False, estopping=50, min_n_estimators=1,
                  base_model=None, n_jobs=1, random_state=None):
         self.estimators = []
@@ -334,6 +334,7 @@ class LambdaMART(object):
         self.metric = metric
         self.base_model = base_model
         self.shrinkage = shrinkage
+        self.subsample = subsample
         self.use_logit_boost = use_logit_boost
         self.use_newton_method = use_newton_method
         self.use_random_forest = use_random_forest
@@ -427,16 +428,14 @@ class LambdaMART(object):
         if (training_query_weights < 0.0).any():
             raise ValueError('query weights must be non-negative')
 
-        document_weights = np.zeros(training_queries.document_count(),
+        training_document_weights = np.zeros(training_queries.document_count(),
                                     dtype='float64')
 
         # Set document weights for documents of queries
         # with non-zero weight to 1.0.
-        for i, qw in enumerate(training_query_weights):
-            if qw > 0.0:
-                document_weights[training_queries.qds[i]] = 1.0
+        training_document_weights[training_queries.qds[training_query_weights > 0.0]] = 1.0
 
-        massless_document_indices = (document_weights == 0.0).nonzero()[0]
+        massless_training_document_indices = (training_document_weights == 0.0).nonzero()[0]
 
         # If the metric used for training is normalized, it is advantageous
         # to precompute the scaling factor for each query in advance.
@@ -545,9 +544,7 @@ class LambdaMART(object):
 
             # Set document weights for documents of validation
             # queries with non-zero weight to 1.0.
-            for i, qw in enumerate(validation_query_weights):
-                if qw > 0.0:
-                    validation_document_weights[validation_queries.qds[i]] = 1.0
+            validation_document_weights[validation_queries.qds[validation_query_weights > 0.0]] = 1.0
 
             massless_validation_document_indices = (validation_document_weights == 0.0).nonzero()[0]
 
@@ -603,9 +600,28 @@ class LambdaMART(object):
 
         self.n_estimators = max(self.n_estimators, self.min_n_estimators)
 
+        if self.subsample != 1.0:
+            # Keep the original weights to make sure only queries with
+            # non-zero weights are sampled from.
+            training_query_weights_orig = training_query_weights.copy()
+
         # Iteratively build a sequence of regression trees.
         for k in xrange(self.n_estimators):    
             training_influences = self.stage_training_influences[k] if self.trace_influences else None
+
+            if self.subsample != 1.0:
+                # Subsample the training queries...
+                training_query_weights = np.random.choice([0.0, 1.0],
+                                        size=len(training_query_weights),
+                                        p=[1 - self.subsample, self.subsample])
+
+                # ... and make sure the right queries are sampled.
+                training_query_weights *= training_query_weights_orig
+
+                training_document_weights.fill(0.0)
+                training_document_weights[training_queries.qds[training_query_weights > 0.0]] = 1.0
+
+                massless_training_document_indices = (training_document_weights == 0.0).nonzero()[0]
 
             # Computes the pseudo-responses (lambdas) and gradient step
             # factors (weights) for the current regression tree.
@@ -615,7 +631,7 @@ class LambdaMART(object):
                                             training_weights,
                                             training_query_scales, None,
                                             training_query_weights, 
-                                            document_weights,
+                                            training_document_weights,
                                             training_influences,
                                             random_state=self.random_state,
                                             n_jobs=self.n_jobs)
@@ -635,8 +651,7 @@ class LambdaMART(object):
 
                 # Train the regression forest.
                 estimator.fit(training_queries.feature_vectors, training_lambdas,
-                              sample_weight=(document_weights * 
-                                             (training_weights > 0)))
+                              sample_weight=training_document_weights)
 
             else:
                 if self.random_thresholds:
@@ -664,13 +679,13 @@ class LambdaMART(object):
                     # Clip the target values to fixed range.
                     np.clip(target, a_min=-4.0, a_max=4.0, out=target)
 
-                    sample_weight = (document_weights *
+                    sample_weight = (training_document_weights *
                                      np.clip(training_weights,
                                              a_min=(2 * float64_eps),
                                              a_max=np.inf))
                 else:
                     target = training_lambdas
-                    sample_weight = document_weights
+                    sample_weight = training_document_weights
 
                 # Train the regression tree.
                 estimator.fit(training_queries.feature_vectors, target,
@@ -688,7 +703,7 @@ class LambdaMART(object):
 
                 # Set training lambdas of documents with 0 weight to
                 # NaN indicating that they were never computed.
-                self.stage_training_lambdas_truth[k, massless_document_indices] = np.nan
+                self.stage_training_lambdas_truth[k, massless_training_document_indices] = np.nan
 
             # Store the true and estimated gradients for later analysis.
             if self.trace_gradients:
@@ -745,7 +760,7 @@ class LambdaMART(object):
                                               training_weights,
                                               training_query_scales,
                                               None, training_query_weights,
-                                              document_weights,
+                                              training_document_weights,
                                               random_state=self.random_state,
                                               n_jobs=self.n_jobs)
 
