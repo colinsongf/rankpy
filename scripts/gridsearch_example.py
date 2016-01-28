@@ -1,3 +1,4 @@
+#!/usr/bin/python2
 # -*- coding: utf-8 -*-
 
 import numpy as np
@@ -60,7 +61,7 @@ param_grid = {'metric':              ['NDCG@10'],
               'max_features':        [0.5, None],
               'max_leaf_nodes':      [4, 8],
               ('min_samples_split',
-               'min_samples_leaf') : [(200, 100)],
+               'min_samples_leaf'):  [(200, 100)],
               'shrinkage':           [0.1, 0.5],
               'estopping':           [50],
               'random_state':        [42]}
@@ -74,7 +75,7 @@ estop_queries, validation_queries = train_test_split(validation_queries,
 model, scores = gridsearch(LambdaMART, param_grid, training_queries,
                            estopping_queries=estop_queries,
                            validation_queries=validation_queries,
-                           return_scores=True, n_jobs=-1,
+                           return_models=True, n_jobs=-1,
                            random_state=23)
 
 logging.info('=' * 80)

@@ -133,7 +133,7 @@ def compute_newton_gradient_steps(estimator, queries, ranking_scores, metric,
                                   lambdas, weights, query_scales=None,
                                   relevance_scores=None, query_weights=None,
                                   document_weights=None, random_state=None,
-                                  n_jobs=1):
+                                  recompute=False, n_jobs=1):
     '''
     Compute a single gradient step for each terminal node of the given
     regression tree estimator using Newton's method.
@@ -166,6 +166,12 @@ def compute_newton_gradient_steps(estimator, queries, ranking_scores, metric,
     query_scales : array of floats, shape = [n_queries] or None
         A precomputed metric scale value for every query.
 
+    recompute: bool (default=False)
+        The weights need to be recomputed to acquire the formally correct
+        gradient steps for the terminal nodes. By default, this option is
+        turned off because, surprisingly, it gives inferior results compared
+        to the "wrong" way.
+
     n_jobs : int, optional (default=1)
         The number of workers, which are used to compute the lambdas
         and weights in parallel.
@@ -188,14 +194,14 @@ def compute_newton_gradient_steps(estimator, queries, ranking_scores, metric,
         #
         # Note that this is actually necessary to get correct weights.
         #
-        # XXX: After getting consistently (and significantly) better results
-        #      without this 'correction step', this step is no longer used.
-        # 
-        # compute_lambdas_and_weights(queries, ranking_scores, metric,
-        #                             lambdas, weights, query_scales,
-        #                             relevance_scores, query_weights,
-        #                             document_weights, None, indices,
-        #                             random_state, n_jobs)
+        # After getting consistently (and significantly) better results
+        # without this 'correction step', it is not used by default.
+        if recompute:
+            compute_lambdas_and_weights(queries, ranking_scores, metric,
+                                        lambdas, weights, query_scales,
+                                        relevance_scores, query_weights,
+                                        document_weights, None, indices,
+                                        random_state, n_jobs)
 
         gradients = np.bincount(indices, lambdas, node_count)
 
@@ -286,6 +292,16 @@ class LambdaMART(object):
         If positive, specify the number of trees in the random forest
         which will be used instead of a single regression tree.
 
+    random_thresholds : bool, optional (default=False)
+        If True, extremely randomized trees will be used instead of 'clasic'
+        regression tree predictors.
+
+    subsample : float, optional (default=1.0)
+        The probability of considering a query for training.
+
+    use_logit_boost : bool, optional (default=False)
+        Use discrete logit boost approach when training regression trees.
+
     estopping : int, optional (default=50)
         The number of subsequent iterations after which the training is
         stopped early if no improvement is observed on the training 
@@ -303,6 +319,10 @@ class LambdaMART(object):
         The number of background working threads that will be spawned to
         compute the desired values faster. If -1 is given then the number
         of available CPUs will be used.
+
+    random_state : int or RandomState instance, optional (default=None)
+        The random number generator used for internal randomness, such
+        as subsampling, etc.
 
     Attributes
     ----------

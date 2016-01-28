@@ -502,7 +502,8 @@ def expand_related_parameters(d):
 
 
 def parallel_fit_ranker(ranker_cls, parameters, training_queries,
-                        estopping_queries, validation_queries):
+                        estopping_queries, validation_queries,
+                        return_model=False):
     '''
     Helper method used with Parallel to train and evaluate
     multiple rankers at once.
@@ -525,12 +526,15 @@ def parallel_fit_ranker(ranker_cls, parameters, training_queries,
     logger.info('%s performance %11.8f (gridsearch holdout %s)'
                 % (ranker_cls.__name__, holdout_performance, ranker.metric))
 
-    return ranker, holdout_performance
+    if return_model:
+        return ranker, holdout_performance
+    else:
+        return holdout_performance
 
 
 def gridsearch(ranker_cls, param_grid, training_queries, 
                estopping_queries=None, validation_queries=None,
-               return_scores=False, n_jobs=1, random_state=None):
+               return_models=False, n_jobs=1, random_state=None):
     '''
     Perform grid search for the given ranker model over discrete
     sets of parameters.
@@ -555,9 +559,10 @@ def gridsearch(ranker_cls, param_grid, training_queries,
         A set of queries used for early stopping during the re-training of
         a ranker with the best parameters setting found in cross-validation.
 
-    return_scores: bool, default: False
-        If True, triplets (parameters, model, validation performance) are
-        returned together with the best ranking model.
+    return_models: bool, default: False
+        If True, tuples (parameters, validation performance), that are
+        returned together with the best ranking model, are extended with
+        the ranking model that was actually trained.
 
     n_jobs: int, default: 1
         The number of worker threads computing in parallel.
@@ -568,16 +573,12 @@ def gridsearch(ranker_cls, param_grid, training_queries,
 
     Returns
     -------
-    ranker: `ranker_cls` instance
-        The ranker trained on `queries` (optionally stopped early using
-        `estopping_queries`) with the best parameter setting found in
-        `param_grid`.
-
-    or
-
-    (ranker, models): `ranker_cls` instance, list of `ranker_cls` instances
-        If `return_scores` is True, the best ranker is additionally accompanied
-        with the data about all models trained with different parameters.
+    (ranker, results): `ranker_cls` instance, list of tuples
+        The best ranking model (`ranker`) with the information about the
+        model performances trained with different parameters in the form
+        of 2-tuples [parameters, validation performance] (if `return_models`
+        is False), or 3-tuples [parameters, ranker, validation performance]
+        (otherwise).
     '''
     if not isinstance(param_grid, ParameterGrid):
         if isinstance(param_grid, dict):
@@ -587,22 +588,29 @@ def gridsearch(ranker_cls, param_grid, training_queries,
                              'sklearn.grid_search.ParameterGrid (or dict), '
                              'but %s was found' % type(param_grid))
 
-    # Train rankers in parallel.
-    models_scores = Parallel(n_jobs=n_jobs, backend='threading')(
-                        delayed(parallel_fit_ranker, check_pickle=False)(
+    # Train rankers in parallel and get their performance on validation set.
+    results = Parallel(n_jobs=n_jobs, backend='threading')(
+                    delayed(parallel_fit_ranker, check_pickle=False)(
                             ranker_cls, parameters, training_queries,
-                            estopping_queries, validation_queries)
-                        for parameters in param_grid
-                    )
+                            estopping_queries, validation_queries,
+                            return_model=return_models)
+                    for parameters in param_grid)
 
-    models, scores = zip(*models_scores)
+    if return_models:
+        # If the models are kept...
+        models, scores = zip(*results)
+        # ... we can just extract the best ranker
+        # and return the results...
+        return models[np.argmax(scores)], zip(param_grid, models, scores)
 
-    # Find the best ranker based on the performance
-    # on the validation queries.
-    best_grid_point = np.argmax(scores)
-
-    if return_scores:
-        return models[best_grid_point], zip(param_grid, models, scores)
     else:
-        return models[best_grid_point]
-        
+        # ... otherwise we need to find the index of the set of parameters
+        # that makes the ranking model perform the best on the validation
+        # queries...
+        ranker = ranker_cls(**expand_related_parameters(
+                                            param_grid[np.argmax(results)]))
+
+        # ... and then train the model once more.
+        ranker.fit(training_queries, validation_queries=estopping_queries)
+
+        return ranker, zip(param_grid, results)

@@ -58,6 +58,19 @@ class WinnerTakesAll(object):
         else:
             self.metric_
 
+    def copy(self, reseed=True):
+        '''
+        Returns a copy of this object. If `reseed` is True, the internal
+        random number generator of the new metric object will be seeded
+        with a randomly generated number.
+        '''
+        if reseed:
+            random_state = self.random_state.randint(1, np.iinfo('i').max)
+        else:
+            random_state = self.random_state
+
+        return WinnerTakesAll(random_state=random_state)
+
     def evaluate(self, ranking=None, labels=None, ranked_labels=None, scales=None, weight=1.0):
         ''' 
         Evaluate the WTA metric on the specified ranked list of document relevance scores.
@@ -273,6 +286,22 @@ class DiscountedCumulativeGain(object):
                        self.random_state.randint(1, np.iinfo('i').max))
         else:
             self.metric_
+
+    def copy(self, reseed=True):
+        '''
+        Returns a copy of this object. If `reseed` is True, the internal
+        random number generator of the new metric object will be seeded
+        with a randomly generated number.
+        '''
+        if reseed:
+            random_state = self.random_state.randint(1, np.iinfo('i').max)
+        else:
+            random_state = self.random_state
+
+        return DiscountedCumulativeGain(cutoff=self.cutoff,
+                                        max_relevance=self.max_relevance,
+                                        max_documents=self.max_documents,
+                                        random_state=random_state)
 
     def evaluate(self, ranking=None, labels=None, ranked_labels=None, scales=None, weight=1.0):
         ''' 
@@ -492,6 +521,23 @@ class NormalizedDiscountedCumulativeGain(object):
                        self.random_state.randint(1, np.iinfo('i').max))
         else:
             self.metric_
+
+    def copy(self, reseed=True):
+        '''
+        Returns a copy of this object. If `reseed` is True, the internal
+        random number generator of the new metric object will be seeded
+        with a randomly generated number.
+        '''
+        if reseed:
+            random_state = self.random_state.randint(1, np.iinfo('i').max)
+        else:
+            random_state = self.random_state
+
+        return NormalizedDiscountedCumulativeGain(
+                                            cutoff=self.cutoff,
+                                            max_relevance=self.max_relevance,
+                                            max_documents=self.max_documents,
+                                            random_state=random_state)
 
     def evaluate(self, ranking=None, labels=None, ranked_labels=None, scales=None, weight=1.0):
         ''' 

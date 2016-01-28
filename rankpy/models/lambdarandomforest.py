@@ -22,13 +22,21 @@ import sklearn
 
 import numpy as np
 
-from ..externals.joblib import Parallel, delayed, cpu_count
+from ..externals.joblib import Parallel, delayed
+
+from sklearn.utils import check_random_state
 
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.tree import ExtraTreeRegressor
 
+from ..utils import pickle
+from ..utils import unpickle
 from ..utils import parallel_helper
-from ..utils import pickle, unpickle
+from ..utils import _get_partition_indices
+from ..utils import _get_n_jobs
+from ..utils import aslist
+
+from ..metrics import MetricFactory
 from ..metrics._utils import ranksort_queries
 
 from .lambdamart import compute_lambdas_and_weights
@@ -38,157 +46,146 @@ from .lambdamart import compute_newton_gradient_steps
 logger = logging.getLogger(__name__)
 
 
-def _parallel_build_trees_shuffle(tree_index, tree, n_trees, metric, use_newton_method,
-                                  bootstrap, queries, scale_values, validation=None,
-                                  validation_ranking_scores=None):
+def parallel_build_trees(tree_index, tree, n_trees, metric, queries,
+                         query_scales, query_weights, use_newton_method,
+                         bootstrap, subsample, seed, sigma=0.0,
+                         validation_queries=None, validation_scores=None):
     ''' 
-    Train the trees on the specified queries using the LambdaMART's lambdas computed
-    using the specified metric.
+    Train a regression tree to optimize the evaluation metric for the specified
+    queries using the LambdaMART's 'lambdas'.
 
     Parameters:
     -----------
-    tree_index: int
-        The index of the tree. Used only for logging progress.
+    tree_index : int
+        The index of the tree, used to log progress.
 
-    tree: DecisionTreeRegressor
-        The regresion tree to train.
+    tree: DecisionTreeRegressor or ExtraTreeRegressor instance
+        The regression tree to train.
 
-    n_trees: int
-        The total number of trees that will be trained.
+    n_trees : int
+        The total number of trees (planned) to be trained.
 
-    metric: Metric
-        Specify evaluation metric which will be used as a utility
-        function optimized by the tree (through pseudo-responses).
+    metric : Metric instance
+        The evaluation metric used as a utility function indirectly optimized
+        by the tree using LambdaMART's 'lambdas'.
 
-    use_newton_method: bool
-        Estimate the gradient step in each terminal node of regression
-        tree using Newton-Raphson method.
+    queries : Queries instance
+        The set of queries used for training.
 
-    boostrap: bool
-        Specify to use bootstrap sample from the lambdas computed
-        from `reshuffled` documents.
+    query_weights : array of floats, shape = [n_queries]
+        The weight given to each training query, which is used to
+        measure its importance. Queries with 0.0 weight will never
+        be used in training.
 
-    queries: Queries object
-        The set of queries from which the tree models will be trained.
+    query_scales : array of floats, shape = [n_queries]
+        The precomputed ideal metric values for the queries.
 
-    scale_values: array of doubles, shape = (n_queries,)
-        The precomputed ideal metric value for the specified queries.
+    use_newton_method : bool
+        If True, the terminal node prediction values will be re-estimated
+        using Newton-Raphson method.
 
-    validation: Queries
+    bootstrap : bool
+        Specify to use bootstrap sample from the queries.
+
+    subsample : float
+        The probability of including a query into the training.
+
+    seed : int
+        Used for initialization of random number generator.
+
+    sigma : float (default=0.)
+        The ranking scores for documents are sampled from standard normal,
+        this can be used to controll the variance of the scores. By default,
+        all ranking scores are 0.
+
+    validation_queries : Queries instance
         The set of queries used for validation.
 
-    validation_ranking_scores: array of doubles, shape = (n_validation_documents,)
-        The ranking scores for each document in validation set.
+    validation_scores : array of floats, shape = [n_validation_documents]
+        The ranking scores for each document in validation queries.
     '''
-    if validation is None:
-        logger.info('Started fitting LambdaDecisionTree %d of %d.' % (tree_index, n_trees))
+    random_state = check_random_state(seed)
+
+    if validation_queries is None:
+        logger.info('Started fitting regression tree %d of %d.'
+                    % (tree_index, n_trees))
     else:
-        logger.info('Started fitting %d-th LambdaDecisionTree.' % tree_index)
+        logger.info('Started fitting %d-th regression tree.' % tree_index)
 
-    # Note, that 0 scores does not mean the order of documents will not change.
-    training_scores = np.zeros(queries.document_count(), dtype=np.float64)
+    # Pick a random ranking scores from the standard Gaussian
+    # with controlled variance
+    training_scores = sigma * random_state.randn(queries.document_count())
 
-    # The pseudo-responses (lambdas) for each document.
+    # The 1st order derivatives of the implicit loss derived from the metric.
     training_lambdas = np.empty(queries.document_count(), dtype=np.float64)
 
-    # The optimal gradient descent step sizes for each document.
+    # The 2nd order derivatives of the implicit loss derived from the metric.
     training_weights = np.empty(queries.document_count(), dtype=np.float64)
 
-    # Compute the pseudo-responses (lambdas) and gradient step sizes (weights).
-    compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas, training_weights,
-                                scale_values=scale_values)
-    # Bootstrap?
+    if subsample != 1.0:
+        if query_weights is not None:
+            # Need to make copy not to interfere with the outside world.
+            query_weights = query_weights.copy()
+        else:
+            query_weights = np.ones(len(queries), dtype='float64')
+
+        # Subsample the queries.
+        query_weights *= random_state.choice([0.0, 1.0],
+                                             size=len(query_weights),
+                                             p=[1 - subsample, subsample])
+
     if bootstrap:
-        n_lambdas = queries.document_count()
-        sample_weight = np.bincount(np.random.randint(0, n_lambdas, n_lambdas), minlength=n_lambdas)
+        if query_weights is not None:
+            # Need to make copy not to interfere with the outside world.
+            query_weights = query_weights.copy()
+        else:
+            query_weights = np.ones(len(queries), dtype='float64')
+
+        nnz_mask = (query_weights > 0.0)
+        nnz_count = nnz_mask.sum()
+
+        query_weights[nnz_mask] = np.bincount(random_state.randint(0,
+                                                                   nnz_count,
+                                                                   nnz_count),
+                                              minlength=nnz_count)
+
+    if query_weights is not None:
+        document_weights = np.zeros(queries.document_count(), dtype='float64')
+        document_weights[queries.qds[query_weights > 0.0]] = 1.0
     else:
-        sample_weight = None
+        document_weights = None
+
+    # Compute LambdaMART lambdas and weights.
+    compute_lambdas_and_weights(queries, training_scores, metric,
+                                training_lambdas, training_weights,
+                                query_scales=query_scales,
+                                query_weights=query_weights,
+                                document_weights=document_weights,
+                                random_state=random_state)
 
     # Train the regression tree.
-    tree.fit(queries.feature_vectors, training_lambdas, sample_weight=sample_weight, check_input=False)
+    tree.fit(queries.feature_vectors, training_lambdas,
+             sample_weight=document_weights,
+             check_input=False)
 
-    # Estimate the 'optimal' gradient step sizes using one iteration of Newton-Raphson method.
     if use_newton_method:
-       compute_newton_gradient_steps(tree, queries, training_lambdas, training_weights)
+        # Re-estimate the prediction value in terminal nodes.
+        compute_newton_gradient_steps(tree, queries, training_scores, metric,
+                                      training_lambdas, training_weights,
+                                      query_scales=query_scales,
+                                      query_weights=query_weights,
+                                      document_weights=document_weights,
+                                      random_state=random_state,
+                                      recompute=True)
 
-    if validation is not None:
-        if validation_ranking_scores is not None:
-            validation_ranking_scores[:] = tree.predict(validation.feature_vectors)
+    if validation_queries is not None:
+        if validation_scores is not None:
+            validation_scores[:] = tree.predict(
+                                        validation_queries.feature_vectors,
+                                        check_input=False)
         else:
-            raise ValueError('validation_ranking_scores cannot be None if validation != None')
-
-    return tree
-
-
-def _parallel_build_trees_bootstrap(tree_index, tree, n_trees, metric, training_lambdas,
-                                    training_weights, bootstrap, queries, scale_values,
-                                    validation=None, validation_ranking_scores=None):
-    ''' 
-    Train a regression tree for the specified LambdaMART's lambdas, and if not None,
-    use weights to optimize the gradient step in terminal nodes using Newton-Raphson
-    method.
-
-    Parameters:
-    -----------
-    tree_index: int
-        The index of the tree. Used only for logging progress.
-
-    tree: DecisionTreeRegressor
-        The regresion tree to train.
-
-    n_trees: int
-        The total number of trees that will be trained.
-
-    metric: Metric
-        Specify evaluation metric which will be used as a utility
-        function (i.e. metric of `goodness`) optimized by the trees.
-
-    training_lambdas: array of doubles, shape = (n_documents,)
-        The precomputed lambdas for every document.
-
-    training_weights: array of doubles, shape = (n_documents,)
-        The precomputed weights for every documents.
-
-    boostrap: bool
-        Specify to use bootstrap sample from the given lambdas.
-
-    queries: Queries
-        The set of queries from which the tree model is being
-        trained.
-
-    scale_values: array of doubles, shape = (n_queries, )
-        The precomputed scale factors for metric values of the queries.
-
-    validation: Queries
-        The set of queries used for validation.
-
-    validation_ranking_scores: array of doubles, shape = (n_validation_documents,)
-        The ranking scores for each document in validation set.
-    '''
-    if validation is None:
-        logger.info('Started fitting LambdaDecisionTree %d of %d.' % (tree_index, n_trees))
-    else:
-        logger.info('Started fitting %d-th LambdaDecisionTree.' % tree_index)
-
-    # Bootstrap?
-    if bootstrap:
-        n_lambdas = queries.document_count()
-        sample_weight = np.bincount(np.random.randint(0, n_lambdas, n_lambdas), minlength=n_lambdas)
-    else:
-        sample_weight = None
-
-    # Train the regression tree.
-    tree.fit(queries.feature_vectors, training_lambdas, sample_weight=sample_weight, check_input=False)
-
-    # Estimate the 'optimal' gradient step sizes using one iteration of Newton-Raphson method.
-    if training_weights is not None:
-       compute_newton_gradient_steps(tree, queries, training_lambdas, training_weights)
-
-    if validation is not None:
-        if validation_ranking_scores is not None:
-            validation_ranking_scores[:] = tree.predict(validation.feature_vectors)
-        else:
-            raise ValueError('validation_ranking_scores cannot be None if validation != None')
+            raise ValueError("'validation_scores' cannot be None when "
+                             "'validation_queries' is not None")
 
     return tree
 
@@ -197,230 +194,258 @@ class LambdaRandomForest(object):
     ''' 
     LambdaRandomForest learning to rank model.
 
-    Arguments:
-    -----------
-    n_estimators: int, optional (default is 100)
-        The number of regression ranomized tree estimators that will
-        compose this ensemble model.
+    Parameters
+    ----------
+    metric : string, optional (default="NDCG")
+            Specify evaluation metric which will be used as a utility
+            function (i.e. metric of `goodness`) optimized by this model.
+            Supported metrics are "NDCG", "WTA", "ERR", with an optional
+            suffix "@{N}", where {N} can be any positive integer.
 
-    use_newton_method: bool, optional (default is True)
-        Estimate the gradient step in each terminal node of regression
-        trees using Newton-Raphson method.
+    n_estimators : int, optional (default=100)
+        The maximum number of regression trees that will be trained.
 
-    max_depth: int, optional (default is 5)
+    max_depth : int or None, optional (default=None)
         The maximum depth of the regression trees. This parameter is ignored
         if `max_leaf_nodes` is specified (see description of `max_leaf_nodes`).
 
-    max_leaf_nodes: int, optional (default is None)
-        The maximum number of leaf nodes. If not None, the `max_depth` parameter
-        will be ignored. The tree building strategy also changes from depth
-        search first to best search first, which can lead to substantial decrease
-        of training time.
+    max_leaf_nodes : int or None, optional (default=None)
+        The maximum number of leaf nodes. If not None, the `max_depth`
+        parameter will be ignored. The tree building strategy also changes
+        from depth search first to best search first, which can lead to
+        substantial decrease in training time.
 
-    min_samples_split : int, optional (default is 2)
-        The minimum number of samples required to split an internal node.
-
-    min_samples_leaf : int, optional (default is 1)
-        The minimum number of samples required to be at a leaf node.
-
-    max_features: int or None, optional (default is None)
+    max_features : int, float, or None, optional (default=None)
         The maximum number of features that is considered for splitting when
-        regression trees are built. If None, all feature will be used.
+        regression trees are being built. If float is given it is interpreted
+        as a percentage. If None, all feature will be used.
 
-    n_jobs: int, optional (default is 1)
-        The number of working sub-processes that will be spawned to compute
-        the desired values faster. If -1, the number of CPUs will be used.
+    min_samples_split : int, optional (default=2)
+        The minimum number of documents required to split an internal node.
 
-    seed: int, optional (default is None)
-        The seed for random number generator that internally is used. This
-        value should not be None only for debugging.
+    min_samples_leaf : int, optional (default=1)
+        The minimum number of documents required to be at a terminal node.
+
+    use_newton_method : bool, optional (default=True)
+        Estimate the gradient step in each terminal node of regression
+        trees using Newton-Raphson method.
+
+    random_thresholds : bool, optional (default=False)
+        If True, extremely randomized trees will be used instead of 'clasic'
+        regression tree predictors.
+
+    min_n_estimators: int, optional (default=1)
+        The minimum number of regression trees that will be trained regardless
+        of the `n_estimators` and `estopping` values. Beware that using this
+        option may lead to suboptimal performance of the model.
+
+    subsample : float, optional (default=1.0)
+        The probability of considering a query for training.
+
+    estopping : int or None, optional (default=None)
+        If the last `estopping` number of trained regression trees did not
+        lead to improvement in the metric on the training or validation
+        queries (if used), the training is stopped early. If None, 
+        `n_estimators` is trained.
+
+    n_jobs : int, optional (default=1)
+        The number of working sub-processes that will be spawned to train
+        regression trees. If -1, the number of CPUs will be used.
+
+    random_state : int or RandomState instance, optional (default=None)
+        The random number generator used for internal randomness, such
+        as subsampling, etc.
     '''
-    def __init__(self, n_estimators=10000, use_newton_method=True, max_depth=None, max_leaf_nodes=None,
-                 min_samples_split=2, min_samples_leaf=1, max_features=None, n_jobs=1, shuffle=True,
-                 bootstrap=False, estopping=100, seed=None):
+    def __init__(self, metric='NDCG', n_estimators=100, max_depth=None,
+                 max_leaf_nodes=None, max_features=None, min_samples_split=2,
+                 min_samples_leaf=1, use_newton_method=True,
+                 random_thresholds=False, min_n_estimators=1, subsample=1.0,
+                 bootstrap=True, sigma=0.0, estopping=None, n_jobs=1,
+                 random_state=None):
         self.estimators = []
         self.n_estimators = n_estimators
+        self.min_n_estimators = min_n_estimators
+        self.metric = metric
         self.max_depth = max_depth
         self.max_leaf_nodes = max_leaf_nodes
         self.max_features = max_features
         self.min_samples_leaf = min_samples_leaf
         self.min_samples_split = min_samples_split
+        self.random_thresholds = random_thresholds
         self.use_newton_method = use_newton_method
-        self.shuffle = shuffle
+        self.subsample = subsample
         self.bootstrap = bootstrap
+        self.sigma = sigma
         self.estopping = n_estimators if estopping is None else estopping
-        self.n_jobs = max(1, n_jobs if n_jobs >= 0 else n_jobs + cpu_count() + 1)
-        self.trained = False
-        self.seed = seed
+        self.n_jobs = _get_n_jobs(n_jobs)
+        self.random_state = check_random_state(random_state)
 
-        # `max_leaf_nodes` were introduced in version 15 of scikit-learn.
-        if self.max_leaf_nodes is not None and int(sklearn.__version__.split('.')[1]) < 15:
-            raise ValueError('cannot use parameter `max_leaf_nodes` with scikit-learn of version smaller than 15')
+        # Force the use of newer version of scikit-learn.
+        if int(sklearn.__version__.split('.')[1]) < 17:
+            raise ValueError('LambdaMART is built on scikit-learn '
+                             'implementation of regression trees '
+                             'version 17. Please, update your'
+                             'scikit-learn package before using RankPy.')
 
 
-    def fit(self, metric, queries, validation=None, min_estimators=None):
+    def fit(self, training_queries, training_query_weights=None,
+            validation_queries=None, validation_query_weights=None):
         ''' 
-        Train the LambdaMART model on the specified queries. Optinally, use the
-        specified queries for finding an optimal number of trees using validation.
+        Train a LambdaRandomForest model on given training queries.
+        Optionally, use validation queries for finding an optimal
+        number of trees using early stopping.
 
-        Parameters:
-        -----------
-        metric: Metric object
-            Specify evaluation metric which will be used as a utility
-            function (i.e. metric of `goodness`) optimized by this model.
+        Parameters
+        ----------
+        training_queries : Queries instance
+            The set of queries from which the model will be trained.
 
-        queries: Queries object
-            The set of queries from which this LambdaMART model will be trained.
+        training_query_weights : array of floats, shape = [n_queries],
+                                 or None
+            The weight given to each training query, which is used to
+            measure its importance. Queries with 0.0 weight will never
+            be used in training.
 
-        min_estimators: int or None, optional, default: None
-            The minimum number of estimators to train. This number of estimators
-            will be trained regardless of the `self.n_estimators` and `self.estopping`.
+        validation_queries : Queries instance or None
+            The set of queries used for early stopping.
+
+        validation_query_weights : array of floats, shape = [n_queries]
+                                   or None
+            The weight given to each validation query, which is used to
+            measure its importance. Queries with 0.0 weight will never
+            be used in validation.
+
+        Returns
+        -------
+        self : object
+            Returns self.
         '''
-        # Initialize the random number generator.
-        np.random.seed(self.seed)
+        metric = MetricFactory(self.metric, aslist(training_queries,
+                               validation_queries), self.random_state)
 
-        # If the metric used for training is normalized, it is obviously advantageous
+        # If the metric used for training is normalized, it is advantageous
         # to precompute the scaling factor for each query in advance.
-        training_scale_values = metric.compute_scale(queries)
+        training_query_scales = metric.compute_scale(training_queries)
 
-        if validation is None:
-            validation = queries
+        if validation_queries is None:
+            validation_queries = training_queries
+            validation_query_scales = metric.compute_scale(validation_queries)
+        else:
+            validation_query_scales = metric.compute_scale(validation_queries)
 
-        validation_scale_values = metric.compute_scale(validation)
-        validation_ranking_scores = np.zeros((self.n_jobs + 1, validation.document_count()), dtype=np.float64)
+        # The first row is reserved for the ranking scores computed
+        # in the previous fold of regression trees, see below, how
+        # the tree ensemble is evaluated, that is why +1.
+        validation_ranking_scores = np.zeros((self.n_jobs + 1,
+                                              validation_queries.document_count()),
+                                             dtype=np.float64)
 
         logger.info('Training of LambdaRandomForest model has started.')
 
         estimators = []
 
-        if min_estimators is None:
-            min_estimators = 0
-
-        self.n_estimators = max(self.n_estimators, min_estimators)
-
-        for k in range(self.n_estimators):
-            estimators.append(DecisionTreeRegressor(max_depth=self.max_depth,
-                                                    max_leaf_nodes=self.max_leaf_nodes,
-                                                    min_samples_split=self.min_samples_split,
-                                                    min_samples_leaf=self.min_samples_leaf,
-                                                    max_features=self.max_features))
+        if self.random_thresholds:
+            for k in range(self.n_estimators):
+                estimators.append(ExtraTreeRegressor(
+                                    max_depth=self.max_depth,
+                                    max_leaf_nodes=self.max_leaf_nodes,
+                                    min_samples_split=self.min_samples_split,
+                                    min_samples_leaf=self.min_samples_leaf,
+                                    max_features=self.max_features,
+                                    random_state=self.random_state))
+        else:
+            for k in range(self.n_estimators):
+                estimators.append(DecisionTreeRegressor(
+                                    max_depth=self.max_depth,
+                                    max_leaf_nodes=self.max_leaf_nodes,
+                                    min_samples_split=self.min_samples_split,
+                                    min_samples_leaf=self.min_samples_leaf,
+                                    max_features=self.max_features,
+                                    random_state=self.random_state))
 
         # Best performance and index of the last tree.
         best_performance = -np.inf
         best_performance_k = -1
 
-        # How many iterations the performance has not improved on validation set.
+        # Counts how many trees have been trained since the last
+        # improvement on the validation set.
         performance_not_improved = 0
 
+        # Partition the training into a proper number of folds
+        # to benefit from the parallelization at best.
         if self.n_estimators > self.n_jobs:
-            estimator_indices = np.array_split(np.arange(self.n_estimators, dtype=np.intc), (self.n_estimators + self.n_jobs - 1) / self.n_jobs)
+            estimator_indices = np.array_split(
+                        np.arange(self.n_estimators, dtype=np.intc),
+                        (self.n_estimators + self.n_jobs - 1) / self.n_jobs)
         else:
             estimator_indices = [np.arange(self.n_estimators)]
 
-        if self.shuffle:
-            for fold_indices in estimator_indices:
-                fold_estimators = Parallel(n_jobs=self.n_jobs, backend='threading')\
-                                      (delayed(_parallel_build_trees_shuffle, check_pickle=False)
-                                               (i, estimators[i], len(estimators), metric, self.use_newton_method,
-                                                self.bootstrap, queries, training_scale_values, validation,
-                                                validation_ranking_scores[i - fold_indices[0] + 1])
-                                       for i in fold_indices)
+        for fold_indices in estimator_indices:
+            # Train all trees in the current fold...
+            fold_estimators = \
+                Parallel(n_jobs=self.n_jobs, backend='threading')(
+                    delayed(parallel_build_trees, check_pickle=False)(
+                        i, estimators[i], self.n_estimators, metric.copy(),
+                        training_queries, training_query_scales,
+                        training_query_weights, self.use_newton_method,
+                        self.bootstrap, self.subsample,
+                        self.random_state.randint(1, np.iinfo('i').max),
+                        self.sigma, validation_queries,
+                        validation_ranking_scores[i - fold_indices[0] + 1])
+                    for i in fold_indices)
 
-                self.estimators.extend(fold_estimators)
+            self.estimators.extend(fold_estimators)
 
-                np.cumsum(validation_ranking_scores[:(len(fold_indices) + 1)], axis=0, out=validation_ranking_scores[:(len(fold_indices) + 1)])
+            # Compute the ranking score of validation queries for every
+            # new tree that has been just trained.
+            np.cumsum(validation_ranking_scores[:(len(fold_indices) + 1)],
+                      out=validation_ranking_scores[:(len(fold_indices) + 1)],
+                      axis=0)
 
-                for i, ranking_scores in enumerate(validation_ranking_scores[1:(len(fold_indices) + 1)]):
-                    validation_performance = metric.evaluate_queries(validation, ranking_scores, scale=validation_scale_values)
+            for i, ranking_scores in enumerate(validation_ranking_scores[1:, :]):
+                # Get the performance of the current model consisting
+                # of `fold_indices[0] + i + 1` number of trees.
+                validation_performance = metric.evaluate_queries(
+                                            validation_queries, ranking_scores,
+                                            scales=validation_query_scales)
 
-                    logger.info('#%08d: %s (%s): %11.8f' % (fold_indices[i], 'training' if validation is queries else 'validation',
-                                                            metric, validation_performance))
+                logger.info('#%08d: %s (%s): %11.8f'
+                            % (fold_indices[i],
+                               'training' if validation_queries is training_queries else 'validation',
+                               metric, validation_performance))
 
-                    if validation_performance > best_performance:
-                        best_performance = validation_performance
-                        best_performance_k = fold_indices[i]
-                        performance_not_improved = 0
-                    else:
-                        performance_not_improved += 1
+                if validation_performance > best_performance:
+                    best_performance = validation_performance
+                    best_performance_k = fold_indices[i]
+                    performance_not_improved = 0
+                else:
+                    performance_not_improved += 1
 
-                    # Break for early stopping.
-                    if performance_not_improved >= self.estopping and min_estimators <= fold_indices[i] + 1:
-                        break
-
-                if performance_not_improved >= self.estopping and min_estimators <= fold_indices[i] + 1:
-                    logger.info('Stopping early since no improvement on %s queries'\
-                                ' has been observed for %d iterations (since iteration %d)'\
-                                 % ('training' if validation is queries else 'validation',
-                                    self.estopping, best_performance_k + 1))
+                if (performance_not_improved >= self.estopping and
+                    self.min_n_estimators <= fold_indices[i] + 1):
                     break
 
-                # Copy last ranking scores for the next validation "fold".
-                validation_ranking_scores[0, :] = validation_ranking_scores[len(fold_indices), :]
+            if (performance_not_improved >= self.estopping and
+                self.min_n_estimators <= fold_indices[i] + 1):
+                logger.info('Stopping early since no improvement on %s '
+                            'queries has been observed for %d iterations '
+                            '(since iteration %d)'
+                             % ('training' if validation_queries is training_queries else 'validation',
+                                self.estopping, best_performance_k + 1))
+                break
+
+            # Copy the last ranking scores for the next validation "fold".
+            validation_ranking_scores[0, :] = validation_ranking_scores[len(fold_indices), :]
+
+        if validation_queries is not training_queries:
+            logger.info('Final model performance (%s) on validation queries: '
+                        '%11.8f' % (metric, best_performance))
         else:
-            # Initial ranking scores.
-            training_scores = np.zeros(queries.document_count(), dtype=np.float64)
-
-            # The pseudo-responses (lambdas) for each document.
-            training_lambdas = np.empty(queries.document_count(), dtype=np.float64)
-
-            # The optimal gradient descent step sizes for each document.
-            training_weights = np.empty(queries.document_count(), dtype=np.float64)
-
-            # Compute the pseudo-responses (lambdas) and gradient step sizes (weights) just once.
-            compute_lambdas_and_weights(queries, training_scores, metric, training_lambdas, training_weights,
-                                        training_scale_values, n_jobs=self.n_jobs)
-
-            # Not using Newthon-Raphson optimization?
-            if not self.use_newton_method:
-                training_weights = None
-
-            for fold_indices in estimator_indices:
-                # Using multithreading backend since GIL is released in the code.
-                fold_estimators = Parallel(n_jobs=self.n_jobs, backend='threading')\
-                                      (delayed(_parallel_build_trees_bootstrap, check_pickle=False)
-                                              (i, estimators[i], len(estimators), metric, training_lambdas,
-                                               training_weights, self.bootstrap, queries, training_scale_values,
-                                               validation, validation_ranking_scores[i - fold_indices[0] + 1])
-                                       for i in fold_indices)
-
-                self.estimators.extend(fold_estimators)
-
-                np.cumsum(validation_ranking_scores[:(len(fold_indices) + 1)], axis=0, out=validation_ranking_scores[:(len(fold_indices) + 1)])
-
-                for i, ranking_scores in enumerate(validation_ranking_scores[1:, :]):
-                    validation_performance = metric.evaluate_queries(validation, ranking_scores, scale=validation_scale_values)
-
-                    logger.info('#%08d: %s (%s): %11.8f' % (fold_indices[i], 'training' if validation is queries else 'validation',
-                                                            metric, validation_performance))
-
-                    if validation_performance > best_performance:
-                        best_performance = validation_performance
-                        best_performance_k = fold_indices[i]
-                        performance_not_improved = 0
-                    else:
-                        performance_not_improved += 1
-
-                    # Break for early stopping.
-                    if performance_not_improved >= self.estopping and min_estimators <= fold_indices[i] + 1:
-                        break
-
-                if performance_not_improved >= self.estopping and min_estimators <= fold_indices[i] + 1:
-                    logger.info('Stopping early since no improvement on %s queries'\
-                                ' has been observed for %d iterations (since iteration %d)'\
-                                 % ('training' if validation is queries else 'validation',
-                                    self.estopping, best_performance_k + 1))
-                    break
-
-                # Copy last ranking scores for the next validation "fold".
-                validation_ranking_scores[0, :] = validation_ranking_scores[len(fold_indices), :]
-
-        if validation is not queries:
-            logger.info('Final model performance (%s) on validation queries: %11.8f' % (metric, best_performance))
-        else:
-            logger.info('Final model performance (%s) on validation queries: %11.8f' % (metric, best_performance))
+            logger.info('Final model performance (%s) on training queries: '
+                        '%11.8f' % (metric, best_performance))
 
         # Make sure the model has the wanted size.
-        best_performance_k = max(best_performance_k, min_estimators - 1)
+        best_performance_k = max(best_performance_k, self.min_n_estimators - 1)
 
         # Leave the estimators that led to the best performance,
         # either on training or validation set.
@@ -431,44 +456,74 @@ class LambdaRandomForest(object):
 
         self.best_performance = best_performance
 
-        # Mark the model as trained.
-        self.trained = True
-
         logger.info('Training of LambdaRandomForest model has finished.')
 
+        return self
 
     @staticmethod
-    def __predict(estimators, feature_vectors, output):
-        for estimator in estimators:
-            output += estimator.predict(feature_vectors)
-
+    def __predict(trees, feature_vectors, output):
+        for tree in trees:
+            output += tree.predict(feature_vectors, check_input=False)
 
     def predict(self, queries, n_jobs=1):
         ''' 
-        Predict the ranking score for each individual document of the given queries.
+        Predict the ranking score for each individual document
+        in the given queries.
 
         n_jobs: int, optional (default is 1)
             The number of working threads that will be spawned to compute
             the ranking scores. If -1, the current number of CPUs will be used.
         '''
-        if self.trained is False:
+        if len(self.estimators) == 0:
             raise ValueError('the model has not been trained yet')
+
+        n_jobs = _get_n_jobs(n_jobs)
 
         predictions = np.zeros(queries.document_count(), dtype=np.float64)
 
-        n_jobs = max(1, min(n_jobs if n_jobs >= 0 else n_jobs + cpu_count() + 1, queries.document_count()))
+        indices = _get_partition_indices(0, queries.document_count(),
+                                         self.n_jobs)
 
-        indices = np.linspace(0, queries.document_count(), n_jobs + 1).astype(np.intc)
-
-        Parallel(n_jobs=n_jobs, backend="threading")(delayed(parallel_helper, check_pickle=False)
-                (LambdaRandomForest, '_LambdaRandomForest__predict', self.estimators,
-                 queries.feature_vectors[indices[i]:indices[i + 1]],
-                 predictions[indices[i]:indices[i + 1]]) for i in range(indices.size - 1))
+        Parallel(n_jobs=n_jobs, backend="threading")(
+            delayed(parallel_helper, check_pickle=False)(
+                LambdaRandomForest, '_LambdaRandomForest__predict',
+                self.estimators, 
+                queries.feature_vectors[indices[i]:indices[i + 1]],
+                predictions[indices[i]:indices[i + 1]])
+            for i in range(indices.size - 1)
+        )
 
         predictions /= len(self.estimators)
 
         return predictions
 
+    def evaluate(self, queries, metric=None, n_jobs=1):
+        '''
+        Evaluate the performance of the model on the given queries.
+
+        Parameters
+        ----------
+        queries : Queries instance
+            Queries used for evaluation of the model.
+
+        metric : string or None, optional (default=None)
+            Specify evaluation metric which will be used as a utility
+            function (i.e. metric of `goodness`) optimized by this model.
+            Supported metrics are "DCG", NDCG", "WTA", "ERR", with an optional
+            suffix "@{N}", where {N} can be any positive integer. If None,
+            the model is evaluated with a metric for which it was trained.
+
+        n_jobs: int, optional (default is 1)
+            The number of working threads that will be spawned to compute
+            the ranking scores. If -1, the current number of CPUs will be used.
+        '''
+        if metric is None:
+            metric = self.metric
+
+        scores = self.predict(queries, n_jobs=_get_n_jobs(n_jobs))
+
+        return MetricFactory(metric, aslist(queries),
+                      self.random_state).evaluate_queries(queries, scores)
 
     def predict_rankings(self, queries, compact=False, n_jobs=1):
         ''' 
@@ -491,9 +546,6 @@ class LambdaRandomForest(object):
             The number of working threads that will be spawned to compute
             the ranking scores. If -1, the current number of CPUs will be used.
         '''
-        if self.trained is False:
-            raise ValueError('the model has not been trained yet')
-
         # Predict the ranking scores for the documents.
         predictions = self.predict(queries, n_jobs)
 
@@ -501,38 +553,43 @@ class LambdaRandomForest(object):
 
         ranksort_queries(queries.query_indptr, predictions, rankings)
 
-        if compact or queries.query_count() == 1:
+        if compact or len(queries) == 1:
             return rankings
         else:
             return np.array_split(rankings, queries.query_indptr[1:-1])
 
-
-    def feature_importances(self):
-        ''' 
+    def feature_importances(self, n_jobs=1):
+        '''
         Return the feature importances.
         '''
-        if self.trained is False:   
+        if len(self.estimators) == 0:
             raise ValueError('the model has not been trained yet')
 
-        importances = Parallel(n_jobs=self.n_jobs, backend="threading")(delayed(getattr, check_pickle=False)
-                              (tree, 'feature_importances_') for tree in self.estimators)
+        importances = Parallel(n_jobs=_get_n_jobs(n_jobs),
+                               backend="threading")(
+                          delayed(getattr, check_pickle=False)(
+                              tree, 'feature_importances_'
+                          )
+                          for tree in self.estimators
+                      )
 
         return sum(importances) / self.n_estimators
-
 
     @classmethod
     def load(cls, filepath):
         ''' 
-        Load the previously saved LambdaRandomForest model from the specified file.
+        Load the previously saved LambdaRandomForest model
+        from the specified file.
 
         Parameters:
         -----------
         filepath: string
-            The filepath, from which a LambdaRandomForest object will be loaded.
+            The filepath, from which a LambdaRandomForest
+            object will be loaded.
         '''
-        logger.info("Loading %s object from %s" % (cls.__name__, filepath))
+        logger.info("Loading %s object from %s"
+                    % (cls.__name__, filepath))
         return unpickle(filepath)
-
 
     def save(self, filepath):
         ''' 
@@ -543,14 +600,17 @@ class LambdaRandomForest(object):
         filepath: string
             The filepath where this object will be saved.
         '''
-        logger.info("Saving %s object into %s" % (self.__class__.__name__, filepath))
+        logger.info("Saving %s object into %s"
+                    % (self.__class__.__name__, filepath))
         pickle(self, filepath)
-
 
     def __str__(self):
         ''' 
         Return textual representation of the LambdaRandomForest model.
         '''
-        return 'LambdaRandomForest(trees=%d, max_depth=%s, max_leaf_nodes=%s, max_features=%s, use_newton_method=%s, bootstrap=%s, shuffle=%s, trained=%s)' % \
-               (self.n_estimators, self.max_depth if self.max_leaf_nodes is None else '?', '?' if self.max_leaf_nodes is None else self.max_leaf_nodes,
-                'all' if self.max_features is None else self.max_features, self.use_newton_method, self.bootstrap, self.shuffle, self.trained)
+        return ('LambdaRandomForest(trees=%d, max_depth=%s, max_leaf_nodes=%s,'
+                ' max_features=%s, use_newton_method=%s, bootstrap=%s)'
+                % (self.n_estimators, self.max_depth if self.max_leaf_nodes is None else '?',
+                   '?' if self.max_leaf_nodes is None else self.max_leaf_nodes,
+                   'all' if self.max_features is None else self.max_features,
+                   self.use_newton_method, self.bootstrap))
