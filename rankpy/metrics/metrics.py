@@ -912,11 +912,14 @@ class MetricFactory(object):
                    'NDCG': NormalizedDiscountedCumulativeGain }
 
     @staticmethod
-    def __new__(cls, name, queries, random_state=None):
+    def __new__(cls, name, queries=None, max_relevance=None,
+                max_documents=None, random_state=None):
         name, _, cutoff = name.partition('@')
         cutoff = int(cutoff) if len(cutoff) > 0 else -1
         try:
             return cls.name2metric[name](cutoff, queries=queries,
+                                         max_relevance=max_relevance,
+                                         max_documents=max_documents,
                                          random_state=random_state)
         except KeyError:
             raise ValueError('unknown metric: %s' % name)
