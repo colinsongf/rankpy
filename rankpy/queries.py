@@ -119,6 +119,8 @@ class Queries(object):
             assert self.query_ids.shape[0] == self.n_queries, ('the number of '
                     'queries (%d) != the number of query ids (%d)'
                     % (self.n_queries, self.query_ids.shape[0]))
+        else:
+            self.query_ids = np.arange(self.n_queries)
 
         if feature_indices is not None:
             self.feature_indices = np.asanyarray(feature_indices).ravel()
@@ -126,6 +128,8 @@ class Queries(object):
                     ('the number of features (%d) != the number of feature '
                      'indices (%d)' % (self.feature_vectors.shape[1],
                                        feature_indices.shape[0]))
+        else:
+            self.feature_indices = np.arange(self.feature_vectors.shape[1])
 
         # Make sure shapes are consistent.
         assert self.n_feature_vectors == self.relevance_scores.shape[0],\
