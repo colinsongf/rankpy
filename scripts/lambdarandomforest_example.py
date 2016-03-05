@@ -8,7 +8,7 @@ import logging
 from rankpy.queries import Queries
 from rankpy.queries import find_constant_features
 
-from rankpy.models import LambdaMART
+from rankpy.models import LambdaRandomForest
 
 
 # Turn on logging.
@@ -41,7 +41,7 @@ logging.info('Test queries: %s' %test_queries)
 logging.info('=' * 80)
 
 # Set this to True in order to remove queries containing all documents
-# of the same relevance score -- these are useless for LambdaMART.
+# of the same relevance score -- these are useless for LambdaRandomForest.
 remove_useless_queries = False
 
 # Find constant query-document features.
@@ -61,9 +61,11 @@ logging.info('Test queries: %s' % test_queries)
 
 logging.info('=' * 80)
 
-model = LambdaMART(metric='nDCG@10', max_leaf_nodes=7, shrinkage=0.1,
-                   estopping=50, n_jobs=-1, min_samples_leaf=50,
-                   random_state=42)
+model = LambdaRandomForest(metric='nDCG@10', max_features=0.5,
+                           max_leaf_nodes=8, min_samples_split=100,
+                           min_samples_leaf=50, subsample_queries=0.5,
+                           bootstrap=True, sigma=1.0, estopping=50,
+                           use_newton_method=False, random_state=42)
 
 model.fit(training_queries, validation_queries=validation_queries)
 
@@ -72,4 +74,4 @@ logging.info('=' * 80)
 logging.info('%s on the test queries: %.8f'
              % (model.metric, model.evaluate(test_queries, n_jobs=-1)))
 
-model.save('LambdaMART_L7_S0.1_E50_' + model.metric)
+model.save('LambdaRandomForest_L7_S1.0_SS0.5_E50_' + model.metric)

@@ -8,7 +8,7 @@ import logging
 from rankpy.queries import Queries
 from rankpy.queries import find_constant_features
 
-from rankpy.models import LambdaMART
+from rankpy.models import LambdaRandomForest
 
 from rankpy.gridsearch import gridsearch
 from rankpy.gridsearch import train_test_split
@@ -61,8 +61,12 @@ param_grid = {'metric':              ['nDCG@10'],
               'max_features':        [0.5, None],
               'max_leaf_nodes':      [4, 8],
               ('min_samples_split',
-               'min_samples_leaf'):  [(200, 100)],
-              'shrinkage':           [0.1, 0.5],
+               'min_samples_leaf'):  [(200, 100), (100, 50)],
+              'subsample_queries':   [0.5, 1.],
+              'subsample_documents': [0.5, 1.],
+              'bootstrap':           [True, False],
+              'use_newton_method':   [True, False],
+              'sigma':               [0.0, 1.],
               'estopping':           [50],
               'random_state':        [42]}
 
@@ -72,20 +76,19 @@ param_grid = {'metric':              ['nDCG@10'],
 estop_queries, validation_queries = train_test_split(validation_queries,
                                                 test_size=0.5)
 
-model, scores = gridsearch(LambdaMART, param_grid, training_queries,
+model, scores = gridsearch(LambdaRandomForest, param_grid, training_queries,
                            estopping_queries=estop_queries,
                            validation_queries=validation_queries,
-                           return_models=True, n_jobs=-1,
+                           return_models=False, n_jobs=-1,
                            random_state=23)
 
 logging.info('=' * 80)
 logging.info('Gridsearch results')
 logging.info('=' * 80)
 
-for gparams, gmodel, gscore in scores:
+for gparams, gscore in scores:
     logging.info('Parameters: %r' % gparams)
-    logging.info('Model: %s' % gmodel)
-    logging.info('Performance: %11.8f (holdout %s)' % (gscore, gmodel.metric))
+    logging.info('Performance: %11.8f (holdout %s)' % (gscore, model.metric))
     logging.info('-' * 80)
 
 logging.info('Best model: %s' % model)

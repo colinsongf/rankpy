@@ -16,6 +16,7 @@
 
 import os
 import numpy as np
+import numbers
 import scipy.sparse
 
 try:
@@ -155,3 +156,34 @@ def aslist(*args):
     any None element from it.
     '''
     return filter(None, args)
+
+def asindexarray(x):
+    '''
+    Helper method which converts the given parameter into a
+    list of indices.
+
+    Returns
+    -------
+    indices : array of ints
+        The index array created from `x`.
+    '''
+    if isinstance(x, (numbers.Integral, np.integer)):
+        return np.array([x], dtype='int32', order='C')
+
+    if isinstance(x, slice):
+        return np.arange(x.start, x.stop, x.step, dtype='int32')
+
+    if isinstance(x, np.ndarray):
+        if x.ndim != 1:
+            raise ValueError('index array has more than 1 dimension')
+
+        if x.dtype.kind == 'b':
+            return x.nonzero()[0].astype(dtype='int32', order='C')
+
+        return x.astype('int32', order='C', casting='same_kind')
+
+    # Assuming x is a list.
+    if isinstance(x[0], (numbers.Integral, np.integer)):
+        return np.array(x, dtype='int32', order='C')
+    else:
+        raise ValueError('input cannot be converted to an index array')

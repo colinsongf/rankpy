@@ -116,6 +116,19 @@ def compute_lambdas_and_weights(queries, ranking_scores, metric,
         # from the given `relevance_scores`.
         query_relevance_strides = None
 
+    if query_weights is None:
+        query_weights = np.ones(queries.query_count(),
+                                dtype='float64')
+
+    if document_weights is None:
+        document_weights = np.ones(queries.document_count(),
+                                   dtype='float64')
+
+    if query_scales is None:
+        query_scales = metric.compute_scaling(queries,
+                                              query_weights=query_weights,
+                                              document_weights=document_weights)
+
     return sum(Parallel(n_jobs=n_jobs, backend="threading",
                         pre_dispatch='all', batch_size=1)(
         delayed(parallel_compute_lambdas_and_weights, check_pickle=False)(
@@ -166,7 +179,7 @@ def compute_newton_gradient_steps(estimator, queries, ranking_scores, metric,
     query_scales : array of floats, shape = [n_queries] or None
         A precomputed metric scale value for every query.
 
-    recompute: bool (default=False)
+    recompute: boolean (default=False)
         The weights need to be recomputed to acquire the formally correct
         gradient steps for the terminal nodes. By default, this option is
         turned off because, surprisingly, it gives inferior results compared
@@ -210,7 +223,7 @@ def compute_newton_gradient_steps(estimator, queries, ranking_scores, metric,
                       out=gradients)
 
         # Find terminal nodes which got NaN as a resulting Newton's step.
-        nan_gradients_mask = (np.isnan(gradients) & 
+        nan_gradients_mask = (np.isnan(gradients) &
                               (estimator.tree_.children_left == TREE_LEAF))
 
         if nan_gradients_mask.any():
@@ -222,7 +235,7 @@ def compute_newton_gradient_steps(estimator, queries, ranking_scores, metric,
             # (at least) the value printed in the warning.
             #
             # XXX: This leaves the internal node values set to NaN! It is
-            #      expected these will be never used. 
+            #      expected these will be never used.
             gradients[nan_gradients_mask] = 0.
             logger.warn('Regression tree terminal node values (indices: %s) '
                         'were computed from samples (counts: %s) with zero '
@@ -234,8 +247,7 @@ def compute_newton_gradient_steps(estimator, queries, ranking_scores, metric,
                                         in nan_gradients_mask.nonzero()[0]]),
                            ', '.join([str(x) for x in np.bincount(
                                           indices,
-                                          np.ones(len(indices),
-                                                  dtype='int32'),
+                                          (document_weights > 0.0).astype('int32'),
                                           node_count)[nan_gradients_mask]])))
 
         # Remarkably, numpy.copyto method side-steps the access protection
@@ -284,7 +296,7 @@ class LambdaMART(object):
         the regression trees in a way which prevents them from making the full
         (Newton's method) gradient step.
 
-    use_newton_method : bool, optional (default=True)
+    use_newton_method : boolean, optional (default=True)
         Estimate the gradient step in each terminal node of regression
         trees using Newton-Raphson method.
 
@@ -292,19 +304,19 @@ class LambdaMART(object):
         If positive, specify the number of trees in the random forest
         which will be used instead of a single regression tree.
 
-    random_thresholds : bool, optional (default=False)
+    random_thresholds : boolean, optional (default=False)
         If True, extremely randomized trees will be used instead of 'clasic'
         regression tree predictors.
 
     subsample : float, optional (default=1.0)
         The probability of considering a query for training.
 
-    use_logit_boost : bool, optional (default=False)
+    use_logit_boost : boolean, optional (default=False)
         Use discrete logit boost approach when training regression trees.
 
     estopping : int, optional (default=50)
         The number of subsequent iterations after which the training is
-        stopped early if no improvement is observed on the training 
+        stopped early if no improvement is observed on the training
         or validation queries (if provided).
 
     min_n_estimators: int, optional (default=1)
@@ -374,7 +386,7 @@ class LambdaMART(object):
 
     def fit(self, training_queries, training_query_weights=None,
             validation_queries=None, validation_query_weights=None,
-            presort=False, trace=None):
+            order='fixed', presort=False, trace=None):
         '''
         Train a LambdaMART model on given training queries. Optionally,
         use validation queries for finding an optimal number of trees
@@ -400,11 +412,11 @@ class LambdaMART(object):
             measure its importance. Queries with 0.0 weight will never
             be used in validation.
 
-        presort : bool, optional (default=False)
+        presort : boolean, optional (default=False)
             Whether to presort the data to speed up the finding of best
             splits in training of regression trees.
 
-        trace : list of strings, optional (default=None)
+        trace : list of strings or None, optional (default=None)
             Supported values are: `lambdas`, `gradients`, and `influences`.
             Since the number of documents and estimators can be large it is
             not advised to use the values together. When `lambdas` is given,
@@ -414,22 +426,31 @@ class LambdaMART(object):
             (proportional) contribution of lambdas from lower relevant
             documents on high relevant ones.
 
+        order : string, optional (default='fixed')
+            The way in which the learning algorithm deals with ties in ranking
+            scores. Supported values are 'fixed' and 'random':
+
+                - 'fixed': the order of documents is determined randomly at
+                           the beginning of training and its kept this way
+                           throughout the whole training process
+
+                - 'random': the documents with equal ranking scores are
+                            randomly shuffle each time it is needed during
+                            training
+
         Returns
         -------
         self : object
             Returns self.
         '''
-        metric = MetricFactory(self.metric, aslist(training_queries,
-                               validation_queries), self.random_state)
+        metric = MetricFactory(self.metric,
+                               queries=aslist(training_queries,
+                                              validation_queries),
+                               random_state=self.random_state)
 
-        if self.base_model is None:
-            training_scores = 1e-6 * self.random_state.rand(
-                training_queries.document_count()).astype('float64')
-        else:
-            training_scores = np.ascontiguousarray(
-                                  self.base_model.predict(training_queries,
-                                                          n_jobs=self.n_jobs),
-                                  dtype='float64')
+        if order not in ['random', 'fixed']:
+            raise ValueError("Invalid value for order. Allowed values are "
+                             "'random' or 'fixed'.")
 
         if training_query_weights is None:
             training_query_weights = np.ones(len(training_queries),
@@ -451,15 +472,38 @@ class LambdaMART(object):
         training_document_weights = np.zeros(training_queries.document_count(),
                                     dtype='float64')
 
+        training_queries_info = training_queries.qdie[training_query_weights > 0.0]
+
         # Set document weights for documents of queries
         # with non-zero weight to 1.0.
-        training_document_weights[training_queries.qds[training_query_weights > 0.0]] = 1.0
+        training_document_weights[training_queries_info.dmask] = 1.0
 
         massless_training_document_indices = (training_document_weights == 0.0).nonzero()[0]
 
+        if self.base_model is None:
+            training_scores = np.zeros(training_queries.document_count(),
+                                           dtype='float64')
+            if order == 'fixed':
+                # The following makes sure that the results of the training
+                # is the same as if the method was called with
+                # training_queries[training_query_weights > 0.0], which is
+                # not desirable if the queries were memory-mapped.
+                training_scores[training_queries_info.dmask] = \
+                    1e-6 * self.random_state.rand(
+                        training_queries_info.document_count).astype('float64')
+
+        else:
+            training_scores = np.ascontiguousarray(
+                                  self.base_model.predict(training_queries,
+                                                          order=order,
+                                                          n_jobs=self.n_jobs),
+                                  dtype='float64')
+
         # If the metric used for training is normalized, it is advantageous
         # to precompute the scaling factor for each query in advance.
-        training_query_scales = metric.compute_scale(training_queries)
+        training_query_scales = metric.compute_scaling(training_queries,
+                                                       query_weights=training_query_weights,
+                                                       document_weights=training_document_weights)
 
         # Keep the training performance of LambdaMART
         # for every stage of training.
@@ -562,13 +606,35 @@ class LambdaMART(object):
             validation_document_weights = np.zeros(validation_queries.document_count(),
                                                    dtype='float64')
 
+            validation_queries_info = validation_queries.qdie[validation_query_weights > 0.0]
+
             # Set document weights for documents of validation
             # queries with non-zero weight to 1.0.
-            validation_document_weights[validation_queries.qds[validation_query_weights > 0.0]] = 1.0
+            validation_document_weights[validation_queries_info.dmask] = 1.0
 
             massless_validation_document_indices = (validation_document_weights == 0.0).nonzero()[0]
 
-            validation_query_scales = metric.compute_scale(validation_queries)
+            if self.base_model is None:
+                validation_scores = np.zeros(validation_queries.document_count(),
+                                             dtype='float64')
+                if order == 'fixed':
+                    # The following makes sure that the results of the training
+                    # is the same as if the method was called with
+                    # training_queries[training_query_weights > 0.0], which is
+                    # not desirable if the queries were memory-mapped.
+                    validation_scores[validation_queries_info.dmask] = \
+                        1e-6 * self.random_state.rand(
+                            validation_queries_info.document_count).astype('float64')
+            else:
+                validation_scores = np.ascontiguousarray(
+                                        self.base_model.predict(validation_queries,
+                                                                order=order,
+                                                                n_jobs=self.n_jobs),
+                                        dtype='float64')
+
+            validation_query_scales = metric.compute_scaling(validation_queries,
+                                                             query_weights=validation_query_weights,
+                                                             document_weights=validation_document_weights)
 
             # Keep the validation performance of LambdaMART
             # for every stage of training.
@@ -579,13 +645,6 @@ class LambdaMART(object):
             self.validation_losses = np.empty(self.n_estimators,
                                               dtype='float64')
             self.validation_losses.fill(np.nan)
-
-            if self.base_model is None:
-                validation_scores = 1e-6 * self.random_state.rand(validation_queries.document_count()).astype(np.float64)
-            else:
-                validation_scores = np.ascontiguousarray(
-                                        self.base_model.predict(validation_queries),
-                                        dtype='float64')
 
             if self.trace_lambdas or self.trace_influences:
                 # The pseudo-responses (lambdas) for each document
@@ -626,20 +685,20 @@ class LambdaMART(object):
             training_query_weights_orig = training_query_weights.copy()
 
         # Iteratively build a sequence of regression trees.
-        for k in xrange(self.n_estimators):    
+        for k in xrange(self.n_estimators):
             training_influences = self.stage_training_influences[k] if self.trace_influences else None
 
             if self.subsample != 1.0:
                 # Subsample the training queries...
-                training_query_weights = np.random.choice([0.0, 1.0],
-                                        size=len(training_query_weights),
-                                        p=[1 - self.subsample, self.subsample])
+                training_query_weights = self.random_state.choice([0.0, 1.0],
+                                                                  size=len(training_query_weights),
+                                                                  p=[1 - self.subsample, self.subsample])
 
                 # ... and make sure the right queries are sampled.
                 training_query_weights *= training_query_weights_orig
 
                 training_document_weights.fill(0.0)
-                training_document_weights[training_queries.qds[training_query_weights > 0.0]] = 1.0
+                training_document_weights[training_queries.qdie[training_query_weights > 0.0].dmask] = 1.0
 
                 massless_training_document_indices = (training_document_weights == 0.0).nonzero()[0]
 
@@ -650,7 +709,7 @@ class LambdaMART(object):
                                             metric, training_lambdas,
                                             training_weights,
                                             training_query_scales, None,
-                                            training_query_weights, 
+                                            training_query_weights,
                                             training_document_weights,
                                             training_influences,
                                             random_state=self.random_state,
@@ -693,7 +752,7 @@ class LambdaMART(object):
 
                 if self.use_logit_boost:
                     with np.errstate(invalid='ignore'):
-                        target = np.nan_to_num(training_lambdas / 
+                        target = np.nan_to_num(training_lambdas /
                                                training_weights)
 
                     # Clip the target values to fixed range.
@@ -792,7 +851,7 @@ class LambdaMART(object):
                     if validation_queries is not None:
                         np.copyto(self.stage_validation_gradients_predicted[k],
                                   estimator.predict(validation_queries.feature_vectors))
-            
+
             # Update the document scores using the new gradient predictor.
             if self.trace_gradients:
                 training_scores += self.shrinkage * self.stage_training_gradients_predicted[k]
@@ -805,7 +864,8 @@ class LambdaMART(object):
             self.training_performance[k] = metric.evaluate_queries(
                                                training_queries, training_scores,
                                                scales=training_query_scales,
-                                               weights=training_query_weights)
+                                               query_weights=training_query_weights,
+                                               document_weights=training_document_weights)
 
             if validation_queries is None:
                 logger.info('#%08d: %s (training): %11.8f (%11.8f)'
@@ -825,7 +885,8 @@ class LambdaMART(object):
                                                      validation_queries,
                                                      validation_scores,
                                                      scales=validation_query_scales,
-                                                     weights=validation_query_weights)
+                                                     query_weights=validation_query_weights,
+                                                     document_weights=validation_document_weights)
 
                 if np.isnan(self.validation_losses[k]):
                     logger.info('#%08d: %s (training):   %11.8f (%11.8f)  | '
@@ -947,14 +1008,30 @@ class LambdaMART(object):
             output += tree.predict(feature_vectors, check_input=False)
         output *= shrinkage
 
-    def predict(self, queries, n_jobs=1):
+    def predict(self, queries, compact=True, n_jobs=1):
         '''
         Predict the ranking score for each individual document
         in the given queries.
 
-        n_jobs: int, optional (default is 1)
+        If `compact` is set to True then the output will be one
+        long 1d array containing the rankings for all the queries
+        instead of a list of 1d arrays.
+
+        The compact array can be subsequently index using query
+        index pointer array, see `queries.query_indptr`.
+
+        query: Queries instance
+            The query whose documents should be ranked.
+
+        compact : boolean, optional (default=False)
+            If True, a single array made of concatenated rankings is returned
+            If False, the returned rankings will be returned as a list filled
+            with rankings of individual queries. .
+
+         n_jobs : int, optional (default=1)
             The number of working threads that will be spawned to compute
-            the ranking scores. If -1, the current number of CPUs will be used.
+            the rankings. If -1, the maximum number of available CPUs will
+            be used.
         '''
         if len(self.estimators) == 0:
             raise ValueError('the model has not been trained yet')
@@ -982,37 +1059,13 @@ class LambdaMART(object):
             for i in range(indices.size - 1)
         )
 
-        return predictions
+        if compact or len(queries) == 1:
+            return predictions
+        else:
+            return np.array_split(predictions, queries.query_indptr[1:-1])
 
-    def evaluate(self, queries, metric=None, n_jobs=1):
-        '''
-        Evaluate the performance of the model on the given queries.
-
-        Parameters
-        ----------
-        queries : Queries instance
-            Queries used for evaluation of the model.
-
-        metric : string or None, optional (default=None)
-            Specify evaluation metric which will be used as a utility
-            function (i.e. metric of `goodness`) optimized by this model.
-            Supported metrics are "DCG", NDCG", "WTA", "ERR", with an optional
-            suffix "@{N}", where {N} can be any positive integer. If None,
-            the model is evaluated with a metric for which it was trained.
-
-        n_jobs: int, optional (default is 1)
-            The number of working threads that will be spawned to compute
-            the ranking scores. If -1, the current number of CPUs will be used.
-        '''
-        if metric is None:
-            metric = self.metric
-
-        scores = self.predict(queries, n_jobs=_get_n_jobs(n_jobs))
-
-        return MetricFactory(metric, aslist(queries),
-                      self.random_state).evaluate_queries(queries, scores)
-
-    def predict_rankings(self, queries, compact=False, n_jobs=1):
+    def predict_rankings(self, queries, compact=False, return_scores=False,
+                         n_jobs=1):
         '''
         Predict rankings of the documents for the given queries.
 
@@ -1023,15 +1076,22 @@ class LambdaMART(object):
         The compact array can be subsequently index using query
         index pointer array, see `queries.query_indptr`.
 
-        query: Query
+        query: Queries instance
             The query whose documents should be ranked.
 
-        compact: bool
-            Specify to return rankings in compact format.
+        compact : boolean, optional (default=False)
+            If True, a single array made of concatenated rankings is returned
+            If False, the returned rankings will be returned as a list filled
+            with rankings of individual queries.
 
-         n_jobs: int, optional (default is 1)
+        return_scores : boolean, optional (default=False)
+            Indicates that the ranking scores, on which the returned rankings
+            are based, should be returned as well.
+
+         n_jobs : int, optional (default=1)
             The number of working threads that will be spawned to compute
-            the ranking scores. If -1, the current number of CPUs will be used.
+            the rankings. If -1, the maximum number of available CPUs will
+            be used.
         '''
         # Predict the ranking scores for the documents.
         predictions = self.predict(queries, n_jobs)
@@ -1041,7 +1101,10 @@ class LambdaMART(object):
         ranksort_queries(queries.query_indptr, predictions, rankings)
 
         if compact or len(queries) == 1:
-            return rankings
+            return (rankings, predictions) if return_scores else rankings
+        elif return_scores:
+            return (np.array_split(rankings, queries.query_indptr[1:-1]),
+                    np.array_split(predictions, queries.query_indptr[1:-1]))
         else:
             return np.array_split(rankings, queries.query_indptr[1:-1])
 
@@ -1061,6 +1124,40 @@ class LambdaMART(object):
                       )
 
         return sum(importances) / self.n_estimators
+
+    def evaluate(self, queries, metric=None, out=None, n_jobs=1):
+        '''
+        Evaluate the performance of the model on the given queries.
+
+        Parameters
+        ----------
+        queries : Queries instance
+            Queries used for evaluation of the model.
+
+        metric : string or None, optional (default=None)
+            Specify evaluation metric which will be used as a utility
+            function (i.e. metric of `goodness`) optimized by this model.
+            Supported metrics are "DCG", NDCG", "WTA", "ERR", with an optional
+            suffix "@{N}", where {N} can be any positive integer. If None,
+            the model is evaluated with a metric for which it was trained.
+
+        n_jobs: int, optional (default is 1)
+            The number of working threads that will be spawned to compute
+            the ranking scores. If -1, the current number of CPUs will be used.
+
+        out : array of floats, shape = [n_documents], or None
+            If not None, it will be filled with the metric values
+            for each query.
+        '''
+        if metric is None:
+            metric = self.metric
+
+        scores = self.predict(queries, n_jobs=_get_n_jobs(n_jobs))
+
+        metric = MetricFactory(metric, queries=aslist(queries),
+                               random_state=self.random_state)
+
+        return metric.evaluate_queries(queries, scores, out=out)
 
     @classmethod
     def load(cls, filepath, mmap='r', load_traced=False):

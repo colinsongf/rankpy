@@ -16,23 +16,28 @@
 # along with RankPy.  If not, see <http://www.gnu.org/licenses/>.
 
 
-''' 
+'''
 Information Retrieval Evaluation Metrics
 '''
 
-from .metrics import WinnerTakesAll
-from .metrics import DiscountedCumulativeGain
-from .metrics import NormalizedDiscountedCumulativeGain
-from .metrics import ExpectedReciprocalRank
-from .metrics import SeznamRank
 from .metrics import MetricFactory
+
+from .metrics import MeanPrecision
+from .metrics import WinnerTakesAll
+from .metrics import ClickthroughRate
+from .metrics import MeanReciprocalRank
+from .metrics import MeanAveragePrecision
+from .metrics import ExpectedReciprocalRank
+from .metrics import DiscountedCumulativeGain
 
 
 __all__ = [
-    'WinnerTakesAll',
-    'DiscountedCumulativeGain',
-    'NormalizedDiscountedCumulativeGain',
-    'ExpectedReciprocalRank',
-    'SeznamRank',
     'MetricFactory',
+    'MeanPrecision',
+    'WinnerTakesAll',
+    'ClickthroughRate',
+    'MeanReciprocalRank',
+    'MeanAveragePrecision',
+    'ExpectedReciprocalRank',
+    'DiscountedCumulativeGain'
 ]

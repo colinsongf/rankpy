@@ -35,7 +35,7 @@ logger = logging.getLogger(__name__)
 
 def train_test_split(queries, train_size=None, test_size=0.2, documents=False,
                      return_weights=False, random_state=None):
-    ''' 
+    '''
     Split the specified set of queries into training and test sets.
 
     The portion of queries that ends in the training or test set
@@ -68,7 +68,7 @@ def train_test_split(queries, train_size=None, test_size=0.2, documents=False,
         ``test_size`` parameters.
 
     random_state: RandomState instance, int, or None
-        Set this to NumPy random number generator or provide a seed number 
+        Set this to NumPy random number generator or provide a seed number
         to get reproducible results.
     '''
     random_state = check_random_state(random_state)
@@ -173,7 +173,7 @@ def train_test_split(queries, train_size=None, test_size=0.2, documents=False,
     if queries.query_ids is not None:
         train_query_ids = queries.query_ids[train_queries_indices].copy()
         test_query_ids = queries.query_ids[test_queries_indices].copy()
-        
+
     test_queries = Queries(test_feature_vectors, test_relevance_scores, test_query_indptr, queries.max_score, True, query_ids=test_query_ids, feature_indices=feature_indices)
     train_queries = Queries(train_feature_vectors, train_relevance_scores, train_query_indptr, queries.max_score, True, query_ids=train_query_ids, feature_indices=feature_indices)
 
@@ -182,7 +182,7 @@ def train_test_split(queries, train_size=None, test_size=0.2, documents=False,
 
 def __train_test_split_documents(queries, train_size=None, test_size=0.2,
                                  random_state=None):
-    ''' 
+    '''
     Split the specified set of queries into training and test sets.
 
     Instead of splitting queries into a training and test sets, the documents
@@ -207,7 +207,7 @@ def __train_test_split_documents(queries, train_size=None, test_size=0.2,
         the training set.
 
     random_state: RandomState instance, int, or None
-        Set this to NumPy random number generator or provide a seed number 
+        Set this to NumPy random number generator or provide a seed number
         to get reproducible results.
     '''
     random_state = check_random_state(random_state)
@@ -218,7 +218,7 @@ def __train_test_split_documents(queries, train_size=None, test_size=0.2,
         if not isinstance(train_size, float) or train_size >= 1.0 or train_size <= 0.0:
             raise ValueError('train_size must be float between 0.0 and 1.0')
 
-        query_train_document_count = (train_size * 
+        query_train_document_count = (train_size *
                                       query_document_count).astype(np.intc)
 
         if np.any(query_train_document_count == 0):
@@ -273,7 +273,7 @@ def __train_test_split_documents(queries, train_size=None, test_size=0.2,
     train_feature_vectors = queries.feature_vectors[train_folds_document_indices, :]
     train_relevance_scores = queries.relevance_scores[train_folds_document_indices]
     train_query_indptr = np.r_[0, train_folds_document_counts].cumsum()
-        
+
     train_queries = Queries(train_feature_vectors, train_relevance_scores, train_query_indptr, queries.max_score, False, query_ids=queries.query_ids, feature_indices=queries.feature_indices)
 
     test_fold_document_indices = fold_document_indices[1]
@@ -290,7 +290,7 @@ def __train_test_split_documents(queries, train_size=None, test_size=0.2,
 
 def shuffle_split_queries(queries, n_folds=10, random_state=None,
                           return_weights=False):
-    ''' 
+    '''
     Split the specified set of queries into `n_folds` for cross-validation.
 
     Parameters:
@@ -302,7 +302,7 @@ def shuffle_split_queries(queries, n_folds=10, random_state=None,
         The number of folds.
 
     random_state: RandomState instance, int, or None, optional (default is None)
-        Set this to NumPy random number generator or provide a seed number 
+        Set this to NumPy random number generator or provide a seed number
         to get reproducible results.
 
     Returns
@@ -380,14 +380,14 @@ def shuffle_split_queries(queries, n_folds=10, random_state=None,
             train_feature_vectors = queries.feature_vectors[train_folds_document_indices, :]
             train_relevance_scores = queries.relevance_scores[train_folds_document_indices]
             train_query_indptr = np.r_[0, train_folds_document_counts].cumsum()
-            
+
             train_queries = Queries(train_feature_vectors, train_relevance_scores, train_query_indptr, queries.max_score, False, query_ids=queries.query_ids, feature_indices=queries.feature_indices)
 
             yield train_queries, valid_queries
 
 
 def shuffle_split_documents(queries, n_folds=10, random_state=None):
-    ''' 
+    '''
     Split the specified set of queries into `n_folds` for cross-validation.
 
     The documents of every query will be evently divided into `n_folds`
@@ -402,7 +402,7 @@ def shuffle_split_documents(queries, n_folds=10, random_state=None):
         The number of folds.
 
     random_state: RandomState instance, int, or None, optional (default is None)
-        Set this to NumPy random number generator or provide a seed number 
+        Set this to NumPy random number generator or provide a seed number
         to get reproducible results.
     '''
     random_state = check_random_state(random_state)
@@ -454,7 +454,7 @@ def shuffle_split_documents(queries, n_folds=10, random_state=None):
         train_feature_vectors = queries.feature_vectors[train_folds_document_indices, :]
         train_relevance_scores = queries.relevance_scores[train_folds_document_indices]
         train_query_indptr = np.r_[0, train_folds_document_counts].cumsum()
-        
+
         train_queries = Queries(train_feature_vectors, train_relevance_scores, train_query_indptr, queries.max_score, False, query_ids=queries.query_ids, feature_indices=queries.feature_indices)
 
         yield train_queries, valid_queries
@@ -532,7 +532,7 @@ def parallel_fit_ranker(ranker_cls, parameters, training_queries,
         return holdout_performance
 
 
-def gridsearch(ranker_cls, param_grid, training_queries, 
+def gridsearch(ranker_cls, param_grid, training_queries,
                estopping_queries=None, validation_queries=None,
                return_models=False, n_jobs=1, random_state=None):
     '''
@@ -568,7 +568,7 @@ def gridsearch(ranker_cls, param_grid, training_queries,
         The number of worker threads computing in parallel.
 
     random_state: RandomState, or int, or None
-        The random number generator used for internal randomness, which 
+        The random number generator used for internal randomness, which
         is involed in splitting the queries.
 
     Returns

@@ -48,9 +48,10 @@ logger = logging.getLogger(__name__)
 
 def parallel_build_trees(tree_index, tree, n_trees, metric, queries,
                          query_scales, query_weights, use_newton_method,
-                         bootstrap, subsample, seed, sigma=0.0,
-                         validation_queries=None, validation_scores=None):
-    ''' 
+                         bootstrap, subsample_queries, subsample_documents,
+                         seed, sigma=0.0, validation_queries=None,
+                         validation_scores=None):
+    '''
     Train a regression tree to optimize the evaluation metric for the specified
     queries using the LambdaMART's 'lambdas'.
 
@@ -87,8 +88,11 @@ def parallel_build_trees(tree_index, tree, n_trees, metric, queries,
     bootstrap : bool
         Specify to use bootstrap sample from the queries.
 
-    subsample : float
+    subsample_queries : float
         The probability of including a query into the training.
+
+    subsample_documents : float
+        The probability of including a document into the training.
 
     seed : int
         Used for initialization of random number generator.
@@ -122,7 +126,7 @@ def parallel_build_trees(tree_index, tree, n_trees, metric, queries,
     # The 2nd order derivatives of the implicit loss derived from the metric.
     training_weights = np.empty(queries.document_count(), dtype=np.float64)
 
-    if subsample != 1.0:
+    if subsample_queries != 1.0:
         if query_weights is not None:
             # Need to make copy not to interfere with the outside world.
             query_weights = query_weights.copy()
@@ -132,7 +136,7 @@ def parallel_build_trees(tree_index, tree, n_trees, metric, queries,
         # Subsample the queries.
         query_weights *= random_state.choice([0.0, 1.0],
                                              size=len(query_weights),
-                                             p=[1 - subsample, subsample])
+                                             p=[1 - subsample_queries, subsample_queries])
 
     if bootstrap:
         if query_weights is not None:
@@ -151,9 +155,24 @@ def parallel_build_trees(tree_index, tree, n_trees, metric, queries,
 
     if query_weights is not None:
         document_weights = np.zeros(queries.document_count(), dtype='float64')
-        document_weights[queries.qds[query_weights > 0.0]] = 1.0
+        document_weights[queries.qdie[query_weights > 0.0].dmask] = 1.0
     else:
         document_weights = None
+
+    if subsample_documents != 1.0:
+        if document_weights is None:
+            document_weights = np.ones(queries.document_count(),
+                                       dtype='float64')
+
+        # Subsample the documents.
+        document_weights *= random_state.choice([0.0, 1.0],
+                                                size=len(document_weights),
+                                                p=[1 - subsample_documents,
+                                                   subsample_documents])
+
+        query_scales = metric.compute_scaling(queries,
+                                              query_weights=query_weights,
+                                              document_weights=document_weights)
 
     # Compute LambdaMART lambdas and weights.
     compute_lambdas_and_weights(queries, training_scores, metric,
@@ -191,7 +210,7 @@ def parallel_build_trees(tree_index, tree, n_trees, metric, queries,
 
 
 class LambdaRandomForest(object):
-    ''' 
+    '''
     LambdaRandomForest learning to rank model.
 
     Parameters
@@ -239,13 +258,16 @@ class LambdaRandomForest(object):
         of the `n_estimators` and `estopping` values. Beware that using this
         option may lead to suboptimal performance of the model.
 
-    subsample : float, optional (default=1.0)
+    subsample_queries : float, optional (default=1.0)
         The probability of considering a query for training.
+
+    subsample_documents : float, optional (default=1.0)
+        The probability of including a document into the training.
 
     estopping : int or None, optional (default=None)
         If the last `estopping` number of trained regression trees did not
         lead to improvement in the metric on the training or validation
-        queries (if used), the training is stopped early. If None, 
+        queries (if used), the training is stopped early. If None,
         `n_estimators` is trained.
 
     n_jobs : int, optional (default=1)
@@ -259,7 +281,8 @@ class LambdaRandomForest(object):
     def __init__(self, metric='NDCG', n_estimators=100, max_depth=None,
                  max_leaf_nodes=None, max_features=None, min_samples_split=2,
                  min_samples_leaf=1, use_newton_method=True,
-                 random_thresholds=False, min_n_estimators=1, subsample=1.0,
+                 random_thresholds=False, min_n_estimators=1,
+                 subsample_queries=1.0, subsample_documents=1.0,
                  bootstrap=True, sigma=0.0, estopping=None, n_jobs=1,
                  random_state=None):
         self.estimators = []
@@ -273,7 +296,8 @@ class LambdaRandomForest(object):
         self.min_samples_split = min_samples_split
         self.random_thresholds = random_thresholds
         self.use_newton_method = use_newton_method
-        self.subsample = subsample
+        self.subsample_queries = subsample_queries
+        self.subsample_documents = subsample_documents
         self.bootstrap = bootstrap
         self.sigma = sigma
         self.estopping = n_estimators if estopping is None else estopping
@@ -290,7 +314,7 @@ class LambdaRandomForest(object):
 
     def fit(self, training_queries, training_query_weights=None,
             validation_queries=None, validation_query_weights=None):
-        ''' 
+        '''
         Train a LambdaRandomForest model on given training queries.
         Optionally, use validation queries for finding an optimal
         number of trees using early stopping.
@@ -320,18 +344,22 @@ class LambdaRandomForest(object):
         self : object
             Returns self.
         '''
-        metric = MetricFactory(self.metric, aslist(training_queries,
-                               validation_queries), self.random_state)
+        metric = MetricFactory(self.metric,
+                               queries=aslist(training_queries,
+                                              validation_queries),
+                               random_state=self.random_state)
 
         # If the metric used for training is normalized, it is advantageous
         # to precompute the scaling factor for each query in advance.
-        training_query_scales = metric.compute_scale(training_queries)
+        training_query_scales = metric.compute_scaling(training_queries,
+                                                       query_weights=training_query_weights)
 
         if validation_queries is None:
             validation_queries = training_queries
-            validation_query_scales = metric.compute_scale(validation_queries)
+            validation_query_scales = training_query_scales.copy()
         else:
-            validation_query_scales = metric.compute_scale(validation_queries)
+            validation_query_scales = metric.compute_scaling(validation_queries,
+                                                             query_weights=validation_query_weights)
 
         # The first row is reserved for the ranking scores computed
         # in the previous fold of regression trees, see below, how
@@ -388,7 +416,8 @@ class LambdaRandomForest(object):
                         i, estimators[i], self.n_estimators, metric.copy(),
                         training_queries, training_query_scales,
                         training_query_weights, self.use_newton_method,
-                        self.bootstrap, self.subsample,
+                        self.bootstrap, self.subsample_queries,
+                        self.subsample_documents,
                         self.random_state.randint(1, np.iinfo('i').max),
                         self.sigma, validation_queries,
                         validation_ranking_scores[i - fold_indices[0] + 1])
@@ -465,14 +494,30 @@ class LambdaRandomForest(object):
         for tree in trees:
             output += tree.predict(feature_vectors, check_input=False)
 
-    def predict(self, queries, n_jobs=1):
-        ''' 
+    def predict(self, queries, compact=True, n_jobs=1):
+        '''
         Predict the ranking score for each individual document
         in the given queries.
 
-        n_jobs: int, optional (default is 1)
+        If `compact` is set to True then the output will be one
+        long 1d array containing the rankings for all the queries
+        instead of a list of 1d arrays.
+
+        The compact array can be subsequently index using query
+        index pointer array, see `queries.query_indptr`.
+
+        query: Queries instance
+            The query whose documents should be ranked.
+
+        compact : boolean, optional (default=False)
+            If True, a single array made of concatenated rankings is returned
+            If False, the returned rankings will be returned as a list filled
+            with rankings of individual queries. .
+
+         n_jobs : int, optional (default=1)
             The number of working threads that will be spawned to compute
-            the ranking scores. If -1, the current number of CPUs will be used.
+            the rankings. If -1, the maximum number of available CPUs will
+            be used.
         '''
         if len(self.estimators) == 0:
             raise ValueError('the model has not been trained yet')
@@ -487,7 +532,7 @@ class LambdaRandomForest(object):
         Parallel(n_jobs=n_jobs, backend="threading")(
             delayed(parallel_helper, check_pickle=False)(
                 LambdaRandomForest, '_LambdaRandomForest__predict',
-                self.estimators, 
+                self.estimators,
                 queries.feature_vectors[indices[i]:indices[i + 1]],
                 predictions[indices[i]:indices[i + 1]])
             for i in range(indices.size - 1)
@@ -495,9 +540,56 @@ class LambdaRandomForest(object):
 
         predictions /= len(self.estimators)
 
-        return predictions
+        if compact or len(queries) == 1:
+            return predictions
+        else:
+            return np.array_split(predictions, queries.query_indptr[1:-1])
 
-    def evaluate(self, queries, metric=None, n_jobs=1):
+    def predict_rankings(self, queries, compact=False, return_scores=False,
+                         n_jobs=1):
+        '''
+        Predict rankings of the documents for the given queries.
+
+        If `compact` is set to True then the output will be one
+        long 1d array containing the rankings for all the queries
+        instead of a list of 1d arrays.
+
+        The compact array can be subsequently index using query
+        index pointer array, see `queries.query_indptr`.
+
+        query: Queries instance
+            The query whose documents should be ranked.
+
+        compact : boolean, optional (default=False)
+            If True, a single array made of concatenated rankings is returned
+            If False, the returned rankings will be returned as a list filled
+            with rankings of individual queries.
+
+        return_scores : boolean, optional (default=False)
+            Indicates that the ranking scores, on which the returned rankings
+            are based, should be returned as well.
+
+         n_jobs : int, optional (default=1)
+            The number of working threads that will be spawned to compute
+            the rankings. If -1, the maximum number of available CPUs will
+            be used.
+        '''
+        # Predict the ranking scores for the documents.
+        predictions = self.predict(queries, n_jobs)
+
+        rankings = np.zeros(queries.document_count(), dtype=np.intc)
+
+        ranksort_queries(queries.query_indptr, predictions, rankings)
+
+        if compact or len(queries) == 1:
+            return (rankings, predictions) if return_scores else rankings
+        elif return_scores:
+            return (np.array_split(rankings, queries.query_indptr[1:-1]),
+                    np.array_split(predictions, queries.query_indptr[1:-1]))
+        else:
+            return np.array_split(rankings, queries.query_indptr[1:-1])
+
+    def evaluate(self, queries, metric=None, out=None, n_jobs=1):
         '''
         Evaluate the performance of the model on the given queries.
 
@@ -516,47 +608,19 @@ class LambdaRandomForest(object):
         n_jobs: int, optional (default is 1)
             The number of working threads that will be spawned to compute
             the ranking scores. If -1, the current number of CPUs will be used.
+        out : array of floats, shape = [n_documents], or None
+            If not None, it will be filled with the metric values
+            for each query.
         '''
         if metric is None:
             metric = self.metric
 
         scores = self.predict(queries, n_jobs=_get_n_jobs(n_jobs))
 
-        return MetricFactory(metric, aslist(queries),
-                      self.random_state).evaluate_queries(queries, scores)
+        metric = MetricFactory(metric, queries=aslist(queries),
+                               random_state=self.random_state)
 
-    def predict_rankings(self, queries, compact=False, n_jobs=1):
-        ''' 
-        Predict rankings of the documents for the given queries.
-
-        If `compact` is set to True then the output will be one
-        long 1d array containing the rankings for all the queries
-        instead of a list of 1d arrays.
-
-        The compact array can be subsequently index using query
-        index pointer array, see `queries.query_indptr`.
-
-        query: Query
-            The query whose documents should be ranked.
-
-        compact: bool
-            Specify to return rankings in compact format.
-
-         n_jobs: int, optional (default is 1)
-            The number of working threads that will be spawned to compute
-            the ranking scores. If -1, the current number of CPUs will be used.
-        '''
-        # Predict the ranking scores for the documents.
-        predictions = self.predict(queries, n_jobs)
-
-        rankings = np.zeros(queries.document_count(), dtype=np.intc)
-
-        ranksort_queries(queries.query_indptr, predictions, rankings)
-
-        if compact or len(queries) == 1:
-            return rankings
-        else:
-            return np.array_split(rankings, queries.query_indptr[1:-1])
+        return metric.evaluate_queries(queries, scores, out=out)
 
     def feature_importances(self, n_jobs=1):
         '''
@@ -577,7 +641,7 @@ class LambdaRandomForest(object):
 
     @classmethod
     def load(cls, filepath):
-        ''' 
+        '''
         Load the previously saved LambdaRandomForest model
         from the specified file.
 
@@ -592,7 +656,7 @@ class LambdaRandomForest(object):
         return unpickle(filepath)
 
     def save(self, filepath):
-        ''' 
+        '''
         Save te LambdaRandomForest model into the specified file.
 
         Parameters:
@@ -605,7 +669,7 @@ class LambdaRandomForest(object):
         pickle(self, filepath)
 
     def __str__(self):
-        ''' 
+        '''
         Return textual representation of the LambdaRandomForest model.
         '''
         return ('LambdaRandomForest(trees=%d, max_depth=%s, max_leaf_nodes=%s,'

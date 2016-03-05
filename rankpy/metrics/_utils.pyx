@@ -29,7 +29,7 @@ from libc.stdlib cimport calloc, free, rand, srand, qsort, RAND_MAX
 from libc.time cimport time
 from libc.time cimport time_t
 
-from libc.math cimport log as ln
+from libc.math cimport log as ln, isnan
 
 from numpy import float64 as DOUBLE
 from numpy import int32   as INT
@@ -41,6 +41,9 @@ from numpy import int32   as INT
 # The minimum value of 32 bit integer.
 cdef INT_t INT32_MIN = np.iinfo('i').min
 cdef INT_t INT32_MAX = np.iinfo('i').max
+
+cdef DOUBLE_t NaN = np.nan
+cdef DOUBLE_t INFINITY = np.inf
 
 # Auxiliary document structure, used for sort-ing and
 # argsort-ing.
@@ -59,7 +62,7 @@ cdef enum:
 
 
 cdef int __compare(const void *a, const void *b) nogil:
-    ''' 
+    '''
     Compare function used in stdlib's qsort. The parameters are 2 instances
     of DOCUMENT_t, which are being sorted in descending order according to
     their ranking scores, i.e. the higher the ranking score the lower the
@@ -83,15 +86,19 @@ cdef void __argranksort(DOUBLE_t *ranking_scores,
                         INT_t document_position_offset,
                         INT_t n_documents,
                         unsigned int *seed) nogil:
-    ''' 
+    '''
     Auxiliary function for ranksort and argranksort functions.
     '''
     cdef INT_t i
 
     for i in range(n_documents):
         documents[i].position = i + document_position_offset
-        documents[i].nonce = our_rand_r(seed)
-        documents[i].score = ranking_scores[i]
+        if isnan(ranking_scores[i]):
+            documents[i].nonce = 0
+            documents[i].score = -INFINITY
+        else:
+            documents[i].nonce = our_rand_r(seed)
+            documents[i].score = ranking_scores[i]
 
     qsort(documents, n_documents, sizeof(DOCUMENT_t), __compare)
 
@@ -101,7 +108,7 @@ cdef void __argranksort_queries(INT_t *query_indptr,
                                 DOUBLE_t *ranking_scores,
                                 DOCUMENT_t *documents,
                                 unsigned int *seed) nogil:
-    ''' 
+    '''
     Auxiliary function for ranksort_queries and argranksort_queries functions.
     '''
     cdef INT_t i
@@ -111,11 +118,11 @@ cdef void __argranksort_queries(INT_t *query_indptr,
                       query_indptr[i], query_indptr[i + 1] - query_indptr[i], seed)
 
 
-cdef void argranksort_c(DOUBLE_t *ranking_scores,
-                        INT_t *ranks,
-                        INT_t n_documents,
-                        unsigned int *seed) nogil:
-    ''' 
+cdef INT_t argranksort_c(DOUBLE_t *ranking_scores,
+                         INT_t *ranks,
+                         INT_t n_documents,
+                         unsigned int *seed) nogil:
+    '''
     Return the rank position of the documents associated with the specified ranking_scores,
     i.e. `ranks[i]` is the position of the `ranking_scores[i]` within the sorted array
     (in descending order) of `ranking_scores`.
@@ -124,26 +131,34 @@ cdef void argranksort_c(DOUBLE_t *ranking_scores,
         INT_t i
         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
 
+    if documents == NULL:
+        return -1
+
     __argranksort(ranking_scores, documents, 0, n_documents, seed)
 
     for i in range(n_documents):
         ranks[documents[i].position] = i
 
     free(documents)
-    
 
-cdef void argranksort_queries_c(INT_t *query_indptr,
-                                INT_t n_queries,
-                                DOUBLE_t *ranking_scores,
-                                INT_t *ranks,
-                                unsigned int *seed) nogil:
-    ''' 
+    return 0
+
+
+cdef INT_t argranksort_queries_c(INT_t *query_indptr,
+                                 INT_t n_queries,
+                                 DOUBLE_t *ranking_scores,
+                                 INT_t *ranks,
+                                 unsigned int *seed) nogil:
+    '''
     Return the rank position of the documents within the document list of
     specified queries, which is determined using the specified ranking scores.
     '''
     cdef:
         INT_t i, j, r, n_documents = query_indptr[n_queries] - query_indptr[0]
         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
+
+    if documents == NULL:
+        return -1
 
     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents, seed)
 
@@ -155,12 +170,14 @@ cdef void argranksort_queries_c(INT_t *query_indptr,
 
     free(documents)
 
+    return 0
 
-cdef void ranksort_c(DOUBLE_t *ranking_scores,
-                     INT_t *ranking,
-                     INT_t n_documents,
-                     unsigned int *seed) nogil:
-    ''' 
+
+cdef INT_t ranksort_c(DOUBLE_t *ranking_scores,
+                      INT_t *ranking,
+                      INT_t n_documents,
+                      unsigned int *seed) nogil:
+    '''
     Return the ranking of the documents associated with the specified ranking scores,
     i.e. `ranking[i]` identifies the ranking score which would be placed at i-th
     position within the sorted array (in descending order) of `ranking_scores`.
@@ -169,6 +186,9 @@ cdef void ranksort_c(DOUBLE_t *ranking_scores,
         INT_t i
         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
 
+    if documents == NULL:
+        return -1
+
     __argranksort(ranking_scores, documents, 0, n_documents, seed)
 
     for i in range(n_documents):
@@ -176,13 +196,15 @@ cdef void ranksort_c(DOUBLE_t *ranking_scores,
 
     free(documents)
 
+    return 0
 
-cdef void ranksort_queries_c(INT_t *query_indptr,
-                             INT_t n_queries,
-                             DOUBLE_t *ranking_scores,
-                             INT_t *ranking,
-                             unsigned int *seed) nogil:
-    ''' 
+
+cdef INT_t ranksort_queries_c(INT_t *query_indptr,
+                              INT_t n_queries,
+                              DOUBLE_t *ranking_scores,
+                              INT_t *ranking,
+                              unsigned int *seed) nogil:
+    '''
     Return the ranking of the documents associated with the specified ranking scores,
     i.e. `ranking_scores[ranking[i]]` will be the ranking score which would be placed
     at i-th position within the sorted array (in descending order) of `ranking_scores`.
@@ -190,6 +212,9 @@ cdef void ranksort_queries_c(INT_t *query_indptr,
     cdef:
         INT_t i, j, n_documents = query_indptr[n_queries] - query_indptr[0]
         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
+
+    if documents == NULL:
+        return -1
 
     __argranksort_queries(query_indptr, n_queries, ranking_scores, documents, seed)
 
@@ -199,18 +224,23 @@ cdef void ranksort_queries_c(INT_t *query_indptr,
 
     free(documents)
 
+    return 0
 
-cdef void ranksort_relevance_scores_c(DOUBLE_t *ranking_scores,
-                                      INT_t *relevance_scores,
-                                      INT_t n_documents,
-                                      INT_t *out,
-                                      unsigned int *seed) nogil:
-    ''' 
+
+cdef INT_t ranksort_relevance_scores_c(DOUBLE_t *ranking_scores,
+                                       INT_t *relevance_scores,
+                                       INT_t n_documents,
+                                       INT_t *out,
+                                       unsigned int *seed) nogil:
+    '''
     Rank the specified relevance scores according to the specified ranking scores.
     '''
     cdef:
         INT_t i
         DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
+
+    if documents == NULL:
+        return -1
 
     __argranksort(ranking_scores, documents, 0, n_documents, seed)
 
@@ -219,32 +249,79 @@ cdef void ranksort_relevance_scores_c(DOUBLE_t *ranking_scores,
 
     free(documents)
 
+    return 0
 
-cdef void ranksort_relevance_scores_queries_c(INT_t *query_indptr,
-                                              INT_t n_queries,
-                                              DOUBLE_t *ranking_scores,
-                                              INT_t *relevance_scores,
-                                              INT_t *out,
-                                              unsigned int *seed) nogil:
-    ''' 
+
+cdef INT_t ranksort_relevance_scores_queries_c(INT_t *query_indptr,
+                                               INT_t n_queries,
+                                               DOUBLE_t *ranking_scores,
+                                               INT_t *relevance_scores,
+                                               INT_t *out,
+                                               unsigned int *seed) nogil:
+    '''
     Rank the specified relevance scores according to the specified ranking
-    scores with respect to the given queries.
+    scores with respect to the given queries. If no ranking scores are given
+    the relevances are sorted in decreasing order.
     '''
     cdef:
         INT_t i, j, n_documents = query_indptr[n_queries] - query_indptr[0]
-        DOCUMENT_t *documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
+        cdef INT_t *counts = NULL
+        cdef INT_t maximum = INT32_MIN
+        DOCUMENT_t *documents = NULL
 
-    __argranksort_queries(query_indptr, n_queries, ranking_scores, documents, seed)
+    if ranking_scores != NULL:
+        documents = <DOCUMENT_t *> calloc(n_documents, sizeof(DOCUMENT_t))
 
-    for i in range(n_queries):
-        for j in range(query_indptr[i] - query_indptr[0], query_indptr[i + 1] - query_indptr[0]):
-            out[j] = relevance_scores[documents[j].position]
+        if documents == NULL:
+            return -1
 
-    free(documents)
+        __argranksort_queries(query_indptr, n_queries, ranking_scores,
+                              documents, seed)
+
+        for i in range(n_queries):
+            for j in range(query_indptr[i] - query_indptr[0],
+                           query_indptr[i + 1] - query_indptr[0]):
+                out[j] = relevance_scores[documents[j].position]
+
+        free(documents)
+
+    else:
+        # Find the maximum relevance score...
+        for i in range(query_indptr[n_queries]):
+            if relevance_scores[i] > maximum:
+                    maximum = relevance_scores[i]
+
+        # ... and allocate the corresponding number of counting sort bins.
+        counts = <INT_t *> calloc(maximum + 2, sizeof(INT_t))
+
+        if counts == NULL:
+            return -1
+
+        # Sort the relevances using counting sort algorithm.
+        for i in range(n_queries):
+            for j in range(maximum + 2):
+                counts[j] = 0
+
+            for j in range(query_indptr[i], query_indptr[i + 1]):
+                counts[relevance_scores[j]] += 1
+
+            for j in range(maximum + 1, 0, -1):
+                counts[j - 1] += counts[j]
+
+            for j in range(query_indptr[i], query_indptr[i + 1]):
+                out[counts[relevance_scores[j] + 1]] = relevance_scores[j]
+                counts[relevance_scores[j] + 1] += 1
+
+            out += (query_indptr[i + 1] - query_indptr[i])
+
+        free(counts)
+
+    return 0
 
 
-cdef int relevance_argsort_v1_c(INT_t *array, INT_t *indices, INT_t size, INT_t maximum=INT32_MIN) nogil:
-    ''' 
+cdef INT_t relevance_argsort_v1_c(INT_t *array, INT_t *indices,
+                                  INT_t size, INT_t maximum=INT32_MIN) nogil:
+    '''
     Find indices that sort the given array of non-negative integers in descending order.
     The sorting algorithm is 'counting sort' and it should be used for sorting numbers
     with decent maximum value.
@@ -279,8 +356,9 @@ cdef int relevance_argsort_v1_c(INT_t *array, INT_t *indices, INT_t size, INT_t 
     return 0
 
 
-cdef void relevance_argsort_v2_c(INT_t *array, INT_t *indices, INT_t size) nogil:
-    ''' 
+cdef void relevance_argsort_v2_c(INT_t *array, INT_t *indices,
+                                 INT_t size) nogil:
+    '''
     An alternative argosrt for unbounded integers. See `relevance_argsort_v1_c`.
     '''
     cdef INT_t i
@@ -303,69 +381,126 @@ cdef unsigned int get_seed(object random_state=None):
 
 
 cpdef argranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks, object random_state=None):
-    ''' 
-    Return the rank position of the documents associated with the specified ranking_scores,
-    i.e. `ranks[i]` is the position of the `ranking_scores[i]` within the sorted array
-    (in descending order) of `ranking_scores`.
+    '''
+    Return the rank position of the documents associated with the specified
+    ranking_scores, i.e. `ranks[i]` is the position of the `ranking_scores[i]`
+    within the sorted array (in descending order) of `ranking_scores`.
     '''
     cdef unsigned int seed = get_seed(random_state)
+    cdef INT_t rc
+
     with nogil:
-        argranksort_c(&ranking_scores[0], &ranks[0], ranking_scores.shape[0], &seed)
+        rc = argranksort_c(&ranking_scores[0], &ranks[0],
+                           ranking_scores.shape[0], &seed)
+
+    if rc == -1:
+        raise MemoryError()
 
 
-cpdef argranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranks, object random_state=None):
-    ''' 
+cpdef argranksort_queries(INT_t[::1] query_indptr,
+                          DOUBLE_t[::1] ranking_scores,
+                          INT_t[::1] ranks, object random_state=None):
+    '''
     Return the rank position of the documents within the document list of
     specified queries, which is determined using the specified ranking scores.
     '''
     cdef unsigned int seed = get_seed(random_state)
+    cdef INT_t rc
+
     with nogil:
-        argranksort_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &ranks[0], &seed)
+        rc = argranksort_queries_c(&query_indptr[0], query_indptr.shape[0] - 1,
+                                   &ranking_scores[0], &ranks[0], &seed)
+
+    if rc == -1:
+        raise MemoryError()
 
 
-cpdef ranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking, object random_state=None):
-    ''' 
-    Return the ranking of the documents associated with the specified ranking scores,
-    i.e. `ranking[i]` identifies the ranking score which would be placed at i-th
-    position within the sorted array (in descending order) of `ranking_scores`.
+cpdef ranksort(DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking,
+               object random_state=None):
+    '''
+    Return the ranking of the documents associated with the specified
+    ranking scores, i.e. `ranking[i]` identifies the ranking score which
+    would be placed at i-th position within the sorted array (in descending
+    order) of `ranking_scores`.
     '''
     cdef unsigned int seed = get_seed(random_state)
+    cdef INT_t rc
+
     with nogil:
-        ranksort_c(&ranking_scores[0], &ranking[0], ranking_scores.shape[0], &seed)
+        rc = ranksort_c(&ranking_scores[0], &ranking[0],
+                        ranking_scores.shape[0], &seed)
+
+    if rc == -1:
+        raise MemoryError()
 
 
-cpdef ranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] ranking, object random_state=None):
-    ''' 
-    Return the ranking of the documents associated with the specified ranking scores,
-    i.e. `ranking_scores[ranking[i]]` will be the ranking score which would be placed
-    at i-th position within the sorted array (in descending order) of `ranking_scores`.
+cpdef ranksort_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores,
+                       INT_t[::1] ranking, object random_state=None):
+    '''
+    Return the ranking of the documents associated with the specified
+    ranking scores, i.e. `ranking_scores[ranking[i]]` will be the ranking
+    score which would be placed at i-th position within the sorted array
+    (in descending order) of `ranking_scores`.
     '''
     cdef unsigned int seed = get_seed(random_state)
+    cdef INT_t rc
+
     with nogil:
-        ranksort_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &ranking[0], &seed)
+        rc = ranksort_queries_c(&query_indptr[0], query_indptr.shape[0] - 1,
+                                &ranking_scores[0], &ranking[0], &seed)
+
+    if rc == -1:
+        raise MemoryError()
 
 
-cpdef ranksort_relevance_scores(DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out, object random_state=None):
-    ''' 
-    Rank the specified relevance scores according to the specified ranking scores.
+cpdef ranksort_relevance_scores(DOUBLE_t[::1] ranking_scores,
+                                INT_t[::1] relevance_scores,
+                                INT_t[::1] out, object random_state=None):
+    '''
+    Rank the specified relevance scores according to
+    the specified ranking scores.
     '''
     cdef unsigned int seed = get_seed(random_state)
+    cdef INT_t rc
+
     with nogil:
-        ranksort_relevance_scores_c(&ranking_scores[0], &relevance_scores[0], ranking_scores.shape[0], &out[0], &seed)
+        rc = ranksort_relevance_scores_c(&ranking_scores[0],
+                                         &relevance_scores[0],
+                                         ranking_scores.shape[0],
+                                         &out[0], &seed)
+
+    if rc == -1:
+        raise MemoryError()
 
 
-cpdef ranksort_relevance_scores_queries(INT_t[::1] query_indptr, DOUBLE_t[::1] ranking_scores, INT_t[::1] relevance_scores, INT_t[::1] out, object random_state=None):
-    ''' 
+cpdef ranksort_relevance_scores_queries(INT_t[::1] query_indptr,
+                                        DOUBLE_t[::1] ranking_scores,
+                                        INT_t[::1] relevance_scores,
+                                        INT_t[::1] out,
+                                        object random_state=None):
+    '''
     Rank the specified relevance scores according to the specified ranking
-    scores with respect to the given queries.
+    scores with respect to the given queries. If no ranking scores are given
+    the relevances are sorted in decreasing order.
     '''
     cdef unsigned int seed = get_seed(random_state)
+    cdef INT_t rc
+
     with nogil:
-        ranksort_relevance_scores_queries_c(&query_indptr[0], query_indptr.shape[0] - 1, &ranking_scores[0], &relevance_scores[0], &out[0], &seed)
+        rc = ranksort_relevance_scores_queries_c(&query_indptr[0],
+                                                 query_indptr.shape[0] - 1,
+                                                 &ranking_scores[0] if ranking_scores is not None else NULL,
+                                                 &relevance_scores[0],
+                                                 &out[0], &seed)
+
+    if rc == -1:
+        raise MemoryError()
 
 
-cpdef noise_relenvace_scores(INT_t[::1] relevance_scores, DOUBLE_t [:, ::1] probabilities, object random_state=None):
-    ''' 
+cpdef noise_relenvace_scores(INT_t[::1] relevance_scores,
+                             DOUBLE_t [:, ::1] probabilities,
+                             object random_state=None):
+    '''
     Create a new relevance scores by introducing noise into given relevances.
     The probability of score `i` changing into `j` is `probabilities[i, j]`.
     '''
@@ -395,25 +530,31 @@ cpdef noise_relenvace_scores(INT_t[::1] relevance_scores, DOUBLE_t [:, ::1] prob
                     scores[i] = j
                     break
                 else:
-                    p -= probabilities[s, j]                
+                    p -= probabilities[s, j]
 
     return scores
 
 
-cpdef relevance_argsort_v1(INT_t[::1] array, INT_t[::1] indices, INT_t size, INT_t maximum=INT32_MIN):
-    ''' 
-    Find indices that sort the given array of non-negative integers in descending order.
-    The sorting algorithm is 'counting sort' and it should be used for sorting numbers
-    with decent maximum value.
+cpdef relevance_argsort_v1(INT_t[::1] array, INT_t[::1] indices, INT_t size,
+                           INT_t maximum=INT32_MIN):
+    '''
+    Find indices that sort the given array of non-negative integers
+    in descending order. The sorting algorithm is 'counting sort'
+    and it should be used for sorting numbers with decent maximum value.
 
     To sort unbounded integers use `relevance_argsort_v2` instead.
     '''
+    cdef INT_t rc
+
     with nogil:
-        relevance_argsort_v1_c(&array[0], &indices[0], size, maximum)
+        rc = relevance_argsort_v1_c(&array[0], &indices[0], size, maximum)
+
+    if rc == -1:
+        raise MemoryError()
 
 
 cpdef relevance_argsort_v2(INT_t[::1] array, INT_t[::1] indices, INT_t size):
-    ''' 
+    '''
     An alternative argosrt for unbounded integers. See `relevance_argsort_v1`.
     '''
     with nogil:
@@ -583,14 +724,14 @@ cdef inline int our_rand_r(unsigned int *seed) nogil:
 
 
 cdef inline int rand_int_c(int low, int high, unsigned int *seed) nogil:
-    ''' 
+    '''
     Generate a random integer in [low, end).
     '''
     return low + our_rand_r(seed) % (high - low)
 
 
 cdef inline double rand_uniform_c(double low, double high, unsigned int *seed) nogil:
-    ''' 
+    '''
     Generate a random double in [low; high).
     '''
     return ((high - low) * <double> our_rand_r(seed) / <double> RAND_R_MAX) + low

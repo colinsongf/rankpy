@@ -21,7 +21,10 @@ import numpy as np
 import scipy.sparse as sp
 
 from itertools import chain, izip
-from utils import pickle, unpickle
+
+from utils import pickle
+from utils import unpickle
+from utils import asindexarray
 
 from warnings import warn
 
@@ -30,36 +33,150 @@ logger = logging.getLogger(__name__)
 
 
 class QueryDocumentSlices(object):
-    '''
-    Helper class for getting slices of
-    query-document index array.
-    '''
+    def __init__(self, queries):
+        pass
 
+class QueryDocumentInformationExtractor(object):
+    '''
+    Helper class that can be used to extract information
+    about queries and documents without necessary copying
+    data around.
+    '''
     def __init__(self, queries):
         self.queries = queries
+        self.indices = None
+
+    @property
+    def relevance_scores(self):
+        '''
+        Returns the relevance scores of the documents
+        of the indexed queries.
+        '''
+        if self.indices is None:
+            return np.array_split(self.queries.relevance_scores,
+                                  self.queries.query_indptr[1:-1])
+
+        S = self.queries.relevance_scores
+        Q = self.queries.query_indptr
+        I = self.indices
+
+        if len(I) == 1:
+            return S[Q[I[0]]:Q[I[0] + 1]]
+
+        return [S[Q[i]:Q[i + 1]] for i in I]
+
+    @property
+    def max_relevance_score(self):
+        '''
+        Return the maximum relevance score of a document
+        in the indexed queries.
+        '''
+        if self.indices is None:
+            return self.queries.relevance_scores.max()
+
+        S = self.queries.relevance_scores
+        Q = self.queries.query_indptr
+        I = self.indices
+
+        if len(I) == 1:
+            return S[Q[I[0]]:Q[I[0] + 1]].max()
+
+        return max([S[Q[i]:Q[i + 1]].max() for i in I])
+
+    @property
+    def query_ids(self):
+        '''
+        Returns query IDs of the indexed queries.
+        '''
+        if self.indices is None:
+            return self.queries.query_ids
+        else:
+            return self.queries.query_ids[self.indices]
+
+    @property
+    def query_count(self):
+        '''
+        Returns the number of indexed queries.
+        '''
+        if self.indices is None:
+            return len(self.queries)
+        else:
+            return len(self.indices)
+
+    @property
+    def document_count(self):
+        '''
+        Return the number of documents for each indexed query.
+        '''
+        if self.indices is None:
+            return self.queries.query_indptr[-1]
+
+        return np.diff(self.queries.query_indptr)[self.indices].sum()
+
+    @property
+    def document_counts(self):
+        '''
+        Return the number of documents for each indexed query.
+        '''
+        if self.indices is None:
+            return np.diff(self.queries.query_indptr)
+
+        return np.diff(self.queries.query_indptr)[self.indices]
+
+    @property
+    def max_document_count(self):
+        '''
+        Return the maximum number of documents query can have.
+        '''
+        if self.indices is None:
+            return self.queries.max_document_count()
+
+        return np.diff(self.queries.query_indptr)[self.indices].max()
+
+    @property
+    def qmask(self):
+        '''
+        Returns a bitmask array for masking the queries in index.
+        '''
+        if self.indices is None:
+            return np.ones(self.queries.query_count(), dtype='bool')
+
+        mask = np.zeros(self.queries.query_count(), dtype='bool')
+        mask[self.indices] = True
+
+        return mask
+
+    @property
+    def dmask(self):
+        '''
+        Returns a bitmask array for masking documents of the indexed queries.
+        '''
+        if self.indices is None:
+            return np.ones(self.queries.document_count(), dtype='bool')
+
+        Q = self.queries.query_indptr
+        I = self.indices
+
+        mask = np.zeros(self.queries.document_count(), dtype='bool')
+
+        for i in I:
+            mask[Q[i]:Q[i + 1]] = True
+
+        return mask
 
     def __getitem__(self, i):
         '''
-        Returns a slice for indexing documents of query `i` or a bitmask array,
-        (if `i` is an array) for masking documents of specified queries.
+        Sets the indexed queries to the specified list of indices.
         '''
-        indptr = self.queries.query_indptr
+        indices = asindexarray(i)
 
-        if isinstance(i, np.ndarray):
-            if i.ndim != 1:
-                raise ValueError('index array has more than 1 dimension')
-            if i.dtype.kind == 'b':
-                i = i.nonzero()[0]
+        # Check the validity of the queryindices.
+        if min(indices) < 0 or max(indices) >= len(self.queries):
+            raise ValueError('some query indices are out of bounds')
 
-            mask = np.zeros(self.queries.document_count(), dtype='bool')
+        self.indices = indices
 
-            for k in i:
-                mask[indptr[k]:indptr[k + 1]] = True
-
-            return mask
-
-        else:
-            return slice(indptr[i], indptr[i + 1])
+        return self
 
 
 class Queries(object):
@@ -188,7 +305,7 @@ class Queries(object):
         # Just to make use of the space (which might be found useful later).
         self.query_relevance_strides[:, 0] = self.query_indptr[1:]
 
-        self.qds = QueryDocumentSlices(self)
+        self.qdie = QueryDocumentInformationExtractor(self)
 
     def __str__(self):
         '''
@@ -355,9 +472,9 @@ class Queries(object):
 
                         if (query_indptr[-1] + n_purged_documents) % 10000 == 0:
                             logger.info('Read %d queries and %d documents '
-                                        'so far.' % (len(query_indptr) + 
+                                        'so far.' % (len(query_indptr) +
                                                      n_purged_queries - 1,
-                                                     query_indptr[-1] + 
+                                                     query_indptr[-1] +
                                                      n_purged_documents))
                     except:
                         # Ill-formated line (it should not happen).
@@ -510,8 +627,8 @@ class Queries(object):
                 while iQD < queries.query_relevance_strides[iQ, score]:
                     queries.relevance_scores[iQD] = score
                     iQD += 1
-        if not hasattr(queries, 'qds'):
-            queries.qds = QueryDocumentSlices(queries)
+        if not hasattr(queries, 'qdie'):
+            queries.qdie = QueryDocumentInformationExtractor(queries)
         logger.info('Loaded %d queries with %d documents in total.' % (queries.query_count(), queries.document_count()))
         return queries
 
@@ -559,7 +676,7 @@ class Queries(object):
 
 
     def __getitem__(self, index):
-        ''' 
+        '''
         Return new Queries object containing queries in the `index`.
         '''
         # Handle slices.
@@ -570,7 +687,7 @@ class Queries(object):
             if step == 1:
                 feature_vectors = self.feature_vectors[self.query_indptr[start]:self.query_indptr[stop]]
                 relevance_scores = self.relevance_scores[self.query_indptr[start]:self.query_indptr[stop]]
-                query_indptr = (np.array(self.query_indptr[start:stop + 1]) - 
+                query_indptr = (np.array(self.query_indptr[start:stop + 1]) -
                                          self.query_indptr[start])
                 query_ids = self.query_ids[start:stop]
 
@@ -606,14 +723,14 @@ class Queries(object):
                        has_sorted_relevances=True)
 
     def __len__(self):
-        ''' 
+        '''
         Returns the number of queries.
         '''
         return self.query_count()
 
     def adjust(self, min_score=None, min_documents=None, purge=False,
                scale=False, return_indices=False, remove_features=None):
-        ''' 
+        '''
         Adjust the document set such that the minimum relevance score is
         changed to the given value (all values are adjusted accordingly)
         and queries, which have all documents with the same relevance labels
@@ -752,7 +869,7 @@ class Queries(object):
 
 
     def get_query(self, qid):
-        ''' 
+        '''
         Return the query with the given id.
         '''
         i = np.where(self.query_ids == qid)[0]
@@ -763,7 +880,7 @@ class Queries(object):
         return self[i[0]]
 
     def document_count(self, i=None):
-        ''' 
+        '''
         Return the number of documents for the query. If i is None
         than the total number of "documents" is returned.
         '''
@@ -774,35 +891,35 @@ class Queries(object):
 
 
     def get_feature_vectors(self, i):
-        ''' 
+        '''
         Return the feature vectors of the documents for the specified query.
         '''
         return self.feature_vectors[self.query_indptr[i]:self.query_indptr[i + 1]]
 
 
     def query_count(self):
-        ''' 
+        '''
         Return the number of queries in this Queries.
         '''
         return self.n_queries
 
 
-    def highest_relevance(self):
-        ''' 
+    def max_relevance_score(self):
+        '''
         Return the maximum relevance score of a document.
         '''
         return self.max_score
 
 
-    def longest_document_list(self):
-        ''' 
+    def max_document_count(self):
+        '''
         Return the maximum number of documents query can have.
         '''
         return np.diff(self.query_indptr).max()
 
 
 def concatenate(queries):
-    ''' 
+    '''
     Concatenate the given list of queries into a single Queries object.
 
     queries: list of Queries
@@ -821,7 +938,7 @@ def concatenate(queries):
 
     try:
         feature_indices = (np.concatenate(
-            [q.feature_indices.reshape(1, -1) for q in queries]) - 
+            [q.feature_indices.reshape(1, -1) for q in queries]) -
             queries[0].feature_indices)
     except:
         raise ValueError('feature indices for some queries does not match')
@@ -829,7 +946,7 @@ def concatenate(queries):
     assert not np.any(feature_indices), 'feature indices for some queries does not match'
 
     feature_indices = queries[0].feature_indices
-    
+
     return Queries(feature_vectors, relevance_scores, query_indptr,
                    max_score, False, query_ids, feature_indices)
 
@@ -862,7 +979,7 @@ def find_constant_features(queries):
                 raise ValueError('dimensionality of queries feature vectors '
                                  'in the collection does not match')
 
-            feature_ranges = np.vstack((qs.feature_vectors.min(axis=0), 
+            feature_ranges = np.vstack((qs.feature_vectors.min(axis=0),
                                         qs.feature_vectors.max(axis=0)))
 
             mask &= (feature_ranges[0] == feature_ranges[1])
