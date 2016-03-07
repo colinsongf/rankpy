@@ -15,17 +15,16 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with RankPy.  If not, see <http://www.gnu.org/licenses/>.
 
-
-''' 
-Learning to Rank models
+'''
+Models for simulation of user click behaviour.
 '''
 
-from . import users
-
-from .lambdamart import LambdaMART
-from .lambdarandomforest import LambdaRandomForest
+from .users_inner import CascadeUserModel
+from .users_inner import ClickChainUserModel
+from .users_inner import UserBrowsingModel
 
 __all__ = [
-    'LambdaMART',
-    'LambdaRandomForest',
+    'CascadeUserModel',
+    'ClickChainUserModel',
+    'UserBrowsingModel',
 ]
