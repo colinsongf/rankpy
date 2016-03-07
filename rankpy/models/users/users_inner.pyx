@@ -616,8 +616,8 @@ cdef class ClickChainUserModel(AbstractUserModel):
 
     def __reduce__(self):
         return (ClickChainUserModel,
-                (self.p_attraction, self.p_continue_noclick,
-                 self.p_continue_click_norel, self.p_continue_click_rel,
+                (self.p_attraction, 1.0 - self.p_stop_noclick,
+                 1.0 - self.p_stop_click_norel, 1.0 - self.p_stop_click_rel,
                  self.rand_r_state))
 
     cdef int get_clicks_c(self, INT32_t *ranked_documents,
