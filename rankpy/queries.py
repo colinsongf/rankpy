@@ -32,10 +32,6 @@ from warnings import warn
 logger = logging.getLogger(__name__)
 
 
-class QueryDocumentSlices(object):
-    def __init__(self, queries):
-        pass
-
 class QueryDocumentInformationExtractor(object):
     '''
     Helper class that can be used to extract information
