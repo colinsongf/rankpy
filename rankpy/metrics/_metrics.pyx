@@ -1924,9 +1924,7 @@ cdef class MeanReciprocalRank(Metric):
             The seed for random number generator, which is used to
             break ties in rankings.
         '''
-        if cutoff <= 0:
-            raise ValueError('mean reciprocal rank metric cutoff must '
-                             'be a positive integer')
+        pass
 
     def __reduce__(self):
         '''
