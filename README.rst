@@ -25,7 +25,7 @@ Install the prerequisites and RankPY as follows::
 
 Using RankPy: Simple Example
 ----------------------------
-0) Beware that running a python script that imports rankpy from within a cloned (unzipped) project directory leads to an __ImportError__. This is normal because the modules reported missing are created during installation of RankPy. Just make sure you run your scripts not in the project root directory.
+0) Beware that running a python script that imports rankpy from within a cloned (unzipped) project directory leads to an *ImportError*. This is normal because the modules reported missing are created during installation of RankPy. Just make sure you run your scripts not in the project root directory.
 
 1) Prepare data in svmlight format, e.g., download the *MQ2007* (see next section on `Data`_) ::
 
