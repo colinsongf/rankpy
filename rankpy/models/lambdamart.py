@@ -255,6 +255,21 @@ def compute_newton_gradient_steps(estimator, queries, ranking_scores, metric,
         np.copyto(estimator.tree_.value, gradients.reshape(-1, 1, 1))
 
 
+def _scale_tree_based_estimator_predictions(estimator, factor):
+    if isinstance(estimator, RandomForestRegressor):
+        estimators = estimator.estimators_
+    else:
+        estimators = [estimator]
+
+    for estimator in estimators:
+        # Make a copy...
+        value = np.array(estimator.tree_.value)
+        # scale only the values in the prediciton nodes...
+        value[estimator.tree_.children_left == TREE_LEAF] *= factor
+        # ... and overwrite the values in the tree.
+        np.copyto(estimator.tree_.value, value)
+
+
 class LambdaMART(object):
     '''
     LambdaMART learning to rank model.
@@ -352,8 +367,8 @@ class LambdaMART(object):
                  max_leaf_nodes=7, max_features=None, min_samples_split=2,
                  min_samples_leaf=1, shrinkage=0.1, use_newton_method=True,
                  use_random_forest=0, random_thresholds=False, subsample=1.0,
-                 use_logit_boost=False, estopping=50, min_n_estimators=1,
-                 base_model=None, n_jobs=1, random_state=None):
+                 use_logit_boost=False, use_ada_boost=False, estopping=50,
+                 min_n_estimators=1, base_model=None, n_jobs=1, random_state=None):
         self.estimators = []
         self.n_estimators = n_estimators
         self.min_n_estimators = min_n_estimators
@@ -367,6 +382,7 @@ class LambdaMART(object):
         self.base_model = base_model
         self.shrinkage = shrinkage
         self.subsample = subsample
+        self.use_ada_boost = use_ada_boost
         self.use_logit_boost = use_logit_boost
         self.use_newton_method = use_newton_method
         self.use_random_forest = use_random_forest
@@ -376,6 +392,11 @@ class LambdaMART(object):
         self.validation_performance = None
         self.best_performance = None
         self.random_state = check_random_state(random_state)
+
+        if self.subsample < 1.0 and self.use_ada_boost:
+            warnings.warn('subsampling of queries will be managed by AdaRank '
+                          'like distribution - subsample (%d) is ignored'
+                          % self.subsample)
 
         # Force the use of newer version of scikit-learn.
         if int(sklearn.__version__.split('.')[1]) < 17:
@@ -679,10 +700,16 @@ class LambdaMART(object):
 
         self.n_estimators = max(self.n_estimators, self.min_n_estimators)
 
-        if self.subsample != 1.0:
+        if self.subsample != 1.0 or self.use_ada_boost:
             # Keep the original weights to make sure only queries with
             # non-zero weights are sampled from.
             training_query_weights_orig = training_query_weights.copy()
+
+        if self.use_ada_boost:
+            training_query_performance = np.zeros(len(training_query_weights),
+                                                  dtype='float64')
+        else:
+            training_query_performance = None
 
         # Iteratively build a sequence of regression trees.
         for k in xrange(self.n_estimators):
@@ -697,6 +724,16 @@ class LambdaMART(object):
                 # ... and make sure the right queries are sampled.
                 training_query_weights *= training_query_weights_orig
 
+                training_document_weights.fill(0.0)
+                training_document_weights[training_queries.qdie[training_query_weights > 0.0].dmask] = 1.0
+
+                massless_training_document_indices = (training_document_weights == 0.0).nonzero()[0]
+
+            if self.use_ada_boost:
+                training_query_weights = training_query_weights_orig * np.exp(-training_query_performance)
+                training_query_weights /= training_query_weights.sum()
+
+                # TODO: Check this is really necessary...
                 training_document_weights.fill(0.0)
                 training_document_weights[training_queries.qdie[training_query_weights > 0.0].dmask] = 1.0
 
@@ -865,7 +902,20 @@ class LambdaMART(object):
                                                training_queries, training_scores,
                                                scales=training_query_scales,
                                                query_weights=training_query_weights,
-                                               document_weights=training_document_weights)
+                                               document_weights=training_document_weights,
+                                               out=training_query_performance)
+
+            if self.use_ada_boost:
+                # Compute the weight for the current estimator based on its
+                # performance on individual queries...
+                alpha = 0.5 * np.log(np.dot(training_query_weights,
+                                            1 + training_query_performance) /
+                                     np.dot(training_query_weights,
+                                            1 - training_query_performance))
+
+                # ... and put the weight 'inside' the current estimator,
+                # instead of keeping track of each alpha.
+                _scale_tree_based_estimator_predictions(estimator, alpha)
 
             if validation_queries is None:
                 logger.info('#%08d: %s (training): %11.8f (%11.8f)'
