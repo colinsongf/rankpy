@@ -363,7 +363,7 @@ class LambdaMART(object):
 
     XXX: Finish this!!!
     '''
-    def __init__(self, metric='NDCG', n_estimators=1000, max_depth=None,
+    def __init__(self, metric='nDCG', n_estimators=1000, max_depth=None,
                  max_leaf_nodes=7, max_features=None, min_samples_split=2,
                  min_samples_leaf=1, shrinkage=0.1, use_newton_method=True,
                  use_random_forest=0, random_thresholds=False, subsample=1.0,
