@@ -508,7 +508,7 @@ typedef struct {
 } __Pyx_BufFmt_Context;
 
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":726
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":726
  * # in Cython to enable them only on the right systems.
  * 
  * ctypedef npy_int8       int8_t             # <<<<<<<<<<<<<<
@@ -517,7 +517,7 @@ typedef struct {
  */
 typedef npy_int8 __pyx_t_5numpy_int8_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":727
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":727
  * 
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t             # <<<<<<<<<<<<<<
@@ -526,7 +526,7 @@ typedef npy_int8 __pyx_t_5numpy_int8_t;
  */
 typedef npy_int16 __pyx_t_5numpy_int16_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":728
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":728
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t             # <<<<<<<<<<<<<<
@@ -535,7 +535,7 @@ typedef npy_int16 __pyx_t_5numpy_int16_t;
  */
 typedef npy_int32 __pyx_t_5numpy_int32_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":729
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":729
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t
  * ctypedef npy_int64      int64_t             # <<<<<<<<<<<<<<
@@ -544,7 +544,7 @@ typedef npy_int32 __pyx_t_5numpy_int32_t;
  */
 typedef npy_int64 __pyx_t_5numpy_int64_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":733
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":733
  * #ctypedef npy_int128     int128_t
  * 
  * ctypedef npy_uint8      uint8_t             # <<<<<<<<<<<<<<
@@ -553,7 +553,7 @@ typedef npy_int64 __pyx_t_5numpy_int64_t;
  */
 typedef npy_uint8 __pyx_t_5numpy_uint8_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":734
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":734
  * 
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t             # <<<<<<<<<<<<<<
@@ -562,7 +562,7 @@ typedef npy_uint8 __pyx_t_5numpy_uint8_t;
  */
 typedef npy_uint16 __pyx_t_5numpy_uint16_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":735
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":735
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t             # <<<<<<<<<<<<<<
@@ -571,7 +571,7 @@ typedef npy_uint16 __pyx_t_5numpy_uint16_t;
  */
 typedef npy_uint32 __pyx_t_5numpy_uint32_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":736
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":736
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t
  * ctypedef npy_uint64     uint64_t             # <<<<<<<<<<<<<<
@@ -580,7 +580,7 @@ typedef npy_uint32 __pyx_t_5numpy_uint32_t;
  */
 typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":740
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":740
  * #ctypedef npy_uint128    uint128_t
  * 
  * ctypedef npy_float32    float32_t             # <<<<<<<<<<<<<<
@@ -589,7 +589,7 @@ typedef npy_uint64 __pyx_t_5numpy_uint64_t;
  */
 typedef npy_float32 __pyx_t_5numpy_float32_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":741
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":741
  * 
  * ctypedef npy_float32    float32_t
  * ctypedef npy_float64    float64_t             # <<<<<<<<<<<<<<
@@ -598,7 +598,7 @@ typedef npy_float32 __pyx_t_5numpy_float32_t;
  */
 typedef npy_float64 __pyx_t_5numpy_float64_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":750
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":750
  * # The int types are mapped a bit surprising --
  * # numpy.int corresponds to 'l' and numpy.long to 'q'
  * ctypedef npy_long       int_t             # <<<<<<<<<<<<<<
@@ -607,7 +607,7 @@ typedef npy_float64 __pyx_t_5numpy_float64_t;
  */
 typedef npy_long __pyx_t_5numpy_int_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":751
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":751
  * # numpy.int corresponds to 'l' and numpy.long to 'q'
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t             # <<<<<<<<<<<<<<
@@ -616,7 +616,7 @@ typedef npy_long __pyx_t_5numpy_int_t;
  */
 typedef npy_longlong __pyx_t_5numpy_long_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":752
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":752
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t
  * ctypedef npy_longlong   longlong_t             # <<<<<<<<<<<<<<
@@ -625,7 +625,7 @@ typedef npy_longlong __pyx_t_5numpy_long_t;
  */
 typedef npy_longlong __pyx_t_5numpy_longlong_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":754
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":754
  * ctypedef npy_longlong   longlong_t
  * 
  * ctypedef npy_ulong      uint_t             # <<<<<<<<<<<<<<
@@ -634,7 +634,7 @@ typedef npy_longlong __pyx_t_5numpy_longlong_t;
  */
 typedef npy_ulong __pyx_t_5numpy_uint_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":755
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":755
  * 
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t             # <<<<<<<<<<<<<<
@@ -643,7 +643,7 @@ typedef npy_ulong __pyx_t_5numpy_uint_t;
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":756
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":756
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t
  * ctypedef npy_ulonglong  ulonglong_t             # <<<<<<<<<<<<<<
@@ -652,7 +652,7 @@ typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":758
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":758
  * ctypedef npy_ulonglong  ulonglong_t
  * 
  * ctypedef npy_intp       intp_t             # <<<<<<<<<<<<<<
@@ -661,7 +661,7 @@ typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
  */
 typedef npy_intp __pyx_t_5numpy_intp_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":759
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":759
  * 
  * ctypedef npy_intp       intp_t
  * ctypedef npy_uintp      uintp_t             # <<<<<<<<<<<<<<
@@ -670,7 +670,7 @@ typedef npy_intp __pyx_t_5numpy_intp_t;
  */
 typedef npy_uintp __pyx_t_5numpy_uintp_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":761
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":761
  * ctypedef npy_uintp      uintp_t
  * 
  * ctypedef npy_double     float_t             # <<<<<<<<<<<<<<
@@ -679,7 +679,7 @@ typedef npy_uintp __pyx_t_5numpy_uintp_t;
  */
 typedef npy_double __pyx_t_5numpy_float_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":762
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":762
  * 
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t             # <<<<<<<<<<<<<<
@@ -688,7 +688,7 @@ typedef npy_double __pyx_t_5numpy_float_t;
  */
 typedef npy_double __pyx_t_5numpy_double_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":763
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":763
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t             # <<<<<<<<<<<<<<
@@ -761,7 +761,7 @@ struct __pyx_obj_6rankpy_6models_5users_11users_inner_DependentClickModel;
 struct __pyx_obj_6rankpy_6models_5users_11users_inner_ClickChainUserModel;
 struct __pyx_obj_6rankpy_6models_5users_11users_inner_UserBrowsingModel;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":765
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":765
  * ctypedef npy_longdouble longdouble_t
  * 
  * ctypedef npy_cfloat      cfloat_t             # <<<<<<<<<<<<<<
@@ -770,7 +770,7 @@ struct __pyx_obj_6rankpy_6models_5users_11users_inner_UserBrowsingModel;
  */
 typedef npy_cfloat __pyx_t_5numpy_cfloat_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":766
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":766
  * 
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t             # <<<<<<<<<<<<<<
@@ -779,7 +779,7 @@ typedef npy_cfloat __pyx_t_5numpy_cfloat_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":767
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":767
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t
  * ctypedef npy_clongdouble clongdouble_t             # <<<<<<<<<<<<<<
@@ -788,7 +788,7 @@ typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
  */
 typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":769
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":769
  * ctypedef npy_clongdouble clongdouble_t
  * 
  * ctypedef npy_cdouble     complex_t             # <<<<<<<<<<<<<<
@@ -1283,7 +1283,7 @@ enum  {
   __pyx_e_6rankpy_6models_5users_11users_inner_RAND_R_MAX = 0x7FFFFFFF
 };
 
-/* "rankpy/models/users/users_inner.pyx":276
+/* "rankpy/models/users/users_inner.pyx":277
  * 
  *                 # Probability of stopping and/or abandoning at the current document.
  *                 stop_proba, abandon_proba = (<DOUBLE_t> 1.0, <DOUBLE_t> 1.0) if (rank == n_documents - 1) else (self.stop_proba_ptr[label], self.abandon_proba)             # <<<<<<<<<<<<<<
@@ -1436,7 +1436,7 @@ struct __pyx_vtabstruct_6rankpy_6models_5users_11users_inner_CascadeUserModel {
 static struct __pyx_vtabstruct_6rankpy_6models_5users_11users_inner_CascadeUserModel *__pyx_vtabptr_6rankpy_6models_5users_11users_inner_CascadeUserModel;
 
 
-/* "rankpy/models/users/users_inner.pyx":365
+/* "rankpy/models/users/users_inner.pyx":366
  * 
  * 
  * cdef class PositionBasedModel(AbstractUserModel):             # <<<<<<<<<<<<<<
@@ -1450,7 +1450,7 @@ struct __pyx_vtabstruct_6rankpy_6models_5users_11users_inner_PositionBasedModel 
 static struct __pyx_vtabstruct_6rankpy_6models_5users_11users_inner_PositionBasedModel *__pyx_vtabptr_6rankpy_6models_5users_11users_inner_PositionBasedModel;
 
 
-/* "rankpy/models/users/users_inner.pyx":482
+/* "rankpy/models/users/users_inner.pyx":483
  * 
  * 
  * cdef class DependentClickModel(AbstractUserModel):             # <<<<<<<<<<<<<<
@@ -1464,7 +1464,7 @@ struct __pyx_vtabstruct_6rankpy_6models_5users_11users_inner_DependentClickModel
 static struct __pyx_vtabstruct_6rankpy_6models_5users_11users_inner_DependentClickModel *__pyx_vtabptr_6rankpy_6models_5users_11users_inner_DependentClickModel;
 
 
-/* "rankpy/models/users/users_inner.pyx":598
+/* "rankpy/models/users/users_inner.pyx":599
  * 
  * 
  * cdef class ClickChainUserModel(AbstractUserModel):             # <<<<<<<<<<<<<<
@@ -1478,7 +1478,7 @@ struct __pyx_vtabstruct_6rankpy_6models_5users_11users_inner_ClickChainUserModel
 static struct __pyx_vtabstruct_6rankpy_6models_5users_11users_inner_ClickChainUserModel *__pyx_vtabptr_6rankpy_6models_5users_11users_inner_ClickChainUserModel;
 
 
-/* "rankpy/models/users/users_inner.pyx":700
+/* "rankpy/models/users/users_inner.pyx":701
  *             self.rand_r_state = v
  * 
  * cdef class UserBrowsingModel(AbstractUserModel):             # <<<<<<<<<<<<<<
@@ -5042,7 +5042,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_16CascadeUserModel_get_c
  *                 count += 1
  *                 if random(&self.rand_r_state) < self.stop_proba_ptr[label]:             # <<<<<<<<<<<<<<
  *                     break
- *             elif random(&self.rand_r_state) < self.abandon_proba:
+ * 
  */
       __pyx_t_3 = ((__pyx_f_6rankpy_6models_5users_11users_inner_random((&__pyx_v_self->rand_r_state)) < (__pyx_v_self->stop_proba_ptr[__pyx_v_label])) != 0);
       if (__pyx_t_3) {
@@ -5051,38 +5051,38 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_16CascadeUserModel_get_c
  *                 count += 1
  *                 if random(&self.rand_r_state) < self.stop_proba_ptr[label]:
  *                     break             # <<<<<<<<<<<<<<
- *             elif random(&self.rand_r_state) < self.abandon_proba:
- *                 break
+ * 
+ *             if random(&self.rand_r_state) < self.abandon_proba:
  */
         goto __pyx_L4_break;
       }
       goto __pyx_L5;
     }
+    __pyx_L5:;
 
-    /* "rankpy/models/users/users_inner.pyx":213
- *                 if random(&self.rand_r_state) < self.stop_proba_ptr[label]:
+    /* "rankpy/models/users/users_inner.pyx":214
  *                     break
- *             elif random(&self.rand_r_state) < self.abandon_proba:             # <<<<<<<<<<<<<<
+ * 
+ *             if random(&self.rand_r_state) < self.abandon_proba:             # <<<<<<<<<<<<<<
  *                 break
  * 
  */
     __pyx_t_3 = ((__pyx_f_6rankpy_6models_5users_11users_inner_random((&__pyx_v_self->rand_r_state)) < __pyx_v_self->abandon_proba) != 0);
     if (__pyx_t_3) {
 
-      /* "rankpy/models/users/users_inner.pyx":214
- *                     break
- *             elif random(&self.rand_r_state) < self.abandon_proba:
+      /* "rankpy/models/users/users_inner.pyx":215
+ * 
+ *             if random(&self.rand_r_state) < self.abandon_proba:
  *                 break             # <<<<<<<<<<<<<<
  * 
  *         # Return the number of clicks.
  */
       goto __pyx_L4_break;
     }
-    __pyx_L5:;
   }
   __pyx_L4_break:;
 
-  /* "rankpy/models/users/users_inner.pyx":217
+  /* "rankpy/models/users/users_inner.pyx":218
  * 
  *         # Return the number of clicks.
  *         return count             # <<<<<<<<<<<<<<
@@ -5105,7 +5105,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_16CascadeUserModel_get_c
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":219
+/* "rankpy/models/users/users_inner.pyx":220
  *         return count
  * 
  *     cdef DOUBLE_t get_clickthrough_rate_c(self,             # <<<<<<<<<<<<<<
@@ -5115,7 +5115,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_16CascadeUserModel_get_c
 
 static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6models_5users_11users_inner_16CascadeUserModel_get_clickthrough_rate_c(struct __pyx_obj_6rankpy_6models_5users_11users_inner_CascadeUserModel *__pyx_v_self, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels, struct __pyx_opt_args_6rankpy_6models_5users_11users_inner_16CascadeUserModel_get_clickthrough_rate_c *__pyx_optional_args) {
 
-  /* "rankpy/models/users/users_inner.pyx":223
+  /* "rankpy/models/users/users_inner.pyx":224
  *                                           INT32_t n_documents,
  *                                           INT32_t *labels,
  *                                           bint relative=False) nogil:             # <<<<<<<<<<<<<<
@@ -5150,7 +5150,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     }
   }
 
-  /* "rankpy/models/users/users_inner.pyx":238
+  /* "rankpy/models/users/users_inner.pyx":239
  *         cdef double result
  * 
  *         if relative:             # <<<<<<<<<<<<<<
@@ -5160,7 +5160,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_t_1 = (__pyx_v_relative != 0);
   if (__pyx_t_1) {
 
-    /* "rankpy/models/users/users_inner.pyx":239
+    /* "rankpy/models/users/users_inner.pyx":240
  * 
  *         if relative:
  *             click_count_proba = <double *> calloc((n_documents + 1) * (n_documents + 2) / 2, sizeof(double))             # <<<<<<<<<<<<<<
@@ -5169,7 +5169,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_click_count_proba = ((double *)calloc((((__pyx_v_n_documents + 1) * (__pyx_v_n_documents + 2)) / 2), (sizeof(double))));
 
-    /* "rankpy/models/users/users_inner.pyx":240
+    /* "rankpy/models/users/users_inner.pyx":241
  *         if relative:
  *             click_count_proba = <double *> calloc((n_documents + 1) * (n_documents + 2) / 2, sizeof(double))
  *             click_stop_count_proba = <double *> calloc((n_documents + 1) * (n_documents + 2) / 2, sizeof(double))             # <<<<<<<<<<<<<<
@@ -5178,7 +5178,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_click_stop_count_proba = ((double *)calloc((((__pyx_v_n_documents + 1) * (__pyx_v_n_documents + 2)) / 2), (sizeof(double))));
 
-    /* "rankpy/models/users/users_inner.pyx":246
+    /* "rankpy/models/users/users_inner.pyx":247
  * 
  *             # 1st document must be processed separately.
  *             label = labels[ranked_documents[0]]             # <<<<<<<<<<<<<<
@@ -5187,7 +5187,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[0])]);
 
-    /* "rankpy/models/users/users_inner.pyx":248
+    /* "rankpy/models/users/users_inner.pyx":249
  *             label = labels[ranked_documents[0]]
  * 
  *             __cc(click_count_proba, 0, 0)[0] = (1.0 - self.click_proba_ptr[label]) * (1.0 - self.abandon_proba)             # <<<<<<<<<<<<<<
@@ -5196,7 +5196,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     (__pyx_f_6rankpy_6models_5users_11users_inner___cc(__pyx_v_click_count_proba, 0, 0)[0]) = ((1.0 - (__pyx_v_self->click_proba_ptr[__pyx_v_label])) * (1.0 - __pyx_v_self->abandon_proba));
 
-    /* "rankpy/models/users/users_inner.pyx":249
+    /* "rankpy/models/users/users_inner.pyx":250
  * 
  *             __cc(click_count_proba, 0, 0)[0] = (1.0 - self.click_proba_ptr[label]) * (1.0 - self.abandon_proba)
  *             __cc(click_count_proba, 0, 1)[0] = self.click_proba_ptr[label] * (1.0 - self.stop_proba_ptr[label])             # <<<<<<<<<<<<<<
@@ -5205,7 +5205,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     (__pyx_f_6rankpy_6models_5users_11users_inner___cc(__pyx_v_click_count_proba, 0, 1)[0]) = ((__pyx_v_self->click_proba_ptr[__pyx_v_label]) * (1.0 - (__pyx_v_self->stop_proba_ptr[__pyx_v_label])));
 
-    /* "rankpy/models/users/users_inner.pyx":252
+    /* "rankpy/models/users/users_inner.pyx":253
  * 
  *             # Notice that ``click_count_proba`` is not needed for the last document (see the next for-loop).
  *             for rank in range(1, n_documents - 1):             # <<<<<<<<<<<<<<
@@ -5216,7 +5216,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     for (__pyx_t_3 = 1; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
       __pyx_v_rank = __pyx_t_3;
 
-      /* "rankpy/models/users/users_inner.pyx":253
+      /* "rankpy/models/users/users_inner.pyx":254
  *             # Notice that ``click_count_proba`` is not needed for the last document (see the next for-loop).
  *             for rank in range(1, n_documents - 1):
  *                 label = labels[ranked_documents[rank]]             # <<<<<<<<<<<<<<
@@ -5225,7 +5225,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
       __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])]);
 
-      /* "rankpy/models/users/users_inner.pyx":255
+      /* "rankpy/models/users/users_inner.pyx":256
  *                 label = labels[ranked_documents[rank]]
  * 
  *                 for n_clicks in range(0, rank + 1):             # <<<<<<<<<<<<<<
@@ -5236,7 +5236,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
       for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
         __pyx_v_n_clicks = __pyx_t_5;
 
-        /* "rankpy/models/users/users_inner.pyx":256
+        /* "rankpy/models/users/users_inner.pyx":257
  * 
  *                 for n_clicks in range(0, rank + 1):
  *                     __cc(click_count_proba, rank, n_clicks)[0] += __cc(click_count_proba, rank - 1, n_clicks)[0] * (1.0 - self.click_proba_ptr[label]) * (1.0 - self.abandon_proba)             # <<<<<<<<<<<<<<
@@ -5247,7 +5247,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
         __pyx_t_7 = 0;
         (__pyx_t_6[__pyx_t_7]) = ((__pyx_t_6[__pyx_t_7]) + (((__pyx_f_6rankpy_6models_5users_11users_inner___cc(__pyx_v_click_count_proba, (__pyx_v_rank - 1), __pyx_v_n_clicks)[0]) * (1.0 - (__pyx_v_self->click_proba_ptr[__pyx_v_label]))) * (1.0 - __pyx_v_self->abandon_proba)));
 
-        /* "rankpy/models/users/users_inner.pyx":257
+        /* "rankpy/models/users/users_inner.pyx":258
  *                 for n_clicks in range(0, rank + 1):
  *                     __cc(click_count_proba, rank, n_clicks)[0] += __cc(click_count_proba, rank - 1, n_clicks)[0] * (1.0 - self.click_proba_ptr[label]) * (1.0 - self.abandon_proba)
  *                     __cc(click_count_proba, rank, n_clicks + 1)[0] += __cc(click_count_proba, rank - 1, n_clicks)[0] * self.click_proba_ptr[label] * (1.0 - self.stop_proba_ptr[label])             # <<<<<<<<<<<<<<
@@ -5260,7 +5260,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
       }
     }
 
-    /* "rankpy/models/users/users_inner.pyx":263
+    /* "rankpy/models/users/users_inner.pyx":264
  * 
  *             # 1st document must be processed separately.
  *             label = labels[ranked_documents[0]]             # <<<<<<<<<<<<<<
@@ -5269,7 +5269,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[0])]);
 
-    /* "rankpy/models/users/users_inner.pyx":265
+    /* "rankpy/models/users/users_inner.pyx":266
  *             label = labels[ranked_documents[0]]
  * 
  *             if n_documents > 1:             # <<<<<<<<<<<<<<
@@ -5279,7 +5279,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     __pyx_t_1 = ((__pyx_v_n_documents > 1) != 0);
     if (__pyx_t_1) {
 
-      /* "rankpy/models/users/users_inner.pyx":266
+      /* "rankpy/models/users/users_inner.pyx":267
  * 
  *             if n_documents > 1:
  *                 __cc(click_stop_count_proba, 0, 0)[0] = (1.0 - self.click_proba_ptr[label]) * self.abandon_proba             # <<<<<<<<<<<<<<
@@ -5288,7 +5288,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
       (__pyx_f_6rankpy_6models_5users_11users_inner___cc(__pyx_v_click_stop_count_proba, 0, 0)[0]) = ((1.0 - (__pyx_v_self->click_proba_ptr[__pyx_v_label])) * __pyx_v_self->abandon_proba);
 
-      /* "rankpy/models/users/users_inner.pyx":267
+      /* "rankpy/models/users/users_inner.pyx":268
  *             if n_documents > 1:
  *                 __cc(click_stop_count_proba, 0, 0)[0] = (1.0 - self.click_proba_ptr[label]) * self.abandon_proba
  *                 __cc(click_stop_count_proba, 0, 1)[0] = self.click_proba_ptr[label] * self.stop_proba_ptr[label]             # <<<<<<<<<<<<<<
@@ -5300,7 +5300,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     }
     /*else*/ {
 
-      /* "rankpy/models/users/users_inner.pyx":269
+      /* "rankpy/models/users/users_inner.pyx":270
  *                 __cc(click_stop_count_proba, 0, 1)[0] = self.click_proba_ptr[label] * self.stop_proba_ptr[label]
  *             else:
  *                 __cc(click_stop_count_proba, 0, 0)[0] = 1.0 - self.click_proba_ptr[label]             # <<<<<<<<<<<<<<
@@ -5309,7 +5309,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
       (__pyx_f_6rankpy_6models_5users_11users_inner___cc(__pyx_v_click_stop_count_proba, 0, 0)[0]) = (1.0 - (__pyx_v_self->click_proba_ptr[__pyx_v_label]));
 
-      /* "rankpy/models/users/users_inner.pyx":270
+      /* "rankpy/models/users/users_inner.pyx":271
  *             else:
  *                 __cc(click_stop_count_proba, 0, 0)[0] = 1.0 - self.click_proba_ptr[label]
  *                 __cc(click_stop_count_proba, 0, 1)[0] = self.click_proba_ptr[label]             # <<<<<<<<<<<<<<
@@ -5320,7 +5320,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     }
     __pyx_L8:;
 
-    /* "rankpy/models/users/users_inner.pyx":272
+    /* "rankpy/models/users/users_inner.pyx":273
  *                 __cc(click_stop_count_proba, 0, 1)[0] = self.click_proba_ptr[label]
  * 
  *             for rank in range(1, n_documents):             # <<<<<<<<<<<<<<
@@ -5331,7 +5331,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     for (__pyx_t_3 = 1; __pyx_t_3 < __pyx_t_8; __pyx_t_3+=1) {
       __pyx_v_rank = __pyx_t_3;
 
-      /* "rankpy/models/users/users_inner.pyx":273
+      /* "rankpy/models/users/users_inner.pyx":274
  * 
  *             for rank in range(1, n_documents):
  *                 label = labels[ranked_documents[rank]]             # <<<<<<<<<<<<<<
@@ -5340,7 +5340,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
       __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])]);
 
-      /* "rankpy/models/users/users_inner.pyx":276
+      /* "rankpy/models/users/users_inner.pyx":277
  * 
  *                 # Probability of stopping and/or abandoning at the current document.
  *                 stop_proba, abandon_proba = (<DOUBLE_t> 1.0, <DOUBLE_t> 1.0) if (rank == n_documents - 1) else (self.stop_proba_ptr[label], self.abandon_proba)             # <<<<<<<<<<<<<<
@@ -5361,7 +5361,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
       __pyx_v_stop_proba = __pyx_t_11;
       __pyx_v_abandon_proba = __pyx_t_12;
 
-      /* "rankpy/models/users/users_inner.pyx":278
+      /* "rankpy/models/users/users_inner.pyx":279
  *                 stop_proba, abandon_proba = (<DOUBLE_t> 1.0, <DOUBLE_t> 1.0) if (rank == n_documents - 1) else (self.stop_proba_ptr[label], self.abandon_proba)
  * 
  *                 for n_clicks in range(0, rank + 1):             # <<<<<<<<<<<<<<
@@ -5372,7 +5372,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
       for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_2; __pyx_t_5+=1) {
         __pyx_v_n_clicks = __pyx_t_5;
 
-        /* "rankpy/models/users/users_inner.pyx":279
+        /* "rankpy/models/users/users_inner.pyx":280
  * 
  *                 for n_clicks in range(0, rank + 1):
  *                     __cc(click_stop_count_proba, rank, n_clicks)[0] += __cc(click_count_proba, rank - 1, n_clicks)[0] * (1.0 - self.click_proba_ptr[label]) * abandon_proba             # <<<<<<<<<<<<<<
@@ -5383,7 +5383,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
         __pyx_t_4 = 0;
         (__pyx_t_6[__pyx_t_4]) = ((__pyx_t_6[__pyx_t_4]) + (((__pyx_f_6rankpy_6models_5users_11users_inner___cc(__pyx_v_click_count_proba, (__pyx_v_rank - 1), __pyx_v_n_clicks)[0]) * (1.0 - (__pyx_v_self->click_proba_ptr[__pyx_v_label]))) * __pyx_v_abandon_proba));
 
-        /* "rankpy/models/users/users_inner.pyx":280
+        /* "rankpy/models/users/users_inner.pyx":281
  *                 for n_clicks in range(0, rank + 1):
  *                     __cc(click_stop_count_proba, rank, n_clicks)[0] += __cc(click_count_proba, rank - 1, n_clicks)[0] * (1.0 - self.click_proba_ptr[label]) * abandon_proba
  *                     __cc(click_stop_count_proba, rank, n_clicks + 1)[0] += __cc(click_count_proba, rank - 1, n_clicks)[0] * self.click_proba_ptr[label] * stop_proba             # <<<<<<<<<<<<<<
@@ -5396,7 +5396,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
       }
     }
 
-    /* "rankpy/models/users/users_inner.pyx":285
+    /* "rankpy/models/users/users_inner.pyx":286
  *             # ------------------------------------------------------------
  * 
  *             result = 0.0             # <<<<<<<<<<<<<<
@@ -5405,7 +5405,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_result = 0.0;
 
-    /* "rankpy/models/users/users_inner.pyx":288
+    /* "rankpy/models/users/users_inner.pyx":289
  * 
  *             # The probability of clicking n_click times while stopping after last click.
  *             for rank in range(n_documents):             # <<<<<<<<<<<<<<
@@ -5416,7 +5416,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_8; __pyx_t_3+=1) {
       __pyx_v_rank = __pyx_t_3;
 
-      /* "rankpy/models/users/users_inner.pyx":289
+      /* "rankpy/models/users/users_inner.pyx":290
  *             # The probability of clicking n_click times while stopping after last click.
  *             for rank in range(n_documents):
  *                 for n_clicks in range(1, rank + 2):             # <<<<<<<<<<<<<<
@@ -5427,7 +5427,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
       for (__pyx_t_5 = 1; __pyx_t_5 < __pyx_t_2; __pyx_t_5+=1) {
         __pyx_v_n_clicks = __pyx_t_5;
 
-        /* "rankpy/models/users/users_inner.pyx":290
+        /* "rankpy/models/users/users_inner.pyx":291
  *             for rank in range(n_documents):
  *                 for n_clicks in range(1, rank + 2):
  *                     result += n_clicks * __cc(click_stop_count_proba, rank, n_clicks)[0]             # <<<<<<<<<<<<<<
@@ -5438,7 +5438,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
       }
     }
 
-    /* "rankpy/models/users/users_inner.pyx":292
+    /* "rankpy/models/users/users_inner.pyx":293
  *                     result += n_clicks * __cc(click_stop_count_proba, rank, n_clicks)[0]
  * 
  *             free(click_count_proba)             # <<<<<<<<<<<<<<
@@ -5447,7 +5447,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     free(__pyx_v_click_count_proba);
 
-    /* "rankpy/models/users/users_inner.pyx":293
+    /* "rankpy/models/users/users_inner.pyx":294
  * 
  *             free(click_count_proba)
  *             free(click_stop_count_proba)             # <<<<<<<<<<<<<<
@@ -5456,7 +5456,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     free(__pyx_v_click_stop_count_proba);
 
-    /* "rankpy/models/users/users_inner.pyx":295
+    /* "rankpy/models/users/users_inner.pyx":296
  *             free(click_stop_count_proba)
  * 
  *             return result             # <<<<<<<<<<<<<<
@@ -5468,7 +5468,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   }
   /*else*/ {
 
-    /* "rankpy/models/users/users_inner.pyx":297
+    /* "rankpy/models/users/users_inner.pyx":298
  *             return result
  *         else:
  *             result = 1.0             # <<<<<<<<<<<<<<
@@ -5477,7 +5477,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_result = 1.0;
 
-    /* "rankpy/models/users/users_inner.pyx":298
+    /* "rankpy/models/users/users_inner.pyx":299
  *         else:
  *             result = 1.0
  *             for rank in range(n_documents - 1, -1, -1):             # <<<<<<<<<<<<<<
@@ -5487,7 +5487,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     for (__pyx_t_3 = (__pyx_v_n_documents - 1); __pyx_t_3 > -1; __pyx_t_3-=1) {
       __pyx_v_rank = __pyx_t_3;
 
-      /* "rankpy/models/users/users_inner.pyx":299
+      /* "rankpy/models/users/users_inner.pyx":300
  *             result = 1.0
  *             for rank in range(n_documents - 1, -1, -1):
  *                 result = (1.0 - self.click_proba_ptr[labels[ranked_documents[rank]]]) * (self.abandon_proba + (1.0 - self.abandon_proba) * result)             # <<<<<<<<<<<<<<
@@ -5497,7 +5497,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
       __pyx_v_result = ((1.0 - (__pyx_v_self->click_proba_ptr[(__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])])])) * (__pyx_v_self->abandon_proba + ((1.0 - __pyx_v_self->abandon_proba) * __pyx_v_result)));
     }
 
-    /* "rankpy/models/users/users_inner.pyx":300
+    /* "rankpy/models/users/users_inner.pyx":301
  *             for rank in range(n_documents - 1, -1, -1):
  *                 result = (1.0 - self.click_proba_ptr[labels[ranked_documents[rank]]]) * (self.abandon_proba + (1.0 - self.abandon_proba) * result)
  *             return 1.0 - result             # <<<<<<<<<<<<<<
@@ -5508,7 +5508,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     goto __pyx_L0;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":219
+  /* "rankpy/models/users/users_inner.pyx":220
  *         return count
  * 
  *     cdef DOUBLE_t get_clickthrough_rate_c(self,             # <<<<<<<<<<<<<<
@@ -5521,7 +5521,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":302
+/* "rankpy/models/users/users_inner.pyx":303
  *             return 1.0 - result
  * 
  *     cdef DOUBLE_t get_expected_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -5538,7 +5538,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_t_1;
   int __pyx_t_2;
 
-  /* "rankpy/models/users/users_inner.pyx":311
+  /* "rankpy/models/users/users_inner.pyx":312
  *         '''
  *         cdef int rank, label
  *         cdef double result = 0.0, gamma = 1.0             # <<<<<<<<<<<<<<
@@ -5548,7 +5548,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_v_result = 0.0;
   __pyx_v_gamma = 1.0;
 
-  /* "rankpy/models/users/users_inner.pyx":313
+  /* "rankpy/models/users/users_inner.pyx":314
  *         cdef double result = 0.0, gamma = 1.0
  * 
  *         for rank in range(n_documents):             # <<<<<<<<<<<<<<
@@ -5559,7 +5559,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_rank = __pyx_t_2;
 
-    /* "rankpy/models/users/users_inner.pyx":314
+    /* "rankpy/models/users/users_inner.pyx":315
  * 
  *         for rank in range(n_documents):
  *             label = labels[ranked_documents[rank]]             # <<<<<<<<<<<<<<
@@ -5568,7 +5568,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])]);
 
-    /* "rankpy/models/users/users_inner.pyx":315
+    /* "rankpy/models/users/users_inner.pyx":316
  *         for rank in range(n_documents):
  *             label = labels[ranked_documents[rank]]
  *             result += gamma * self.click_proba_ptr[label] / (rank + 1)             # <<<<<<<<<<<<<<
@@ -5577,7 +5577,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_result = (__pyx_v_result + ((__pyx_v_gamma * (__pyx_v_self->click_proba_ptr[__pyx_v_label])) / (__pyx_v_rank + 1)));
 
-    /* "rankpy/models/users/users_inner.pyx":316
+    /* "rankpy/models/users/users_inner.pyx":317
  *             label = labels[ranked_documents[rank]]
  *             result += gamma * self.click_proba_ptr[label] / (rank + 1)
  *             gamma *= self.continue_proba_ptr[label]             # <<<<<<<<<<<<<<
@@ -5587,7 +5587,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     __pyx_v_gamma = (__pyx_v_gamma * (__pyx_v_self->continue_proba_ptr[__pyx_v_label]));
   }
 
-  /* "rankpy/models/users/users_inner.pyx":318
+  /* "rankpy/models/users/users_inner.pyx":319
  *             gamma *= self.continue_proba_ptr[label]
  * 
  *         return result             # <<<<<<<<<<<<<<
@@ -5597,7 +5597,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":302
+  /* "rankpy/models/users/users_inner.pyx":303
  *             return 1.0 - result
  * 
  *     cdef DOUBLE_t get_expected_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -5610,7 +5610,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":320
+/* "rankpy/models/users/users_inner.pyx":321
  *         return result
  * 
  *     cdef DOUBLE_t get_last_clicked_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -5630,7 +5630,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   int __pyx_t_2;
   int __pyx_t_3;
 
-  /* "rankpy/models/users/users_inner.pyx":329
+  /* "rankpy/models/users/users_inner.pyx":330
  *         '''
  *         cdef int rank, label
  *         cdef double result, gamma = 1.0             # <<<<<<<<<<<<<<
@@ -5639,7 +5639,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   __pyx_v_gamma = 1.0;
 
-  /* "rankpy/models/users/users_inner.pyx":330
+  /* "rankpy/models/users/users_inner.pyx":331
  *         cdef int rank, label
  *         cdef double result, gamma = 1.0
  *         cdef double *click_proba_at_rank = <double *> calloc(n_documents, sizeof(double))             # <<<<<<<<<<<<<<
@@ -5648,7 +5648,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   __pyx_v_click_proba_at_rank = ((double *)calloc(__pyx_v_n_documents, (sizeof(double))));
 
-  /* "rankpy/models/users/users_inner.pyx":331
+  /* "rankpy/models/users/users_inner.pyx":332
  *         cdef double result, gamma = 1.0
  *         cdef double *click_proba_at_rank = <double *> calloc(n_documents, sizeof(double))
  *         cdef double *not_click_proba_from_rank = <double *> calloc(n_documents + 1, sizeof(double))             # <<<<<<<<<<<<<<
@@ -5657,7 +5657,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   __pyx_v_not_click_proba_from_rank = ((double *)calloc((__pyx_v_n_documents + 1), (sizeof(double))));
 
-  /* "rankpy/models/users/users_inner.pyx":333
+  /* "rankpy/models/users/users_inner.pyx":334
  *         cdef double *not_click_proba_from_rank = <double *> calloc(n_documents + 1, sizeof(double))
  * 
  *         for rank in range(n_documents):             # <<<<<<<<<<<<<<
@@ -5668,7 +5668,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_rank = __pyx_t_2;
 
-    /* "rankpy/models/users/users_inner.pyx":334
+    /* "rankpy/models/users/users_inner.pyx":335
  * 
  *         for rank in range(n_documents):
  *             label = labels[ranked_documents[rank]]             # <<<<<<<<<<<<<<
@@ -5677,7 +5677,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])]);
 
-    /* "rankpy/models/users/users_inner.pyx":335
+    /* "rankpy/models/users/users_inner.pyx":336
  *         for rank in range(n_documents):
  *             label = labels[ranked_documents[rank]]
  *             click_proba_at_rank[rank] = self.click_proba_ptr[label] * gamma             # <<<<<<<<<<<<<<
@@ -5686,7 +5686,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     (__pyx_v_click_proba_at_rank[__pyx_v_rank]) = ((__pyx_v_self->click_proba_ptr[__pyx_v_label]) * __pyx_v_gamma);
 
-    /* "rankpy/models/users/users_inner.pyx":336
+    /* "rankpy/models/users/users_inner.pyx":337
  *             label = labels[ranked_documents[rank]]
  *             click_proba_at_rank[rank] = self.click_proba_ptr[label] * gamma
  *             gamma *= self.continue_proba_ptr[label]             # <<<<<<<<<<<<<<
@@ -5696,7 +5696,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     __pyx_v_gamma = (__pyx_v_gamma * (__pyx_v_self->continue_proba_ptr[__pyx_v_label]));
   }
 
-  /* "rankpy/models/users/users_inner.pyx":338
+  /* "rankpy/models/users/users_inner.pyx":339
  *             gamma *= self.continue_proba_ptr[label]
  * 
  *         not_click_proba_from_rank[n_documents] = 1.0             # <<<<<<<<<<<<<<
@@ -5705,7 +5705,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   (__pyx_v_not_click_proba_from_rank[__pyx_v_n_documents]) = 1.0;
 
-  /* "rankpy/models/users/users_inner.pyx":339
+  /* "rankpy/models/users/users_inner.pyx":340
  * 
  *         not_click_proba_from_rank[n_documents] = 1.0
  *         for rank in range(n_documents - 1, -1, -1):             # <<<<<<<<<<<<<<
@@ -5715,7 +5715,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   for (__pyx_t_2 = (__pyx_v_n_documents - 1); __pyx_t_2 > -1; __pyx_t_2-=1) {
     __pyx_v_rank = __pyx_t_2;
 
-    /* "rankpy/models/users/users_inner.pyx":340
+    /* "rankpy/models/users/users_inner.pyx":341
  *         not_click_proba_from_rank[n_documents] = 1.0
  *         for rank in range(n_documents - 1, -1, -1):
  *             label = labels[ranked_documents[rank]]             # <<<<<<<<<<<<<<
@@ -5724,7 +5724,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])]);
 
-    /* "rankpy/models/users/users_inner.pyx":341
+    /* "rankpy/models/users/users_inner.pyx":342
  *         for rank in range(n_documents - 1, -1, -1):
  *             label = labels[ranked_documents[rank]]
  *             not_click_proba_from_rank[rank] += (1.0 - self.click_proba_ptr[label]) * (self.abandon_proba + (1.0 - self.abandon_proba) * not_click_proba_from_rank[rank + 1])             # <<<<<<<<<<<<<<
@@ -5735,7 +5735,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     (__pyx_v_not_click_proba_from_rank[__pyx_t_3]) = ((__pyx_v_not_click_proba_from_rank[__pyx_t_3]) + ((1.0 - (__pyx_v_self->click_proba_ptr[__pyx_v_label])) * (__pyx_v_self->abandon_proba + ((1.0 - __pyx_v_self->abandon_proba) * (__pyx_v_not_click_proba_from_rank[(__pyx_v_rank + 1)])))));
   }
 
-  /* "rankpy/models/users/users_inner.pyx":343
+  /* "rankpy/models/users/users_inner.pyx":344
  *             not_click_proba_from_rank[rank] += (1.0 - self.click_proba_ptr[label]) * (self.abandon_proba + (1.0 - self.abandon_proba) * not_click_proba_from_rank[rank + 1])
  * 
  *         result = 0.0             # <<<<<<<<<<<<<<
@@ -5744,7 +5744,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   __pyx_v_result = 0.0;
 
-  /* "rankpy/models/users/users_inner.pyx":344
+  /* "rankpy/models/users/users_inner.pyx":345
  * 
  *         result = 0.0
  *         for rank in range(n_documents):             # <<<<<<<<<<<<<<
@@ -5755,7 +5755,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_rank = __pyx_t_2;
 
-    /* "rankpy/models/users/users_inner.pyx":345
+    /* "rankpy/models/users/users_inner.pyx":346
  *         result = 0.0
  *         for rank in range(n_documents):
  *             label = labels[ranked_documents[rank]]             # <<<<<<<<<<<<<<
@@ -5764,7 +5764,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])]);
 
-    /* "rankpy/models/users/users_inner.pyx":346
+    /* "rankpy/models/users/users_inner.pyx":347
  *         for rank in range(n_documents):
  *             label = labels[ranked_documents[rank]]
  *             click_proba_at_rank[rank] = click_proba_at_rank[rank] * (self.stop_proba_ptr[label] + (1.0 - self.stop_proba_ptr[label]) * not_click_proba_from_rank[rank + 1])             # <<<<<<<<<<<<<<
@@ -5773,7 +5773,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     (__pyx_v_click_proba_at_rank[__pyx_v_rank]) = ((__pyx_v_click_proba_at_rank[__pyx_v_rank]) * ((__pyx_v_self->stop_proba_ptr[__pyx_v_label]) + ((1.0 - (__pyx_v_self->stop_proba_ptr[__pyx_v_label])) * (__pyx_v_not_click_proba_from_rank[(__pyx_v_rank + 1)]))));
 
-    /* "rankpy/models/users/users_inner.pyx":347
+    /* "rankpy/models/users/users_inner.pyx":348
  *             label = labels[ranked_documents[rank]]
  *             click_proba_at_rank[rank] = click_proba_at_rank[rank] * (self.stop_proba_ptr[label] + (1.0 - self.stop_proba_ptr[label]) * not_click_proba_from_rank[rank + 1])
  *             result += click_proba_at_rank[rank] / (rank + 1)             # <<<<<<<<<<<<<<
@@ -5783,7 +5783,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     __pyx_v_result = (__pyx_v_result + ((__pyx_v_click_proba_at_rank[__pyx_v_rank]) / (__pyx_v_rank + 1)));
   }
 
-  /* "rankpy/models/users/users_inner.pyx":349
+  /* "rankpy/models/users/users_inner.pyx":350
  *             result += click_proba_at_rank[rank] / (rank + 1)
  * 
  *         free(click_proba_at_rank)             # <<<<<<<<<<<<<<
@@ -5792,7 +5792,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   free(__pyx_v_click_proba_at_rank);
 
-  /* "rankpy/models/users/users_inner.pyx":350
+  /* "rankpy/models/users/users_inner.pyx":351
  * 
  *         free(click_proba_at_rank)
  *         free(not_click_proba_from_rank)             # <<<<<<<<<<<<<<
@@ -5801,7 +5801,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   free(__pyx_v_not_click_proba_from_rank);
 
-  /* "rankpy/models/users/users_inner.pyx":352
+  /* "rankpy/models/users/users_inner.pyx":353
  *         free(not_click_proba_from_rank)
  * 
  *         return result             # <<<<<<<<<<<<<<
@@ -5811,7 +5811,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":320
+  /* "rankpy/models/users/users_inner.pyx":321
  *         return result
  * 
  *     cdef DOUBLE_t get_last_clicked_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -5824,7 +5824,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":355
+/* "rankpy/models/users/users_inner.pyx":356
  * 
  *     property seed:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -5854,7 +5854,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_16CascadeUserMode
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":356
+  /* "rankpy/models/users/users_inner.pyx":357
  *     property seed:
  *         def __get__(self):
  *             return self.rand_r_state             # <<<<<<<<<<<<<<
@@ -5862,13 +5862,13 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_16CascadeUserMode
  *         def __set__(self, v):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 356; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":355
+  /* "rankpy/models/users/users_inner.pyx":356
  * 
  *     property seed:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -5887,7 +5887,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_16CascadeUserMode
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":358
+/* "rankpy/models/users/users_inner.pyx":359
  *             return self.rand_r_state
  * 
  *         def __set__(self, v):             # <<<<<<<<<<<<<<
@@ -5919,43 +5919,43 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_16CascadeUserModel_4see
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":359
+  /* "rankpy/models/users/users_inner.pyx":360
  * 
  *         def __set__(self, v):
  *             if v == 0:             # <<<<<<<<<<<<<<
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '
  *                                  'please, choose different seed, e.g.: 42')
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_v, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 359; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 359; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_v, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 360; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 360; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":360
+    /* "rankpy/models/users/users_inner.pyx":361
  *         def __set__(self, v):
  *             if v == 0:
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 360; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 361; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 360; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 361; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":362
+  /* "rankpy/models/users/users_inner.pyx":363
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_3 = __Pyx_PyInt_As_unsigned_int(__pyx_v_v); if (unlikely((__pyx_t_3 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_As_unsigned_int(__pyx_v_v); if (unlikely((__pyx_t_3 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->rand_r_state = __pyx_t_3;
 
-  /* "rankpy/models/users/users_inner.pyx":358
+  /* "rankpy/models/users/users_inner.pyx":359
  *             return self.rand_r_state
  * 
  *         def __set__(self, v):             # <<<<<<<<<<<<<<
@@ -6381,7 +6381,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_16CascadeUserModel_13ab
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":366
+/* "rankpy/models/users/users_inner.pyx":367
  * 
  * cdef class PositionBasedModel(AbstractUserModel):
  *     def __init__(self, click_proba, exam_proba, seed=None):             # <<<<<<<<<<<<<<
@@ -6427,7 +6427,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedModel_1_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_exam_proba)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -6436,7 +6436,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedModel_1_
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -6453,7 +6453,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedModel_1_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.PositionBasedModel.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -6484,33 +6484,33 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":370
+  /* "rankpy/models/users/users_inner.pyx":371
  *         Initialize the position-base click model.
  *         '''
  *         if seed == 0:             # <<<<<<<<<<<<<<
  *             raise ValueError('the seed cannot be 0 for technical reasons, '
  *                              'please, choose different seed, e.g.: 42')
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_seed, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_seed, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":371
+    /* "rankpy/models/users/users_inner.pyx":372
  *         '''
  *         if seed == 0:
  *             raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                              'please, choose different seed, e.g.: 42')
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 372; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 372; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":374
+  /* "rankpy/models/users/users_inner.pyx":375
  *                              'please, choose different seed, e.g.: 42')
  * 
  *         self.rand_r_state = np.random.randint(1, RAND_R_MAX) if seed is None else seed             # <<<<<<<<<<<<<<
@@ -6519,15 +6519,15 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
  */
   __pyx_t_2 = (__pyx_v_seed == Py_None);
   if ((__pyx_t_2 != 0)) {
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_random); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_random); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_randint); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_randint); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_e_6rankpy_6models_5users_11users_inner_RAND_R_MAX); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_e_6rankpy_6models_5users_11users_inner_RAND_R_MAX); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     __pyx_t_7 = 0;
@@ -6541,7 +6541,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
         __pyx_t_7 = 1;
       }
     }
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -6552,57 +6552,57 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_t_1); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_t_1); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_3 = __pyx_t_9;
   } else {
-    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_v_seed); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_v_seed); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_3 = __pyx_t_9;
   }
   __pyx_v_self->rand_r_state = __pyx_t_3;
 
-  /* "rankpy/models/users/users_inner.pyx":375
+  /* "rankpy/models/users/users_inner.pyx":376
  * 
  *         self.rand_r_state = np.random.randint(1, RAND_R_MAX) if seed is None else seed
  *         self.click_proba = np.array(click_proba, copy=True, dtype=DOUBLE, order='C')             # <<<<<<<<<<<<<<
  *         self.click_proba_ptr = <DOUBLE_t*> self.click_proba.data
  *         self.exam_proba = np.array(exam_proba, copy=True, dtype=DOUBLE, order='C')
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_click_proba);
   __Pyx_GIVEREF(__pyx_v_click_proba);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_click_proba);
-  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_5) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_5) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GIVEREF(__pyx_t_5);
   __Pyx_GOTREF(__pyx_v_self->click_proba);
   __Pyx_DECREF(((PyObject *)__pyx_v_self->click_proba));
   __pyx_v_self->click_proba = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":376
+  /* "rankpy/models/users/users_inner.pyx":377
  *         self.rand_r_state = np.random.randint(1, RAND_R_MAX) if seed is None else seed
  *         self.click_proba = np.array(click_proba, copy=True, dtype=DOUBLE, order='C')
  *         self.click_proba_ptr = <DOUBLE_t*> self.click_proba.data             # <<<<<<<<<<<<<<
@@ -6611,44 +6611,44 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
  */
   __pyx_v_self->click_proba_ptr = ((__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t *)__pyx_v_self->click_proba->data);
 
-  /* "rankpy/models/users/users_inner.pyx":377
+  /* "rankpy/models/users/users_inner.pyx":378
  *         self.click_proba = np.array(click_proba, copy=True, dtype=DOUBLE, order='C')
  *         self.click_proba_ptr = <DOUBLE_t*> self.click_proba.data
  *         self.exam_proba = np.array(exam_proba, copy=True, dtype=DOUBLE, order='C')             # <<<<<<<<<<<<<<
  *         self.exam_proba_ptr = <DOUBLE_t*> self.exam_proba.data
  *         self.max_n_documents = self.exam_proba.shape[0]
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_array); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_array); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_exam_proba);
   __Pyx_GIVEREF(__pyx_v_exam_proba);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_exam_proba);
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GIVEREF(__pyx_t_4);
   __Pyx_GOTREF(__pyx_v_self->exam_proba);
   __Pyx_DECREF(((PyObject *)__pyx_v_self->exam_proba));
   __pyx_v_self->exam_proba = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":378
+  /* "rankpy/models/users/users_inner.pyx":379
  *         self.click_proba_ptr = <DOUBLE_t*> self.click_proba.data
  *         self.exam_proba = np.array(exam_proba, copy=True, dtype=DOUBLE, order='C')
  *         self.exam_proba_ptr = <DOUBLE_t*> self.exam_proba.data             # <<<<<<<<<<<<<<
@@ -6657,7 +6657,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
  */
   __pyx_v_self->exam_proba_ptr = ((__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t *)__pyx_v_self->exam_proba->data);
 
-  /* "rankpy/models/users/users_inner.pyx":379
+  /* "rankpy/models/users/users_inner.pyx":380
  *         self.exam_proba = np.array(exam_proba, copy=True, dtype=DOUBLE, order='C')
  *         self.exam_proba_ptr = <DOUBLE_t*> self.exam_proba.data
  *         self.max_n_documents = self.exam_proba.shape[0]             # <<<<<<<<<<<<<<
@@ -6666,15 +6666,15 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
  */
   __pyx_v_self->max_n_documents = (__pyx_v_self->exam_proba->dimensions[0]);
 
-  /* "rankpy/models/users/users_inner.pyx":381
+  /* "rankpy/models/users/users_inner.pyx":382
  *         self.max_n_documents = self.exam_proba.shape[0]
  * 
  *         if (self.click_proba < 0.0).any() or (self.click_proba > 1.0).any():             # <<<<<<<<<<<<<<
  *             raise ValueError('click_proba is not a valid probability vector')
  * 
  */
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->click_proba), __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_any); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->click_proba), __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_any); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -6688,22 +6688,22 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (!__pyx_t_10) {
   } else {
     __pyx_t_2 = __pyx_t_10;
     goto __pyx_L5_bool_binop_done;
   }
-  __pyx_t_5 = PyObject_RichCompare(((PyObject *)__pyx_v_self->click_proba), __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_any); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(((PyObject *)__pyx_v_self->click_proba), __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_any); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -6717,42 +6717,42 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
     }
   }
   if (__pyx_t_5) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else {
-    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_2 = __pyx_t_10;
   __pyx_L5_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":382
+    /* "rankpy/models/users/users_inner.pyx":383
  * 
  *         if (self.click_proba < 0.0).any() or (self.click_proba > 1.0).any():
  *             raise ValueError('click_proba is not a valid probability vector')             # <<<<<<<<<<<<<<
  * 
  *         if (self.exam_proba < 0.0).any() or (self.exam_proba > 1.0).any():
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":384
+  /* "rankpy/models/users/users_inner.pyx":385
  *             raise ValueError('click_proba is not a valid probability vector')
  * 
  *         if (self.exam_proba < 0.0).any() or (self.exam_proba > 1.0).any():             # <<<<<<<<<<<<<<
  *             raise ValueError('click_proba is not a valid probability vector')
  * 
  */
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->exam_proba), __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_any); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->exam_proba), __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_any); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -6766,22 +6766,22 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (!__pyx_t_10) {
   } else {
     __pyx_t_2 = __pyx_t_10;
     goto __pyx_L8_bool_binop_done;
   }
-  __pyx_t_5 = PyObject_RichCompare(((PyObject *)__pyx_v_self->exam_proba), __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_any); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(((PyObject *)__pyx_v_self->exam_proba), __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_any); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -6795,34 +6795,34 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
     }
   }
   if (__pyx_t_5) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else {
-    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_2 = __pyx_t_10;
   __pyx_L8_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":385
+    /* "rankpy/models/users/users_inner.pyx":386
  * 
  *         if (self.exam_proba < 0.0).any() or (self.exam_proba > 1.0).any():
  *             raise ValueError('click_proba is not a valid probability vector')             # <<<<<<<<<<<<<<
  * 
  *     def __reduce__(self):
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 386; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 386; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":366
+  /* "rankpy/models/users/users_inner.pyx":367
  * 
  * cdef class PositionBasedModel(AbstractUserModel):
  *     def __init__(self, click_proba, exam_proba, seed=None):             # <<<<<<<<<<<<<<
@@ -6846,7 +6846,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel___
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":387
+/* "rankpy/models/users/users_inner.pyx":388
  *             raise ValueError('click_proba is not a valid probability vector')
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -6877,7 +6877,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":388
+  /* "rankpy/models/users/users_inner.pyx":389
  * 
  *     def __reduce__(self):
  *         return (PositionBasedModel,             # <<<<<<<<<<<<<<
@@ -6886,16 +6886,16 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":389
+  /* "rankpy/models/users/users_inner.pyx":390
  *     def __reduce__(self):
  *         return (PositionBasedModel,
  *                 (self.click_proba, self.exam_proba, self.rand_r_state))             # <<<<<<<<<<<<<<
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents, INT32_t n_documents,
  */
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 389; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 390; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 389; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 390; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(((PyObject *)__pyx_v_self->click_proba));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_self->click_proba));
@@ -6907,14 +6907,14 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":388
+  /* "rankpy/models/users/users_inner.pyx":389
  * 
  *     def __reduce__(self):
  *         return (PositionBasedModel,             # <<<<<<<<<<<<<<
  *                 (self.click_proba, self.exam_proba, self.rand_r_state))
  * 
  */
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 389; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_6rankpy_6models_5users_11users_inner_PositionBasedModel)));
   __Pyx_GIVEREF(((PyObject *)((PyObject*)__pyx_ptype_6rankpy_6models_5users_11users_inner_PositionBasedModel)));
@@ -6926,7 +6926,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":387
+  /* "rankpy/models/users/users_inner.pyx":388
  *             raise ValueError('click_proba is not a valid probability vector')
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -6946,7 +6946,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":391
+/* "rankpy/models/users/users_inner.pyx":392
  *                 (self.click_proba, self.exam_proba, self.rand_r_state))
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents, INT32_t n_documents,             # <<<<<<<<<<<<<<
@@ -6956,7 +6956,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
 
 static int __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get_clicks_c(struct __pyx_obj_6rankpy_6models_5users_11users_inner_PositionBasedModel *__pyx_v_self, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels, struct __pyx_opt_args_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get_clicks_c *__pyx_optional_args) {
 
-  /* "rankpy/models/users/users_inner.pyx":392
+  /* "rankpy/models/users/users_inner.pyx":393
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents, INT32_t n_documents,
  *                           INT32_t *labels, INT32_t *clicks=NULL) nogil:             # <<<<<<<<<<<<<<
@@ -6978,7 +6978,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get
     }
   }
 
-  /* "rankpy/models/users/users_inner.pyx":396
+  /* "rankpy/models/users/users_inner.pyx":397
  *         Simulate clicks on the specified ranked list of documents.
  *         '''
  *         cdef INT32_t i, label, count = 0             # <<<<<<<<<<<<<<
@@ -6987,7 +6987,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get
  */
   __pyx_v_count = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":398
+  /* "rankpy/models/users/users_inner.pyx":399
  *         cdef INT32_t i, label, count = 0
  * 
  *         for i in range(min(self.max_n_documents, n_documents)):             # <<<<<<<<<<<<<<
@@ -7005,7 +7005,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get
   for (__pyx_t_1 = 0; __pyx_t_1 < __pyx_t_2; __pyx_t_1+=1) {
     __pyx_v_i = __pyx_t_1;
 
-    /* "rankpy/models/users/users_inner.pyx":399
+    /* "rankpy/models/users/users_inner.pyx":400
  * 
  *         for i in range(min(self.max_n_documents, n_documents)):
  *             label = labels[ranked_documents[i]]             # <<<<<<<<<<<<<<
@@ -7014,7 +7014,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get
  */
     __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_i])]);
 
-    /* "rankpy/models/users/users_inner.pyx":401
+    /* "rankpy/models/users/users_inner.pyx":402
  *             label = labels[ranked_documents[i]]
  * 
  *             if random(&self.rand_r_state) < (self.click_proba_ptr[label] *             # <<<<<<<<<<<<<<
@@ -7024,7 +7024,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get
     __pyx_t_4 = ((__pyx_f_6rankpy_6models_5users_11users_inner_random((&__pyx_v_self->rand_r_state)) < ((__pyx_v_self->click_proba_ptr[__pyx_v_label]) * (__pyx_v_self->exam_proba_ptr[__pyx_v_i]))) != 0);
     if (__pyx_t_4) {
 
-      /* "rankpy/models/users/users_inner.pyx":403
+      /* "rankpy/models/users/users_inner.pyx":404
  *             if random(&self.rand_r_state) < (self.click_proba_ptr[label] *
  *                                              self.exam_proba_ptr[i]):
  *                 if clicks != NULL:             # <<<<<<<<<<<<<<
@@ -7034,7 +7034,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get
       __pyx_t_4 = ((__pyx_v_clicks != NULL) != 0);
       if (__pyx_t_4) {
 
-        /* "rankpy/models/users/users_inner.pyx":404
+        /* "rankpy/models/users/users_inner.pyx":405
  *                                              self.exam_proba_ptr[i]):
  *                 if clicks != NULL:
  *                     clicks[i] = 1             # <<<<<<<<<<<<<<
@@ -7046,7 +7046,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get
       }
       __pyx_L6:;
 
-      /* "rankpy/models/users/users_inner.pyx":405
+      /* "rankpy/models/users/users_inner.pyx":406
  *                 if clicks != NULL:
  *                     clicks[i] = 1
  *                 count += 1             # <<<<<<<<<<<<<<
@@ -7059,7 +7059,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get
     __pyx_L5:;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":408
+  /* "rankpy/models/users/users_inner.pyx":409
  * 
  *         # Return the number of clicks.
  *         return count             # <<<<<<<<<<<<<<
@@ -7069,7 +7069,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get
   __pyx_r = __pyx_v_count;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":391
+  /* "rankpy/models/users/users_inner.pyx":392
  *                 (self.click_proba, self.exam_proba, self.rand_r_state))
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents, INT32_t n_documents,             # <<<<<<<<<<<<<<
@@ -7082,7 +7082,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":410
+/* "rankpy/models/users/users_inner.pyx":411
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -7094,7 +7094,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
 static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get_clickthrough_rate(struct __pyx_obj_6rankpy_6models_5users_11users_inner_PositionBasedModel *__pyx_v_self, PyObject *__pyx_v_ranked_documents, PyObject *__pyx_v_labels, int __pyx_skip_dispatch, struct __pyx_opt_args_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get_clickthrough_rate *__pyx_optional_args) {
   int __pyx_v_cutoff = __pyx_k__13;
 
-  /* "rankpy/models/users/users_inner.pyx":411
+  /* "rankpy/models/users/users_inner.pyx":412
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):             # <<<<<<<<<<<<<<
@@ -7129,7 +7129,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
     }
   }
 
-  /* "rankpy/models/users/users_inner.pyx":410
+  /* "rankpy/models/users/users_inner.pyx":411
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -7140,13 +7140,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_clickthrough_rate); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 410; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_clickthrough_rate); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedModel_5get_clickthrough_rate)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 410; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_v_relative); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 410; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_v_relative); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -7161,7 +7161,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
           __pyx_t_7 = 1;
         }
       }
-      __pyx_t_8 = PyTuple_New(4+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 410; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(4+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       if (__pyx_t_6) {
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -7178,7 +7178,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
       PyTuple_SET_ITEM(__pyx_t_8, 3+__pyx_t_7, __pyx_t_4);
       __pyx_t_3 = 0;
       __pyx_t_4 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 410; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -7190,7 +7190,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":412
+  /* "rankpy/models/users/users_inner.pyx":413
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):
  *         return AbstractUserModel.get_clickthrough_rate(             # <<<<<<<<<<<<<<
@@ -7199,7 +7199,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":414
+  /* "rankpy/models/users/users_inner.pyx":415
  *         return AbstractUserModel.get_clickthrough_rate(
  *                                             self, ranked_documents, labels,
  *                                             min(self.max_n_documents, cutoff),             # <<<<<<<<<<<<<<
@@ -7214,7 +7214,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
     __pyx_t_11 = __pyx_t_10;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":412
+  /* "rankpy/models/users/users_inner.pyx":413
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):
  *         return AbstractUserModel.get_clickthrough_rate(             # <<<<<<<<<<<<<<
@@ -7224,13 +7224,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
   __pyx_t_12.__pyx_n = 2;
   __pyx_t_12.cutoff = __pyx_t_11;
   __pyx_t_12.relative = __pyx_v_relative;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_12); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 412; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_12); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 413; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":410
+  /* "rankpy/models/users/users_inner.pyx":411
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -7290,7 +7290,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_labels)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 410; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -7304,7 +7304,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_clickthrough_rate") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 410; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_clickthrough_rate") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7319,15 +7319,15 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
     __pyx_v_ranked_documents = values[0];
     __pyx_v_labels = values[1];
     if (values[2]) {
-      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 412; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_cutoff = __pyx_k__13;
     }
     if (values[3]) {
-      __pyx_v_relative = __Pyx_PyObject_IsTrue(values[3]); if (unlikely((__pyx_v_relative == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_relative = __Pyx_PyObject_IsTrue(values[3]); if (unlikely((__pyx_v_relative == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 412; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
 
-      /* "rankpy/models/users/users_inner.pyx":411
+      /* "rankpy/models/users/users_inner.pyx":412
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):             # <<<<<<<<<<<<<<
@@ -7339,7 +7339,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 410; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.PositionBasedModel.get_clickthrough_rate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7347,7 +7347,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   __pyx_L4_argument_unpacking_done:;
   __pyx_r = __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel_4get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_PositionBasedModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, __pyx_v_cutoff, __pyx_v_relative);
 
-  /* "rankpy/models/users/users_inner.pyx":410
+  /* "rankpy/models/users/users_inner.pyx":411
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -7373,7 +7373,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   __pyx_t_2.__pyx_n = 2;
   __pyx_t_2.cutoff = __pyx_v_cutoff;
   __pyx_t_2.relative = __pyx_v_relative;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_PositionBasedModel->__pyx_base.get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 410; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_PositionBasedModel->__pyx_base.get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7390,7 +7390,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":417
+/* "rankpy/models/users/users_inner.pyx":418
  *                                             relative=relative)
  * 
  *     cdef DOUBLE_t get_clickthrough_rate_c(self,             # <<<<<<<<<<<<<<
@@ -7407,7 +7407,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   if (__pyx_optional_args) {
   }
 
-  /* "rankpy/models/users/users_inner.pyx":430
+  /* "rankpy/models/users/users_inner.pyx":431
  *         cdef double result
  * 
  *         result = 1.0             # <<<<<<<<<<<<<<
@@ -7416,7 +7416,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   __pyx_v_result = 1.0;
 
-  /* "rankpy/models/users/users_inner.pyx":431
+  /* "rankpy/models/users/users_inner.pyx":432
  * 
  *         result = 1.0
  *         for rank in range(n_documents):             # <<<<<<<<<<<<<<
@@ -7427,7 +7427,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_rank = __pyx_t_2;
 
-    /* "rankpy/models/users/users_inner.pyx":432
+    /* "rankpy/models/users/users_inner.pyx":433
  *         result = 1.0
  *         for rank in range(n_documents):
  *             result *= (1.0 -             # <<<<<<<<<<<<<<
@@ -7437,7 +7437,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     __pyx_v_result = (__pyx_v_result * (1.0 - ((__pyx_v_self->click_proba_ptr[(__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])])]) * (__pyx_v_self->exam_proba_ptr[__pyx_v_rank]))));
   }
 
-  /* "rankpy/models/users/users_inner.pyx":435
+  /* "rankpy/models/users/users_inner.pyx":436
  *                        self.click_proba_ptr[labels[ranked_documents[rank]]] *
  *                        self.exam_proba_ptr[rank])
  *         return 1.0 - result             # <<<<<<<<<<<<<<
@@ -7447,7 +7447,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = (1.0 - __pyx_v_result);
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":417
+  /* "rankpy/models/users/users_inner.pyx":418
  *                                             relative=relative)
  * 
  *     cdef DOUBLE_t get_clickthrough_rate_c(self,             # <<<<<<<<<<<<<<
@@ -7460,7 +7460,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":437
+/* "rankpy/models/users/users_inner.pyx":438
  *         return 1.0 - result
  * 
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -7497,11 +7497,11 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_expected_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_expected_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 438; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedModel_7get_expected_reciprocal_rank)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 438; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -7516,7 +7516,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
           __pyx_t_6 = 1;
         }
       }
-      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 438; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_5) {
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -7530,7 +7530,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_7, 2+__pyx_t_6, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 438; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -7542,7 +7542,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":439
+  /* "rankpy/models/users/users_inner.pyx":440
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,
  *                                        object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_expected_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -7551,7 +7551,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":441
+  /* "rankpy/models/users/users_inner.pyx":442
  *         return AbstractUserModel.get_expected_reciprocal_rank(
  *                                             self, ranked_documents, labels,
  *                                             min(self.max_n_documents, cutoff))             # <<<<<<<<<<<<<<
@@ -7566,7 +7566,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
     __pyx_t_10 = __pyx_t_9;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":439
+  /* "rankpy/models/users/users_inner.pyx":440
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,
  *                                        object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_expected_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -7575,13 +7575,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
  */
   __pyx_t_11.__pyx_n = 1;
   __pyx_t_11.cutoff = __pyx_t_10;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 440; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":437
+  /* "rankpy/models/users/users_inner.pyx":438
  *         return 1.0 - result
  * 
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -7638,7 +7638,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_labels)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 438; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -7647,7 +7647,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_expected_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_expected_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 438; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7661,14 +7661,14 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
     __pyx_v_ranked_documents = values[0];
     __pyx_v_labels = values[1];
     if (values[2]) {
-      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 438; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_cutoff = __pyx_k__14;
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 438; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.PositionBasedModel.get_expected_reciprocal_rank", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7693,7 +7693,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.cutoff = __pyx_v_cutoff;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_PositionBasedModel->__pyx_base.get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_PositionBasedModel->__pyx_base.get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 438; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7710,7 +7710,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":443
+/* "rankpy/models/users/users_inner.pyx":444
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_expected_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -7721,7 +7721,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
 static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get_expected_reciprocal_rank_c(CYTHON_UNUSED struct __pyx_obj_6rankpy_6models_5users_11users_inner_PositionBasedModel *__pyx_v_self, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels) {
   __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_r;
 
-  /* "rankpy/models/users/users_inner.pyx":452
+  /* "rankpy/models/users/users_inner.pyx":453
  *         '''
  *         # TODO: Implement this!!!
  *         return -1.0             # <<<<<<<<<<<<<<
@@ -7731,7 +7731,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = -1.0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":443
+  /* "rankpy/models/users/users_inner.pyx":444
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_expected_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -7744,7 +7744,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":454
+/* "rankpy/models/users/users_inner.pyx":455
  *         return -1.0
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -7781,11 +7781,11 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_last_clicked_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 454; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_last_clicked_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedModel_9get_last_clicked_reciprocal_rank)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 454; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -7800,7 +7800,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
           __pyx_t_6 = 1;
         }
       }
-      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 454; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_5) {
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -7814,7 +7814,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_7, 2+__pyx_t_6, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 454; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -7826,7 +7826,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":456
+  /* "rankpy/models/users/users_inner.pyx":457
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,
  *                                            object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_last_clicked_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -7835,7 +7835,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":458
+  /* "rankpy/models/users/users_inner.pyx":459
  *         return AbstractUserModel.get_last_clicked_reciprocal_rank(
  *                                             self, ranked_documents, labels,
  *                                             min(self.max_n_documents, cutoff))             # <<<<<<<<<<<<<<
@@ -7850,7 +7850,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
     __pyx_t_10 = __pyx_t_9;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":456
+  /* "rankpy/models/users/users_inner.pyx":457
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,
  *                                            object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_last_clicked_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -7859,13 +7859,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedMod
  */
   __pyx_t_11.__pyx_n = 1;
   __pyx_t_11.cutoff = __pyx_t_10;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 456; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 457; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":454
+  /* "rankpy/models/users/users_inner.pyx":455
  *         return -1.0
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -7922,7 +7922,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_labels)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 454; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -7931,7 +7931,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_last_clicked_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 454; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_last_clicked_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7945,14 +7945,14 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_18PositionBasedMo
     __pyx_v_ranked_documents = values[0];
     __pyx_v_labels = values[1];
     if (values[2]) {
-      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 456; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_cutoff = __pyx_k__15;
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 454; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.PositionBasedModel.get_last_clicked_reciprocal_rank", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7977,7 +7977,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.cutoff = __pyx_v_cutoff;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_PositionBasedModel->__pyx_base.get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 454; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_PositionBasedModel->__pyx_base.get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 455; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7994,7 +7994,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":460
+/* "rankpy/models/users/users_inner.pyx":461
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_last_clicked_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -8005,7 +8005,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
 static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get_last_clicked_reciprocal_rank_c(CYTHON_UNUSED struct __pyx_obj_6rankpy_6models_5users_11users_inner_PositionBasedModel *__pyx_v_self, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels) {
   __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_r;
 
-  /* "rankpy/models/users/users_inner.pyx":469
+  /* "rankpy/models/users/users_inner.pyx":470
  *         '''
  *         # TODO: Implement this!!!
  *         return -1.0             # <<<<<<<<<<<<<<
@@ -8015,7 +8015,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = -1.0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":460
+  /* "rankpy/models/users/users_inner.pyx":461
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_last_clicked_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -8028,7 +8028,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":472
+/* "rankpy/models/users/users_inner.pyx":473
  * 
  *     property seed:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -8058,7 +8058,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":473
+  /* "rankpy/models/users/users_inner.pyx":474
  *     property seed:
  *         def __get__(self):
  *             return self.rand_r_state             # <<<<<<<<<<<<<<
@@ -8066,13 +8066,13 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
  *         def __set__(self, v):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 473; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 474; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":472
+  /* "rankpy/models/users/users_inner.pyx":473
  * 
  *     property seed:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -8091,7 +8091,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedMo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":475
+/* "rankpy/models/users/users_inner.pyx":476
  *             return self.rand_r_state
  * 
  *         def __set__(self, v):             # <<<<<<<<<<<<<<
@@ -8123,43 +8123,43 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel_4s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":476
+  /* "rankpy/models/users/users_inner.pyx":477
  * 
  *         def __set__(self, v):
  *             if v == 0:             # <<<<<<<<<<<<<<
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '
  *                                  'please, choose different seed, e.g.: 42')
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_v, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 476; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 476; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_v, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 477; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 477; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":477
+    /* "rankpy/models/users/users_inner.pyx":478
  *         def __set__(self, v):
  *             if v == 0:
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 477; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 478; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 477; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 478; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":479
+  /* "rankpy/models/users/users_inner.pyx":480
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_3 = __Pyx_PyInt_As_unsigned_int(__pyx_v_v); if (unlikely((__pyx_t_3 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_As_unsigned_int(__pyx_v_v); if (unlikely((__pyx_t_3 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 480; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->rand_r_state = __pyx_t_3;
 
-  /* "rankpy/models/users/users_inner.pyx":475
+  /* "rankpy/models/users/users_inner.pyx":476
  *             return self.rand_r_state
  * 
  *         def __set__(self, v):             # <<<<<<<<<<<<<<
@@ -8395,7 +8395,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_18PositionBasedModel_10
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":483
+/* "rankpy/models/users/users_inner.pyx":484
  * 
  * cdef class DependentClickModel(AbstractUserModel):
  *     def __init__(self, click_proba, stop_proba, seed=None):             # <<<<<<<<<<<<<<
@@ -8441,7 +8441,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickModel_1
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_stop_proba)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 483; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 484; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -8450,7 +8450,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickModel_1
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 483; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 484; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -8467,7 +8467,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickModel_1
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 483; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 484; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.DependentClickModel.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -8498,33 +8498,33 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":487
+  /* "rankpy/models/users/users_inner.pyx":488
  *         Initialize the cascade user model.
  *         '''
  *         if seed == 0:             # <<<<<<<<<<<<<<
  *             raise ValueError('the seed cannot be 0 for technical reasons, '
  *                              'please, choose different seed, e.g.: 42')
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_seed, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 487; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 487; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_seed, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 488; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 488; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":488
+    /* "rankpy/models/users/users_inner.pyx":489
  *         '''
  *         if seed == 0:
  *             raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                              'please, choose different seed, e.g.: 42')
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 488; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 489; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 488; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 489; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":491
+  /* "rankpy/models/users/users_inner.pyx":492
  *                              'please, choose different seed, e.g.: 42')
  * 
  *         self.rand_r_state = np.random.randint(1, RAND_R_MAX) if seed is None else seed             # <<<<<<<<<<<<<<
@@ -8533,15 +8533,15 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
  */
   __pyx_t_2 = (__pyx_v_seed == Py_None);
   if ((__pyx_t_2 != 0)) {
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 491; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_random); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 491; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_random); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_randint); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 491; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_randint); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_e_6rankpy_6models_5users_11users_inner_RAND_R_MAX); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 491; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_e_6rankpy_6models_5users_11users_inner_RAND_R_MAX); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     __pyx_t_7 = 0;
@@ -8555,7 +8555,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
         __pyx_t_7 = 1;
       }
     }
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 491; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -8566,57 +8566,57 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 491; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_t_1); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 491; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_t_1); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_3 = __pyx_t_9;
   } else {
-    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_v_seed); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 491; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_v_seed); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_3 = __pyx_t_9;
   }
   __pyx_v_self->rand_r_state = __pyx_t_3;
 
-  /* "rankpy/models/users/users_inner.pyx":492
+  /* "rankpy/models/users/users_inner.pyx":493
  * 
  *         self.rand_r_state = np.random.randint(1, RAND_R_MAX) if seed is None else seed
  *         self.click_proba = np.array(click_proba, copy=True, dtype=DOUBLE, order='C')             # <<<<<<<<<<<<<<
  *         self.click_proba_ptr = <DOUBLE_t*> self.click_proba.data
  *         self.stop_proba = np.array(stop_proba, copy=True, dtype=DOUBLE, order='C')
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_click_proba);
   __Pyx_GIVEREF(__pyx_v_click_proba);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_click_proba);
-  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_5) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_5) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 492; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GIVEREF(__pyx_t_5);
   __Pyx_GOTREF(__pyx_v_self->click_proba);
   __Pyx_DECREF(((PyObject *)__pyx_v_self->click_proba));
   __pyx_v_self->click_proba = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":493
+  /* "rankpy/models/users/users_inner.pyx":494
  *         self.rand_r_state = np.random.randint(1, RAND_R_MAX) if seed is None else seed
  *         self.click_proba = np.array(click_proba, copy=True, dtype=DOUBLE, order='C')
  *         self.click_proba_ptr = <DOUBLE_t*> self.click_proba.data             # <<<<<<<<<<<<<<
@@ -8625,44 +8625,44 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
  */
   __pyx_v_self->click_proba_ptr = ((__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t *)__pyx_v_self->click_proba->data);
 
-  /* "rankpy/models/users/users_inner.pyx":494
+  /* "rankpy/models/users/users_inner.pyx":495
  *         self.click_proba = np.array(click_proba, copy=True, dtype=DOUBLE, order='C')
  *         self.click_proba_ptr = <DOUBLE_t*> self.click_proba.data
  *         self.stop_proba = np.array(stop_proba, copy=True, dtype=DOUBLE, order='C')             # <<<<<<<<<<<<<<
  *         self.stop_proba_ptr = <DOUBLE_t*> self.stop_proba.data
  *         self.max_n_documents = self.stop_proba.shape[0]
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 495; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_array); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_array); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 495; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 495; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_stop_proba);
   __Pyx_GIVEREF(__pyx_v_stop_proba);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_stop_proba);
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 495; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 495; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 495; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 495; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 495; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 495; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 494; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 495; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GIVEREF(__pyx_t_4);
   __Pyx_GOTREF(__pyx_v_self->stop_proba);
   __Pyx_DECREF(((PyObject *)__pyx_v_self->stop_proba));
   __pyx_v_self->stop_proba = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":495
+  /* "rankpy/models/users/users_inner.pyx":496
  *         self.click_proba_ptr = <DOUBLE_t*> self.click_proba.data
  *         self.stop_proba = np.array(stop_proba, copy=True, dtype=DOUBLE, order='C')
  *         self.stop_proba_ptr = <DOUBLE_t*> self.stop_proba.data             # <<<<<<<<<<<<<<
@@ -8671,7 +8671,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
  */
   __pyx_v_self->stop_proba_ptr = ((__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t *)__pyx_v_self->stop_proba->data);
 
-  /* "rankpy/models/users/users_inner.pyx":496
+  /* "rankpy/models/users/users_inner.pyx":497
  *         self.stop_proba = np.array(stop_proba, copy=True, dtype=DOUBLE, order='C')
  *         self.stop_proba_ptr = <DOUBLE_t*> self.stop_proba.data
  *         self.max_n_documents = self.stop_proba.shape[0]             # <<<<<<<<<<<<<<
@@ -8680,15 +8680,15 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
  */
   __pyx_v_self->max_n_documents = (__pyx_v_self->stop_proba->dimensions[0]);
 
-  /* "rankpy/models/users/users_inner.pyx":498
+  /* "rankpy/models/users/users_inner.pyx":499
  *         self.max_n_documents = self.stop_proba.shape[0]
  * 
  *         if (self.click_proba < 0.0).any() or (self.click_proba > 1.0).any():             # <<<<<<<<<<<<<<
  *             raise ValueError('click_proba is not a valid probability vector')
  * 
  */
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->click_proba), __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_any); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->click_proba), __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_any); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -8702,22 +8702,22 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (!__pyx_t_10) {
   } else {
     __pyx_t_2 = __pyx_t_10;
     goto __pyx_L5_bool_binop_done;
   }
-  __pyx_t_5 = PyObject_RichCompare(((PyObject *)__pyx_v_self->click_proba), __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_any); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(((PyObject *)__pyx_v_self->click_proba), __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_any); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -8731,42 +8731,42 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
     }
   }
   if (__pyx_t_5) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else {
-    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 498; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_2 = __pyx_t_10;
   __pyx_L5_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":499
+    /* "rankpy/models/users/users_inner.pyx":500
  * 
  *         if (self.click_proba < 0.0).any() or (self.click_proba > 1.0).any():
  *             raise ValueError('click_proba is not a valid probability vector')             # <<<<<<<<<<<<<<
  * 
  *         if (self.stop_proba < 0.0).any() or (self.stop_proba > 1.0).any():
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 500; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 500; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":501
+  /* "rankpy/models/users/users_inner.pyx":502
  *             raise ValueError('click_proba is not a valid probability vector')
  * 
  *         if (self.stop_proba < 0.0).any() or (self.stop_proba > 1.0).any():             # <<<<<<<<<<<<<<
  *             raise ValueError('click_proba is not a valid probability vector')
  * 
  */
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->stop_proba), __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 501; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_any); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 501; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->stop_proba), __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_any); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -8780,22 +8780,22 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 501; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 501; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 501; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (!__pyx_t_10) {
   } else {
     __pyx_t_2 = __pyx_t_10;
     goto __pyx_L8_bool_binop_done;
   }
-  __pyx_t_5 = PyObject_RichCompare(((PyObject *)__pyx_v_self->stop_proba), __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 501; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_any); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 501; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(((PyObject *)__pyx_v_self->stop_proba), __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_any); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -8809,34 +8809,34 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
     }
   }
   if (__pyx_t_5) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 501; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else {
-    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 501; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 501; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_2 = __pyx_t_10;
   __pyx_L8_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":502
+    /* "rankpy/models/users/users_inner.pyx":503
  * 
  *         if (self.stop_proba < 0.0).any() or (self.stop_proba > 1.0).any():
  *             raise ValueError('click_proba is not a valid probability vector')             # <<<<<<<<<<<<<<
  * 
  *     def __reduce__(self):
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 503; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 503; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":483
+  /* "rankpy/models/users/users_inner.pyx":484
  * 
  * cdef class DependentClickModel(AbstractUserModel):
  *     def __init__(self, click_proba, stop_proba, seed=None):             # <<<<<<<<<<<<<<
@@ -8860,7 +8860,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel__
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":504
+/* "rankpy/models/users/users_inner.pyx":505
  *             raise ValueError('click_proba is not a valid probability vector')
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -8891,7 +8891,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":505
+  /* "rankpy/models/users/users_inner.pyx":506
  * 
  *     def __reduce__(self):
  *         return (DependentClickModel,             # <<<<<<<<<<<<<<
@@ -8900,16 +8900,16 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":506
+  /* "rankpy/models/users/users_inner.pyx":507
  *     def __reduce__(self):
  *         return (DependentClickModel,
  *                 (self.click_proba, self.stop_proba, self.rand_r_state))             # <<<<<<<<<<<<<<
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents, INT32_t n_documents,
  */
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 506; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 507; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 506; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 507; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(((PyObject *)__pyx_v_self->click_proba));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_self->click_proba));
@@ -8921,14 +8921,14 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":505
+  /* "rankpy/models/users/users_inner.pyx":506
  * 
  *     def __reduce__(self):
  *         return (DependentClickModel,             # <<<<<<<<<<<<<<
  *                 (self.click_proba, self.stop_proba, self.rand_r_state))
  * 
  */
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 505; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 506; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_6rankpy_6models_5users_11users_inner_DependentClickModel)));
   __Pyx_GIVEREF(((PyObject *)((PyObject*)__pyx_ptype_6rankpy_6models_5users_11users_inner_DependentClickModel)));
@@ -8940,7 +8940,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":504
+  /* "rankpy/models/users/users_inner.pyx":505
  *             raise ValueError('click_proba is not a valid probability vector')
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -8960,7 +8960,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":508
+/* "rankpy/models/users/users_inner.pyx":509
  *                 (self.click_proba, self.stop_proba, self.rand_r_state))
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents, INT32_t n_documents,             # <<<<<<<<<<<<<<
@@ -8970,7 +8970,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
 
 static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_get_clicks_c(struct __pyx_obj_6rankpy_6models_5users_11users_inner_DependentClickModel *__pyx_v_self, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels, struct __pyx_opt_args_6rankpy_6models_5users_11users_inner_19DependentClickModel_get_clicks_c *__pyx_optional_args) {
 
-  /* "rankpy/models/users/users_inner.pyx":509
+  /* "rankpy/models/users/users_inner.pyx":510
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents, INT32_t n_documents,
  *                           INT32_t *labels, INT32_t *clicks=NULL) nogil:             # <<<<<<<<<<<<<<
@@ -8992,7 +8992,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
     }
   }
 
-  /* "rankpy/models/users/users_inner.pyx":513
+  /* "rankpy/models/users/users_inner.pyx":514
  *         Simulate clicks on the specified ranked list of documents.
  *         '''
  *         cdef INT32_t i, label, count = 0             # <<<<<<<<<<<<<<
@@ -9001,7 +9001,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
  */
   __pyx_v_count = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":515
+  /* "rankpy/models/users/users_inner.pyx":516
  *         cdef INT32_t i, label, count = 0
  * 
  *         for i in range(min(self.max_n_documents, n_documents)):             # <<<<<<<<<<<<<<
@@ -9019,7 +9019,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
   for (__pyx_t_1 = 0; __pyx_t_1 < __pyx_t_2; __pyx_t_1+=1) {
     __pyx_v_i = __pyx_t_1;
 
-    /* "rankpy/models/users/users_inner.pyx":516
+    /* "rankpy/models/users/users_inner.pyx":517
  * 
  *         for i in range(min(self.max_n_documents, n_documents)):
  *             label = labels[ranked_documents[i]]             # <<<<<<<<<<<<<<
@@ -9028,7 +9028,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
  */
     __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_i])]);
 
-    /* "rankpy/models/users/users_inner.pyx":518
+    /* "rankpy/models/users/users_inner.pyx":519
  *             label = labels[ranked_documents[i]]
  * 
  *             if random(&self.rand_r_state) < self.click_proba_ptr[label]:             # <<<<<<<<<<<<<<
@@ -9038,7 +9038,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
     __pyx_t_4 = ((__pyx_f_6rankpy_6models_5users_11users_inner_random((&__pyx_v_self->rand_r_state)) < (__pyx_v_self->click_proba_ptr[__pyx_v_label])) != 0);
     if (__pyx_t_4) {
 
-      /* "rankpy/models/users/users_inner.pyx":519
+      /* "rankpy/models/users/users_inner.pyx":520
  * 
  *             if random(&self.rand_r_state) < self.click_proba_ptr[label]:
  *                 if clicks != NULL:             # <<<<<<<<<<<<<<
@@ -9048,7 +9048,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
       __pyx_t_4 = ((__pyx_v_clicks != NULL) != 0);
       if (__pyx_t_4) {
 
-        /* "rankpy/models/users/users_inner.pyx":520
+        /* "rankpy/models/users/users_inner.pyx":521
  *             if random(&self.rand_r_state) < self.click_proba_ptr[label]:
  *                 if clicks != NULL:
  *                     clicks[i] = 1             # <<<<<<<<<<<<<<
@@ -9060,7 +9060,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
       }
       __pyx_L6:;
 
-      /* "rankpy/models/users/users_inner.pyx":521
+      /* "rankpy/models/users/users_inner.pyx":522
  *                 if clicks != NULL:
  *                     clicks[i] = 1
  *                 count += 1             # <<<<<<<<<<<<<<
@@ -9069,7 +9069,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
  */
       __pyx_v_count = (__pyx_v_count + 1);
 
-      /* "rankpy/models/users/users_inner.pyx":522
+      /* "rankpy/models/users/users_inner.pyx":523
  *                     clicks[i] = 1
  *                 count += 1
  *                 if random(&self.rand_r_state) < self.stop_proba_ptr[i]:             # <<<<<<<<<<<<<<
@@ -9079,7 +9079,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
       __pyx_t_4 = ((__pyx_f_6rankpy_6models_5users_11users_inner_random((&__pyx_v_self->rand_r_state)) < (__pyx_v_self->stop_proba_ptr[__pyx_v_i])) != 0);
       if (__pyx_t_4) {
 
-        /* "rankpy/models/users/users_inner.pyx":523
+        /* "rankpy/models/users/users_inner.pyx":524
  *                 count += 1
  *                 if random(&self.rand_r_state) < self.stop_proba_ptr[i]:
  *                     break             # <<<<<<<<<<<<<<
@@ -9094,7 +9094,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
   }
   __pyx_L4_break:;
 
-  /* "rankpy/models/users/users_inner.pyx":526
+  /* "rankpy/models/users/users_inner.pyx":527
  * 
  *         # Return the number of clicks.
  *         return count             # <<<<<<<<<<<<<<
@@ -9104,7 +9104,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
   __pyx_r = __pyx_v_count;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":508
+  /* "rankpy/models/users/users_inner.pyx":509
  *                 (self.click_proba, self.stop_proba, self.rand_r_state))
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents, INT32_t n_documents,             # <<<<<<<<<<<<<<
@@ -9117,7 +9117,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_ge
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":528
+/* "rankpy/models/users/users_inner.pyx":529
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -9129,7 +9129,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
 static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_get_clickthrough_rate(struct __pyx_obj_6rankpy_6models_5users_11users_inner_DependentClickModel *__pyx_v_self, PyObject *__pyx_v_ranked_documents, PyObject *__pyx_v_labels, int __pyx_skip_dispatch, struct __pyx_opt_args_6rankpy_6models_5users_11users_inner_19DependentClickModel_get_clickthrough_rate *__pyx_optional_args) {
   int __pyx_v_cutoff = __pyx_k__20;
 
-  /* "rankpy/models/users/users_inner.pyx":529
+  /* "rankpy/models/users/users_inner.pyx":530
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):             # <<<<<<<<<<<<<<
@@ -9164,7 +9164,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
     }
   }
 
-  /* "rankpy/models/users/users_inner.pyx":528
+  /* "rankpy/models/users/users_inner.pyx":529
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -9175,13 +9175,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_clickthrough_rate); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_clickthrough_rate); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickModel_5get_clickthrough_rate)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_v_relative); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_v_relative); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -9196,7 +9196,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
           __pyx_t_7 = 1;
         }
       }
-      __pyx_t_8 = PyTuple_New(4+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(4+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       if (__pyx_t_6) {
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -9213,7 +9213,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
       PyTuple_SET_ITEM(__pyx_t_8, 3+__pyx_t_7, __pyx_t_4);
       __pyx_t_3 = 0;
       __pyx_t_4 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -9225,7 +9225,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":530
+  /* "rankpy/models/users/users_inner.pyx":531
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):
  *         return AbstractUserModel.get_clickthrough_rate(             # <<<<<<<<<<<<<<
@@ -9234,7 +9234,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":532
+  /* "rankpy/models/users/users_inner.pyx":533
  *         return AbstractUserModel.get_clickthrough_rate(
  *                                             self, ranked_documents, labels,
  *                                             min(self.max_n_documents, cutoff),             # <<<<<<<<<<<<<<
@@ -9249,7 +9249,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
     __pyx_t_11 = __pyx_t_10;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":530
+  /* "rankpy/models/users/users_inner.pyx":531
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):
  *         return AbstractUserModel.get_clickthrough_rate(             # <<<<<<<<<<<<<<
@@ -9259,13 +9259,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
   __pyx_t_12.__pyx_n = 2;
   __pyx_t_12.cutoff = __pyx_t_11;
   __pyx_t_12.relative = __pyx_v_relative;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_12); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 530; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_12); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 531; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":528
+  /* "rankpy/models/users/users_inner.pyx":529
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -9325,7 +9325,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_labels)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -9339,7 +9339,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_clickthrough_rate") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_clickthrough_rate") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -9354,15 +9354,15 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
     __pyx_v_ranked_documents = values[0];
     __pyx_v_labels = values[1];
     if (values[2]) {
-      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 530; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_cutoff = __pyx_k__20;
     }
     if (values[3]) {
-      __pyx_v_relative = __Pyx_PyObject_IsTrue(values[3]); if (unlikely((__pyx_v_relative == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_relative = __Pyx_PyObject_IsTrue(values[3]); if (unlikely((__pyx_v_relative == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 530; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
 
-      /* "rankpy/models/users/users_inner.pyx":529
+      /* "rankpy/models/users/users_inner.pyx":530
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):             # <<<<<<<<<<<<<<
@@ -9374,7 +9374,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.DependentClickModel.get_clickthrough_rate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9382,7 +9382,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
   __pyx_L4_argument_unpacking_done:;
   __pyx_r = __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel_4get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_DependentClickModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, __pyx_v_cutoff, __pyx_v_relative);
 
-  /* "rankpy/models/users/users_inner.pyx":528
+  /* "rankpy/models/users/users_inner.pyx":529
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -9408,7 +9408,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   __pyx_t_2.__pyx_n = 2;
   __pyx_t_2.cutoff = __pyx_v_cutoff;
   __pyx_t_2.relative = __pyx_v_relative;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_DependentClickModel->__pyx_base.get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_DependentClickModel->__pyx_base.get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9425,7 +9425,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":535
+/* "rankpy/models/users/users_inner.pyx":536
  *                                             relative=relative)
  * 
  *     cdef DOUBLE_t get_clickthrough_rate_c(self,             # <<<<<<<<<<<<<<
@@ -9442,7 +9442,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   if (__pyx_optional_args) {
   }
 
-  /* "rankpy/models/users/users_inner.pyx":548
+  /* "rankpy/models/users/users_inner.pyx":549
  *         cdef DOUBLE_t result
  * 
  *         result = 1.0             # <<<<<<<<<<<<<<
@@ -9451,7 +9451,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   __pyx_v_result = 1.0;
 
-  /* "rankpy/models/users/users_inner.pyx":549
+  /* "rankpy/models/users/users_inner.pyx":550
  * 
  *         result = 1.0
  *         for rank in range(n_documents):             # <<<<<<<<<<<<<<
@@ -9462,7 +9462,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_rank = __pyx_t_2;
 
-    /* "rankpy/models/users/users_inner.pyx":550
+    /* "rankpy/models/users/users_inner.pyx":551
  *         result = 1.0
  *         for rank in range(n_documents):
  *             result *= (1.0 - self.click_proba_ptr[labels[ranked_documents[rank]]])             # <<<<<<<<<<<<<<
@@ -9472,7 +9472,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     __pyx_v_result = (__pyx_v_result * (1.0 - (__pyx_v_self->click_proba_ptr[(__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])])])));
   }
 
-  /* "rankpy/models/users/users_inner.pyx":551
+  /* "rankpy/models/users/users_inner.pyx":552
  *         for rank in range(n_documents):
  *             result *= (1.0 - self.click_proba_ptr[labels[ranked_documents[rank]]])
  *         return 1.0 - result             # <<<<<<<<<<<<<<
@@ -9482,7 +9482,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = (1.0 - __pyx_v_result);
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":535
+  /* "rankpy/models/users/users_inner.pyx":536
  *                                             relative=relative)
  * 
  *     cdef DOUBLE_t get_clickthrough_rate_c(self,             # <<<<<<<<<<<<<<
@@ -9495,7 +9495,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":553
+/* "rankpy/models/users/users_inner.pyx":554
  *         return 1.0 - result
  * 
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -9532,11 +9532,11 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_expected_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 553; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_expected_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 554; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickModel_7get_expected_reciprocal_rank)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 553; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 554; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -9551,7 +9551,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
           __pyx_t_6 = 1;
         }
       }
-      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 553; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 554; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_5) {
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -9565,7 +9565,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_7, 2+__pyx_t_6, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 553; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 554; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -9577,7 +9577,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":555
+  /* "rankpy/models/users/users_inner.pyx":556
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,
  *                                        object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_expected_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -9586,7 +9586,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":557
+  /* "rankpy/models/users/users_inner.pyx":558
  *         return AbstractUserModel.get_expected_reciprocal_rank(
  *                                             self, ranked_documents, labels,
  *                                             min(self.max_n_documents, cutoff))             # <<<<<<<<<<<<<<
@@ -9601,7 +9601,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
     __pyx_t_10 = __pyx_t_9;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":555
+  /* "rankpy/models/users/users_inner.pyx":556
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,
  *                                        object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_expected_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -9610,13 +9610,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
  */
   __pyx_t_11.__pyx_n = 1;
   __pyx_t_11.cutoff = __pyx_t_10;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 555; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 556; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":553
+  /* "rankpy/models/users/users_inner.pyx":554
  *         return 1.0 - result
  * 
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -9673,7 +9673,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_labels)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 553; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 554; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -9682,7 +9682,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_expected_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 553; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_expected_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 554; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -9696,14 +9696,14 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
     __pyx_v_ranked_documents = values[0];
     __pyx_v_labels = values[1];
     if (values[2]) {
-      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 554; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 555; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_cutoff = __pyx_k__21;
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 553; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 554; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.DependentClickModel.get_expected_reciprocal_rank", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9728,7 +9728,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.cutoff = __pyx_v_cutoff;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_DependentClickModel->__pyx_base.get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 553; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_DependentClickModel->__pyx_base.get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 554; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9745,7 +9745,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":559
+/* "rankpy/models/users/users_inner.pyx":560
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_expected_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -9756,7 +9756,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
 static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_get_expected_reciprocal_rank_c(CYTHON_UNUSED struct __pyx_obj_6rankpy_6models_5users_11users_inner_DependentClickModel *__pyx_v_self, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels) {
   __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_r;
 
-  /* "rankpy/models/users/users_inner.pyx":568
+  /* "rankpy/models/users/users_inner.pyx":569
  *         '''
  *         # TODO: Implement this!!!
  *         return -1.0             # <<<<<<<<<<<<<<
@@ -9766,7 +9766,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = -1.0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":559
+  /* "rankpy/models/users/users_inner.pyx":560
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_expected_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -9779,7 +9779,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":570
+/* "rankpy/models/users/users_inner.pyx":571
  *         return -1.0
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -9816,11 +9816,11 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_last_clicked_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_last_clicked_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickModel_9get_last_clicked_reciprocal_rank)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -9835,7 +9835,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
           __pyx_t_6 = 1;
         }
       }
-      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_5) {
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -9849,7 +9849,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_7, 2+__pyx_t_6, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -9861,7 +9861,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":572
+  /* "rankpy/models/users/users_inner.pyx":573
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,
  *                                            object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_last_clicked_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -9870,7 +9870,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":574
+  /* "rankpy/models/users/users_inner.pyx":575
  *         return AbstractUserModel.get_last_clicked_reciprocal_rank(
  *                                             self, ranked_documents, labels,
  *                                             min(self.max_n_documents, cutoff))             # <<<<<<<<<<<<<<
@@ -9885,7 +9885,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
     __pyx_t_10 = __pyx_t_9;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":572
+  /* "rankpy/models/users/users_inner.pyx":573
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,
  *                                            object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_last_clicked_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -9894,13 +9894,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickMo
  */
   __pyx_t_11.__pyx_n = 1;
   __pyx_t_11.cutoff = __pyx_t_10;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 572; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 573; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":570
+  /* "rankpy/models/users/users_inner.pyx":571
  *         return -1.0
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -9957,7 +9957,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_labels)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 570; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -9966,7 +9966,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_last_clicked_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 570; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_last_clicked_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -9980,14 +9980,14 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_19DependentClickM
     __pyx_v_ranked_documents = values[0];
     __pyx_v_labels = values[1];
     if (values[2]) {
-      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 572; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_cutoff = __pyx_k__22;
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 570; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.DependentClickModel.get_last_clicked_reciprocal_rank", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -10012,7 +10012,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.cutoff = __pyx_v_cutoff;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_DependentClickModel->__pyx_base.get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 570; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_DependentClickModel->__pyx_base.get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 571; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10029,7 +10029,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":576
+/* "rankpy/models/users/users_inner.pyx":577
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_last_clicked_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -10040,7 +10040,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
 static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_get_last_clicked_reciprocal_rank_c(CYTHON_UNUSED struct __pyx_obj_6rankpy_6models_5users_11users_inner_DependentClickModel *__pyx_v_self, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels) {
   __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_r;
 
-  /* "rankpy/models/users/users_inner.pyx":585
+  /* "rankpy/models/users/users_inner.pyx":586
  *         '''
  *         # TODO: Implement this!!!
  *         return -1.0             # <<<<<<<<<<<<<<
@@ -10050,7 +10050,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = -1.0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":576
+  /* "rankpy/models/users/users_inner.pyx":577
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_last_clicked_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -10063,7 +10063,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":588
+/* "rankpy/models/users/users_inner.pyx":589
  * 
  *     property seed:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -10093,7 +10093,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":589
+  /* "rankpy/models/users/users_inner.pyx":590
  *     property seed:
  *         def __get__(self):
  *             return self.rand_r_state             # <<<<<<<<<<<<<<
@@ -10101,13 +10101,13 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
  *         def __set__(self, v):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 589; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 590; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":588
+  /* "rankpy/models/users/users_inner.pyx":589
  * 
  *     property seed:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -10126,7 +10126,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickM
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":591
+/* "rankpy/models/users/users_inner.pyx":592
  *             return self.rand_r_state
  * 
  *         def __set__(self, v):             # <<<<<<<<<<<<<<
@@ -10158,43 +10158,43 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel_4
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":592
+  /* "rankpy/models/users/users_inner.pyx":593
  * 
  *         def __set__(self, v):
  *             if v == 0:             # <<<<<<<<<<<<<<
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '
  *                                  'please, choose different seed, e.g.: 42')
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_v, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 592; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 592; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_v, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 593; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 593; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":593
+    /* "rankpy/models/users/users_inner.pyx":594
  *         def __set__(self, v):
  *             if v == 0:
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 593; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 594; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 593; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 594; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":595
+  /* "rankpy/models/users/users_inner.pyx":596
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_3 = __Pyx_PyInt_As_unsigned_int(__pyx_v_v); if (unlikely((__pyx_t_3 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 595; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_As_unsigned_int(__pyx_v_v); if (unlikely((__pyx_t_3 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 596; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->rand_r_state = __pyx_t_3;
 
-  /* "rankpy/models/users/users_inner.pyx":591
+  /* "rankpy/models/users/users_inner.pyx":592
  *             return self.rand_r_state
  * 
  *         def __set__(self, v):             # <<<<<<<<<<<<<<
@@ -10430,7 +10430,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19DependentClickModel_1
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":599
+/* "rankpy/models/users/users_inner.pyx":600
  * 
  * cdef class ClickChainUserModel(AbstractUserModel):
  *     def __init__(self, p_attraction, p_continue_noclick, p_continue_click_norel,             # <<<<<<<<<<<<<<
@@ -10460,7 +10460,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_1
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_p_attraction,&__pyx_n_s_p_continue_noclick,&__pyx_n_s_p_continue_click_norel,&__pyx_n_s_p_continue_click_rel,&__pyx_n_s_seed,0};
     PyObject* values[5] = {0,0,0,0,0};
 
-    /* "rankpy/models/users/users_inner.pyx":600
+    /* "rankpy/models/users/users_inner.pyx":601
  * cdef class ClickChainUserModel(AbstractUserModel):
  *     def __init__(self, p_attraction, p_continue_noclick, p_continue_click_norel,
  *                  p_continue_click_rel, seed=None):             # <<<<<<<<<<<<<<
@@ -10488,17 +10488,17 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_1
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_p_continue_noclick)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 4, 5, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 4, 5, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 600; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_p_continue_click_norel)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 4, 5, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 4, 5, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 600; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_p_continue_click_rel)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 4, 5, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 4, 5, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 600; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
         if (kw_args > 0) {
@@ -10507,7 +10507,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_1
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 600; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -10528,7 +10528,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_1
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 4, 5, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 4, 5, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 600; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.ClickChainUserModel.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -10536,7 +10536,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_1
   __pyx_L4_argument_unpacking_done:;
   __pyx_r = __pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserModel___init__(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_ClickChainUserModel *)__pyx_v_self), __pyx_v_p_attraction, __pyx_v_p_continue_noclick, __pyx_v_p_continue_click_norel, __pyx_v_p_continue_click_rel, __pyx_v_seed);
 
-  /* "rankpy/models/users/users_inner.pyx":599
+  /* "rankpy/models/users/users_inner.pyx":600
  * 
  * cdef class ClickChainUserModel(AbstractUserModel):
  *     def __init__(self, p_attraction, p_continue_noclick, p_continue_click_norel,             # <<<<<<<<<<<<<<
@@ -10567,33 +10567,33 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserModel__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":604
+  /* "rankpy/models/users/users_inner.pyx":605
  *         Initialize the cascade user model.
  *         '''
  *         if seed == 0:             # <<<<<<<<<<<<<<
  *             raise ValueError('the seed cannot be 0 for technical reasons, '
  *                              'please, choose different seed, e.g.: 42')
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_seed, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 604; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 604; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_seed, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 605; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 605; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":605
+    /* "rankpy/models/users/users_inner.pyx":606
  *         '''
  *         if seed == 0:
  *             raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                              'please, choose different seed, e.g.: 42')
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 605; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 606; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 605; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 606; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":608
+  /* "rankpy/models/users/users_inner.pyx":609
  *                              'please, choose different seed, e.g.: 42')
  * 
  *         self.rand_r_state = np.random.randint(1, RAND_R_MAX) if seed is None else seed             # <<<<<<<<<<<<<<
@@ -10602,15 +10602,15 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserModel__
  */
   __pyx_t_2 = (__pyx_v_seed == Py_None);
   if ((__pyx_t_2 != 0)) {
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 609; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_random); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_random); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 609; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_randint); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_randint); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 609; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_e_6rankpy_6models_5users_11users_inner_RAND_R_MAX); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_e_6rankpy_6models_5users_11users_inner_RAND_R_MAX); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 609; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     __pyx_t_7 = 0;
@@ -10624,7 +10624,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserModel__
         __pyx_t_7 = 1;
       }
     }
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 609; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -10635,57 +10635,57 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserModel__
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 609; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_t_1); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_t_1); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 609; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_3 = __pyx_t_9;
   } else {
-    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_v_seed); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_v_seed); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 609; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_3 = __pyx_t_9;
   }
   __pyx_v_self->rand_r_state = __pyx_t_3;
 
-  /* "rankpy/models/users/users_inner.pyx":610
+  /* "rankpy/models/users/users_inner.pyx":611
  *         self.rand_r_state = np.random.randint(1, RAND_R_MAX) if seed is None else seed
  * 
  *         self.p_attraction = np.array(p_attraction, copy=True, dtype=DOUBLE, order='C')             # <<<<<<<<<<<<<<
  *         self.p_attraction_ptr = <DOUBLE_t*> self.p_attraction.data
  * 
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_p_attraction);
   __Pyx_GIVEREF(__pyx_v_p_attraction);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_p_attraction);
-  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_5) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_5) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 610; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 611; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GIVEREF(__pyx_t_5);
   __Pyx_GOTREF(__pyx_v_self->p_attraction);
   __Pyx_DECREF(((PyObject *)__pyx_v_self->p_attraction));
   __pyx_v_self->p_attraction = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":611
+  /* "rankpy/models/users/users_inner.pyx":612
  * 
  *         self.p_attraction = np.array(p_attraction, copy=True, dtype=DOUBLE, order='C')
  *         self.p_attraction_ptr = <DOUBLE_t*> self.p_attraction.data             # <<<<<<<<<<<<<<
@@ -10694,46 +10694,46 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserModel__
  */
   __pyx_v_self->p_attraction_ptr = ((__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t *)__pyx_v_self->p_attraction->data);
 
-  /* "rankpy/models/users/users_inner.pyx":613
+  /* "rankpy/models/users/users_inner.pyx":614
  *         self.p_attraction_ptr = <DOUBLE_t*> self.p_attraction.data
  * 
  *         self.p_stop_noclick = 1.0 - p_continue_noclick             # <<<<<<<<<<<<<<
  *         self.p_stop_click_norel = 1.0 - p_continue_click_norel
  *         self.p_stop_click_rel = 1.0 - p_continue_click_rel
  */
-  __pyx_t_5 = PyNumber_Subtract(__pyx_float_1_0, __pyx_v_p_continue_noclick); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyNumber_Subtract(__pyx_float_1_0, __pyx_v_p_continue_noclick); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 614; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_10 == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 613; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_10 == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 614; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_self->p_stop_noclick = __pyx_t_10;
 
-  /* "rankpy/models/users/users_inner.pyx":614
+  /* "rankpy/models/users/users_inner.pyx":615
  * 
  *         self.p_stop_noclick = 1.0 - p_continue_noclick
  *         self.p_stop_click_norel = 1.0 - p_continue_click_norel             # <<<<<<<<<<<<<<
  *         self.p_stop_click_rel = 1.0 - p_continue_click_rel
  * 
  */
-  __pyx_t_5 = PyNumber_Subtract(__pyx_float_1_0, __pyx_v_p_continue_click_norel); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 614; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyNumber_Subtract(__pyx_float_1_0, __pyx_v_p_continue_click_norel); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_10 == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 614; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_10 == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_self->p_stop_click_norel = __pyx_t_10;
 
-  /* "rankpy/models/users/users_inner.pyx":615
+  /* "rankpy/models/users/users_inner.pyx":616
  *         self.p_stop_noclick = 1.0 - p_continue_noclick
  *         self.p_stop_click_norel = 1.0 - p_continue_click_norel
  *         self.p_stop_click_rel = 1.0 - p_continue_click_rel             # <<<<<<<<<<<<<<
  * 
  *     def __reduce__(self):
  */
-  __pyx_t_5 = PyNumber_Subtract(__pyx_float_1_0, __pyx_v_p_continue_click_rel); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyNumber_Subtract(__pyx_float_1_0, __pyx_v_p_continue_click_rel); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 616; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_10 == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_10 == (npy_float64)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 616; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_self->p_stop_click_rel = __pyx_t_10;
 
-  /* "rankpy/models/users/users_inner.pyx":599
+  /* "rankpy/models/users/users_inner.pyx":600
  * 
  * cdef class ClickChainUserModel(AbstractUserModel):
  *     def __init__(self, p_attraction, p_continue_noclick, p_continue_click_norel,             # <<<<<<<<<<<<<<
@@ -10757,7 +10757,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserModel__
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":617
+/* "rankpy/models/users/users_inner.pyx":618
  *         self.p_stop_click_rel = 1.0 - p_continue_click_rel
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -10791,7 +10791,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserM
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":618
+  /* "rankpy/models/users/users_inner.pyx":619
  * 
  *     def __reduce__(self):
  *         return (ClickChainUserModel,             # <<<<<<<<<<<<<<
@@ -10800,46 +10800,46 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserM
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":619
+  /* "rankpy/models/users/users_inner.pyx":620
  *     def __reduce__(self):
  *         return (ClickChainUserModel,
  *                 (self.p_attraction, 1.0 - self.p_stop_noclick,             # <<<<<<<<<<<<<<
  *                  1.0 - self.p_stop_click_norel, 1.0 - self.p_stop_click_rel,
  *                  self.rand_r_state))
  */
-  __pyx_t_1 = PyFloat_FromDouble((1.0 - __pyx_v_self->p_stop_noclick)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 619; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble((1.0 - __pyx_v_self->p_stop_noclick)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 620; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "rankpy/models/users/users_inner.pyx":620
+  /* "rankpy/models/users/users_inner.pyx":621
  *         return (ClickChainUserModel,
  *                 (self.p_attraction, 1.0 - self.p_stop_noclick,
  *                  1.0 - self.p_stop_click_norel, 1.0 - self.p_stop_click_rel,             # <<<<<<<<<<<<<<
  *                  self.rand_r_state))
  * 
  */
-  __pyx_t_2 = PyFloat_FromDouble((1.0 - __pyx_v_self->p_stop_click_norel)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 620; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyFloat_FromDouble((1.0 - __pyx_v_self->p_stop_click_norel)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 621; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble((1.0 - __pyx_v_self->p_stop_click_rel)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 620; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyFloat_FromDouble((1.0 - __pyx_v_self->p_stop_click_rel)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 621; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "rankpy/models/users/users_inner.pyx":621
+  /* "rankpy/models/users/users_inner.pyx":622
  *                 (self.p_attraction, 1.0 - self.p_stop_noclick,
  *                  1.0 - self.p_stop_click_norel, 1.0 - self.p_stop_click_rel,
  *                  self.rand_r_state))             # <<<<<<<<<<<<<<
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents,
  */
-  __pyx_t_4 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 621; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 622; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "rankpy/models/users/users_inner.pyx":619
+  /* "rankpy/models/users/users_inner.pyx":620
  *     def __reduce__(self):
  *         return (ClickChainUserModel,
  *                 (self.p_attraction, 1.0 - self.p_stop_noclick,             # <<<<<<<<<<<<<<
  *                  1.0 - self.p_stop_click_norel, 1.0 - self.p_stop_click_rel,
  *                  self.rand_r_state))
  */
-  __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 619; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 620; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(((PyObject *)__pyx_v_self->p_attraction));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_self->p_attraction));
@@ -10857,14 +10857,14 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserM
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":618
+  /* "rankpy/models/users/users_inner.pyx":619
  * 
  *     def __reduce__(self):
  *         return (ClickChainUserModel,             # <<<<<<<<<<<<<<
  *                 (self.p_attraction, 1.0 - self.p_stop_noclick,
  *                  1.0 - self.p_stop_click_norel, 1.0 - self.p_stop_click_rel,
  */
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 618; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 619; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_6rankpy_6models_5users_11users_inner_ClickChainUserModel)));
   __Pyx_GIVEREF(((PyObject *)((PyObject*)__pyx_ptype_6rankpy_6models_5users_11users_inner_ClickChainUserModel)));
@@ -10876,7 +10876,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserM
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":617
+  /* "rankpy/models/users/users_inner.pyx":618
  *         self.p_stop_click_rel = 1.0 - p_continue_click_rel
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -10899,7 +10899,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserM
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":623
+/* "rankpy/models/users/users_inner.pyx":624
  *                  self.rand_r_state))
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents,             # <<<<<<<<<<<<<<
@@ -10909,7 +10909,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserM
 
 static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_get_clicks_c(struct __pyx_obj_6rankpy_6models_5users_11users_inner_ClickChainUserModel *__pyx_v_self, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels, struct __pyx_opt_args_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_get_clicks_c *__pyx_optional_args) {
 
-  /* "rankpy/models/users/users_inner.pyx":625
+  /* "rankpy/models/users/users_inner.pyx":626
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents,
  *                           INT32_t n_documents, INT32_t *labels,
  *                           INT32_t *clicks=NULL) nogil:             # <<<<<<<<<<<<<<
@@ -10930,7 +10930,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
     }
   }
 
-  /* "rankpy/models/users/users_inner.pyx":629
+  /* "rankpy/models/users/users_inner.pyx":630
  *         Simulate clicks on the specified ranked list of documents.
  *         '''
  *         cdef INT32_t i, label, count = 0             # <<<<<<<<<<<<<<
@@ -10939,7 +10939,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
  */
   __pyx_v_count = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":631
+  /* "rankpy/models/users/users_inner.pyx":632
  *         cdef INT32_t i, label, count = 0
  * 
  *         for i in range(n_documents):             # <<<<<<<<<<<<<<
@@ -10950,7 +10950,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "rankpy/models/users/users_inner.pyx":632
+    /* "rankpy/models/users/users_inner.pyx":633
  * 
  *         for i in range(n_documents):
  *             label = labels[ranked_documents[i]]             # <<<<<<<<<<<<<<
@@ -10959,7 +10959,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
  */
     __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_i])]);
 
-    /* "rankpy/models/users/users_inner.pyx":634
+    /* "rankpy/models/users/users_inner.pyx":635
  *             label = labels[ranked_documents[i]]
  * 
  *             if random(&self.rand_r_state) < self.p_attraction_ptr[label]:             # <<<<<<<<<<<<<<
@@ -10969,7 +10969,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
     __pyx_t_3 = ((__pyx_f_6rankpy_6models_5users_11users_inner_random((&__pyx_v_self->rand_r_state)) < (__pyx_v_self->p_attraction_ptr[__pyx_v_label])) != 0);
     if (__pyx_t_3) {
 
-      /* "rankpy/models/users/users_inner.pyx":635
+      /* "rankpy/models/users/users_inner.pyx":636
  * 
  *             if random(&self.rand_r_state) < self.p_attraction_ptr[label]:
  *                 if clicks != NULL:             # <<<<<<<<<<<<<<
@@ -10979,7 +10979,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
       __pyx_t_3 = ((__pyx_v_clicks != NULL) != 0);
       if (__pyx_t_3) {
 
-        /* "rankpy/models/users/users_inner.pyx":636
+        /* "rankpy/models/users/users_inner.pyx":637
  *             if random(&self.rand_r_state) < self.p_attraction_ptr[label]:
  *                 if clicks != NULL:
  *                     clicks[i] = 1             # <<<<<<<<<<<<<<
@@ -10991,7 +10991,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
       }
       __pyx_L6:;
 
-      /* "rankpy/models/users/users_inner.pyx":637
+      /* "rankpy/models/users/users_inner.pyx":638
  *                 if clicks != NULL:
  *                     clicks[i] = 1
  *                 count += 1             # <<<<<<<<<<<<<<
@@ -11000,7 +11000,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
  */
       __pyx_v_count = (__pyx_v_count + 1);
 
-      /* "rankpy/models/users/users_inner.pyx":638
+      /* "rankpy/models/users/users_inner.pyx":639
  *                     clicks[i] = 1
  *                 count += 1
  *                 if random(&self.rand_r_state) < self.p_attraction_ptr[label]:             # <<<<<<<<<<<<<<
@@ -11010,7 +11010,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
       __pyx_t_3 = ((__pyx_f_6rankpy_6models_5users_11users_inner_random((&__pyx_v_self->rand_r_state)) < (__pyx_v_self->p_attraction_ptr[__pyx_v_label])) != 0);
       if (__pyx_t_3) {
 
-        /* "rankpy/models/users/users_inner.pyx":639
+        /* "rankpy/models/users/users_inner.pyx":640
  *                 count += 1
  *                 if random(&self.rand_r_state) < self.p_attraction_ptr[label]:
  *                     if random(&self.rand_r_state) < self.p_stop_click_rel:             # <<<<<<<<<<<<<<
@@ -11020,7 +11020,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
         __pyx_t_3 = ((__pyx_f_6rankpy_6models_5users_11users_inner_random((&__pyx_v_self->rand_r_state)) < __pyx_v_self->p_stop_click_rel) != 0);
         if (__pyx_t_3) {
 
-          /* "rankpy/models/users/users_inner.pyx":640
+          /* "rankpy/models/users/users_inner.pyx":641
  *                 if random(&self.rand_r_state) < self.p_attraction_ptr[label]:
  *                     if random(&self.rand_r_state) < self.p_stop_click_rel:
  *                         break             # <<<<<<<<<<<<<<
@@ -11033,7 +11033,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
       }
       /*else*/ {
 
-        /* "rankpy/models/users/users_inner.pyx":642
+        /* "rankpy/models/users/users_inner.pyx":643
  *                         break
  *                 else:
  *                     if random(&self.rand_r_state) < self.p_stop_click_norel:             # <<<<<<<<<<<<<<
@@ -11043,7 +11043,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
         __pyx_t_3 = ((__pyx_f_6rankpy_6models_5users_11users_inner_random((&__pyx_v_self->rand_r_state)) < __pyx_v_self->p_stop_click_norel) != 0);
         if (__pyx_t_3) {
 
-          /* "rankpy/models/users/users_inner.pyx":643
+          /* "rankpy/models/users/users_inner.pyx":644
  *                 else:
  *                     if random(&self.rand_r_state) < self.p_stop_click_norel:
  *                         break             # <<<<<<<<<<<<<<
@@ -11057,7 +11057,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
       goto __pyx_L5;
     }
 
-    /* "rankpy/models/users/users_inner.pyx":644
+    /* "rankpy/models/users/users_inner.pyx":645
  *                     if random(&self.rand_r_state) < self.p_stop_click_norel:
  *                         break
  *             elif random(&self.rand_r_state) < self.p_stop_noclick:             # <<<<<<<<<<<<<<
@@ -11067,7 +11067,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
     __pyx_t_3 = ((__pyx_f_6rankpy_6models_5users_11users_inner_random((&__pyx_v_self->rand_r_state)) < __pyx_v_self->p_stop_noclick) != 0);
     if (__pyx_t_3) {
 
-      /* "rankpy/models/users/users_inner.pyx":645
+      /* "rankpy/models/users/users_inner.pyx":646
  *                         break
  *             elif random(&self.rand_r_state) < self.p_stop_noclick:
  *                 break             # <<<<<<<<<<<<<<
@@ -11080,7 +11080,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
   }
   __pyx_L4_break:;
 
-  /* "rankpy/models/users/users_inner.pyx":648
+  /* "rankpy/models/users/users_inner.pyx":649
  * 
  *         # Return the number of clicks.
  *         return count             # <<<<<<<<<<<<<<
@@ -11090,7 +11090,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
   __pyx_r = __pyx_v_count;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":623
+  /* "rankpy/models/users/users_inner.pyx":624
  *                  self.rand_r_state))
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents,             # <<<<<<<<<<<<<<
@@ -11103,7 +11103,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_ge
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":650
+/* "rankpy/models/users/users_inner.pyx":651
  *         return count
  * 
  *     cdef DOUBLE_t get_clickthrough_rate_c(self,             # <<<<<<<<<<<<<<
@@ -11119,7 +11119,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   if (__pyx_optional_args) {
   }
 
-  /* "rankpy/models/users/users_inner.pyx":663
+  /* "rankpy/models/users/users_inner.pyx":664
  *         cdef DOUBLE_t result
  * 
  *         result = 1.0             # <<<<<<<<<<<<<<
@@ -11128,7 +11128,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   __pyx_v_result = 1.0;
 
-  /* "rankpy/models/users/users_inner.pyx":664
+  /* "rankpy/models/users/users_inner.pyx":665
  * 
  *         result = 1.0
  *         for rank in range(n_documents - 1, -1, -1):             # <<<<<<<<<<<<<<
@@ -11138,7 +11138,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   for (__pyx_t_1 = (__pyx_v_n_documents - 1); __pyx_t_1 > -1; __pyx_t_1-=1) {
     __pyx_v_rank = __pyx_t_1;
 
-    /* "rankpy/models/users/users_inner.pyx":665
+    /* "rankpy/models/users/users_inner.pyx":666
  *         result = 1.0
  *         for rank in range(n_documents - 1, -1, -1):
  *             result = (1.0 - self.p_attraction_ptr[labels[ranked_documents[rank]]]) * (self.p_stop_noclick + (1.0 - self.p_stop_noclick) * result)             # <<<<<<<<<<<<<<
@@ -11148,7 +11148,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     __pyx_v_result = ((1.0 - (__pyx_v_self->p_attraction_ptr[(__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])])])) * (__pyx_v_self->p_stop_noclick + ((1.0 - __pyx_v_self->p_stop_noclick) * __pyx_v_result)));
   }
 
-  /* "rankpy/models/users/users_inner.pyx":666
+  /* "rankpy/models/users/users_inner.pyx":667
  *         for rank in range(n_documents - 1, -1, -1):
  *             result = (1.0 - self.p_attraction_ptr[labels[ranked_documents[rank]]]) * (self.p_stop_noclick + (1.0 - self.p_stop_noclick) * result)
  *         return 1.0 - result             # <<<<<<<<<<<<<<
@@ -11158,7 +11158,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = (1.0 - __pyx_v_result);
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":650
+  /* "rankpy/models/users/users_inner.pyx":651
  *         return count
  * 
  *     cdef DOUBLE_t get_clickthrough_rate_c(self,             # <<<<<<<<<<<<<<
@@ -11171,7 +11171,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":668
+/* "rankpy/models/users/users_inner.pyx":669
  *         return 1.0 - result
  * 
  *     cdef DOUBLE_t get_expected_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -11182,7 +11182,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
 static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_get_expected_reciprocal_rank_c(CYTHON_UNUSED struct __pyx_obj_6rankpy_6models_5users_11users_inner_ClickChainUserModel *__pyx_v_self, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels) {
   __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_r;
 
-  /* "rankpy/models/users/users_inner.pyx":677
+  /* "rankpy/models/users/users_inner.pyx":678
  *         '''
  *         # TODO: Implement this!!!
  *         return -1.0             # <<<<<<<<<<<<<<
@@ -11192,7 +11192,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = -1.0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":668
+  /* "rankpy/models/users/users_inner.pyx":669
  *         return 1.0 - result
  * 
  *     cdef DOUBLE_t get_expected_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -11205,7 +11205,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":679
+/* "rankpy/models/users/users_inner.pyx":680
  *         return -1.0
  * 
  *     cdef DOUBLE_t get_last_clicked_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -11216,7 +11216,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
 static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_get_last_clicked_reciprocal_rank_c(CYTHON_UNUSED struct __pyx_obj_6rankpy_6models_5users_11users_inner_ClickChainUserModel *__pyx_v_self, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels) {
   __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_r;
 
-  /* "rankpy/models/users/users_inner.pyx":688
+  /* "rankpy/models/users/users_inner.pyx":689
  *         '''
  *         # TODO: Implement this!!!
  *         return -1.0             # <<<<<<<<<<<<<<
@@ -11226,7 +11226,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = -1.0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":679
+  /* "rankpy/models/users/users_inner.pyx":680
  *         return -1.0
  * 
  *     cdef DOUBLE_t get_last_clicked_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -11239,7 +11239,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":691
+/* "rankpy/models/users/users_inner.pyx":692
  * 
  *     property seed:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -11269,7 +11269,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserM
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":692
+  /* "rankpy/models/users/users_inner.pyx":693
  *     property seed:
  *         def __get__(self):
  *             return self.rand_r_state             # <<<<<<<<<<<<<<
@@ -11277,13 +11277,13 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserM
  *         def __set__(self, v):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 692; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 693; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":691
+  /* "rankpy/models/users/users_inner.pyx":692
  * 
  *     property seed:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -11302,7 +11302,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserM
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":694
+/* "rankpy/models/users/users_inner.pyx":695
  *             return self.rand_r_state
  * 
  *         def __set__(self, v):             # <<<<<<<<<<<<<<
@@ -11334,43 +11334,43 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_4
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":695
+  /* "rankpy/models/users/users_inner.pyx":696
  * 
  *         def __set__(self, v):
  *             if v == 0:             # <<<<<<<<<<<<<<
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '
  *                                  'please, choose different seed, e.g.: 42')
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_v, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 695; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 695; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_v, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 696; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 696; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":696
+    /* "rankpy/models/users/users_inner.pyx":697
  *         def __set__(self, v):
  *             if v == 0:
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 696; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 697; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 696; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 697; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":698
+  /* "rankpy/models/users/users_inner.pyx":699
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v             # <<<<<<<<<<<<<<
  * 
  * cdef class UserBrowsingModel(AbstractUserModel):
  */
-  __pyx_t_3 = __Pyx_PyInt_As_unsigned_int(__pyx_v_v); if (unlikely((__pyx_t_3 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 698; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_As_unsigned_int(__pyx_v_v); if (unlikely((__pyx_t_3 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 699; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->rand_r_state = __pyx_t_3;
 
-  /* "rankpy/models/users/users_inner.pyx":694
+  /* "rankpy/models/users/users_inner.pyx":695
  *             return self.rand_r_state
  * 
  *         def __set__(self, v):             # <<<<<<<<<<<<<<
@@ -11744,7 +11744,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_1
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":701
+/* "rankpy/models/users/users_inner.pyx":702
  * 
  * cdef class UserBrowsingModel(AbstractUserModel):
  *     def __init__(self, p_attraction, p_examination, seed=None):             # <<<<<<<<<<<<<<
@@ -11790,7 +11790,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_1__
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_p_examination)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 701; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -11799,7 +11799,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_1__
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 701; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -11816,7 +11816,7 @@ static int __pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_1__
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 701; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.UserBrowsingModel.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -11846,33 +11846,33 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":705
+  /* "rankpy/models/users/users_inner.pyx":706
  *         Initialize the cascade user model.
  *         '''
  *         if seed == 0:             # <<<<<<<<<<<<<<
  *             raise ValueError('the seed cannot be 0 for technical reasons, please,'
  *                              ' choose different seed, e.g.: 42')
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_seed, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 705; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 705; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_seed, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":706
+    /* "rankpy/models/users/users_inner.pyx":707
  *         '''
  *         if seed == 0:
  *             raise ValueError('the seed cannot be 0 for technical reasons, please,'             # <<<<<<<<<<<<<<
  *                              ' choose different seed, e.g.: 42')
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 707; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 707; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":709
+  /* "rankpy/models/users/users_inner.pyx":710
  *                              ' choose different seed, e.g.: 42')
  * 
  *         self.rand_r_state = np.random.randint(1, RAND_R_MAX) if seed is None else seed             # <<<<<<<<<<<<<<
@@ -11881,15 +11881,15 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___i
  */
   __pyx_t_2 = (__pyx_v_seed == Py_None);
   if ((__pyx_t_2 != 0)) {
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 710; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_random); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_random); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 710; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_randint); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_randint); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 710; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_e_6rankpy_6models_5users_11users_inner_RAND_R_MAX); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_e_6rankpy_6models_5users_11users_inner_RAND_R_MAX); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 710; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     __pyx_t_7 = 0;
@@ -11903,7 +11903,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___i
         __pyx_t_7 = 1;
       }
     }
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 710; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -11914,57 +11914,57 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___i
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 710; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_t_1); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_t_1); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 710; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_3 = __pyx_t_9;
   } else {
-    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_v_seed); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __Pyx_PyInt_As_unsigned_int(__pyx_v_seed); if (unlikely((__pyx_t_9 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 710; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_3 = __pyx_t_9;
   }
   __pyx_v_self->rand_r_state = __pyx_t_3;
 
-  /* "rankpy/models/users/users_inner.pyx":711
+  /* "rankpy/models/users/users_inner.pyx":712
  *         self.rand_r_state = np.random.randint(1, RAND_R_MAX) if seed is None else seed
  * 
  *         self.p_attraction = np.array(p_attraction, copy=True, dtype=DOUBLE, order='C')             # <<<<<<<<<<<<<<
  *         self.p_attraction_ptr = <DOUBLE_t*> self.p_attraction.data
  * 
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_p_attraction);
   __Pyx_GIVEREF(__pyx_v_p_attraction);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_p_attraction);
-  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_5) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_5) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 711; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 712; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GIVEREF(__pyx_t_5);
   __Pyx_GOTREF(__pyx_v_self->p_attraction);
   __Pyx_DECREF(((PyObject *)__pyx_v_self->p_attraction));
   __pyx_v_self->p_attraction = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":712
+  /* "rankpy/models/users/users_inner.pyx":713
  * 
  *         self.p_attraction = np.array(p_attraction, copy=True, dtype=DOUBLE, order='C')
  *         self.p_attraction_ptr = <DOUBLE_t*> self.p_attraction.data             # <<<<<<<<<<<<<<
@@ -11973,44 +11973,44 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___i
  */
   __pyx_v_self->p_attraction_ptr = ((__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t *)__pyx_v_self->p_attraction->data);
 
-  /* "rankpy/models/users/users_inner.pyx":714
+  /* "rankpy/models/users/users_inner.pyx":715
  *         self.p_attraction_ptr = <DOUBLE_t*> self.p_attraction.data
  * 
  *         self.p_examination = np.array(p_examination, copy=True, dtype=DOUBLE, order='C')             # <<<<<<<<<<<<<<
  * 
  *         if self.p_examination.shape[0] != self.p_examination.shape[1]:
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_array); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_array); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_p_examination);
   __Pyx_GIVEREF(__pyx_v_p_examination);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_p_examination);
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_copy, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_DOUBLE); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_order, __pyx_n_s_C) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 714; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 715; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GIVEREF(__pyx_t_4);
   __Pyx_GOTREF(__pyx_v_self->p_examination);
   __Pyx_DECREF(((PyObject *)__pyx_v_self->p_examination));
   __pyx_v_self->p_examination = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":716
+  /* "rankpy/models/users/users_inner.pyx":717
  *         self.p_examination = np.array(p_examination, copy=True, dtype=DOUBLE, order='C')
  * 
  *         if self.p_examination.shape[0] != self.p_examination.shape[1]:             # <<<<<<<<<<<<<<
@@ -12020,18 +12020,18 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___i
   __pyx_t_2 = (((__pyx_v_self->p_examination->dimensions[0]) != (__pyx_v_self->p_examination->dimensions[1])) != 0);
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":717
+    /* "rankpy/models/users/users_inner.pyx":718
  * 
  *         if self.p_examination.shape[0] != self.p_examination.shape[1]:
  *             raise ValueError('the p_examination must be a square matrix (%d != %d)' % (self.p_examination.shape[0], self.p_examination.shape[1]))             # <<<<<<<<<<<<<<
  * 
  *         self.p_examination_ptr = <DOUBLE_t*> self.p_examination.data
  */
-    __pyx_t_4 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_self->p_examination->dimensions[0])); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 717; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_self->p_examination->dimensions[0])); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_self->p_examination->dimensions[1])); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 717; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_self->p_examination->dimensions[1])); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 717; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4);
@@ -12039,23 +12039,23 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___i
     PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_1);
     __pyx_t_4 = 0;
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_the_p_examination_must_be_a_squa, __pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 717; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_the_p_examination_must_be_a_squa, __pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 717; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 717; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 717; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 718; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":719
+  /* "rankpy/models/users/users_inner.pyx":720
  *             raise ValueError('the p_examination must be a square matrix (%d != %d)' % (self.p_examination.shape[0], self.p_examination.shape[1]))
  * 
  *         self.p_examination_ptr = <DOUBLE_t*> self.p_examination.data             # <<<<<<<<<<<<<<
@@ -12064,7 +12064,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___i
  */
   __pyx_v_self->p_examination_ptr = ((__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t *)__pyx_v_self->p_examination->data);
 
-  /* "rankpy/models/users/users_inner.pyx":721
+  /* "rankpy/models/users/users_inner.pyx":722
  *         self.p_examination_ptr = <DOUBLE_t*> self.p_examination.data
  * 
  *         self.max_n_documents = self.p_examination.shape[0]             # <<<<<<<<<<<<<<
@@ -12073,7 +12073,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___i
  */
   __pyx_v_self->max_n_documents = (__pyx_v_self->p_examination->dimensions[0]);
 
-  /* "rankpy/models/users/users_inner.pyx":701
+  /* "rankpy/models/users/users_inner.pyx":702
  * 
  * cdef class UserBrowsingModel(AbstractUserModel):
  *     def __init__(self, p_attraction, p_examination, seed=None):             # <<<<<<<<<<<<<<
@@ -12097,7 +12097,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___i
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":723
+/* "rankpy/models/users/users_inner.pyx":724
  *         self.max_n_documents = self.p_examination.shape[0]
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -12128,7 +12128,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":724
+  /* "rankpy/models/users/users_inner.pyx":725
  * 
  *     def __reduce__(self):
  *         return (UserBrowsingModel,             # <<<<<<<<<<<<<<
@@ -12137,16 +12137,16 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":725
+  /* "rankpy/models/users/users_inner.pyx":726
  *     def __reduce__(self):
  *         return (UserBrowsingModel,
  *                 (self.p_attraction, self.p_examination, self.rand_r_state))             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 725; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 725; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 726; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(((PyObject *)__pyx_v_self->p_attraction));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_self->p_attraction));
@@ -12158,14 +12158,14 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":724
+  /* "rankpy/models/users/users_inner.pyx":725
  * 
  *     def __reduce__(self):
  *         return (UserBrowsingModel,             # <<<<<<<<<<<<<<
  *                 (self.p_attraction, self.p_examination, self.rand_r_state))
  * 
  */
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 724; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 725; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_6rankpy_6models_5users_11users_inner_UserBrowsingModel)));
   __Pyx_GIVEREF(((PyObject *)((PyObject*)__pyx_ptype_6rankpy_6models_5users_11users_inner_UserBrowsingModel)));
@@ -12177,7 +12177,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":723
+  /* "rankpy/models/users/users_inner.pyx":724
  *         self.max_n_documents = self.p_examination.shape[0]
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -12197,7 +12197,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":728
+/* "rankpy/models/users/users_inner.pyx":729
  * 
  * 
  *     cpdef get_clicks(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -12234,11 +12234,11 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_clicks); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_clicks); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_5get_clicks)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -12253,7 +12253,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
           __pyx_t_6 = 1;
         }
       }
-      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_5) {
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -12267,7 +12267,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_7, 2+__pyx_t_6, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -12279,7 +12279,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":730
+  /* "rankpy/models/users/users_inner.pyx":731
  *     cpdef get_clicks(self, object ranked_documents, object labels,
  *                      int cutoff=2**31-1):
  *         return AbstractUserModel.get_clicks(self, ranked_documents, labels, min(self.max_n_documents, cutoff))             # <<<<<<<<<<<<<<
@@ -12296,13 +12296,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
   }
   __pyx_t_11.__pyx_n = 1;
   __pyx_t_11.cutoff = __pyx_t_10;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_clicks(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 730; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_clicks(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 731; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":728
+  /* "rankpy/models/users/users_inner.pyx":729
  * 
  * 
  *     cpdef get_clicks(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -12359,7 +12359,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_labels)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_clicks", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 728; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("get_clicks", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -12368,7 +12368,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_clicks") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 728; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_clicks") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -12382,14 +12382,14 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
     __pyx_v_ranked_documents = values[0];
     __pyx_v_labels = values[1];
     if (values[2]) {
-      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 730; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_cutoff = __pyx_k__27;
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_clicks", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 728; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("get_clicks", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.UserBrowsingModel.get_clicks", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -12414,7 +12414,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.cutoff = __pyx_v_cutoff;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_UserBrowsingModel->__pyx_base.get_clicks(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 728; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_UserBrowsingModel->__pyx_base.get_clicks(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 729; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12431,7 +12431,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":733
+/* "rankpy/models/users/users_inner.pyx":734
  * 
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents, INT32_t n_documents, INT32_t *labels, INT32_t *clicks=NULL) nogil:             # <<<<<<<<<<<<<<
@@ -12456,7 +12456,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
     }
   }
 
-  /* "rankpy/models/users/users_inner.pyx":737
+  /* "rankpy/models/users/users_inner.pyx":738
  *         Simulate clicks on the specified ranked list of documents.
  *         '''
  *         cdef INT32_t rank, label, count = 0             # <<<<<<<<<<<<<<
@@ -12465,7 +12465,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
  */
   __pyx_v_count = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":738
+  /* "rankpy/models/users/users_inner.pyx":739
  *         '''
  *         cdef INT32_t rank, label, count = 0
  *         cdef INT32_t curr_click_rank_offset = 0             # <<<<<<<<<<<<<<
@@ -12474,7 +12474,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
  */
   __pyx_v_curr_click_rank_offset = 0;
 
-  /* "rankpy/models/users/users_inner.pyx":739
+  /* "rankpy/models/users/users_inner.pyx":740
  *         cdef INT32_t rank, label, count = 0
  *         cdef INT32_t curr_click_rank_offset = 0
  *         cdef INT32_t prev_click_rank = self.max_n_documents - 1             # <<<<<<<<<<<<<<
@@ -12483,7 +12483,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
  */
   __pyx_v_prev_click_rank = (__pyx_v_self->max_n_documents - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":741
+  /* "rankpy/models/users/users_inner.pyx":742
  *         cdef INT32_t prev_click_rank = self.max_n_documents - 1
  * 
  *         for rank in range(n_documents):             # <<<<<<<<<<<<<<
@@ -12494,7 +12494,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_rank = __pyx_t_2;
 
-    /* "rankpy/models/users/users_inner.pyx":742
+    /* "rankpy/models/users/users_inner.pyx":743
  * 
  *         for rank in range(n_documents):
  *             label = labels[ranked_documents[rank]]             # <<<<<<<<<<<<<<
@@ -12503,7 +12503,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
  */
     __pyx_v_label = (__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])]);
 
-    /* "rankpy/models/users/users_inner.pyx":744
+    /* "rankpy/models/users/users_inner.pyx":745
  *             label = labels[ranked_documents[rank]]
  * 
  *             if random(&self.rand_r_state) < (self.p_attraction_ptr[label] * self.p_examination_ptr[curr_click_rank_offset + prev_click_rank]):             # <<<<<<<<<<<<<<
@@ -12513,7 +12513,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
     __pyx_t_3 = ((__pyx_f_6rankpy_6models_5users_11users_inner_random((&__pyx_v_self->rand_r_state)) < ((__pyx_v_self->p_attraction_ptr[__pyx_v_label]) * (__pyx_v_self->p_examination_ptr[(__pyx_v_curr_click_rank_offset + __pyx_v_prev_click_rank)]))) != 0);
     if (__pyx_t_3) {
 
-      /* "rankpy/models/users/users_inner.pyx":745
+      /* "rankpy/models/users/users_inner.pyx":746
  * 
  *             if random(&self.rand_r_state) < (self.p_attraction_ptr[label] * self.p_examination_ptr[curr_click_rank_offset + prev_click_rank]):
  *                 if clicks != NULL:             # <<<<<<<<<<<<<<
@@ -12523,7 +12523,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
       __pyx_t_3 = ((__pyx_v_clicks != NULL) != 0);
       if (__pyx_t_3) {
 
-        /* "rankpy/models/users/users_inner.pyx":746
+        /* "rankpy/models/users/users_inner.pyx":747
  *             if random(&self.rand_r_state) < (self.p_attraction_ptr[label] * self.p_examination_ptr[curr_click_rank_offset + prev_click_rank]):
  *                 if clicks != NULL:
  *                     clicks[rank] = 1             # <<<<<<<<<<<<<<
@@ -12535,7 +12535,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
       }
       __pyx_L6:;
 
-      /* "rankpy/models/users/users_inner.pyx":747
+      /* "rankpy/models/users/users_inner.pyx":748
  *                 if clicks != NULL:
  *                     clicks[rank] = 1
  *                 count += 1             # <<<<<<<<<<<<<<
@@ -12544,7 +12544,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
  */
       __pyx_v_count = (__pyx_v_count + 1);
 
-      /* "rankpy/models/users/users_inner.pyx":748
+      /* "rankpy/models/users/users_inner.pyx":749
  *                     clicks[rank] = 1
  *                 count += 1
  *                 prev_click_rank = rank             # <<<<<<<<<<<<<<
@@ -12556,7 +12556,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
     }
     __pyx_L5:;
 
-    /* "rankpy/models/users/users_inner.pyx":750
+    /* "rankpy/models/users/users_inner.pyx":751
  *                 prev_click_rank = rank
  * 
  *             curr_click_rank_offset += self.max_n_documents             # <<<<<<<<<<<<<<
@@ -12566,7 +12566,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
     __pyx_v_curr_click_rank_offset = (__pyx_v_curr_click_rank_offset + __pyx_v_self->max_n_documents);
   }
 
-  /* "rankpy/models/users/users_inner.pyx":753
+  /* "rankpy/models/users/users_inner.pyx":754
  * 
  *         # Return the number of clicks.
  *         return count             # <<<<<<<<<<<<<<
@@ -12576,7 +12576,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
   __pyx_r = __pyx_v_count;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":733
+  /* "rankpy/models/users/users_inner.pyx":734
  * 
  * 
  *     cdef int get_clicks_c(self, INT32_t *ranked_documents, INT32_t n_documents, INT32_t *labels, INT32_t *clicks=NULL) nogil:             # <<<<<<<<<<<<<<
@@ -12589,7 +12589,7 @@ static int __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":755
+/* "rankpy/models/users/users_inner.pyx":756
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -12601,7 +12601,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
 static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_clickthrough_rate(struct __pyx_obj_6rankpy_6models_5users_11users_inner_UserBrowsingModel *__pyx_v_self, PyObject *__pyx_v_ranked_documents, PyObject *__pyx_v_labels, int __pyx_skip_dispatch, struct __pyx_opt_args_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_clickthrough_rate *__pyx_optional_args) {
   int __pyx_v_cutoff = __pyx_k__28;
 
-  /* "rankpy/models/users/users_inner.pyx":756
+  /* "rankpy/models/users/users_inner.pyx":757
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):             # <<<<<<<<<<<<<<
@@ -12636,7 +12636,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
     }
   }
 
-  /* "rankpy/models/users/users_inner.pyx":755
+  /* "rankpy/models/users/users_inner.pyx":756
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -12647,13 +12647,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_clickthrough_rate); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 755; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_clickthrough_rate); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_7get_clickthrough_rate)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 755; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_v_relative); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 755; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_v_relative); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -12668,7 +12668,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
           __pyx_t_7 = 1;
         }
       }
-      __pyx_t_8 = PyTuple_New(4+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 755; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(4+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       if (__pyx_t_6) {
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -12685,7 +12685,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
       PyTuple_SET_ITEM(__pyx_t_8, 3+__pyx_t_7, __pyx_t_4);
       __pyx_t_3 = 0;
       __pyx_t_4 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 755; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -12697,7 +12697,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":757
+  /* "rankpy/models/users/users_inner.pyx":758
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):
  *         return AbstractUserModel.get_clickthrough_rate(             # <<<<<<<<<<<<<<
@@ -12706,7 +12706,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":759
+  /* "rankpy/models/users/users_inner.pyx":760
  *         return AbstractUserModel.get_clickthrough_rate(
  *                                             self, ranked_documents, labels,
  *                                             min(self.max_n_documents, cutoff),             # <<<<<<<<<<<<<<
@@ -12721,7 +12721,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
     __pyx_t_11 = __pyx_t_10;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":757
+  /* "rankpy/models/users/users_inner.pyx":758
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):
  *         return AbstractUserModel.get_clickthrough_rate(             # <<<<<<<<<<<<<<
@@ -12731,13 +12731,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
   __pyx_t_12.__pyx_n = 2;
   __pyx_t_12.cutoff = __pyx_t_11;
   __pyx_t_12.relative = __pyx_v_relative;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_12); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_12); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 758; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":755
+  /* "rankpy/models/users/users_inner.pyx":756
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -12797,7 +12797,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_labels)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 755; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -12811,7 +12811,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_clickthrough_rate") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 755; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_clickthrough_rate") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -12826,15 +12826,15 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
     __pyx_v_ranked_documents = values[0];
     __pyx_v_labels = values[1];
     if (values[2]) {
-      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 757; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_cutoff = __pyx_k__28;
     }
     if (values[3]) {
-      __pyx_v_relative = __Pyx_PyObject_IsTrue(values[3]); if (unlikely((__pyx_v_relative == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_relative = __Pyx_PyObject_IsTrue(values[3]); if (unlikely((__pyx_v_relative == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 757; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
 
-      /* "rankpy/models/users/users_inner.pyx":756
+      /* "rankpy/models/users/users_inner.pyx":757
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):             # <<<<<<<<<<<<<<
@@ -12846,7 +12846,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 755; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("get_clickthrough_rate", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.UserBrowsingModel.get_clickthrough_rate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -12854,7 +12854,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   __pyx_L4_argument_unpacking_done:;
   __pyx_r = __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_6get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_UserBrowsingModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, __pyx_v_cutoff, __pyx_v_relative);
 
-  /* "rankpy/models/users/users_inner.pyx":755
+  /* "rankpy/models/users/users_inner.pyx":756
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -12880,7 +12880,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   __pyx_t_2.__pyx_n = 2;
   __pyx_t_2.cutoff = __pyx_v_cutoff;
   __pyx_t_2.relative = __pyx_v_relative;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_UserBrowsingModel->__pyx_base.get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 755; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_UserBrowsingModel->__pyx_base.get_clickthrough_rate(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12897,7 +12897,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":762
+/* "rankpy/models/users/users_inner.pyx":763
  *                                             relative=relative)
  * 
  *     cdef DOUBLE_t get_clickthrough_rate_c(self, INT32_t *ranked_documents,             # <<<<<<<<<<<<<<
@@ -12915,7 +12915,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   if (__pyx_optional_args) {
   }
 
-  /* "rankpy/models/users/users_inner.pyx":771
+  /* "rankpy/models/users/users_inner.pyx":772
  *         cdef int rank, label
  *         # The final answer will be here.
  *         cdef DOUBLE_t result = 1.0             # <<<<<<<<<<<<<<
@@ -12924,7 +12924,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   __pyx_v_result = 1.0;
 
-  /* "rankpy/models/users/users_inner.pyx":772
+  /* "rankpy/models/users/users_inner.pyx":773
  *         # The final answer will be here.
  *         cdef DOUBLE_t result = 1.0
  *         cdef INT32_t no_prev_click_offset = self.max_n_documents - 1             # <<<<<<<<<<<<<<
@@ -12933,7 +12933,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
   __pyx_v_no_prev_click_offset = (__pyx_v_self->max_n_documents - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":774
+  /* "rankpy/models/users/users_inner.pyx":775
  *         cdef INT32_t no_prev_click_offset = self.max_n_documents - 1
  * 
  *         for rank in range(n_documents):             # <<<<<<<<<<<<<<
@@ -12944,7 +12944,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_rank = __pyx_t_2;
 
-    /* "rankpy/models/users/users_inner.pyx":775
+    /* "rankpy/models/users/users_inner.pyx":776
  * 
  *         for rank in range(n_documents):
  *             result *= (1.0 - self.p_attraction_ptr[labels[ranked_documents[rank]]] * self.p_examination_ptr[no_prev_click_offset])             # <<<<<<<<<<<<<<
@@ -12953,7 +12953,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
  */
     __pyx_v_result = (__pyx_v_result * (1.0 - ((__pyx_v_self->p_attraction_ptr[(__pyx_v_labels[(__pyx_v_ranked_documents[__pyx_v_rank])])]) * (__pyx_v_self->p_examination_ptr[__pyx_v_no_prev_click_offset]))));
 
-    /* "rankpy/models/users/users_inner.pyx":776
+    /* "rankpy/models/users/users_inner.pyx":777
  *         for rank in range(n_documents):
  *             result *= (1.0 - self.p_attraction_ptr[labels[ranked_documents[rank]]] * self.p_examination_ptr[no_prev_click_offset])
  *             no_prev_click_offset += self.max_n_documents             # <<<<<<<<<<<<<<
@@ -12963,7 +12963,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
     __pyx_v_no_prev_click_offset = (__pyx_v_no_prev_click_offset + __pyx_v_self->max_n_documents);
   }
 
-  /* "rankpy/models/users/users_inner.pyx":778
+  /* "rankpy/models/users/users_inner.pyx":779
  *             no_prev_click_offset += self.max_n_documents
  * 
  *         return 1.0 - result             # <<<<<<<<<<<<<<
@@ -12973,7 +12973,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = (1.0 - __pyx_v_result);
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":762
+  /* "rankpy/models/users/users_inner.pyx":763
  *                                             relative=relative)
  * 
  *     cdef DOUBLE_t get_clickthrough_rate_c(self, INT32_t *ranked_documents,             # <<<<<<<<<<<<<<
@@ -12986,7 +12986,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":780
+/* "rankpy/models/users/users_inner.pyx":781
  *         return 1.0 - result
  * 
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -13023,11 +13023,11 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_expected_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_expected_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_9get_expected_reciprocal_rank)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -13042,7 +13042,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
           __pyx_t_6 = 1;
         }
       }
-      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_5) {
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -13056,7 +13056,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_7, 2+__pyx_t_6, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -13068,7 +13068,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":782
+  /* "rankpy/models/users/users_inner.pyx":783
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,
  *                                        object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_expected_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -13077,7 +13077,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":784
+  /* "rankpy/models/users/users_inner.pyx":785
  *         return AbstractUserModel.get_expected_reciprocal_rank(
  *                                             self, ranked_documents, labels,
  *                                             min(self.max_n_documents, cutoff))             # <<<<<<<<<<<<<<
@@ -13092,7 +13092,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
     __pyx_t_10 = __pyx_t_9;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":782
+  /* "rankpy/models/users/users_inner.pyx":783
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,
  *                                        object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_expected_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -13101,13 +13101,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
  */
   __pyx_t_11.__pyx_n = 1;
   __pyx_t_11.cutoff = __pyx_t_10;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 782; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 783; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":780
+  /* "rankpy/models/users/users_inner.pyx":781
  *         return 1.0 - result
  * 
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -13164,7 +13164,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_labels)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -13173,7 +13173,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_expected_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_expected_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -13187,14 +13187,14 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
     __pyx_v_ranked_documents = values[0];
     __pyx_v_labels = values[1];
     if (values[2]) {
-      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 782; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_cutoff = __pyx_k__29;
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("get_expected_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.UserBrowsingModel.get_expected_reciprocal_rank", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -13219,7 +13219,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.cutoff = __pyx_v_cutoff;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_UserBrowsingModel->__pyx_base.get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 780; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_UserBrowsingModel->__pyx_base.get_expected_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 781; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -13236,7 +13236,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":786
+/* "rankpy/models/users/users_inner.pyx":787
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_expected_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -13247,7 +13247,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
 static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_expected_reciprocal_rank_c(CYTHON_UNUSED struct __pyx_obj_6rankpy_6models_5users_11users_inner_UserBrowsingModel *__pyx_v_self, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels) {
   __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_r;
 
-  /* "rankpy/models/users/users_inner.pyx":795
+  /* "rankpy/models/users/users_inner.pyx":796
  *         '''
  *         # TODO: Implement this!!!
  *         return -1.0             # <<<<<<<<<<<<<<
@@ -13257,7 +13257,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = -1.0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":786
+  /* "rankpy/models/users/users_inner.pyx":787
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_expected_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -13270,7 +13270,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":797
+/* "rankpy/models/users/users_inner.pyx":798
  *         return -1.0
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -13307,11 +13307,11 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_last_clicked_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_last_clicked_reciprocal_rank); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 798; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_11get_last_clicked_reciprocal_rank)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_cutoff); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 798; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -13326,7 +13326,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
           __pyx_t_6 = 1;
         }
       }
-      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 798; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_5) {
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -13340,7 +13340,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_7, 2+__pyx_t_6, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 798; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -13352,7 +13352,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":799
+  /* "rankpy/models/users/users_inner.pyx":800
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,
  *                                            object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_last_clicked_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -13361,7 +13361,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "rankpy/models/users/users_inner.pyx":801
+  /* "rankpy/models/users/users_inner.pyx":802
  *         return AbstractUserModel.get_last_clicked_reciprocal_rank(
  *                                             self, ranked_documents, labels,
  *                                             min(self.max_n_documents, cutoff))             # <<<<<<<<<<<<<<
@@ -13376,7 +13376,7 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
     __pyx_t_10 = __pyx_t_9;
   }
 
-  /* "rankpy/models/users/users_inner.pyx":799
+  /* "rankpy/models/users/users_inner.pyx":800
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,
  *                                            object labels, int cutoff=2**31-1):
  *         return AbstractUserModel.get_last_clicked_reciprocal_rank(             # <<<<<<<<<<<<<<
@@ -13385,13 +13385,13 @@ static PyObject *__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingMode
  */
   __pyx_t_11.__pyx_n = 1;
   __pyx_t_11.cutoff = __pyx_t_10;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel->get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_11); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 800; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":797
+  /* "rankpy/models/users/users_inner.pyx":798
  *         return -1.0
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -13448,7 +13448,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_labels)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 798; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -13457,7 +13457,7 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_last_clicked_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_last_clicked_reciprocal_rank") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 798; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -13471,14 +13471,14 @@ static PyObject *__pyx_pw_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
     __pyx_v_ranked_documents = values[0];
     __pyx_v_labels = values[1];
     if (values[2]) {
-      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 798; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_cutoff = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_cutoff == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 799; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_cutoff = __pyx_k__30;
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("get_last_clicked_reciprocal_rank", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 798; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("rankpy.models.users.users_inner.UserBrowsingModel.get_last_clicked_reciprocal_rank", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -13503,7 +13503,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.cutoff = __pyx_v_cutoff;
-  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_UserBrowsingModel->__pyx_base.get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_vtabptr_6rankpy_6models_5users_11users_inner_UserBrowsingModel->__pyx_base.get_last_clicked_reciprocal_rank(((struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *)__pyx_v_self), __pyx_v_ranked_documents, __pyx_v_labels, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 798; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -13520,7 +13520,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":803
+/* "rankpy/models/users/users_inner.pyx":804
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_last_clicked_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -13531,7 +13531,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
 static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_last_clicked_reciprocal_rank_c(CYTHON_UNUSED struct __pyx_obj_6rankpy_6models_5users_11users_inner_UserBrowsingModel *__pyx_v_self, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_ranked_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t __pyx_v_n_documents, CYTHON_UNUSED __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *__pyx_v_labels) {
   __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_r;
 
-  /* "rankpy/models/users/users_inner.pyx":812
+  /* "rankpy/models/users/users_inner.pyx":813
  *         '''
  *         # TODO: Implement this!!!
  *         return -1.0             # <<<<<<<<<<<<<<
@@ -13541,7 +13541,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   __pyx_r = -1.0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":803
+  /* "rankpy/models/users/users_inner.pyx":804
  *                                             min(self.max_n_documents, cutoff))
  * 
  *     cdef DOUBLE_t get_last_clicked_reciprocal_rank_c(self,             # <<<<<<<<<<<<<<
@@ -13554,7 +13554,7 @@ static __pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t __pyx_f_6rankpy_6mo
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":815
+/* "rankpy/models/users/users_inner.pyx":816
  * 
  *     property seed:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -13584,7 +13584,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":816
+  /* "rankpy/models/users/users_inner.pyx":817
  *     property seed:
  *         def __get__(self):
  *             return self.rand_r_state             # <<<<<<<<<<<<<<
@@ -13592,13 +13592,13 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
  *         def __set__(self, v):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->rand_r_state); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 817; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":815
+  /* "rankpy/models/users/users_inner.pyx":816
  * 
  *     property seed:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -13617,7 +13617,7 @@ static PyObject *__pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingMod
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":818
+/* "rankpy/models/users/users_inner.pyx":819
  *             return self.rand_r_state
  * 
  *         def __set__(self, v):             # <<<<<<<<<<<<<<
@@ -13649,43 +13649,43 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_4se
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "rankpy/models/users/users_inner.pyx":819
+  /* "rankpy/models/users/users_inner.pyx":820
  * 
  *         def __set__(self, v):
  *             if v == 0:             # <<<<<<<<<<<<<<
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '
  *                                  'please, choose different seed, e.g.: 42')
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_v, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 819; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 819; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_v, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 820; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 820; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "rankpy/models/users/users_inner.pyx":820
+    /* "rankpy/models/users/users_inner.pyx":821
  *         def __set__(self, v):
  *             if v == 0:
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__31, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 820; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__31, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 821; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 820; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 821; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "rankpy/models/users/users_inner.pyx":822
+  /* "rankpy/models/users/users_inner.pyx":823
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_3 = __Pyx_PyInt_As_unsigned_int(__pyx_v_v); if (unlikely((__pyx_t_3 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 822; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_As_unsigned_int(__pyx_v_v); if (unlikely((__pyx_t_3 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->rand_r_state = __pyx_t_3;
 
-  /* "rankpy/models/users/users_inner.pyx":818
+  /* "rankpy/models/users/users_inner.pyx":819
  *             return self.rand_r_state
  * 
  *         def __set__(self, v):             # <<<<<<<<<<<<<<
@@ -13921,7 +13921,7 @@ static int __pyx_pf_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_13p
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":830
+/* "rankpy/models/users/users_inner.pyx":831
  * 
  * 
  * cdef inline unsigned int rand_r(unsigned int *seed) nogil:             # <<<<<<<<<<<<<<
@@ -13933,7 +13933,7 @@ static CYTHON_INLINE unsigned int __pyx_f_6rankpy_6models_5users_11users_inner_r
   unsigned int __pyx_r;
   long __pyx_t_1;
 
-  /* "rankpy/models/users/users_inner.pyx":831
+  /* "rankpy/models/users/users_inner.pyx":832
  * 
  * cdef inline unsigned int rand_r(unsigned int *seed) nogil:
  *     seed[0] ^= <unsigned int> (seed[0] << 13)             # <<<<<<<<<<<<<<
@@ -13943,7 +13943,7 @@ static CYTHON_INLINE unsigned int __pyx_f_6rankpy_6models_5users_11users_inner_r
   __pyx_t_1 = 0;
   (__pyx_v_seed[__pyx_t_1]) = ((__pyx_v_seed[__pyx_t_1]) ^ ((unsigned int)((__pyx_v_seed[0]) << 13)));
 
-  /* "rankpy/models/users/users_inner.pyx":832
+  /* "rankpy/models/users/users_inner.pyx":833
  * cdef inline unsigned int rand_r(unsigned int *seed) nogil:
  *     seed[0] ^= <unsigned int> (seed[0] << 13)
  *     seed[0] ^= <unsigned int> (seed[0] >> 17)             # <<<<<<<<<<<<<<
@@ -13953,7 +13953,7 @@ static CYTHON_INLINE unsigned int __pyx_f_6rankpy_6models_5users_11users_inner_r
   __pyx_t_1 = 0;
   (__pyx_v_seed[__pyx_t_1]) = ((__pyx_v_seed[__pyx_t_1]) ^ ((unsigned int)((__pyx_v_seed[0]) >> 17)));
 
-  /* "rankpy/models/users/users_inner.pyx":833
+  /* "rankpy/models/users/users_inner.pyx":834
  *     seed[0] ^= <unsigned int> (seed[0] << 13)
  *     seed[0] ^= <unsigned int> (seed[0] >> 17)
  *     seed[0] ^= <unsigned int> (seed[0] << 5)             # <<<<<<<<<<<<<<
@@ -13963,7 +13963,7 @@ static CYTHON_INLINE unsigned int __pyx_f_6rankpy_6models_5users_11users_inner_r
   __pyx_t_1 = 0;
   (__pyx_v_seed[__pyx_t_1]) = ((__pyx_v_seed[__pyx_t_1]) ^ ((unsigned int)((__pyx_v_seed[0]) << 5)));
 
-  /* "rankpy/models/users/users_inner.pyx":835
+  /* "rankpy/models/users/users_inner.pyx":836
  *     seed[0] ^= <unsigned int> (seed[0] << 5)
  * 
  *     return (seed[0] & <unsigned int> RAND_R_MAX)             # <<<<<<<<<<<<<<
@@ -13973,7 +13973,7 @@ static CYTHON_INLINE unsigned int __pyx_f_6rankpy_6models_5users_11users_inner_r
   __pyx_r = ((__pyx_v_seed[0]) & ((unsigned int)__pyx_e_6rankpy_6models_5users_11users_inner_RAND_R_MAX));
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":830
+  /* "rankpy/models/users/users_inner.pyx":831
  * 
  * 
  * cdef inline unsigned int rand_r(unsigned int *seed) nogil:             # <<<<<<<<<<<<<<
@@ -13986,7 +13986,7 @@ static CYTHON_INLINE unsigned int __pyx_f_6rankpy_6models_5users_11users_inner_r
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":838
+/* "rankpy/models/users/users_inner.pyx":839
  * 
  * 
  * cdef inline double random(unsigned int *random_state) nogil:             # <<<<<<<<<<<<<<
@@ -13997,7 +13997,7 @@ static CYTHON_INLINE unsigned int __pyx_f_6rankpy_6models_5users_11users_inner_r
 static CYTHON_INLINE double __pyx_f_6rankpy_6models_5users_11users_inner_random(unsigned int *__pyx_v_random_state) {
   double __pyx_r;
 
-  /* "rankpy/models/users/users_inner.pyx":842
+  /* "rankpy/models/users/users_inner.pyx":843
  *     Generate a random double in [0, 1].
  *     '''
  *     return (<double> rand_r(random_state) / <double> RAND_R_MAX)             # <<<<<<<<<<<<<<
@@ -14007,7 +14007,7 @@ static CYTHON_INLINE double __pyx_f_6rankpy_6models_5users_11users_inner_random(
   __pyx_r = (((double)__pyx_f_6rankpy_6models_5users_11users_inner_rand_r(__pyx_v_random_state)) / ((double)__pyx_e_6rankpy_6models_5users_11users_inner_RAND_R_MAX));
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":838
+  /* "rankpy/models/users/users_inner.pyx":839
  * 
  * 
  * cdef inline double random(unsigned int *random_state) nogil:             # <<<<<<<<<<<<<<
@@ -14020,7 +14020,7 @@ static CYTHON_INLINE double __pyx_f_6rankpy_6models_5users_11users_inner_random(
   return __pyx_r;
 }
 
-/* "rankpy/models/users/users_inner.pyx":845
+/* "rankpy/models/users/users_inner.pyx":846
  * 
  * 
  * cdef inline double * __cc(double *a, int i, int j) nogil:             # <<<<<<<<<<<<<<
@@ -14031,7 +14031,7 @@ static CYTHON_INLINE double __pyx_f_6rankpy_6models_5users_11users_inner_random(
 static CYTHON_INLINE double *__pyx_f_6rankpy_6models_5users_11users_inner___cc(double *__pyx_v_a, int __pyx_v_i, int __pyx_v_j) {
   double *__pyx_r;
 
-  /* "rankpy/models/users/users_inner.pyx":846
+  /* "rankpy/models/users/users_inner.pyx":847
  * 
  * cdef inline double * __cc(double *a, int i, int j) nogil:
  *     return &a[i * (i + 3) / 2 + j + 1]             # <<<<<<<<<<<<<<
@@ -14041,7 +14041,7 @@ static CYTHON_INLINE double *__pyx_f_6rankpy_6models_5users_11users_inner___cc(d
   __pyx_r = (&(__pyx_v_a[((((__pyx_v_i * (__pyx_v_i + 3)) / 2) + __pyx_v_j) + 1)]));
   goto __pyx_L0;
 
-  /* "rankpy/models/users/users_inner.pyx":845
+  /* "rankpy/models/users/users_inner.pyx":846
  * 
  * 
  * cdef inline double * __cc(double *a, int i, int j) nogil:             # <<<<<<<<<<<<<<
@@ -14054,7 +14054,7 @@ static CYTHON_INLINE double *__pyx_f_6rankpy_6models_5users_11users_inner___cc(d
   return __pyx_r;
 }
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":197
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":197
  *         # experimental exception made for __getbuffer__ and __releasebuffer__
  *         # -- the details of this may change.
  *         def __getbuffer__(ndarray self, Py_buffer* info, int flags):             # <<<<<<<<<<<<<<
@@ -14104,7 +14104,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __Pyx_GIVEREF(__pyx_v_info->obj);
   }
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":203
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":203
  *             # of flags
  * 
  *             if info == NULL: return             # <<<<<<<<<<<<<<
@@ -14117,7 +14117,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     goto __pyx_L0;
   }
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":206
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":206
  * 
  *             cdef int copy_shape, i, ndim
  *             cdef int endian_detector = 1             # <<<<<<<<<<<<<<
@@ -14126,7 +14126,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_endian_detector = 1;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":207
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":207
  *             cdef int copy_shape, i, ndim
  *             cdef int endian_detector = 1
  *             cdef bint little_endian = ((<char*>&endian_detector)[0] != 0)             # <<<<<<<<<<<<<<
@@ -14135,7 +14135,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_little_endian = ((((char *)(&__pyx_v_endian_detector))[0]) != 0);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":209
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":209
  *             cdef bint little_endian = ((<char*>&endian_detector)[0] != 0)
  * 
  *             ndim = PyArray_NDIM(self)             # <<<<<<<<<<<<<<
@@ -14144,7 +14144,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_ndim = PyArray_NDIM(__pyx_v_self);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":211
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":211
  *             ndim = PyArray_NDIM(self)
  * 
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):             # <<<<<<<<<<<<<<
@@ -14154,7 +14154,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_t_1 = (((sizeof(npy_intp)) != (sizeof(Py_ssize_t))) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":212
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":212
  * 
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):
  *                 copy_shape = 1             # <<<<<<<<<<<<<<
@@ -14166,7 +14166,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   }
   /*else*/ {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":214
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":214
  *                 copy_shape = 1
  *             else:
  *                 copy_shape = 0             # <<<<<<<<<<<<<<
@@ -14177,7 +14177,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   }
   __pyx_L4:;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":216
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":216
  *                 copy_shape = 0
  * 
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -14191,7 +14191,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     goto __pyx_L6_bool_binop_done;
   }
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":217
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":217
  * 
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_C_CONTIGUOUS)):             # <<<<<<<<<<<<<<
@@ -14203,7 +14203,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_L6_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":218
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":218
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_C_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not C contiguous")             # <<<<<<<<<<<<<<
@@ -14217,7 +14217,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     {__pyx_filename = __pyx_f[2]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":220
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":220
  *                 raise ValueError(u"ndarray is not C contiguous")
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -14231,7 +14231,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     goto __pyx_L9_bool_binop_done;
   }
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":221
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":221
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_F_CONTIGUOUS)):             # <<<<<<<<<<<<<<
@@ -14243,7 +14243,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_L9_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":222
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":222
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_F_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not Fortran contiguous")             # <<<<<<<<<<<<<<
@@ -14257,7 +14257,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     {__pyx_filename = __pyx_f[2]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":224
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":224
  *                 raise ValueError(u"ndarray is not Fortran contiguous")
  * 
  *             info.buf = PyArray_DATA(self)             # <<<<<<<<<<<<<<
@@ -14266,7 +14266,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->buf = PyArray_DATA(__pyx_v_self);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":225
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":225
  * 
  *             info.buf = PyArray_DATA(self)
  *             info.ndim = ndim             # <<<<<<<<<<<<<<
@@ -14275,7 +14275,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->ndim = __pyx_v_ndim;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":226
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":226
  *             info.buf = PyArray_DATA(self)
  *             info.ndim = ndim
  *             if copy_shape:             # <<<<<<<<<<<<<<
@@ -14285,7 +14285,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_t_1 = (__pyx_v_copy_shape != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":229
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":229
  *                 # Allocate new buffer for strides and shape info.
  *                 # This is allocated as one block, strides first.
  *                 info.strides = <Py_ssize_t*>stdlib.malloc(sizeof(Py_ssize_t) * <size_t>ndim * 2)             # <<<<<<<<<<<<<<
@@ -14294,7 +14294,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_info->strides = ((Py_ssize_t *)malloc((((sizeof(Py_ssize_t)) * ((size_t)__pyx_v_ndim)) * 2)));
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":230
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":230
  *                 # This is allocated as one block, strides first.
  *                 info.strides = <Py_ssize_t*>stdlib.malloc(sizeof(Py_ssize_t) * <size_t>ndim * 2)
  *                 info.shape = info.strides + ndim             # <<<<<<<<<<<<<<
@@ -14303,7 +14303,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_info->shape = (__pyx_v_info->strides + __pyx_v_ndim);
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":231
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":231
  *                 info.strides = <Py_ssize_t*>stdlib.malloc(sizeof(Py_ssize_t) * <size_t>ndim * 2)
  *                 info.shape = info.strides + ndim
  *                 for i in range(ndim):             # <<<<<<<<<<<<<<
@@ -14314,7 +14314,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
       __pyx_v_i = __pyx_t_5;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":232
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":232
  *                 info.shape = info.strides + ndim
  *                 for i in range(ndim):
  *                     info.strides[i] = PyArray_STRIDES(self)[i]             # <<<<<<<<<<<<<<
@@ -14323,7 +14323,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
       (__pyx_v_info->strides[__pyx_v_i]) = (PyArray_STRIDES(__pyx_v_self)[__pyx_v_i]);
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":233
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":233
  *                 for i in range(ndim):
  *                     info.strides[i] = PyArray_STRIDES(self)[i]
  *                     info.shape[i] = PyArray_DIMS(self)[i]             # <<<<<<<<<<<<<<
@@ -14336,7 +14336,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   }
   /*else*/ {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":235
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":235
  *                     info.shape[i] = PyArray_DIMS(self)[i]
  *             else:
  *                 info.strides = <Py_ssize_t*>PyArray_STRIDES(self)             # <<<<<<<<<<<<<<
@@ -14345,7 +14345,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_info->strides = ((Py_ssize_t *)PyArray_STRIDES(__pyx_v_self));
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":236
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":236
  *             else:
  *                 info.strides = <Py_ssize_t*>PyArray_STRIDES(self)
  *                 info.shape = <Py_ssize_t*>PyArray_DIMS(self)             # <<<<<<<<<<<<<<
@@ -14356,7 +14356,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   }
   __pyx_L11:;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":237
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":237
  *                 info.strides = <Py_ssize_t*>PyArray_STRIDES(self)
  *                 info.shape = <Py_ssize_t*>PyArray_DIMS(self)
  *             info.suboffsets = NULL             # <<<<<<<<<<<<<<
@@ -14365,7 +14365,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->suboffsets = NULL;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":238
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":238
  *                 info.shape = <Py_ssize_t*>PyArray_DIMS(self)
  *             info.suboffsets = NULL
  *             info.itemsize = PyArray_ITEMSIZE(self)             # <<<<<<<<<<<<<<
@@ -14374,7 +14374,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->itemsize = PyArray_ITEMSIZE(__pyx_v_self);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":239
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":239
  *             info.suboffsets = NULL
  *             info.itemsize = PyArray_ITEMSIZE(self)
  *             info.readonly = not PyArray_ISWRITEABLE(self)             # <<<<<<<<<<<<<<
@@ -14383,7 +14383,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->readonly = (!(PyArray_ISWRITEABLE(__pyx_v_self) != 0));
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":242
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":242
  * 
  *             cdef int t
  *             cdef char* f = NULL             # <<<<<<<<<<<<<<
@@ -14392,7 +14392,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_f = NULL;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":243
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":243
  *             cdef int t
  *             cdef char* f = NULL
  *             cdef dtype descr = self.descr             # <<<<<<<<<<<<<<
@@ -14404,7 +14404,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_v_descr = ((PyArray_Descr *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":247
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":247
  *             cdef int offset
  * 
  *             cdef bint hasfields = PyDataType_HASFIELDS(descr)             # <<<<<<<<<<<<<<
@@ -14413,7 +14413,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_hasfields = PyDataType_HASFIELDS(__pyx_v_descr);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":249
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":249
  *             cdef bint hasfields = PyDataType_HASFIELDS(descr)
  * 
  *             if not hasfields and not copy_shape:             # <<<<<<<<<<<<<<
@@ -14431,7 +14431,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_L15_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":251
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":251
  *             if not hasfields and not copy_shape:
  *                 # do not call releasebuffer
  *                 info.obj = None             # <<<<<<<<<<<<<<
@@ -14447,7 +14447,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   }
   /*else*/ {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":254
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":254
  *             else:
  *                 # need to call releasebuffer
  *                 info.obj = self             # <<<<<<<<<<<<<<
@@ -14462,7 +14462,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   }
   __pyx_L14:;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":256
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":256
  *                 info.obj = self
  * 
  *             if not hasfields:             # <<<<<<<<<<<<<<
@@ -14472,7 +14472,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_t_1 = ((!(__pyx_v_hasfields != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":257
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":257
  * 
  *             if not hasfields:
  *                 t = descr.type_num             # <<<<<<<<<<<<<<
@@ -14482,7 +14482,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __pyx_t_4 = __pyx_v_descr->type_num;
     __pyx_v_t = __pyx_t_4;
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":258
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":258
  *             if not hasfields:
  *                 t = descr.type_num
  *                 if ((descr.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -14502,7 +14502,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     }
     __pyx_L20_next_or:;
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":259
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":259
  *                 t = descr.type_num
  *                 if ((descr.byteorder == c'>' and little_endian) or
  *                     (descr.byteorder == c'<' and not little_endian)):             # <<<<<<<<<<<<<<
@@ -14520,7 +14520,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __pyx_L19_bool_binop_done:;
     if (__pyx_t_1) {
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":260
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":260
  *                 if ((descr.byteorder == c'>' and little_endian) or
  *                     (descr.byteorder == c'<' and not little_endian)):
  *                     raise ValueError(u"Non-native byte order not supported")             # <<<<<<<<<<<<<<
@@ -14534,7 +14534,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       {__pyx_filename = __pyx_f[2]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":277
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":277
  *                 elif t == NPY_CDOUBLE:     f = "Zd"
  *                 elif t == NPY_CLONGDOUBLE: f = "Zg"
  *                 elif t == NPY_OBJECT:      f = "O"             # <<<<<<<<<<<<<<
@@ -14543,7 +14543,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     switch (__pyx_v_t) {
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":261
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":261
  *                     (descr.byteorder == c'<' and not little_endian)):
  *                     raise ValueError(u"Non-native byte order not supported")
  *                 if   t == NPY_BYTE:        f = "b"             # <<<<<<<<<<<<<<
@@ -14554,7 +14554,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_b;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":262
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":262
  *                     raise ValueError(u"Non-native byte order not supported")
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"             # <<<<<<<<<<<<<<
@@ -14565,7 +14565,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_B;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":263
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":263
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"
  *                 elif t == NPY_SHORT:       f = "h"             # <<<<<<<<<<<<<<
@@ -14576,7 +14576,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_h;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":264
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":264
  *                 elif t == NPY_UBYTE:       f = "B"
  *                 elif t == NPY_SHORT:       f = "h"
  *                 elif t == NPY_USHORT:      f = "H"             # <<<<<<<<<<<<<<
@@ -14587,7 +14587,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_H;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":265
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":265
  *                 elif t == NPY_SHORT:       f = "h"
  *                 elif t == NPY_USHORT:      f = "H"
  *                 elif t == NPY_INT:         f = "i"             # <<<<<<<<<<<<<<
@@ -14598,7 +14598,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_i;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":266
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":266
  *                 elif t == NPY_USHORT:      f = "H"
  *                 elif t == NPY_INT:         f = "i"
  *                 elif t == NPY_UINT:        f = "I"             # <<<<<<<<<<<<<<
@@ -14609,7 +14609,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_I;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":267
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":267
  *                 elif t == NPY_INT:         f = "i"
  *                 elif t == NPY_UINT:        f = "I"
  *                 elif t == NPY_LONG:        f = "l"             # <<<<<<<<<<<<<<
@@ -14620,7 +14620,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_l;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":268
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":268
  *                 elif t == NPY_UINT:        f = "I"
  *                 elif t == NPY_LONG:        f = "l"
  *                 elif t == NPY_ULONG:       f = "L"             # <<<<<<<<<<<<<<
@@ -14631,7 +14631,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_L;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":269
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":269
  *                 elif t == NPY_LONG:        f = "l"
  *                 elif t == NPY_ULONG:       f = "L"
  *                 elif t == NPY_LONGLONG:    f = "q"             # <<<<<<<<<<<<<<
@@ -14642,7 +14642,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_q;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":270
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":270
  *                 elif t == NPY_ULONG:       f = "L"
  *                 elif t == NPY_LONGLONG:    f = "q"
  *                 elif t == NPY_ULONGLONG:   f = "Q"             # <<<<<<<<<<<<<<
@@ -14653,7 +14653,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_Q;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":271
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":271
  *                 elif t == NPY_LONGLONG:    f = "q"
  *                 elif t == NPY_ULONGLONG:   f = "Q"
  *                 elif t == NPY_FLOAT:       f = "f"             # <<<<<<<<<<<<<<
@@ -14664,7 +14664,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_f;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":272
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":272
  *                 elif t == NPY_ULONGLONG:   f = "Q"
  *                 elif t == NPY_FLOAT:       f = "f"
  *                 elif t == NPY_DOUBLE:      f = "d"             # <<<<<<<<<<<<<<
@@ -14675,7 +14675,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_d;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":273
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":273
  *                 elif t == NPY_FLOAT:       f = "f"
  *                 elif t == NPY_DOUBLE:      f = "d"
  *                 elif t == NPY_LONGDOUBLE:  f = "g"             # <<<<<<<<<<<<<<
@@ -14686,7 +14686,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_g;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":274
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":274
  *                 elif t == NPY_DOUBLE:      f = "d"
  *                 elif t == NPY_LONGDOUBLE:  f = "g"
  *                 elif t == NPY_CFLOAT:      f = "Zf"             # <<<<<<<<<<<<<<
@@ -14697,7 +14697,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_Zf;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":275
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":275
  *                 elif t == NPY_LONGDOUBLE:  f = "g"
  *                 elif t == NPY_CFLOAT:      f = "Zf"
  *                 elif t == NPY_CDOUBLE:     f = "Zd"             # <<<<<<<<<<<<<<
@@ -14708,7 +14708,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_Zd;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":276
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":276
  *                 elif t == NPY_CFLOAT:      f = "Zf"
  *                 elif t == NPY_CDOUBLE:     f = "Zd"
  *                 elif t == NPY_CLONGDOUBLE: f = "Zg"             # <<<<<<<<<<<<<<
@@ -14719,7 +14719,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __pyx_v_f = __pyx_k_Zg;
       break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":277
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":277
  *                 elif t == NPY_CDOUBLE:     f = "Zd"
  *                 elif t == NPY_CLONGDOUBLE: f = "Zg"
  *                 elif t == NPY_OBJECT:      f = "O"             # <<<<<<<<<<<<<<
@@ -14731,7 +14731,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       default:
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":279
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":279
  *                 elif t == NPY_OBJECT:      f = "O"
  *                 else:
  *                     raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)             # <<<<<<<<<<<<<<
@@ -14757,7 +14757,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
     }
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":280
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":280
  *                 else:
  *                     raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)
  *                 info.format = f             # <<<<<<<<<<<<<<
@@ -14766,7 +14766,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_info->format = __pyx_v_f;
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":281
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":281
  *                     raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)
  *                 info.format = f
  *                 return             # <<<<<<<<<<<<<<
@@ -14778,7 +14778,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   }
   /*else*/ {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":283
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":283
  *                 return
  *             else:
  *                 info.format = <char*>stdlib.malloc(_buffer_format_string_len)             # <<<<<<<<<<<<<<
@@ -14787,7 +14787,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_info->format = ((char *)malloc(255));
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":284
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":284
  *             else:
  *                 info.format = <char*>stdlib.malloc(_buffer_format_string_len)
  *                 info.format[0] = c'^' # Native data types, manual alignment             # <<<<<<<<<<<<<<
@@ -14796,7 +14796,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     (__pyx_v_info->format[0]) = '^';
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":285
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":285
  *                 info.format = <char*>stdlib.malloc(_buffer_format_string_len)
  *                 info.format[0] = c'^' # Native data types, manual alignment
  *                 offset = 0             # <<<<<<<<<<<<<<
@@ -14805,7 +14805,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_offset = 0;
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":286
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":286
  *                 info.format[0] = c'^' # Native data types, manual alignment
  *                 offset = 0
  *                 f = _util_dtypestring(descr, info.format + 1,             # <<<<<<<<<<<<<<
@@ -14815,7 +14815,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __pyx_t_7 = __pyx_f_5numpy__util_dtypestring(__pyx_v_descr, (__pyx_v_info->format + 1), (__pyx_v_info->format + 255), (&__pyx_v_offset)); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[2]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_f = __pyx_t_7;
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":289
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":289
  *                                       info.format + _buffer_format_string_len,
  *                                       &offset)
  *                 f[0] = c'\0' # Terminate format string             # <<<<<<<<<<<<<<
@@ -14825,7 +14825,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     (__pyx_v_f[0]) = '\x00';
   }
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":197
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":197
  *         # experimental exception made for __getbuffer__ and __releasebuffer__
  *         # -- the details of this may change.
  *         def __getbuffer__(ndarray self, Py_buffer* info, int flags):             # <<<<<<<<<<<<<<
@@ -14857,7 +14857,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   return __pyx_r;
 }
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":291
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":291
  *                 f[0] = c'\0' # Terminate format string
  * 
  *         def __releasebuffer__(ndarray self, Py_buffer* info):             # <<<<<<<<<<<<<<
@@ -14881,7 +14881,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__releasebuffer__", 0);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":292
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":292
  * 
  *         def __releasebuffer__(ndarray self, Py_buffer* info):
  *             if PyArray_HASFIELDS(self):             # <<<<<<<<<<<<<<
@@ -14891,7 +14891,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   __pyx_t_1 = (PyArray_HASFIELDS(__pyx_v_self) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":293
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":293
  *         def __releasebuffer__(ndarray self, Py_buffer* info):
  *             if PyArray_HASFIELDS(self):
  *                 stdlib.free(info.format)             # <<<<<<<<<<<<<<
@@ -14903,7 +14903,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   }
   __pyx_L3:;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":294
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":294
  *             if PyArray_HASFIELDS(self):
  *                 stdlib.free(info.format)
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):             # <<<<<<<<<<<<<<
@@ -14913,7 +14913,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   __pyx_t_1 = (((sizeof(npy_intp)) != (sizeof(Py_ssize_t))) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":295
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":295
  *                 stdlib.free(info.format)
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):
  *                 stdlib.free(info.strides)             # <<<<<<<<<<<<<<
@@ -14925,7 +14925,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   }
   __pyx_L4:;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":291
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":291
  *                 f[0] = c'\0' # Terminate format string
  * 
  *         def __releasebuffer__(ndarray self, Py_buffer* info):             # <<<<<<<<<<<<<<
@@ -14937,7 +14937,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   __Pyx_RefNannyFinishContext();
 }
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":771
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":771
  * ctypedef npy_cdouble     complex_t
  * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
@@ -14954,7 +14954,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew1", 0);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":772
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":772
  * 
  * cdef inline object PyArray_MultiIterNew1(a):
  *     return PyArray_MultiIterNew(1, <void*>a)             # <<<<<<<<<<<<<<
@@ -14968,7 +14968,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":771
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":771
  * ctypedef npy_cdouble     complex_t
  * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
@@ -14987,7 +14987,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":774
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":774
  *     return PyArray_MultiIterNew(1, <void*>a)
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
@@ -15004,7 +15004,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew2", 0);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":775
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":775
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)             # <<<<<<<<<<<<<<
@@ -15018,7 +15018,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":774
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":774
  *     return PyArray_MultiIterNew(1, <void*>a)
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
@@ -15037,7 +15037,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":777
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":777
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
@@ -15054,7 +15054,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew3", 0);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":778
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":778
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)             # <<<<<<<<<<<<<<
@@ -15068,7 +15068,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":777
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":777
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
@@ -15087,7 +15087,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":780
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":780
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
@@ -15104,7 +15104,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew4", 0);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":781
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":781
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)             # <<<<<<<<<<<<<<
@@ -15118,7 +15118,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":780
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":780
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
@@ -15137,7 +15137,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":783
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":783
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
@@ -15154,7 +15154,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew5", 0);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":784
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":784
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)             # <<<<<<<<<<<<<<
@@ -15168,7 +15168,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":783
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":783
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
@@ -15187,7 +15187,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":786
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":786
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
  * 
  * cdef inline char* _util_dtypestring(dtype descr, char* f, char* end, int* offset) except NULL:             # <<<<<<<<<<<<<<
@@ -15219,7 +15219,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_util_dtypestring", 0);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":793
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":793
  *     cdef int delta_offset
  *     cdef tuple i
  *     cdef int endian_detector = 1             # <<<<<<<<<<<<<<
@@ -15228,7 +15228,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
   __pyx_v_endian_detector = 1;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":794
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":794
  *     cdef tuple i
  *     cdef int endian_detector = 1
  *     cdef bint little_endian = ((<char*>&endian_detector)[0] != 0)             # <<<<<<<<<<<<<<
@@ -15237,7 +15237,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
   __pyx_v_little_endian = ((((char *)(&__pyx_v_endian_detector))[0]) != 0);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":797
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":797
  *     cdef tuple fields
  * 
  *     for childname in descr.names:             # <<<<<<<<<<<<<<
@@ -15260,7 +15260,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __Pyx_XDECREF_SET(__pyx_v_childname, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":798
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":798
  * 
  *     for childname in descr.names:
  *         fields = descr.fields[childname]             # <<<<<<<<<<<<<<
@@ -15277,7 +15277,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __Pyx_XDECREF_SET(__pyx_v_fields, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":799
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":799
  *     for childname in descr.names:
  *         fields = descr.fields[childname]
  *         child, new_offset = fields             # <<<<<<<<<<<<<<
@@ -15316,7 +15316,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __Pyx_XDECREF_SET(__pyx_v_new_offset, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":801
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":801
  *         child, new_offset = fields
  * 
  *         if (end - f) - <int>(new_offset - offset[0]) < 15:             # <<<<<<<<<<<<<<
@@ -15333,7 +15333,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_t_6 = ((((__pyx_v_end - __pyx_v_f) - ((int)__pyx_t_5)) < 15) != 0);
     if (__pyx_t_6) {
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":802
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":802
  * 
  *         if (end - f) - <int>(new_offset - offset[0]) < 15:
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")             # <<<<<<<<<<<<<<
@@ -15347,7 +15347,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       {__pyx_filename = __pyx_f[2]; __pyx_lineno = 802; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":804
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":804
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")
  * 
  *         if ((child.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -15367,7 +15367,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     }
     __pyx_L8_next_or:;
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":805
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":805
  * 
  *         if ((child.byteorder == c'>' and little_endian) or
  *             (child.byteorder == c'<' and not little_endian)):             # <<<<<<<<<<<<<<
@@ -15385,7 +15385,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_6) {
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":806
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":806
  *         if ((child.byteorder == c'>' and little_endian) or
  *             (child.byteorder == c'<' and not little_endian)):
  *             raise ValueError(u"Non-native byte order not supported")             # <<<<<<<<<<<<<<
@@ -15399,7 +15399,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       {__pyx_filename = __pyx_f[2]; __pyx_lineno = 806; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":816
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":816
  * 
  *         # Output padding bytes
  *         while offset[0] < new_offset:             # <<<<<<<<<<<<<<
@@ -15415,7 +15415,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       if (!__pyx_t_6) break;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":817
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":817
  *         # Output padding bytes
  *         while offset[0] < new_offset:
  *             f[0] = 120 # "x"; pad byte             # <<<<<<<<<<<<<<
@@ -15424,7 +15424,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
       (__pyx_v_f[0]) = 120;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":818
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":818
  *         while offset[0] < new_offset:
  *             f[0] = 120 # "x"; pad byte
  *             f += 1             # <<<<<<<<<<<<<<
@@ -15433,7 +15433,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
       __pyx_v_f = (__pyx_v_f + 1);
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":819
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":819
  *             f[0] = 120 # "x"; pad byte
  *             f += 1
  *             offset[0] += 1             # <<<<<<<<<<<<<<
@@ -15444,7 +15444,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       (__pyx_v_offset[__pyx_t_8]) = ((__pyx_v_offset[__pyx_t_8]) + 1);
     }
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":821
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":821
  *             offset[0] += 1
  * 
  *         offset[0] += child.itemsize             # <<<<<<<<<<<<<<
@@ -15454,7 +15454,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_t_8 = 0;
     (__pyx_v_offset[__pyx_t_8]) = ((__pyx_v_offset[__pyx_t_8]) + __pyx_v_child->elsize);
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":823
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":823
  *         offset[0] += child.itemsize
  * 
  *         if not PyDataType_HASFIELDS(child):             # <<<<<<<<<<<<<<
@@ -15464,7 +15464,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_t_6 = ((!(PyDataType_HASFIELDS(__pyx_v_child) != 0)) != 0);
     if (__pyx_t_6) {
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":824
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":824
  * 
  *         if not PyDataType_HASFIELDS(child):
  *             t = child.type_num             # <<<<<<<<<<<<<<
@@ -15476,7 +15476,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __Pyx_XDECREF_SET(__pyx_v_t, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":825
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":825
  *         if not PyDataType_HASFIELDS(child):
  *             t = child.type_num
  *             if end - f < 5:             # <<<<<<<<<<<<<<
@@ -15486,7 +15486,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __pyx_t_6 = (((__pyx_v_end - __pyx_v_f) < 5) != 0);
       if (__pyx_t_6) {
 
-        /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":826
+        /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":826
  *             t = child.type_num
  *             if end - f < 5:
  *                 raise RuntimeError(u"Format string allocated too short.")             # <<<<<<<<<<<<<<
@@ -15500,7 +15500,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         {__pyx_filename = __pyx_f[2]; __pyx_lineno = 826; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":829
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":829
  * 
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  *             if   t == NPY_BYTE:        f[0] =  98 #"b"             # <<<<<<<<<<<<<<
@@ -15518,7 +15518,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":830
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":830
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  *             if   t == NPY_BYTE:        f[0] =  98 #"b"
  *             elif t == NPY_UBYTE:       f[0] =  66 #"B"             # <<<<<<<<<<<<<<
@@ -15536,7 +15536,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":831
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":831
  *             if   t == NPY_BYTE:        f[0] =  98 #"b"
  *             elif t == NPY_UBYTE:       f[0] =  66 #"B"
  *             elif t == NPY_SHORT:       f[0] = 104 #"h"             # <<<<<<<<<<<<<<
@@ -15554,7 +15554,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":832
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":832
  *             elif t == NPY_UBYTE:       f[0] =  66 #"B"
  *             elif t == NPY_SHORT:       f[0] = 104 #"h"
  *             elif t == NPY_USHORT:      f[0] =  72 #"H"             # <<<<<<<<<<<<<<
@@ -15572,7 +15572,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":833
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":833
  *             elif t == NPY_SHORT:       f[0] = 104 #"h"
  *             elif t == NPY_USHORT:      f[0] =  72 #"H"
  *             elif t == NPY_INT:         f[0] = 105 #"i"             # <<<<<<<<<<<<<<
@@ -15590,7 +15590,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":834
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":834
  *             elif t == NPY_USHORT:      f[0] =  72 #"H"
  *             elif t == NPY_INT:         f[0] = 105 #"i"
  *             elif t == NPY_UINT:        f[0] =  73 #"I"             # <<<<<<<<<<<<<<
@@ -15608,7 +15608,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":835
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":835
  *             elif t == NPY_INT:         f[0] = 105 #"i"
  *             elif t == NPY_UINT:        f[0] =  73 #"I"
  *             elif t == NPY_LONG:        f[0] = 108 #"l"             # <<<<<<<<<<<<<<
@@ -15626,7 +15626,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":836
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":836
  *             elif t == NPY_UINT:        f[0] =  73 #"I"
  *             elif t == NPY_LONG:        f[0] = 108 #"l"
  *             elif t == NPY_ULONG:       f[0] = 76  #"L"             # <<<<<<<<<<<<<<
@@ -15644,7 +15644,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":837
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":837
  *             elif t == NPY_LONG:        f[0] = 108 #"l"
  *             elif t == NPY_ULONG:       f[0] = 76  #"L"
  *             elif t == NPY_LONGLONG:    f[0] = 113 #"q"             # <<<<<<<<<<<<<<
@@ -15662,7 +15662,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":838
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":838
  *             elif t == NPY_ULONG:       f[0] = 76  #"L"
  *             elif t == NPY_LONGLONG:    f[0] = 113 #"q"
  *             elif t == NPY_ULONGLONG:   f[0] = 81  #"Q"             # <<<<<<<<<<<<<<
@@ -15680,7 +15680,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":839
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":839
  *             elif t == NPY_LONGLONG:    f[0] = 113 #"q"
  *             elif t == NPY_ULONGLONG:   f[0] = 81  #"Q"
  *             elif t == NPY_FLOAT:       f[0] = 102 #"f"             # <<<<<<<<<<<<<<
@@ -15698,7 +15698,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":840
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":840
  *             elif t == NPY_ULONGLONG:   f[0] = 81  #"Q"
  *             elif t == NPY_FLOAT:       f[0] = 102 #"f"
  *             elif t == NPY_DOUBLE:      f[0] = 100 #"d"             # <<<<<<<<<<<<<<
@@ -15716,7 +15716,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":841
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":841
  *             elif t == NPY_FLOAT:       f[0] = 102 #"f"
  *             elif t == NPY_DOUBLE:      f[0] = 100 #"d"
  *             elif t == NPY_LONGDOUBLE:  f[0] = 103 #"g"             # <<<<<<<<<<<<<<
@@ -15734,7 +15734,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":842
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":842
  *             elif t == NPY_DOUBLE:      f[0] = 100 #"d"
  *             elif t == NPY_LONGDOUBLE:  f[0] = 103 #"g"
  *             elif t == NPY_CFLOAT:      f[0] = 90; f[1] = 102; f += 1 # Zf             # <<<<<<<<<<<<<<
@@ -15754,7 +15754,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":843
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":843
  *             elif t == NPY_LONGDOUBLE:  f[0] = 103 #"g"
  *             elif t == NPY_CFLOAT:      f[0] = 90; f[1] = 102; f += 1 # Zf
  *             elif t == NPY_CDOUBLE:     f[0] = 90; f[1] = 100; f += 1 # Zd             # <<<<<<<<<<<<<<
@@ -15774,7 +15774,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":844
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":844
  *             elif t == NPY_CFLOAT:      f[0] = 90; f[1] = 102; f += 1 # Zf
  *             elif t == NPY_CDOUBLE:     f[0] = 90; f[1] = 100; f += 1 # Zd
  *             elif t == NPY_CLONGDOUBLE: f[0] = 90; f[1] = 103; f += 1 # Zg             # <<<<<<<<<<<<<<
@@ -15794,7 +15794,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":845
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":845
  *             elif t == NPY_CDOUBLE:     f[0] = 90; f[1] = 100; f += 1 # Zd
  *             elif t == NPY_CLONGDOUBLE: f[0] = 90; f[1] = 103; f += 1 # Zg
  *             elif t == NPY_OBJECT:      f[0] = 79 #"O"             # <<<<<<<<<<<<<<
@@ -15813,7 +15813,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       }
       /*else*/ {
 
-        /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":847
+        /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":847
  *             elif t == NPY_OBJECT:      f[0] = 79 #"O"
  *             else:
  *                 raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)             # <<<<<<<<<<<<<<
@@ -15836,7 +15836,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       }
       __pyx_L15:;
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":848
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":848
  *             else:
  *                 raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)
  *             f += 1             # <<<<<<<<<<<<<<
@@ -15848,7 +15848,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     }
     /*else*/ {
 
-      /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":852
+      /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":852
  *             # Cython ignores struct boundary information ("T{...}"),
  *             # so don't output it
  *             f = _util_dtypestring(child, f, end, offset)             # <<<<<<<<<<<<<<
@@ -15860,7 +15860,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     }
     __pyx_L13:;
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":797
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":797
  *     cdef tuple fields
  * 
  *     for childname in descr.names:             # <<<<<<<<<<<<<<
@@ -15870,7 +15870,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":853
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":853
  *             # so don't output it
  *             f = _util_dtypestring(child, f, end, offset)
  *     return f             # <<<<<<<<<<<<<<
@@ -15880,7 +15880,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   __pyx_r = __pyx_v_f;
   goto __pyx_L0;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":786
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":786
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
  * 
  * cdef inline char* _util_dtypestring(dtype descr, char* f, char* end, int* offset) except NULL:             # <<<<<<<<<<<<<<
@@ -15905,7 +15905,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   return __pyx_r;
 }
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":969
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":969
  * 
  * 
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
@@ -15920,7 +15920,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("set_array_base", 0);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":971
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":971
  * cdef inline void set_array_base(ndarray arr, object base):
  *      cdef PyObject* baseptr
  *      if base is None:             # <<<<<<<<<<<<<<
@@ -15931,7 +15931,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":972
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":972
  *      cdef PyObject* baseptr
  *      if base is None:
  *          baseptr = NULL             # <<<<<<<<<<<<<<
@@ -15943,7 +15943,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   }
   /*else*/ {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":974
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":974
  *          baseptr = NULL
  *      else:
  *          Py_INCREF(base) # important to do this before decref below!             # <<<<<<<<<<<<<<
@@ -15952,7 +15952,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
  */
     Py_INCREF(__pyx_v_base);
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":975
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":975
  *      else:
  *          Py_INCREF(base) # important to do this before decref below!
  *          baseptr = <PyObject*>base             # <<<<<<<<<<<<<<
@@ -15963,7 +15963,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   }
   __pyx_L3:;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":976
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":976
  *          Py_INCREF(base) # important to do this before decref below!
  *          baseptr = <PyObject*>base
  *      Py_XDECREF(arr.base)             # <<<<<<<<<<<<<<
@@ -15972,7 +15972,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
  */
   Py_XDECREF(__pyx_v_arr->base);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":977
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":977
  *          baseptr = <PyObject*>base
  *      Py_XDECREF(arr.base)
  *      arr.base = baseptr             # <<<<<<<<<<<<<<
@@ -15981,7 +15981,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
  */
   __pyx_v_arr->base = __pyx_v_baseptr;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":969
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":969
  * 
  * 
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
@@ -15993,7 +15993,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __Pyx_RefNannyFinishContext();
 }
 
-/* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":979
+/* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":979
  *      arr.base = baseptr
  * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
@@ -16007,7 +16007,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("get_array_base", 0);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":980
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":980
  * 
  * cdef inline object get_array_base(ndarray arr):
  *     if arr.base is NULL:             # <<<<<<<<<<<<<<
@@ -16017,7 +16017,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __pyx_t_1 = ((__pyx_v_arr->base == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":981
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":981
  * cdef inline object get_array_base(ndarray arr):
  *     if arr.base is NULL:
  *         return None             # <<<<<<<<<<<<<<
@@ -16031,7 +16031,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   }
   /*else*/ {
 
-    /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":983
+    /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":983
  *         return None
  *     else:
  *         return <object>arr.base             # <<<<<<<<<<<<<<
@@ -16042,7 +16042,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
     goto __pyx_L0;
   }
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":979
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":979
  *      arr.base = baseptr
  * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
@@ -17173,150 +17173,150 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "rankpy/models/users/users_inner.pyx":360
+  /* "rankpy/models/users/users_inner.pyx":361
  *         def __set__(self, v):
  *             if v == 0:
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 360; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 361; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "rankpy/models/users/users_inner.pyx":371
+  /* "rankpy/models/users/users_inner.pyx":372
  *         '''
  *         if seed == 0:
  *             raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                              'please, choose different seed, e.g.: 42')
  * 
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 372; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "rankpy/models/users/users_inner.pyx":382
+  /* "rankpy/models/users/users_inner.pyx":383
  * 
  *         if (self.click_proba < 0.0).any() or (self.click_proba > 1.0).any():
  *             raise ValueError('click_proba is not a valid probability vector')             # <<<<<<<<<<<<<<
  * 
  *         if (self.exam_proba < 0.0).any() or (self.exam_proba > 1.0).any():
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_click_proba_is_not_a_valid_proba); if (unlikely(!__pyx_tuple__11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_click_proba_is_not_a_valid_proba); if (unlikely(!__pyx_tuple__11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "rankpy/models/users/users_inner.pyx":385
+  /* "rankpy/models/users/users_inner.pyx":386
  * 
  *         if (self.exam_proba < 0.0).any() or (self.exam_proba > 1.0).any():
  *             raise ValueError('click_proba is not a valid probability vector')             # <<<<<<<<<<<<<<
  * 
  *     def __reduce__(self):
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_s_click_proba_is_not_a_valid_proba); if (unlikely(!__pyx_tuple__12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_s_click_proba_is_not_a_valid_proba); if (unlikely(!__pyx_tuple__12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 386; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
 
-  /* "rankpy/models/users/users_inner.pyx":477
+  /* "rankpy/models/users/users_inner.pyx":478
  *         def __set__(self, v):
  *             if v == 0:
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v
  */
-  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__16)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 477; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__16)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 478; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
 
-  /* "rankpy/models/users/users_inner.pyx":488
+  /* "rankpy/models/users/users_inner.pyx":489
  *         '''
  *         if seed == 0:
  *             raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                              'please, choose different seed, e.g.: 42')
  * 
  */
-  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__17)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 488; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__17)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 489; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
 
-  /* "rankpy/models/users/users_inner.pyx":499
+  /* "rankpy/models/users/users_inner.pyx":500
  * 
  *         if (self.click_proba < 0.0).any() or (self.click_proba > 1.0).any():
  *             raise ValueError('click_proba is not a valid probability vector')             # <<<<<<<<<<<<<<
  * 
  *         if (self.stop_proba < 0.0).any() or (self.stop_proba > 1.0).any():
  */
-  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_s_click_proba_is_not_a_valid_proba); if (unlikely(!__pyx_tuple__18)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 499; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_s_click_proba_is_not_a_valid_proba); if (unlikely(!__pyx_tuple__18)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 500; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
 
-  /* "rankpy/models/users/users_inner.pyx":502
+  /* "rankpy/models/users/users_inner.pyx":503
  * 
  *         if (self.stop_proba < 0.0).any() or (self.stop_proba > 1.0).any():
  *             raise ValueError('click_proba is not a valid probability vector')             # <<<<<<<<<<<<<<
  * 
  *     def __reduce__(self):
  */
-  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_s_click_proba_is_not_a_valid_proba); if (unlikely(!__pyx_tuple__19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_s_click_proba_is_not_a_valid_proba); if (unlikely(!__pyx_tuple__19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 503; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
 
-  /* "rankpy/models/users/users_inner.pyx":593
+  /* "rankpy/models/users/users_inner.pyx":594
  *         def __set__(self, v):
  *             if v == 0:
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v
  */
-  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 593; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 594; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
 
-  /* "rankpy/models/users/users_inner.pyx":605
+  /* "rankpy/models/users/users_inner.pyx":606
  *         '''
  *         if seed == 0:
  *             raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                              'please, choose different seed, e.g.: 42')
  * 
  */
-  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 605; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 606; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__24);
   __Pyx_GIVEREF(__pyx_tuple__24);
 
-  /* "rankpy/models/users/users_inner.pyx":696
+  /* "rankpy/models/users/users_inner.pyx":697
  *         def __set__(self, v):
  *             if v == 0:
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v
  */
-  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 696; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 697; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__25);
   __Pyx_GIVEREF(__pyx_tuple__25);
 
-  /* "rankpy/models/users/users_inner.pyx":706
+  /* "rankpy/models/users/users_inner.pyx":707
  *         '''
  *         if seed == 0:
  *             raise ValueError('the seed cannot be 0 for technical reasons, please,'             # <<<<<<<<<<<<<<
  *                              ' choose different seed, e.g.: 42')
  * 
  */
-  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 707; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__26);
   __Pyx_GIVEREF(__pyx_tuple__26);
 
-  /* "rankpy/models/users/users_inner.pyx":820
+  /* "rankpy/models/users/users_inner.pyx":821
  *         def __set__(self, v):
  *             if v == 0:
  *                 raise ValueError('the seed cannot be 0 for technical reasons, '             # <<<<<<<<<<<<<<
  *                                  'please, choose different seed, e.g.: 42')
  *             self.rand_r_state = v
  */
-  __pyx_tuple__31 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__31)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 820; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__31 = PyTuple_Pack(1, __pyx_kp_s_the_seed_cannot_be_0_for_technic); if (unlikely(!__pyx_tuple__31)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 821; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__31);
   __Pyx_GIVEREF(__pyx_tuple__31);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":218
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":218
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_C_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not C contiguous")             # <<<<<<<<<<<<<<
@@ -17327,7 +17327,7 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__32);
   __Pyx_GIVEREF(__pyx_tuple__32);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":222
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":222
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_F_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not Fortran contiguous")             # <<<<<<<<<<<<<<
@@ -17338,7 +17338,7 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__33);
   __Pyx_GIVEREF(__pyx_tuple__33);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":260
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":260
  *                 if ((descr.byteorder == c'>' and little_endian) or
  *                     (descr.byteorder == c'<' and not little_endian)):
  *                     raise ValueError(u"Non-native byte order not supported")             # <<<<<<<<<<<<<<
@@ -17349,7 +17349,7 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__34);
   __Pyx_GIVEREF(__pyx_tuple__34);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":802
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":802
  * 
  *         if (end - f) - <int>(new_offset - offset[0]) < 15:
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")             # <<<<<<<<<<<<<<
@@ -17360,7 +17360,7 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__35);
   __Pyx_GIVEREF(__pyx_tuple__35);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":806
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":806
  *         if ((child.byteorder == c'>' and little_endian) or
  *             (child.byteorder == c'<' and not little_endian)):
  *             raise ValueError(u"Non-native byte order not supported")             # <<<<<<<<<<<<<<
@@ -17371,7 +17371,7 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__36);
   __Pyx_GIVEREF(__pyx_tuple__36);
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":826
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":826
  *             t = child.type_num
  *             if end - f < 5:
  *                 raise RuntimeError(u"Format string allocated too short.")             # <<<<<<<<<<<<<<
@@ -17528,11 +17528,11 @@ PyMODINIT_FUNC PyInit_users_inner(void)
   __pyx_vtable_6rankpy_6models_5users_11users_inner_PositionBasedModel.__pyx_base.get_last_clicked_reciprocal_rank = (PyObject *(*)(struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *, PyObject *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_6rankpy_6models_5users_11users_inner_17AbstractUserModel_get_last_clicked_reciprocal_rank *__pyx_optional_args))__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get_last_clicked_reciprocal_rank;
   __pyx_vtable_6rankpy_6models_5users_11users_inner_PositionBasedModel.__pyx_base.get_last_clicked_reciprocal_rank_c = (__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t (*)(struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *))__pyx_f_6rankpy_6models_5users_11users_inner_18PositionBasedModel_get_last_clicked_reciprocal_rank_c;
   __pyx_type_6rankpy_6models_5users_11users_inner_PositionBasedModel.tp_base = __pyx_ptype_6rankpy_6models_5users_11users_inner_AbstractUserModel;
-  if (PyType_Ready(&__pyx_type_6rankpy_6models_5users_11users_inner_PositionBasedModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_6rankpy_6models_5users_11users_inner_PositionBasedModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_6rankpy_6models_5users_11users_inner_PositionBasedModel.tp_print = 0;
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_PositionBasedModel, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_PositionBasedModel, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_6rankpy_6models_5users_11users_inner_18PositionBasedModel___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_6rankpy_6models_5users_11users_inner_18PositionBasedModel___init__.doc = __pyx_doc_6rankpy_6models_5users_11users_inner_18PositionBasedModel___init__;
@@ -17540,8 +17540,8 @@ PyMODINIT_FUNC PyInit_users_inner(void)
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_6rankpy_6models_5users_11users_inner_PositionBasedModel.tp_dict, __pyx_vtabptr_6rankpy_6models_5users_11users_inner_PositionBasedModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "PositionBasedModel", (PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_PositionBasedModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_6rankpy_6models_5users_11users_inner_PositionBasedModel.tp_dict, __pyx_vtabptr_6rankpy_6models_5users_11users_inner_PositionBasedModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "PositionBasedModel", (PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_PositionBasedModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_6rankpy_6models_5users_11users_inner_PositionBasedModel = &__pyx_type_6rankpy_6models_5users_11users_inner_PositionBasedModel;
   __pyx_vtabptr_6rankpy_6models_5users_11users_inner_DependentClickModel = &__pyx_vtable_6rankpy_6models_5users_11users_inner_DependentClickModel;
   __pyx_vtable_6rankpy_6models_5users_11users_inner_DependentClickModel.__pyx_base = *__pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel;
@@ -17553,11 +17553,11 @@ PyMODINIT_FUNC PyInit_users_inner(void)
   __pyx_vtable_6rankpy_6models_5users_11users_inner_DependentClickModel.__pyx_base.get_last_clicked_reciprocal_rank = (PyObject *(*)(struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *, PyObject *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_6rankpy_6models_5users_11users_inner_17AbstractUserModel_get_last_clicked_reciprocal_rank *__pyx_optional_args))__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_get_last_clicked_reciprocal_rank;
   __pyx_vtable_6rankpy_6models_5users_11users_inner_DependentClickModel.__pyx_base.get_last_clicked_reciprocal_rank_c = (__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t (*)(struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *))__pyx_f_6rankpy_6models_5users_11users_inner_19DependentClickModel_get_last_clicked_reciprocal_rank_c;
   __pyx_type_6rankpy_6models_5users_11users_inner_DependentClickModel.tp_base = __pyx_ptype_6rankpy_6models_5users_11users_inner_AbstractUserModel;
-  if (PyType_Ready(&__pyx_type_6rankpy_6models_5users_11users_inner_DependentClickModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_6rankpy_6models_5users_11users_inner_DependentClickModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 483; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_6rankpy_6models_5users_11users_inner_DependentClickModel.tp_print = 0;
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_DependentClickModel, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_DependentClickModel, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 483; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_6rankpy_6models_5users_11users_inner_19DependentClickModel___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_6rankpy_6models_5users_11users_inner_19DependentClickModel___init__.doc = __pyx_doc_6rankpy_6models_5users_11users_inner_19DependentClickModel___init__;
@@ -17565,8 +17565,8 @@ PyMODINIT_FUNC PyInit_users_inner(void)
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_6rankpy_6models_5users_11users_inner_DependentClickModel.tp_dict, __pyx_vtabptr_6rankpy_6models_5users_11users_inner_DependentClickModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "DependentClickModel", (PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_DependentClickModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 482; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_6rankpy_6models_5users_11users_inner_DependentClickModel.tp_dict, __pyx_vtabptr_6rankpy_6models_5users_11users_inner_DependentClickModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 483; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "DependentClickModel", (PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_DependentClickModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 483; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_6rankpy_6models_5users_11users_inner_DependentClickModel = &__pyx_type_6rankpy_6models_5users_11users_inner_DependentClickModel;
   __pyx_vtabptr_6rankpy_6models_5users_11users_inner_ClickChainUserModel = &__pyx_vtable_6rankpy_6models_5users_11users_inner_ClickChainUserModel;
   __pyx_vtable_6rankpy_6models_5users_11users_inner_ClickChainUserModel.__pyx_base = *__pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel;
@@ -17575,11 +17575,11 @@ PyMODINIT_FUNC PyInit_users_inner(void)
   __pyx_vtable_6rankpy_6models_5users_11users_inner_ClickChainUserModel.__pyx_base.get_expected_reciprocal_rank_c = (__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t (*)(struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *))__pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_get_expected_reciprocal_rank_c;
   __pyx_vtable_6rankpy_6models_5users_11users_inner_ClickChainUserModel.__pyx_base.get_last_clicked_reciprocal_rank_c = (__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t (*)(struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *))__pyx_f_6rankpy_6models_5users_11users_inner_19ClickChainUserModel_get_last_clicked_reciprocal_rank_c;
   __pyx_type_6rankpy_6models_5users_11users_inner_ClickChainUserModel.tp_base = __pyx_ptype_6rankpy_6models_5users_11users_inner_AbstractUserModel;
-  if (PyType_Ready(&__pyx_type_6rankpy_6models_5users_11users_inner_ClickChainUserModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_6rankpy_6models_5users_11users_inner_ClickChainUserModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_6rankpy_6models_5users_11users_inner_ClickChainUserModel.tp_print = 0;
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_ClickChainUserModel, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_ClickChainUserModel, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_6rankpy_6models_5users_11users_inner_19ClickChainUserModel___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_6rankpy_6models_5users_11users_inner_19ClickChainUserModel___init__.doc = __pyx_doc_6rankpy_6models_5users_11users_inner_19ClickChainUserModel___init__;
@@ -17587,8 +17587,8 @@ PyMODINIT_FUNC PyInit_users_inner(void)
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_6rankpy_6models_5users_11users_inner_ClickChainUserModel.tp_dict, __pyx_vtabptr_6rankpy_6models_5users_11users_inner_ClickChainUserModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "ClickChainUserModel", (PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_ClickChainUserModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_6rankpy_6models_5users_11users_inner_ClickChainUserModel.tp_dict, __pyx_vtabptr_6rankpy_6models_5users_11users_inner_ClickChainUserModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "ClickChainUserModel", (PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_ClickChainUserModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_6rankpy_6models_5users_11users_inner_ClickChainUserModel = &__pyx_type_6rankpy_6models_5users_11users_inner_ClickChainUserModel;
   __pyx_vtabptr_6rankpy_6models_5users_11users_inner_UserBrowsingModel = &__pyx_vtable_6rankpy_6models_5users_11users_inner_UserBrowsingModel;
   __pyx_vtable_6rankpy_6models_5users_11users_inner_UserBrowsingModel.__pyx_base = *__pyx_vtabptr_6rankpy_6models_5users_11users_inner_AbstractUserModel;
@@ -17601,11 +17601,11 @@ PyMODINIT_FUNC PyInit_users_inner(void)
   __pyx_vtable_6rankpy_6models_5users_11users_inner_UserBrowsingModel.__pyx_base.get_last_clicked_reciprocal_rank = (PyObject *(*)(struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *, PyObject *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_6rankpy_6models_5users_11users_inner_17AbstractUserModel_get_last_clicked_reciprocal_rank *__pyx_optional_args))__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_last_clicked_reciprocal_rank;
   __pyx_vtable_6rankpy_6models_5users_11users_inner_UserBrowsingModel.__pyx_base.get_last_clicked_reciprocal_rank_c = (__pyx_t_6rankpy_6models_5users_11users_inner_DOUBLE_t (*)(struct __pyx_obj_6rankpy_6models_5users_11users_inner_AbstractUserModel *, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t, __pyx_t_6rankpy_6models_5users_11users_inner_INT32_t *))__pyx_f_6rankpy_6models_5users_11users_inner_17UserBrowsingModel_get_last_clicked_reciprocal_rank_c;
   __pyx_type_6rankpy_6models_5users_11users_inner_UserBrowsingModel.tp_base = __pyx_ptype_6rankpy_6models_5users_11users_inner_AbstractUserModel;
-  if (PyType_Ready(&__pyx_type_6rankpy_6models_5users_11users_inner_UserBrowsingModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_6rankpy_6models_5users_11users_inner_UserBrowsingModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_6rankpy_6models_5users_11users_inner_UserBrowsingModel.tp_print = 0;
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_UserBrowsingModel, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_UserBrowsingModel, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___init__.doc = __pyx_doc_6rankpy_6models_5users_11users_inner_17UserBrowsingModel___init__;
@@ -17613,8 +17613,8 @@ PyMODINIT_FUNC PyInit_users_inner(void)
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_6rankpy_6models_5users_11users_inner_UserBrowsingModel.tp_dict, __pyx_vtabptr_6rankpy_6models_5users_11users_inner_UserBrowsingModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "UserBrowsingModel", (PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_UserBrowsingModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 700; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_6rankpy_6models_5users_11users_inner_UserBrowsingModel.tp_dict, __pyx_vtabptr_6rankpy_6models_5users_11users_inner_UserBrowsingModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "UserBrowsingModel", (PyObject *)&__pyx_type_6rankpy_6models_5users_11users_inner_UserBrowsingModel) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 701; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_6rankpy_6models_5users_11users_inner_UserBrowsingModel = &__pyx_type_6rankpy_6models_5users_11users_inner_UserBrowsingModel;
   /*--- Type import code ---*/
   __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "type", 
@@ -17784,7 +17784,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__4 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":411
+  /* "rankpy/models/users/users_inner.pyx":412
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):             # <<<<<<<<<<<<<<
@@ -17793,7 +17793,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__13 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":410
+  /* "rankpy/models/users/users_inner.pyx":411
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -17801,17 +17801,17 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  *         return AbstractUserModel.get_clickthrough_rate(
  */
   __pyx_k__13 = (__Pyx_pow_long(2, 31) - 1);
+
+  /* "rankpy/models/users/users_inner.pyx":439
+ * 
+ *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,
+ *                                        object labels, int cutoff=2**31-1):             # <<<<<<<<<<<<<<
+ *         return AbstractUserModel.get_expected_reciprocal_rank(
+ *                                             self, ranked_documents, labels,
+ */
+  __pyx_k__14 = (__Pyx_pow_long(2, 31) - 1);
 
   /* "rankpy/models/users/users_inner.pyx":438
- * 
- *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,
- *                                        object labels, int cutoff=2**31-1):             # <<<<<<<<<<<<<<
- *         return AbstractUserModel.get_expected_reciprocal_rank(
- *                                             self, ranked_documents, labels,
- */
-  __pyx_k__14 = (__Pyx_pow_long(2, 31) - 1);
-
-  /* "rankpy/models/users/users_inner.pyx":437
  *         return 1.0 - result
  * 
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -17820,7 +17820,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__14 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":455
+  /* "rankpy/models/users/users_inner.pyx":456
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,
  *                                            object labels, int cutoff=2**31-1):             # <<<<<<<<<<<<<<
@@ -17829,7 +17829,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__15 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":454
+  /* "rankpy/models/users/users_inner.pyx":455
  *         return -1.0
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -17838,7 +17838,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__15 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":529
+  /* "rankpy/models/users/users_inner.pyx":530
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):             # <<<<<<<<<<<<<<
@@ -17847,7 +17847,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__20 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":528
+  /* "rankpy/models/users/users_inner.pyx":529
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -17856,7 +17856,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__20 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":554
+  /* "rankpy/models/users/users_inner.pyx":555
  * 
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,
  *                                        object labels, int cutoff=2**31-1):             # <<<<<<<<<<<<<<
@@ -17865,7 +17865,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__21 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":553
+  /* "rankpy/models/users/users_inner.pyx":554
  *         return 1.0 - result
  * 
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -17874,7 +17874,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__21 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":571
+  /* "rankpy/models/users/users_inner.pyx":572
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,
  *                                            object labels, int cutoff=2**31-1):             # <<<<<<<<<<<<<<
@@ -17883,7 +17883,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__22 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":570
+  /* "rankpy/models/users/users_inner.pyx":571
  *         return -1.0
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -17892,7 +17892,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__22 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":729
+  /* "rankpy/models/users/users_inner.pyx":730
  * 
  *     cpdef get_clicks(self, object ranked_documents, object labels,
  *                      int cutoff=2**31-1):             # <<<<<<<<<<<<<<
@@ -17901,7 +17901,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__27 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":728
+  /* "rankpy/models/users/users_inner.pyx":729
  * 
  * 
  *     cpdef get_clicks(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -17910,7 +17910,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__27 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":756
+  /* "rankpy/models/users/users_inner.pyx":757
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,
  *                                 int cutoff=2**31-1, bint relative=False):             # <<<<<<<<<<<<<<
@@ -17919,7 +17919,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__28 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":755
+  /* "rankpy/models/users/users_inner.pyx":756
  *         return count
  * 
  *     cpdef get_clickthrough_rate(self, object ranked_documents, object labels,             # <<<<<<<<<<<<<<
@@ -17928,7 +17928,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__28 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":781
+  /* "rankpy/models/users/users_inner.pyx":782
  * 
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,
  *                                        object labels, int cutoff=2**31-1):             # <<<<<<<<<<<<<<
@@ -17937,7 +17937,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__29 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":780
+  /* "rankpy/models/users/users_inner.pyx":781
  *         return 1.0 - result
  * 
  *     cpdef get_expected_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -17946,7 +17946,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__29 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":798
+  /* "rankpy/models/users/users_inner.pyx":799
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,
  *                                            object labels, int cutoff=2**31-1):             # <<<<<<<<<<<<<<
@@ -17955,7 +17955,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
  */
   __pyx_k__30 = (__Pyx_pow_long(2, 31) - 1);
 
-  /* "rankpy/models/users/users_inner.pyx":797
+  /* "rankpy/models/users/users_inner.pyx":798
  *         return -1.0
  * 
  *     cpdef get_last_clicked_reciprocal_rank(self, object ranked_documents,             # <<<<<<<<<<<<<<
@@ -17974,7 +17974,7 @@ PyMODINIT_FUNC PyInit_users_inner(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":979
+  /* "../../../../../../../usr/local/lib/python2.7/dist-packages/Cython/Includes/numpy/__init__.pxd":979
  *      arr.base = baseptr
  * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
