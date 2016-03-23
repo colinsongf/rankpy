@@ -210,7 +210,8 @@ cdef class CascadeUserModel(AbstractUserModel):
                 count += 1
                 if random(&self.rand_r_state) < self.stop_proba_ptr[label]:
                     break
-            elif random(&self.rand_r_state) < self.abandon_proba:
+
+            if random(&self.rand_r_state) < self.abandon_proba:
                 break
 
         # Return the number of clicks.
