@@ -27,6 +27,7 @@ from .utils import unpickle
 from .utils import asindexarray
 
 from warnings import warn
+import svmlight_loader
 
 
 logger = logging.getLogger(__name__)
@@ -378,6 +379,7 @@ class Queries(object):
 
         def purge_query(qid, data, indices, indptr):
             '''Remove the last query added to the set according to `purge`.'''
+            raise NotImplemented
             if not purge or qid is None:
                 return 0
 
@@ -407,91 +409,114 @@ class Queries(object):
 
             logger.info('Reading queries from %s.' % filepath)
 
-            with open(filepath, 'rb') as ifile:
-                # Loop through every line containing query-document pair.
-                for pair in ifile:
-                    lineno += 1
-                    try:
-                        comment_start = pair.find('#')
+#           with open(filepath, 'rb') as ifile:
+#               # Loop through every line containing query-document pair.
+#               for pair in ifile:
+#                   lineno += 1
+#                   try:
+#                       comment_start = pair.find('#')
 
-                        # Remove the line comment first.
-                        if comment_start >= 0:
-                            pair = pair[:comment_start]
+#                       # Remove the line comment first.
+#                       if comment_start >= 0:
+#                           pair = pair[:comment_start]
 
-                        pair = pair.strip()
+#                       pair = pair.strip()
 
-                        # Skip comments and empty lines.
-                        if not pair:
-                            continue
+#                       # Skip comments and empty lines.
+#                       if not pair:
+#                           continue
 
-                        # Sadly, the distinct items on the line are not
-                        # properly separated by a single delimiter. We split
-                        # using all whitespaces here.
-                        items = pair.split()
+#                       # Sadly, the distinct items on the line are not
+#                       # properly separated by a single delimiter. We split
+#                       # using all whitespaces here.
+#                       items = pair.split()
 
-                        # Query ID follows the second item on the line,
-                        # which is 'qid:'.
-                        qid = int(items[1].split(':')[1])
+#                       # Query ID follows the second item on the line,
+#                       # which is 'qid:'.
+#                       qid = int(items[1].split(':')[1])
 
-                        if qid != prev_qid:
-                            # Make sure query is sanitized before being
-                            # added to the set.
-                            n_purged = purge_query(prev_qid, data,
-                                                   indices, indptr)
+#                       if qid != prev_qid:
+#                           # Make sure query is sanitized before being
+#                           # added to the set.
+#                           if purge:
+#                               n_purged = purge_query(prev_qid, data,
+#                                                  indices, indptr)
+#                           else:
+#                               n_purged = 0
 
-                            n_purged_documents += n_purged
+#                           n_purged_documents += n_purged
 
-                            if n_purged > 0:
-                                logger.debug('Ignoring query %d (qid) with %d '
-                                             'documents because all had the '
-                                             'same relevance label.'
-                                             % (prev_qid, n_purged))
-                                n_purged_queries += 1
+#                           if n_purged > 0:
+#                               logger.debug('Ignoring query %d (qid) with %d '
+#                                            'documents because all had the '
+#                                            'same relevance label.'
+#                                            % (prev_qid, n_purged))
+#                               n_purged_queries += 1
 
-                            query_ids.append(qid)
-                            query_indptr.append(query_indptr[-1] + 1)
-                            prev_qid = qid
+#                           query_ids.append(qid)
+#                           query_indptr.append(query_indptr[-1] + 1)
+#                           prev_qid = qid
 
-                        else:
-                            query_indptr[-1] += 1
+#                       else:
+#                           query_indptr[-1] += 1
 
-                        # Relevance is the first number on the line.
-                        relevances.append(int(items[0]))
+#                       # Relevance is the first number on the line.
+#                       relevances.append(int(items[0]))
 
-                        # Load the feature vector into CSR arrays.
-                        for fidx, fval in [s.split(':') for s in items[2:]]:
-                            data.append(dtype(fval))
-                            indices.append(int(fidx))
+#                       # Load the feature vector into CSR arrays.
+#                       for fidx, fval in [s.split(':') for s in items[2:]]:
+#                           data.append(dtype(fval))
+#                           indices.append(int(fidx))
 
-                        indptr.append(len(indices))
+#                       indptr.append(len(indices))
 
-                        if (query_indptr[-1] + n_purged_documents) % 10000 == 0:
-                            logger.info('Read %d queries and %d documents '
-                                        'so far.' % (len(query_indptr) +
-                                                     n_purged_queries - 1,
-                                                     query_indptr[-1] +
-                                                     n_purged_documents))
-                    except:
-                        # Ill-formated line (it should not happen).
-                        # Print line number
-                        print('Ill-formated line: %d' % lineno)
-                        raise
+#                       if (query_indptr[-1] + n_purged_documents) % 10000 == 0:
+#                           logger.info('Read %d queries and %d documents '
+#                                       'so far.' % (len(query_indptr) +
+#                                                    n_purged_queries - 1,
+#                                                    query_indptr[-1] +
+#                                                    n_purged_documents))
+#                   except:
+#                       # Ill-formated line (it should not happen).
+#                       # Print line number
+#                       print('Ill-formated line: %d' % lineno)
+#                       raise
+#               # Need to check the last added query.
+#               if purge:
+#                   n_purged = purge_query(prev_qid, data, indices, indptr)
+#               else:
+#                   n_purged = 0
+#               n_purged_documents += n_purged
 
-                # Need to check the last added query.
-                n_purged = purge_query(prev_qid, data, indices, indptr)
-                n_purged_documents += n_purged
+#               if n_purged > 0:
+#                   logger.debug('Ignoring query %d (qid) with %d documents '
+#                                'because all had the same relevance label.'
+#                                % (prev_qid, n_purged))
+#                   n_purged_queries += 1
 
-                if n_purged > 0:
-                    logger.debug('Ignoring query %d (qid) with %d documents '
-                                 'because all had the same relevance label.'
-                                 % (prev_qid, n_purged))
-                    n_purged_queries += 1
+            #--------------------------------------------------------------------------------
+            # Call svmlight_loader here.  We don't use comments but I kept
+            # it there so we know what it is.
+            #--------------------------------------------------------------------------------
+            (feature_vectors, relevances, comments, qids) = svmlight_loader.load_svmlight_file(filepath)
 
-                logger.info('Read %d queries and %d documents out of which '
-                            '%d queries and %d documents were discarded.'
-                            % (len(query_indptr) + n_purged_queries - 1,
-                               query_indptr[-1] + n_purged_documents,
-                               n_purged_queries, n_purged_documents))
+            # Set up query_indptr and query_ids from qids
+            last_query_id = None
+            # The way the above code handles this is bizarre.  It initializes query_indptr
+            # to [0] then immediately appends a 1.
+            for i in range(0, len(qids)):
+                if qids[i] != last_query_id:
+                    query_indptr.append(query_indptr[-1]+1)
+                    query_ids.append(qids[i])
+                    last_query_id = qids[i]
+                else:
+                    query_indptr[-1] += 1
+
+            logger.info('Read %d queries and %d documents out of which '
+                        '%d queries and %d documents were discarded.'
+                        % (len(query_indptr) + n_purged_queries - 1,
+                           query_indptr[-1] + n_purged_documents,
+                           n_purged_queries, n_purged_documents))
 
         # Empty dataset.
         if len(query_indptr) == 1:
@@ -502,27 +527,28 @@ class Queries(object):
             min_feature = min(indices)
 
         if max_feature is None:
+            raise NotImplemented
             # Remap the features for a proper conversion into dense matrix.
             feature_indices = np.unique(np.r_[min_feature, indices])
             indices = np.searchsorted(feature_indices, indices)
         else:
-            assert min(indices) >= min_feature, ('there is a feature with id '
-                    'smaller than min_feature: %d < %d' % (min(indices),
-                                                           min_feature))
+            #assert min(indices) >= min_feature, ('there is a feature with id '
+            #        'smaller than min_feature: %d < %d' % (min(indices),
+            #                                               min_feature))
 
-            assert max(indices) <= max_feature, ('there is a feature with id '
-                    'greater than max_feature: %d > %d' % (max(indices),
+            assert feature_vectors.shape[1] <= max_feature, ('there is a feature with id '
+                    'greater than max_feature: %d > %d' %  (feature_vectors.shape[1],
                                                            max_feature))
 
             feature_indices = np.arange(min_feature,
-                                        max_feature + 1,
+                                        max_feature,
                                         dtype='int32')
 
-            indices = np.array(indices, dtype='int32') - min_feature
+#            indices = np.array(indices, dtype='int32') - min_feature
 
-        feature_vectors = sp.csr_matrix((data, indices, indptr), dtype=dtype,
-                                        shape=(query_indptr[-1],
-                                        len(feature_indices)))
+#        feature_vectors = sp.csr_matrix((data, indices, indptr), dtype=dtype,
+#                                        shape=(query_indptr[-1],
+#                                        len(feature_indices)))
 
         # Free the copies of the feature_vectors in non-Numpy arrays (if any),
         # this is important in order not to waste memory for the transfer of
@@ -530,6 +556,17 @@ class Queries(object):
         del data, indices, indptr
 
         feature_vectors = feature_vectors.toarray()
+        #--------------------------------------------------------------------------------
+        # KDR: things that just get passed through: 
+        # max_score
+        # has_sorted_relevances
+        #--------------------------------------------------------------------------------
+        # KDR: things we need to construct:
+        # feature_vectors: CSR matrix
+        # relevances: list of what I would call "labels", one per line 
+        # query_indptr: row pointers to the start of each query
+        # query_ids: just a list of query ids in the order they appear (relies on the input being sorted) 
+        # feature_indices: sequential list of features (current logic is fine)
 
         # Create and return a Queries object.
         return Queries(feature_vectors, relevances, query_indptr,
