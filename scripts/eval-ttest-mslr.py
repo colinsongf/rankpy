@@ -31,7 +31,7 @@ from scipy.stats import ttest_rel
 
 def load_evaluation_file(filename):
     with open(filename, 'r') as ifile:
-        qids, values = zip(*map(str.split, ifile.readlines()))
+        qids, values = list(zip(*list(map(str.split, ifile.readlines()))))
         return np.array(qids, dtype=np.intp), np.array(values, dtype=np.float64)
 
 
@@ -72,8 +72,8 @@ if __name__ == '__main__':
 
     n_queries, mean1, mean2, t_statistic, p_value = ttest(arguments.filename1, arguments.filename2)
 
-    print 'Number of queries:    %d' % n_queries
-    print 'Mean perf. measure 1: %.8f' % mean1
-    print 'Mean perf. measure 2: %.8f' % mean2
-    print 't-statistic:          %.8f' % t_statistic
-    print 'p-value:              %.8f' % p_value
+    print('Number of queries:    %d' % n_queries)
+    print('Mean perf. measure 1: %.8f' % mean1)
+    print('Mean perf. measure 2: %.8f' % mean2)
+    print('t-statistic:          %.8f' % t_statistic)
+    print('p-value:              %.8f' % p_value)

@@ -20,7 +20,7 @@ import numbers
 import scipy.sparse
 
 try:
-    import cPickle as _pickle
+    import pickle as _pickle
 except ImportError:
     import pickle as _pickle
 
@@ -155,7 +155,7 @@ def aslist(*args):
     Helper method which wraps the parameters into a list and removes
     any None element from it.
     '''
-    return filter(None, args)
+    return [_f for _f in args if _f]
 
 def asindexarray(x):
     '''

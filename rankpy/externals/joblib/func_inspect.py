@@ -75,9 +75,9 @@ def get_func_code(func):
 
 def _clean_win_chars(string):
     """Windows cannot encode some characters in filename."""
-    import urllib
+    import urllib.request, urllib.parse, urllib.error
     if hasattr(urllib, 'quote'):
-        quote = urllib.quote
+        quote = urllib.parse.quote
     else:
         # In Python 3, quote is elsewhere
         import urllib.parse
@@ -133,7 +133,7 @@ def get_func_name(func, resolv_alias=True, win_characters=True):
             module = module + '-' + filename
     module = module.split('.')
     if hasattr(func, 'func_name'):
-        name = func.func_name
+        name = func.__name__
     elif hasattr(func, '__name__'):
         name = func.__name__
     else:
@@ -141,13 +141,13 @@ def get_func_name(func, resolv_alias=True, win_characters=True):
     # Hack to detect functions not defined at the module-level
     if resolv_alias:
         # TODO: Maybe add a warning here?
-        if hasattr(func, 'func_globals') and name in func.func_globals:
-            if not func.func_globals[name] is func:
+        if hasattr(func, 'func_globals') and name in func.__globals__:
+            if not func.__globals__[name] is func:
                 name = '%s-alias' % name
     if inspect.ismethod(func):
         # We need to add the name of the class
         if hasattr(func, 'im_class'):
-            klass = func.im_class
+            klass = func.__self__.__class__
             module.append(klass.__name__)
     if os.name == 'nt' and win_characters:
         # Stupid windows can't encode certain characters in filenames
@@ -228,7 +228,7 @@ def filter_args(func, ignore_lst, args=(), kwargs=dict()):
                            name,
                            repr(args)[1:-1],
                            ', '.join('%s=%s' % (k, v)
-                                    for k, v in kwargs.items())
+                                    for k, v in list(kwargs.items()))
                            )
                         )
 
@@ -284,7 +284,7 @@ def format_signature(func, *args, **kwargs):
             arg = '\n%s' % arg
         previous_length = len(arg)
         arg_str.append(arg)
-    arg_str.extend(['%s=%s' % (v, pformat(i)) for v, i in kwargs.items()])
+    arg_str.extend(['%s=%s' % (v, pformat(i)) for v, i in list(kwargs.items())])
     arg_str = ', '.join(arg_str)
 
     signature = '%s(%s)' % (name, arg_str)

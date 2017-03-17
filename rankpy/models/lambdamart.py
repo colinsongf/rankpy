@@ -712,7 +712,7 @@ class LambdaMART(object):
             training_query_performance = None
 
         # Iteratively build a sequence of regression trees.
-        for k in xrange(self.n_estimators):
+        for k in range(self.n_estimators):
             training_influences = self.stage_training_influences[k] if self.trace_influences else None
 
             if self.subsample != 1.0:

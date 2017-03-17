@@ -76,9 +76,7 @@ def _mk_common_exceptions():
     namespace = dict()
     if sys.version_info[0] == 3:
         import builtins as _builtin_exceptions
-        common_exceptions = filter(
-            lambda x: x.endswith('Error'),
-            dir(_builtin_exceptions))
+        common_exceptions = [x for x in dir(_builtin_exceptions) if x.endswith('Error')]
     else:
         import exceptions as _builtin_exceptions
         common_exceptions = dir(_builtin_exceptions)

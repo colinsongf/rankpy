@@ -9,7 +9,7 @@ is called with the same input arguments.
 # License: BSD Style, 3 clauses.
 
 
-from __future__ import with_statement
+
 import os
 import shutil
 import time
@@ -17,7 +17,7 @@ import pydoc
 import re
 import sys
 try:
-    import cPickle as pickle
+    import pickle as pickle
 except ImportError:
     import pickle
 import functools
@@ -106,7 +106,7 @@ def _load_output(output_dir, func_name, timestamp=None, metadata=None,
             if metadata is not None:
                 args = ", ".join(['%s=%s' % (name, value)
                                   for name, value
-                                  in metadata['input_args'].items()])
+                                  in list(metadata['input_args'].items())])
                 signature = "%s(%s)" % (os.path.basename(func_name),
                                              args)
             else:
@@ -120,10 +120,10 @@ def _load_output(output_dir, func_name, timestamp=None, metadata=None,
             t = ""
 
         if verbose < 10:
-            print('[Memory]%s: Loading %s...' % (t, str(signature)))
+            print(('[Memory]%s: Loading %s...' % (t, str(signature))))
         else:
-            print('[Memory]%s: Loading %s from %s' % (
-                    t, str(signature), output_dir))
+            print(('[Memory]%s: Loading %s from %s' % (
+                    t, str(signature), output_dir)))
 
     filename = os.path.join(output_dir, 'output.pkl')
     if not os.path.isfile(filename):
@@ -446,7 +446,7 @@ class MemorizedFunc(Logger):
                     t = time.time() - t0
                     _, name = get_func_name(self.func)
                     msg = '%s cache loaded - %s' % (name, format_time(t))
-                    print(max(0, (80 - len(msg))) * '_' + msg)
+                    print((max(0, (80 - len(msg))) * '_' + msg))
             except Exception:
                 # XXX: Should use an exception logger
                 self.warn('Exception while loading results for '
@@ -542,7 +542,7 @@ class MemorizedFunc(Logger):
         # sometimes have several functions named the same way in a
         # file. This is bad practice, but joblib should be robust to bad
         # practice.
-        func_code = u'%s %i\n%s' % (FIRST_LINE_TEXT, first_line, func_code)
+        func_code = '%s %i\n%s' % (FIRST_LINE_TEXT, first_line, func_code)
         with io.open(filename, 'w', encoding="UTF-8") as out:
             out.write(func_code)
         # Also store in the in-memory store of function hashes
@@ -552,7 +552,7 @@ class MemorizedFunc(Logger):
                                  and self.func.__name__ != '<lambda>')
         else:
             is_named_callable = (hasattr(self.func, 'func_name')
-                                 and self.func.func_name != '<lambda>')
+                                 and self.func.__name__ != '<lambda>')
         if is_named_callable:
             # Don't do this for lambda functions or strange callable
             # objects, as it ends up being too fragile
@@ -671,7 +671,7 @@ class MemorizedFunc(Logger):
         start_time = time.time()
         output_dir, _ = self._get_output_dir(*args, **kwargs)
         if self._verbose > 0:
-            print(format_call(self.func, args, kwargs))
+            print((format_call(self.func, args, kwargs)))
         output = self.func(*args, **kwargs)
         self._persist_output(output, output_dir)
         duration = time.time() - start_time
@@ -680,7 +680,7 @@ class MemorizedFunc(Logger):
         if self._verbose > 0:
             _, name = get_func_name(self.func)
             msg = '%s - %s' % (name, format_time(duration))
-            print(max(0, (80 - len(msg))) * '_' + msg)
+            print((max(0, (80 - len(msg))) * '_' + msg))
         return output, metadata
 
     # Make public
@@ -692,7 +692,7 @@ class MemorizedFunc(Logger):
             filename = os.path.join(dir, 'output.pkl')
             numpy_pickle.dump(output, filename, compress=self.compress)
             if self._verbose > 10:
-                print('Persisting in %s' % dir)
+                print(('Persisting in %s' % dir))
         except OSError:
             " Race condition in the creation of the directory "
 
@@ -718,7 +718,7 @@ class MemorizedFunc(Logger):
         argument_dict = filter_args(self.func, self.ignore,
                                     args, kwargs)
 
-        input_repr = dict((k, repr(v)) for k, v in argument_dict.items())
+        input_repr = dict((k, repr(v)) for k, v in list(argument_dict.items()))
         # This can fail due to race-conditions with multiple
         # concurrent joblibs removing the file or the directory
         metadata = {"duration": duration, "input_args": input_repr}

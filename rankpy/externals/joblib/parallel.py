@@ -5,7 +5,7 @@ Helpers for embarrassingly parallel code.
 # Copyright: 2010, Gael Varoquaux
 # License: BSD 3 clause
 
-from __future__ import division
+
 
 import os
 import sys
@@ -18,7 +18,7 @@ import threading
 import itertools
 from numbers import Integral
 try:
-    import cPickle as pickle
+    import pickle as pickle
 except:
     import pickle
 

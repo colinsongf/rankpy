@@ -2633,7 +2633,7 @@ class MetricFactory(object):
     @staticmethod
     def __new__(cls, metric_name_kwargs, queries=None, max_relevance=None,
                 max_documents=None, normalized=False, random_state=None):
-        if isinstance(metric_name_kwargs, basestring):
+        if isinstance(metric_name_kwargs, str):
             name = metric_name_kwargs
             kwargs = {}
         elif isinstance(metric_name_kwargs, (list, tuple)):

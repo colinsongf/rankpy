@@ -476,8 +476,8 @@ def expand_related_parameters(d):
     '''
     deep = False
 
-    for ps in d.keys():
-        if not isinstance(ps, basestring):
+    for ps in list(d.keys()):
+        if not isinstance(ps, str):
             vs = d.pop(ps)
 
             if len(ps) != len(vs):
@@ -493,7 +493,7 @@ def expand_related_parameters(d):
                     raise ValueError('parameter %s was specified multiple '
                                      'times' % p)
 
-                if not isinstance(p, basestring):
+                if not isinstance(p, str):
                     deep = True
 
                 d[p] = v
@@ -598,10 +598,10 @@ def gridsearch(ranker_cls, param_grid, training_queries,
 
     if return_models:
         # If the models are kept...
-        models, scores = zip(*results)
+        models, scores = list(zip(*results))
         # ... we can just extract the best ranker
         # and return the results...
-        return models[np.argmax(scores)], zip(param_grid, models, scores)
+        return models[np.argmax(scores)], list(zip(param_grid, models, scores))
 
     else:
         # ... otherwise we need to find the index of the set of parameters
@@ -613,4 +613,4 @@ def gridsearch(ranker_cls, param_grid, training_queries,
         # ... and then train the model once more.
         ranker.fit(training_queries, validation_queries=estopping_queries)
 
-        return ranker, zip(param_grid, results)
+        return ranker, list(zip(param_grid, results))

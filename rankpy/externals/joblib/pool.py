@@ -25,8 +25,8 @@ import shutil
 
 try:
     # Python 2 compat
-    from cPickle import loads
-    from cPickle import dumps
+    from pickle import loads
+    from pickle import dumps
 except ImportError:
     from pickle import loads
     from pickle import dumps
@@ -235,8 +235,8 @@ class ArrayMemmapReducer(object):
             # done processing this data.
             if not os.path.exists(filename):
                 if self.verbose > 0:
-                    print("Memmaping (shape=%r, dtype=%s) to new file %s" % (
-                        a.shape, a.dtype, filename))
+                    print(("Memmaping (shape=%r, dtype=%s) to new file %s" % (
+                        a.shape, a.dtype, filename)))
                 for dumped_filename in dump(a, filename):
                     os.chmod(dumped_filename, FILE_PERMISSIONS)
 
@@ -245,8 +245,8 @@ class ArrayMemmapReducer(object):
                     # multiple children processes
                     load(filename, mmap_mode=self._mmap_mode).max()
             elif self.verbose > 1:
-                print("Memmaping (shape=%s, dtype=%s) to old file %s" % (
-                    a.shape, a.dtype, filename))
+                print(("Memmaping (shape=%s, dtype=%s) to old file %s" % (
+                    a.shape, a.dtype, filename)))
 
             # Let's use the memmap reducer
             return reduce_memmap(load(filename, mmap_mode=self._mmap_mode))
@@ -254,8 +254,8 @@ class ArrayMemmapReducer(object):
             # do not convert a into memmap, let pickler do its usual copy with
             # the default system pickler
             if self.verbose > 1:
-                print("Pickling array (shape=%r, dtype=%s)." % (
-                    a.shape, a.dtype))
+                print(("Pickling array (shape=%r, dtype=%s)." % (
+                    a.shape, a.dtype)))
             return (loads, (dumps(a, protocol=HIGHEST_PROTOCOL),))
 
 
@@ -296,7 +296,7 @@ class CustomizablePickler(Pickler):
             # Under Python 3 initialize the dispatch table with a copy of the
             # default registry
             self.dispatch_table = copyreg.dispatch_table.copy()
-        for type, reduce_func in reducers.items():
+        for type, reduce_func in list(reducers.items()):
             self.register(type, reduce_func)
 
     def register(self, type, reduce_func):

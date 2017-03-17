@@ -277,9 +277,9 @@ class NumpyPickler(Pickler):
             except:
                 self._npy_counter -= 1
                 # XXX: We should have a logging mechanism
-                print('Failed to save %s to .npy file:\n%s' % (
+                print(('Failed to save %s to .npy file:\n%s' % (
                         type(obj),
-                        traceback.format_exc()))
+                        traceback.format_exc())))
         return Pickler.save(self, obj)
 
     def close(self):

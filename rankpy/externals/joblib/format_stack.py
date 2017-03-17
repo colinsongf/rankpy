@@ -293,7 +293,7 @@ def format_records(records):   # , print_globals=False):
         for name_full in unique_names:
             name_base = name_full.split('.', 1)[0]
             if name_base in frame.f_code.co_varnames:
-                if name_base in locals.keys():
+                if name_base in list(locals.keys()):
                     try:
                         value = safe_repr(eval(name_full, locals))
                     except:
@@ -368,11 +368,11 @@ def format_exc(etype, evalue, etb, context=5, tb_offset=0):
 
     # Get (safely) a string form of the exception info
     try:
-        etype_str, evalue_str = map(str, (etype, evalue))
+        etype_str, evalue_str = list(map(str, (etype, evalue)))
     except:
         # User exception is improperly defined.
         etype, evalue = str, sys.exc_info()[:2]
-        etype_str, evalue_str = map(str, (etype, evalue))
+        etype_str, evalue_str = list(map(str, (etype, evalue)))
     # ... and format it
     exception = ['%s: %s' % (etype_str, evalue_str)]
     frames = format_records(records)

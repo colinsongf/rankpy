@@ -31,7 +31,7 @@ def plot_lambdas_andrews_curves(lambdas, relevance_scores):
     pd.tools.plotting.andrews_curves(data, 'Relevance')
     
     handles, labels = plt.gca().get_legend_handles_labels()
-    plt.gca().legend(handles, map(lambda s: 'Relevance ' + s, labels))
+    plt.gca().legend(handles, ['Relevance ' + s for s in labels])
 
    
 def plot_lambdas_parallel_coordinates(lambdas, relevance_scores, individual=False, cumulative=False):

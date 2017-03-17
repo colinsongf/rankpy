@@ -14,4 +14,4 @@
 # along with RankPy.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import lambdamart
+from . import lambdamart

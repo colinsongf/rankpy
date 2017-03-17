@@ -239,7 +239,7 @@ def _parallel_build_trees(tree, X, y, tree_idx, n_trees, p=0.5, verbose=0):
     Private function used to fit a single tree in parallel.
     '''
     if verbose > 1:
-        print('Building tree %d of %d.' % (tree_idx + 1, n_trees))
+        print(('Building tree %d of %d.' % (tree_idx + 1, n_trees)))
 
     # Assign samples randomly into the structure/estimation streams.
     # The sample comes from structure stream (1) with probability `p`.
