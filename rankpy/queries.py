@@ -314,6 +314,235 @@ class Queries(object):
                                         self.max_score))
 
     @staticmethod
+    def load_from_text_slow(filepaths, dtype=np.float32, max_score=None,
+                       min_feature=None, max_feature=None,
+                       has_sorted_relevances=False, purge=False):
+        '''
+        Load queries in the svmlight format from the specified file(s).
+
+        SVMlight format example (one line):
+
+            5[\s]qid:8[\s]103:1.0[\s]...[\s]981:1.0 982:1.0 # comment[\n]
+
+        Parameters:
+        -----------
+        filepath: string or list of strings
+            The location of the dataset file(s).
+
+        dtype: data-type, optional (default is np.float32)
+            The desired data-type for the document feature vectors. Here,
+            the default value (np.float32) is chosen for mere optimization
+            purposes.
+
+        max_score: int, optional (default is None)
+            The maximum relevance score value. If None, the value is derived
+            from the relevance scores in the file.
+
+        min_feature: int or None, optional (default is None)
+            The minimum feature identifier, which is present in the dataset. If
+            None, this value is read from the data. This parameter is important
+            because of internal feature remapping: in case of loading different
+            parts of a dataset (folds), some features may be present in one
+            part and may not be present in another (because all its values are
+            0) - this would create inconsistent feature mappings between
+            the parts.
+
+        max_feature: int or None, optional (default is None)
+            The maximum feature identifier, which is present in the dataset. If
+            None, this value is read from the data. This parameter is important
+            because of internal feature remapping, see `min_feature` for more.
+
+        has_sorted_relevances: bool, optional (default is False)
+            If True, it indicates that the relevance scores of the queries
+            in the file are sorted in decreasing order.
+
+        purge: bool, optional (default is False)
+            If True, all queries which have documents with the same relevance
+            labels are removed. If False, no query is removed.
+        '''
+        # Arrays used to build CSR matrix of query-document vectors.
+        data, indices, indptr = [], [], [0]
+
+        # Relevance score, query ID, query hash, and document hash.
+        relevances = []
+
+        query_ids = []
+        query_indptr = [0]
+        prev_qid = None
+
+        # If only single filepath is given, not a list.
+        if isinstance(filepaths, str):
+            filepaths = [filepaths]
+
+        n_purged_queries = 0
+        n_purged_documents = 0
+
+        def purge_query(qid, data, indices, indptr):
+            '''Remove the last query added to the set according to `purge`.'''
+            if not purge or qid is None:
+                return 0
+
+            r = relevances[query_indptr[-2]]
+
+            i = query_indptr[-2]
+            while i < query_indptr[-1] and relevances[i] == r:
+                i += 1
+
+            if i == query_indptr[-1]:
+                n = query_indptr.pop()
+
+                del query_ids[-1]
+
+                del indices[indptr[query_indptr[-1]]:]
+                del data[indptr[query_indptr[-1]]:]
+
+                del relevances[query_indptr[-1]:]
+                del indptr[query_indptr[-1] + 1:]
+
+                return n - query_indptr[-1]
+            else:
+                return 0
+
+        for filepath in filepaths:
+            lineno = 0  # Used just to report invalid lines (if any).
+
+            logger.info('Reading queries from %s.' % filepath)
+
+            #with open(filepath, 'rb') as ifile:
+            with open(filepath) as ifile:
+                # Loop through every line containing query-document pair.
+                for pair in ifile:
+                    lineno += 1
+                    try:
+                        #pair = bytearray(pair, 'utf-8')
+                        comment_start = pair.find('#')
+
+                        # Remove the line comment first.
+                        if comment_start >= 0:
+                            pair = pair[:comment_start]
+
+                        pair = pair.strip()
+
+                        # Skip comments and empty lines.
+                        if not pair:
+                            continue
+
+                        # Sadly, the distinct items on the line are not
+                        # properly separated by a single delimiter. We split
+                        # using all whitespaces here.
+                        items = pair.split()
+
+                        # Query ID follows the second item on the line,
+                        # which is 'qid:'.
+                        qid = int(items[1].split(':')[1])
+
+                        if qid != prev_qid:
+                            # Make sure query is sanitized before being
+                            # added to the set.
+                            n_purged = purge_query(prev_qid, data,
+                                                   indices, indptr)
+
+                            n_purged_documents += n_purged
+
+                            if n_purged > 0:
+                                logger.debug('Ignoring query %d (qid) with %d '
+                                             'documents because all had the '
+                                             'same relevance label.'
+                                             % (prev_qid, n_purged))
+                                n_purged_queries += 1
+
+                            query_ids.append(qid)
+                            query_indptr.append(query_indptr[-1] + 1)
+                            prev_qid = qid
+
+                        else:
+                            query_indptr[-1] += 1
+
+                        # Relevance is the first number on the line.
+                        relevances.append(int(items[0]))
+
+                        # Load the feature vector into CSR arrays.
+                        for fidx, fval in [s.split(':') for s in items[2:]]:
+                            data.append(dtype(fval))
+                            indices.append(int(fidx))
+
+                        indptr.append(len(indices))
+
+                        if (query_indptr[-1] + n_purged_documents) % 10000 == 0:
+                            logger.info('Read %d queries and %d documents '
+                                        'so far.' % (len(query_indptr) +
+                                                     n_purged_queries - 1,
+                                                     query_indptr[-1] +
+                                                     n_purged_documents))
+                    except:
+                        # Ill-formated line (it should not happen).
+                        # Print line number
+                        print('Ill-formated line: %d' % lineno)
+                        raise
+
+                # Need to check the last added query.
+                n_purged = purge_query(prev_qid, data, indices, indptr)
+                n_purged_documents += n_purged
+
+                if n_purged > 0:
+                    logger.debug('Ignoring query %d (qid) with %d documents '
+                                 'because all had the same relevance label.'
+                                 % (prev_qid, n_purged))
+                    n_purged_queries += 1
+
+                logger.info('Read %d queries and %d documents out of which '
+                            '%d queries and %d documents were discarded.'
+                            % (len(query_indptr) + n_purged_queries - 1,
+                               query_indptr[-1] + n_purged_documents,
+                               n_purged_queries, n_purged_documents))
+
+        # Empty dataset.
+        if len(query_indptr) == 1:
+            raise ValueError('the input seems to be empty')
+
+        # Set the minimum feature ID, if not given.
+        if min_feature is None:
+            min_feature = min(indices)
+
+        if max_feature is None:
+            # Remap the features for a proper conversion into dense matrix.
+            feature_indices = np.unique(np.r_[min_feature, indices])
+            indices = np.searchsorted(feature_indices, indices)
+        else:
+            assert min(indices) >= min_feature, ('there is a feature with id '
+                    'smaller than min_feature: %d < %d' % (min(indices),
+                                                           min_feature))
+
+            assert max(indices) <= max_feature, ('there is a feature with id '
+                    'greater than max_feature: %d > %d' % (max(indices),
+                                                           max_feature))
+
+            feature_indices = np.arange(min_feature,
+                                        max_feature + 1,
+                                        dtype='int32')
+
+            indices = np.array(indices, dtype='int32') - min_feature
+
+        feature_vectors = sp.csr_matrix((data, indices, indptr), dtype=dtype,
+                                        shape=(query_indptr[-1],
+                                        len(feature_indices)))
+
+        # Free the copies of the feature_vectors in non-Numpy arrays (if any),
+        # this is important in order not to waste memory for the transfer of
+        # the feature vectors to dense format (default option).
+        del data, indices, indptr
+
+        feature_vectors = feature_vectors.toarray()
+
+        # Create and return a Queries object.
+        return Queries(feature_vectors, relevances, query_indptr,
+                       max_score=max_score,
+                       has_sorted_relevances=has_sorted_relevances,
+                       query_ids=query_ids,
+                       feature_indices=feature_indices)
+
+
+    @staticmethod
     def load_from_text(filepaths, dtype=np.float32, max_score=None,
                        min_feature=None, max_feature=None,
                        has_sorted_relevances=False, purge=False):
