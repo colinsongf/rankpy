@@ -52,9 +52,13 @@ def unpickle(filepath):
     filepath:
         The location of the file to unpickle.
     '''
-    with open(filepath) as fin:
-        return _pickle.load(fin)
-
+    # Using encoding='latin1' allows us to read pickle files in python3 that were
+    # created using python 2 (with some reliability, at least)
+    # See
+    # https://stackoverflow.com/questions/28218466/unpickling-a-python-2-object-with-python-3
+    # for more info
+    with open(filepath, 'rb') as fin:
+        return _pickle.load(fin, encoding='latin1')
 
 def save_spmatrix(filename, X, compress=False, tempdir=None):
     '''
