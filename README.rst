@@ -1,17 +1,13 @@
 RankPy: Learning to Rank with Python
 ====================================
 
-Currently, the RankPy project is under intensive development. The goal is to provide reliable, efficient, and stable implementations of the state of the art
-learning to rank algorithms. Why not start with one of the most famous algorithms, which is available right now: LambdaMART.
-
-
 Prerequisities
 --------------
 - Cython (0.22)
 - NumPy  (1.9.2)
 - SciPy  (0.15.1)
 - Scikit-learn (0.16.1)
- 
+- Svmlight-loader (see below) 
 
 Installation
 ------------
@@ -20,6 +16,9 @@ Install the prerequisites and RankPY as follows::
     $ git clone https://github.com/deronnek/rankpy.git
     $ cd rankpy
     $ pip install -r requirements.txt
+    $ cd ../svmlight-loader
+    $ python setup.py install
+    $ cd ../
     $ python setup.py install
 
 
