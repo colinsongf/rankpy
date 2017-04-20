@@ -1,0 +1,3 @@
+[submodule "svmlight-loader"]
+	path = svmlight-loader
+	url = https://github.com/deronnek/svmlight-loader
