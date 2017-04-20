@@ -7,17 +7,17 @@ learning to rank algorithms. Why not start with one of the most famous algorithm
 
 Prerequisities
 --------------
-- Python (2.7)
 - Cython (0.22)
 - NumPy  (1.9.2)
 - SciPy  (0.15.1)
 - Scikit-learn (0.16.1)
+ 
 
 Installation
 ------------
 Install the prerequisites and RankPY as follows::
 
-    $ git clone https://bitbucket.org/tunystom/rankpy.git
+    $ git clone https://github.com/deronnek/rankpy.git
     $ cd rankpy
     $ pip install -r requirements.txt
     $ python setup.py install
